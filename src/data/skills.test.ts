@@ -59,7 +59,7 @@ describe('skills data', () => {
       if (skill.compatibility !== undefined) {
         expect(Array.isArray(skill.compatibility)).toBe(true)
         skill.compatibility.forEach(compat => {
-          expect(['gemini', 'claude']).toContain(compat)
+          expect(['gemini', 'claude', 'cursor', 'windsurf', 'copilot']).toContain(compat)
         })
       }
     })

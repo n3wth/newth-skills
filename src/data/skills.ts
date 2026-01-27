@@ -152,6 +152,45 @@ export const skills: Skill[] = [
     ]
   },
   {
+    id: 'code-generation-pipeline',
+    name: 'Code Generation Pipeline',
+    description: 'Streamline boilerplate and scaffold generation with automatic validation. Trigger Cursor code generation, extract and organize generated code, validate against project standards, and auto-commit with proper attribution.',
+    longDescription: 'A comprehensive workflow for automating code generation with Cursor. This skill guides you through triggering AI-powered code generation, extracting and organizing generated files, validating against project standards, and automatically committing with proper attribution.',
+    category: 'development',
+    tags: ['cursor', 'code-generation', 'automation', 'validation', 'scaffolding'],
+    featured: true,
+    icon: '⚡',
+    color: 'oklch(0.73 0.19 155)',
+    skillFile: `${GITHUB_RAW_BASE}/code-generation-pipeline.md`,
+    features: [
+      'Cursor integration for AI code generation',
+      'Code extraction and organization by type',
+      'Project standards validation (lint, format, types)',
+      'Auto-commit with attribution',
+      'Multi-file generation workflows'
+    ],
+    useCases: [
+      'Scaffolding React components with tests',
+      'Generating API endpoints and routes',
+      'Creating boilerplate for features',
+      'Automating test suite generation',
+      'Batch file creation with validation'
+    ],
+    compatibility: ['claude', 'cursor', 'windsurf', 'copilot'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    samplePrompts: [
+      {
+        prompt: "Generate a Card component with TypeScript and tests",
+        output: "I'll create a complete Card component with proper structure:\n\n1. Generate files:\n```typescript\n// src/components/Card/Card.tsx\ninterface CardProps {\n  title: string;\n  description: string;\n  imageUrl?: string;\n  onClick?: () => void;\n}\n\nexport function Card({ title, description, imageUrl, onClick }: CardProps) {\n  return (\n    <div className=\"card\" onClick={onClick}>\n      {imageUrl && <img src={imageUrl} alt={title} />}\n      <h3>{title}</h3>\n      <p>{description}</p>\n    </div>\n  );\n}\n```\n\n2. Validate:\n- ✓ ESLint passed\n- ✓ TypeScript check passed\n- ✓ Tests written and passing\n\n3. Auto-commit:\n```bash\ngit commit -m \"feat(components): add Card component\n\nGenerated using Cursor AI\n- TypeScript props interface\n- Accessible markup\n- Unit tests included\n\nCo-authored-by: Cursor AI <cursor@cursor.sh>\"\n```"
+      },
+      {
+        prompt: "Scaffold a REST API for user management",
+        output: "Creating a complete user management API:\n\n```typescript\n// src/api/users/users.controller.ts\nimport { Router } from 'express';\nimport { UsersService } from './users.service';\n\nconst router = Router();\nconst usersService = new UsersService();\n\nrouter.get('/', async (req, res) => {\n  const users = await usersService.findAll();\n  res.json(users);\n});\n\nrouter.post('/', async (req, res) => {\n  const user = await usersService.create(req.body);\n  res.status(201).json(user);\n});\n\nexport { router as usersRouter };\n```\n\nGenerated structure:\n- users.controller.ts (HTTP handlers)\n- users.service.ts (business logic)\n- users.repository.ts (data access)\n- users.types.ts (TypeScript types)\n- __tests__/ (unit & integration tests)\n\nValidation: All linting, type checks, and tests passed ✓"
+      }
+    ]
+  },
+  {
     id: 'algorithmic-art',
     name: 'Algorithmic Art',
     description: 'Create algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Build flow fields, particle systems, and generative visuals.',
