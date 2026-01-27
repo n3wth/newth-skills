@@ -321,3 +321,32 @@ body {
 .content-loaded {
   animation: contentFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
+
+/* Mobile Navigation */
+.mobile-nav-link {
+  background: transparent;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:active {
+  background: var(--glass-bg);
+}
+
+@media (hover: none) {
+  .mobile-nav-link:active {
+    background: var(--glass-highlight);
+  }
+}
+
+.mobile-menu-drawer {
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+}
+
+:root[data-theme='light'] .mobile-menu-drawer {
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme='light'] .mobile-menu-overlay {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+}
