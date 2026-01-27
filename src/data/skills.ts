@@ -622,6 +622,46 @@ export const skills: Skill[] = [
     }
   },
   {
+    id: 'cursor-agent-orchestrator',
+    name: 'Cursor Agent Orchestrator',
+    description: 'Chain multiple Cursor agent operations and batch process files. Enable complex multi-step agent workflows with dependency management.',
+    longDescription: 'A powerful orchestration skill for Cursor IDE that enables complex multi-step agent workflows. Chain multiple agent operations, batch process files through agent mode, manage dependencies between tasks, and implement error recovery with automatic retry logic. Perfect for large-scale code transformations and automated refactoring workflows.',
+    category: 'development',
+    tags: ['cursor', 'agent', 'orchestration', 'automation', 'workflow'],
+    featured: true,
+    icon: '⚡',
+    color: 'oklch(0.72 0.17 150)',
+    skillFile: `${GITHUB_RAW_BASE}/cursor-agent-orchestrator.md`,
+    features: [
+      'Chain multiple agent operations in sequence',
+      'Batch process files through agent mode',
+      'Dependency management with execution ordering',
+      'Error recovery and automatic retry logic',
+      'Operation monitoring and result logging',
+      'Parallel execution for independent operations'
+    ],
+    useCases: [
+      'Large-scale codebase migrations',
+      'Multi-step refactoring workflows',
+      'Batch code quality improvements',
+      'Sequential documentation generation',
+      'Automated testing suite creation'
+    ],
+    compatibility: ['cursor', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    samplePrompts: [
+      {
+        prompt: "Chain operations to refactor code and add tests",
+        output: "I'll create a workflow that refactors code first, then adds tests:\n\n```typescript\nconst workflow = {\n  name: 'refactor-and-test',\n  operations: [\n    {\n      id: 'refactor',\n      description: 'Refactor to modern patterns',\n      files: ['src/**/*.ts'],\n      prompt: 'Refactor to use async/await and TypeScript best practices'\n    },\n    {\n      id: 'add-tests',\n      description: 'Add unit tests',\n      files: ['src/**/*.ts'],\n      prompt: 'Add comprehensive unit tests using Jest',\n      dependsOn: ['refactor']\n    }\n  ]\n}\n\nawait orchestrator.run(workflow)\n```\n\nThe test operation waits for refactoring to complete before running."
+      },
+      {
+        prompt: "Batch process multiple files with error handling",
+        output: "Here's how to process multiple files with retry logic:\n\n```typescript\nconst batchOperation = {\n  id: 'add-logging',\n  description: 'Add error logging',\n  files: [\n    'src/routes/users.ts',\n    'src/routes/posts.ts',\n    'src/routes/auth.ts'\n  ],\n  prompt: 'Add comprehensive error logging',\n  retries: 2,\n  timeout: 300000 // 5 minutes\n}\n\nawait orchestrator.runOperation(batchOperation)\n```\n\nThis processes all files with automatic retry on failure."
+      }
+    ]
+  },
+  {
     id: 'imessage',
     name: 'iMessage',
     description: 'Manage iMessage conversations with database queries and AppleScript automation. Find unreplied threads, search contacts, read history, and send messages.',
