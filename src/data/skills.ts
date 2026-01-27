@@ -650,6 +650,46 @@ export const skills: Skill[] = [
     compatibility: ['claude'],
     version: '1.0.0',
     lastUpdated: '2026-01-26'
+  },
+  {
+    id: 'cursor-team-standards',
+    name: 'Cursor Team Standards Enforcer',
+    description: 'Share and enforce .cursor/rules across team with configuration validation. Ensure consistent AI behavior and code generation across team development.',
+    longDescription: 'A comprehensive skill for managing and enforcing Cursor configuration standards across development teams. This skill helps teams share .cursor/rules files, validate team member configurations, generate onboarding documentation, and report compliance with team standards.',
+    category: 'development',
+    tags: ['cursor', 'team', 'standards', 'configuration', 'compliance', 'validation'],
+    featured: true,
+    icon: '◆',
+    color: 'oklch(0.72 0.16 200)',
+    skillFile: `${GITHUB_RAW_BASE}/cursor-team-standards.md`,
+    features: [
+      'Centralized rules management across team repos',
+      'Configuration validation scripts',
+      'Automated onboarding documentation generation',
+      'Compliance reporting and tracking',
+      'CI/CD integration for standards enforcement',
+      'Git workflow integration'
+    ],
+    useCases: [
+      'Onboarding new team members with consistent standards',
+      'Enforcing code style and patterns across the team',
+      'Validating Cursor configuration in CI/CD',
+      'Tracking team compliance with coding standards',
+      'Maintaining consistent AI behavior across developers'
+    ],
+    compatibility: ['cursor', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    samplePrompts: [
+      {
+        prompt: "Set up Cursor team standards for my repository",
+        output: "I'll help you set up Cursor team standards:\n\n1. First, create the directory structure:\n```bash\nmkdir -p .cursor/rules\n```\n\n2. Create a team standards file (.cursor/rules/team-standards.md):\n```markdown\n# Team Development Standards\n\n## Code Style\n- Use TypeScript for all new code\n- Follow Airbnb style guide\n- Maximum function length: 50 lines\n\n## Testing Requirements\n- Minimum 80% code coverage\n- Unit tests for all business logic\n```\n\n3. Create a validation script to check team compliance:\n```bash\nnpm run validate:cursor\n```\n\nThis ensures all team members follow the same AI coding standards."
+      },
+      {
+        prompt: "Generate an onboarding guide for new team members",
+        output: "I'll create an onboarding guide:\n\n```bash\nnode scripts/generate-onboarding.js\n```\n\nThis generates a comprehensive guide at docs/CURSOR_ONBOARDING.md that includes:\n- Setup verification steps\n- Links to all team rules files\n- Testing instructions\n- Troubleshooting tips\n\nNew team members can follow this to ensure their Cursor is configured correctly."
+      }
+    ]
   }
 ]
 
