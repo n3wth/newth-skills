@@ -127,6 +127,13 @@ export function Nav() {
             Playground
           </Link>
           <Link
+            to="/analytics"
+            className="text-sm link-hover"
+            style={{ color: 'var(--color-grey-400)' }}
+          >
+            Analytics
+          </Link>
+          <Link
             to="/contribute"
             className="text-sm link-hover"
             style={{ color: 'var(--color-grey-400)' }}
@@ -199,6 +206,14 @@ export function Nav() {
               style={{ color: 'var(--color-white)' }}
             >
               Playground
+            </Link>
+            <Link
+              to="/analytics"
+              onClick={closeMenu}
+              className="mobile-nav-link text-lg py-4 px-4 rounded-xl transition-all duration-200 min-h-[52px] flex items-center"
+              style={{ color: 'var(--color-white)' }}
+            >
+              Analytics
             </Link>
             <Link
               to="/contribute"

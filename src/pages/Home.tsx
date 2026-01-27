@@ -6,6 +6,7 @@ import { Nav, Footer, Hero, InstallSection, SkillCard, CategoryFilter, SearchInp
 import type { SortOption } from '../components'
 import { useKeyboardShortcuts } from '../hooks'
 import { getRecommendations } from '../lib/recommendations'
+import { getSkillBadgeStatus } from '../lib/analytics'
 
 const SORT_STORAGE_KEY = 'newth-skills-sort-preference'
 
@@ -131,6 +132,9 @@ export function Home() {
     ScrollTrigger.refresh()
   }, [activeCategory, searchQuery])
 
+  // Compute badge status once for all skills (performance optimization)
+  const badgeStatus = useMemo(() => getSkillBadgeStatus(), [])
+
   return (
     <div className="min-h-screen relative content-loaded">
       <SEO
@@ -202,6 +206,8 @@ export function Home() {
               ref={(el) => { skillCardRefs.current[index] = el }}
               skill={skill}
               isSelected={selectedIndex === index}
+              isTrending={badgeStatus.trendingSkillIds.has(skill.id)}
+              isPopular={badgeStatus.popularSkillIds.has(skill.id)}
             />
           ))}
         </div>

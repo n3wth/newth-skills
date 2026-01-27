@@ -9,6 +9,8 @@ interface SkillCardProps {
   skill: Skill
   isSelected?: boolean
   showPopularity?: boolean
+  isTrending?: boolean
+  isPopular?: boolean
   showContributor?: boolean
 }
 
@@ -26,7 +28,7 @@ function supportsHover(): boolean {
 }
 
 export const SkillCard = forwardRef<HTMLAnchorElement, SkillCardProps>(
-  function SkillCard({ skill, isSelected = false, showPopularity = false, showContributor = true }, ref) {
+  function SkillCard({ skill, isSelected = false, showPopularity = false, isTrending = false, isPopular = false, showContributor = true }, ref) {
     const copyCount = showPopularity ? getCopyCount(skill.id) : 0
     const isNew = isRecentlyUpdated(skill.lastUpdated)
     const [showPreview, setShowPreview] = useState(false)
@@ -151,9 +153,40 @@ export const SkillCard = forwardRef<HTMLAnchorElement, SkillCardProps>(
           onTouchStart={handleTouchStart}
         >
         <div className="flex items-start justify-between mb-3 md:mb-4">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             <CategoryShape category={skill.category} size={12} />
-            {isNew && (
+            {isTrending && (
+              <span 
+                className="text-[10px] font-medium px-2 py-0.5 rounded-full flex items-center gap-1"
+                style={{ 
+                  color: '#f97316',
+                  backgroundColor: 'rgba(249, 115, 22, 0.15)',
+                  border: '1px solid rgba(249, 115, 22, 0.3)'
+                }}
+              >
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M13 7.5L10.5 12H14.5L12 16.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                  <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+                </svg>
+                Trending
+              </span>
+            )}
+            {isPopular && !isTrending && (
+              <span 
+                className="text-[10px] font-medium px-2 py-0.5 rounded-full flex items-center gap-1"
+                style={{ 
+                  color: '#a855f7',
+                  backgroundColor: 'rgba(168, 85, 247, 0.15)',
+                  border: '1px solid rgba(168, 85, 247, 0.3)'
+                }}
+              >
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" fill="none"/>
+                </svg>
+                Popular
+              </span>
+            )}
+            {isNew && !isTrending && !isPopular && (
               <span 
                 className="text-[10px] font-medium px-2 py-0.5 rounded-full"
                 style={{ 

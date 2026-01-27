@@ -1,4 +1,5 @@
 import { useParams, Link } from 'react-router-dom'
+import { useEffect } from 'react'
 import { skills, type Skill } from '../data/skills'
 import { CategoryShape } from '../components/CategoryShape'
 import { CommandBox } from '../components/CommandBox'
@@ -9,6 +10,7 @@ import { SEO } from '../components/SEO'
 import { SkillCard } from '../components/SkillCard'
 import { categoryConfig } from '../config/categories'
 import { useKeyboardShortcuts } from '../hooks'
+import { trackViewEvent } from '../lib/analytics'
 
 function getRelatedSkills(currentSkill: Skill, allSkills: Skill[], limit: number = 4): Skill[] {
   const otherSkills = allSkills.filter(s => s.id !== currentSkill.id)
@@ -35,6 +37,13 @@ export function SkillDetail() {
   const { skillId } = useParams<{ skillId: string }>()
   const skill = skills.find(s => s.id === skillId)
   const { showHelp, setShowHelp } = useKeyboardShortcuts()
+
+  // Track view when skill page is visited (only for valid skills)
+  useEffect(() => {
+    if (skillId && skill) {
+      trackViewEvent(skillId)
+    }
+  }, [skillId, skill])
 
   if (!skill) {
     return (
