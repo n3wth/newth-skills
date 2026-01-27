@@ -1,0 +1,43 @@
+{
+  "name": "newth-skills",
+  "version": "1.0.0",
+  "description": "CLI tool for managing AI coding skills for Gemini CLI and Claude Code",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "newth-skills": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "lint": "eslint src --ext .ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "ai",
+    "skills",
+    "gemini",
+    "claude",
+    "cli",
+    "coding-assistant"
+  ],
+  "author": "newth",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/n3wth/newth-skills.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "ora": "^8.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  }
+}
