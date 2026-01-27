@@ -45,7 +45,7 @@ describe('CommandBox', () => {
       />
     )
 
-    const commandBox = container.firstChild as HTMLElement
+    const commandBox = container.querySelector('.command-box') as HTMLElement
     expect(commandBox).toHaveClass('primary')
   })
 
@@ -58,7 +58,7 @@ describe('CommandBox', () => {
       />
     )
 
-    const commandBox = container.firstChild as HTMLElement
+    const commandBox = container.querySelector('.command-box') as HTMLElement
     expect(commandBox).not.toHaveClass('primary')
   })
 
