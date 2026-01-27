@@ -14,6 +14,7 @@ const SubmitSkill = lazy(() => import('./pages/SubmitSkill').then(m => ({ defaul
 const Contribute = lazy(() => import('./pages/Contribute').then(m => ({ default: m.Contribute })))
 const Playground = lazy(() => import('./pages/Playground').then(m => ({ default: m.Playground })))
 const Analytics = lazy(() => import('./pages/Analytics').then(m => ({ default: m.Analytics })))
+const CreateSkill = lazy(() => import('./pages/CreateSkill').then(m => ({ default: m.CreateSkill })))
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -90,6 +91,14 @@ function App() {
           element={
             <Suspense fallback={<HomeSkeleton />}>
               <Analytics />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/create"
+          element={
+            <Suspense fallback={<HomeSkeleton />}>
+              <CreateSkill />
             </Suspense>
           }
         />
