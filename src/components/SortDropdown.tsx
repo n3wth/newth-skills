@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from 'react'
-
-export type SortOption = 'name-asc' | 'name-desc' | 'category' | 'recently-updated'
+import type { SortOption } from '../hooks/useSkillSearch'
 
 interface SortDropdownProps {
   value: SortOption
   onChange: (value: SortOption) => void
 }
+
+export type { SortOption }
 
 const sortOptions: { value: SortOption; label: string }[] = [
   { value: 'name-asc', label: 'Name (A-Z)' },

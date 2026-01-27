@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react'
-import { categoryConfig } from '../config/categories'
+import { categoryConfig, type CategoryId } from '../config/categories'
 
 interface CategoryShapeProps {
   category: string
@@ -7,8 +7,15 @@ interface CategoryShapeProps {
   className?: string
 }
 
+function getConfig(category: string) {
+  if (category in categoryConfig) {
+    return categoryConfig[category as CategoryId]
+  }
+  return categoryConfig.development
+}
+
 export function CategoryShape({ category, size = 12, className = '' }: CategoryShapeProps) {
-  const config = categoryConfig[category] || categoryConfig.development
+  const config = getConfig(category)
 
   const shapes: Record<string, ReactElement> = {
     circle: (
@@ -47,8 +54,8 @@ export function CategoryShape({ category, size = 12, className = '' }: CategoryS
 
 // Renders a shape at a specific size (used in FloatingShapes)
 export function RenderShape({ category, size }: { category: string; size: number }) {
-  const config = categoryConfig[category]
-  if (!config) return null
+  if (!(category in categoryConfig)) return null
+  const config = categoryConfig[category as CategoryId]
 
   const shapeMap: Record<string, ReactElement> = {
     circle: (

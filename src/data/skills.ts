@@ -5,13 +5,15 @@ export interface Contributor {
 }
 
 import type { AssistantId } from '../config/assistants'
+import type { CategoryId } from '../config/categories'
 
 export interface SamplePrompt {
   prompt: string
   output: string
 }
 
-export type SkillCategory = 'development' | 'documents' | 'creative' | 'productivity' | 'business'
+// Re-export CategoryId as SkillCategory for backwards compatibility
+export type SkillCategory = CategoryId
 
 export interface Skill {
   id: string
