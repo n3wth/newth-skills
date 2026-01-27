@@ -8,7 +8,7 @@ interface SkillCardProps {
 
 export function SkillCard({ skill }: SkillCardProps) {
   return (
-    <Link to={`/skill/${skill.id}`} className="glass-card group cursor-pointer p-5 md:p-6 block">
+    <Link to={`/skill/${skill.id}`} className="skill-card glass-card group cursor-pointer p-5 md:p-6 block">
       <div className="mb-3 md:mb-4">
         <CategoryShape category={skill.category} size={12} />
       </div>

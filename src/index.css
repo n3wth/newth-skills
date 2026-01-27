@@ -138,6 +138,33 @@ body {
   border-color: var(--glass-highlight);
 }
 
+/* Skill Card with enhanced hover effects */
+.skill-card {
+  transform: translateY(0) scale(1);
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4),
+              0 0 20px 0 rgba(255, 255, 255, 0.05);
+  background: var(--glass-bg);
+}
+
+.skill-card:active {
+  transform: translateY(-2px) scale(1.01);
+  transition-duration: 0.1s;
+}
+
+:root[data-theme='light'] .skill-card:hover {
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15),
+              0 0 20px 0 rgba(0, 0, 0, 0.03);
+}
+
 /* Glass Nav */
 .glass-nav {
   background: rgba(0, 0, 0, 0.7);
@@ -156,13 +183,20 @@ body {
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
   color: var(--color-grey-400);
-  transition: all 0.3s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1);
 }
 
 .glass-pill:hover {
   background: rgba(255, 255, 255, 0.1);
   border-color: var(--glass-highlight);
   color: var(--color-white);
+  transform: scale(1.02);
+}
+
+.glass-pill:active {
+  transform: scale(0.96);
+  transition-duration: 0.1s;
 }
 
 .glass-pill.active {
@@ -216,17 +250,25 @@ body {
   background: rgba(255, 255, 255, 0.1);
   border: none;
   color: var(--color-grey-400);
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1);
 }
 
 .copy-btn:hover {
   background: rgba(255, 255, 255, 0.15);
   color: var(--color-white);
+  transform: scale(1.05);
+}
+
+.copy-btn:active {
+  transform: scale(0.92);
+  transition-duration: 0.1s;
 }
 
 .copy-btn.copied {
   background: var(--color-sage);
   color: var(--color-bg);
+  transform: scale(1);
 }
 
 /* Ambient glow effects */
@@ -293,25 +335,58 @@ body {
 /* Skeleton loading shimmer */
 @keyframes shimmer {
   0% {
-    opacity: 0.5;
+    opacity: 0.4;
   }
   50% {
-    opacity: 1;
+    opacity: 0.8;
   }
   100% {
-    opacity: 0.5;
+    opacity: 0.4;
   }
 }
 
 .skeleton-shimmer {
-  animation: shimmer 1.5s ease-in-out infinite;
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+
+/* Loading state transitions */
+@keyframes skeletonFadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+
+.skeleton-exit {
+  animation: skeletonFadeOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Staggered card entrance animation */
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.card-enter {
+  animation: cardEnter 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-fill-mode: both;
 }
 
 /* Content fade-in transition */
 @keyframes contentFadeIn {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -320,5 +395,97 @@ body {
 }
 
 .content-loaded {
-  animation: contentFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: contentFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Page transition animations */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pageExit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.page-enter {
+  animation: pageEnter 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.page-exit {
+  animation: pageExit 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .skill-card,
+  .glass-pill,
+  .copy-btn,
+  .glass-card {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .skill-card:hover,
+  .skill-card:active {
+    transform: none !important;
+  }
+
+  .glass-pill:hover,
+  .glass-pill:active {
+    transform: none !important;
+  }
+
+  .copy-btn:hover,
+  .copy-btn:active {
+    transform: none !important;
+  }
+
+  .hero-word {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .floating-shape {
+    animation: none !important;
+    opacity: 0.5 !important;
+  }
+
+  .content-loaded,
+  .page-enter,
+  .page-exit,
+  .animate-in,
+  .card-enter,
+  .skeleton-shimmer,
+  .skeleton-exit {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
