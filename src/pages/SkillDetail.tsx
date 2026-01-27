@@ -1,10 +1,33 @@
 import { useParams, Link } from 'react-router-dom'
-import { skills } from '../data/skills'
+import { skills, type Skill } from '../data/skills'
 import { CategoryShape } from '../components/CategoryShape'
+import { CommandBox } from '../components/CommandBox'
 import { Nav } from '../components/Nav'
 import { Footer } from '../components/Footer'
 import { SEO } from '../components/SEO'
+import { SkillCard } from '../components/SkillCard'
 import { categoryConfig } from '../config/categories'
+
+function getRelatedSkills(currentSkill: Skill, allSkills: Skill[], limit: number = 4): Skill[] {
+  const otherSkills = allSkills.filter(s => s.id !== currentSkill.id)
+  
+  const scored = otherSkills.map(skill => {
+    let score = 0
+    
+    if (skill.category === currentSkill.category) {
+      score += 10
+    }
+    
+    const matchingTags = skill.tags.filter(tag => currentSkill.tags.includes(tag))
+    score += matchingTags.length * 2
+    
+    return { skill, score }
+  })
+  
+  scored.sort((a, b) => b.score - a.score)
+  
+  return scored.slice(0, limit).map(item => item.skill)
+}
 
 export function SkillDetail() {
   const { skillId } = useParams<{ skillId: string }>()
@@ -47,7 +70,7 @@ export function SkillDetail() {
   const seoDescription = skill.longDescription || skill.description
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative content-loaded">
       <SEO
         title={`${skill.name} - newth.ai skills`}
         description={seoDescription}
@@ -221,15 +244,28 @@ export function SkillDetail() {
 
           <div className="glass-card p-6 md:p-8">
             <h2 className="text-lg font-medium text-white mb-4">Install this skill</h2>
-            <div className="command-box p-4">
-              <code
-                className="text-sm font-mono"
-                style={{ color: 'var(--color-grey-200)' }}
-              >
-                curl -fsSL https://skills.newth.ai/install.sh | bash -s -- {skill.id}
-              </code>
-            </div>
+            <CommandBox
+              name="Install"
+              command={`curl -fsSL https://skills.newth.ai/install.sh | bash -s -- ${skill.id}`}
+              primary={true}
+              skillId={skill.id}
+            />
           </div>
+
+          {(() => {
+            const relatedSkills = getRelatedSkills(skill, skills)
+            if (relatedSkills.length === 0) return null
+            return (
+              <div className="mt-16">
+                <h2 className="text-2xl font-semibold text-white mb-8">Related Skills</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {relatedSkills.map(relatedSkill => (
+                    <SkillCard key={relatedSkill.id} skill={relatedSkill} />
+                  ))}
+                </div>
+              </div>
+            )
+          })()}
         </div>
       </main>
 

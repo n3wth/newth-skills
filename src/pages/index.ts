@@ -1,3 +1,4 @@
 export { Home } from './Home'
 export { SkillDetail } from './SkillDetail'
 export { About } from './About'
+export { NotFound } from './NotFound'

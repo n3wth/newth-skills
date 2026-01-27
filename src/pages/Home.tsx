@@ -29,7 +29,7 @@ export function Home() {
   }, [activeCategory, searchQuery])
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative content-loaded">
       <SEO
         title="newth.ai skills - Extend Your AI Coding Assistant"
         description="Browse and install skills for Gemini CLI, Claude Code, and more. Extend your AI coding assistant with specialized capabilities in development, documents, creative, and business domains."
