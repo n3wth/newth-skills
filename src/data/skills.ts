@@ -622,6 +622,32 @@ export const skills: Skill[] = [
     }
   },
   {
+    id: 'sql-optimizer',
+    name: 'SQL Optimizer',
+    description: 'Optimize SQL queries and database performance through execution plan analysis, index suggestions, and query rewriting for maximum efficiency.',
+    longDescription: 'A comprehensive SQL query optimization skill that helps you identify and fix performance bottlenecks in your database queries. Analyze execution plans, suggest optimal indexes, rewrite inefficient queries, detect N+1 query problems, and apply database-specific optimizations for PostgreSQL, MySQL, SQL Server, and more.',
+    category: 'development',
+    tags: ['sql', 'database', 'performance', 'optimization'],
+    icon: '⬢',
+    color: 'oklch(0.70 0.15 190)',
+    features: [
+      'Analyze query execution plans',
+      'Suggest index improvements',
+      'Rewrite inefficient queries',
+      'Identify N+1 query problems',
+      'Database-specific optimizations'
+    ],
+    useCases: [
+      'Improving query performance',
+      'Database tuning',
+      'Identifying bottlenecks',
+      'Migration optimization'
+    ],
+    compatibility: ['gemini', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27'
+  },
+  {
     id: 'imessage',
     name: 'iMessage',
     description: 'Manage iMessage conversations with database queries and AppleScript automation. Find unreplied threads, search contacts, read history, and send messages.',
