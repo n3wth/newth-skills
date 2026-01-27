@@ -1,3 +1,8 @@
+export interface SamplePrompt {
+  prompt: string
+  output: string
+}
+
 export interface Skill {
   id: string
   name: string
@@ -13,6 +18,7 @@ export interface Skill {
   compatibility?: ('gemini' | 'claude')[]
   version: string
   lastUpdated: string
+  samplePrompts?: SamplePrompt[]
 }
 
 export const skills: Skill[] = [
@@ -42,7 +48,17 @@ export const skills: Skill[] = [
     ],
     compatibility: ['gemini', 'claude'],
     version: '1.2.0',
-    lastUpdated: '2026-01-20'
+    lastUpdated: '2026-01-20',
+    samplePrompts: [
+      {
+        prompt: "Create a scroll-triggered fade-in animation for a hero section",
+        output: "Here's a GSAP ScrollTrigger animation that fades in your hero section as the user scrolls:\n\n```javascript\ngsap.from('.hero', {\n  scrollTrigger: {\n    trigger: '.hero',\n    start: 'top 80%',\n    end: 'top 20%',\n    scrub: 1\n  },\n  opacity: 0,\n  y: 100,\n  duration: 1,\n  ease: 'power3.out'\n});\n```\n\nThis creates a smooth fade-in effect with upward movement as the hero section enters the viewport."
+      },
+      {
+        prompt: "Animate text splitting each word with a stagger effect",
+        output: "Using SplitText with staggered animations:\n\n```javascript\nconst split = new SplitText('.headline', { type: 'words' });\n\ngsap.from(split.words, {\n  opacity: 0,\n  y: 50,\n  rotationX: -40,\n  stagger: 0.1,\n  duration: 0.8,\n  ease: 'back.out(1.7)'\n});\n```\n\nEach word will animate in sequence with a slight rotation for a dynamic reveal effect."
+      }
+    ]
   },
   {
     id: 'mcp-builder',
@@ -70,7 +86,17 @@ export const skills: Skill[] = [
     ],
     compatibility: ['claude'],
     version: '2.0.0',
-    lastUpdated: '2026-01-25'
+    lastUpdated: '2026-01-25',
+    samplePrompts: [
+      {
+        prompt: "Build an MCP server that connects to a weather API",
+        output: "I'll create a FastMCP server for weather data:\n\n```python\nfrom fastmcp import FastMCP\nimport httpx\n\nmcp = FastMCP('weather-server')\n\n@mcp.tool()\nasync def get_weather(city: str) -> dict:\n    \"\"\"Get current weather for a city.\"\"\"\n    async with httpx.AsyncClient() as client:\n        response = await client.get(\n            f'https://api.weather.com/v1/current',\n            params={'city': city}\n        )\n        return response.json()\n\nif __name__ == '__main__':\n    mcp.run()\n```\n\nThis creates a tool that Claude can use to fetch real-time weather data."
+      },
+      {
+        prompt: "How do I handle errors in MCP tools?",
+        output: "Use structured error handling with descriptive messages:\n\n```python\nfrom fastmcp import FastMCP\nfrom fastmcp.exceptions import ToolError\n\nmcp = FastMCP('my-server')\n\n@mcp.tool()\nasync def fetch_data(id: str) -> dict:\n    if not id:\n        raise ToolError('ID is required')\n    \n    try:\n        result = await database.get(id)\n        if not result:\n            raise ToolError(f'No data found for ID: {id}')\n        return result\n    except ConnectionError:\n        raise ToolError('Database connection failed')\n```\n\nToolError messages are shown to the user, so make them helpful and actionable."
+      }
+    ]
   },
   {
     id: 'skill-creator',
@@ -98,7 +124,13 @@ export const skills: Skill[] = [
     ],
     compatibility: ['gemini', 'claude'],
     version: '1.1.0',
-    lastUpdated: '2026-01-10'
+    lastUpdated: '2026-01-10',
+    samplePrompts: [
+      {
+        prompt: "Create a skill for React component development",
+        output: "Here's a skill structure for React development:\n\n```markdown\n# React Component Skill\n\n## Trigger Words\n- \"create component\"\n- \"react component\"\n- \"build ui\"\n\n## Instructions\nWhen creating React components:\n1. Use functional components with hooks\n2. Apply TypeScript for type safety\n3. Follow naming conventions (PascalCase)\n4. Include prop types and defaults\n5. Add JSDoc comments for documentation\n\n## Example Output\n```tsx\ninterface ButtonProps {\n  label: string;\n  onClick: () => void;\n  variant?: 'primary' | 'secondary';\n}\n\nexport function Button({ label, onClick, variant = 'primary' }: ButtonProps) {\n  return (\n    <button className={`btn btn-${variant}`} onClick={onClick}>\n      {label}\n    </button>\n  );\n}\n```\n```"
+      }
+    ]
   },
   {
     id: 'algorithmic-art',
@@ -126,7 +158,17 @@ export const skills: Skill[] = [
     ],
     compatibility: ['gemini', 'claude'],
     version: '1.3.0',
-    lastUpdated: '2026-01-15'
+    lastUpdated: '2026-01-15',
+    samplePrompts: [
+      {
+        prompt: "Create a flow field visualization with particles",
+        output: "Here's a p5.js flow field with particles:\n\n```javascript\nlet particles = [];\nlet flowField;\nlet cols, rows;\nlet scale = 20;\n\nfunction setup() {\n  createCanvas(800, 600);\n  cols = floor(width / scale);\n  rows = floor(height / scale);\n  flowField = new Array(cols * rows);\n  \n  for (let i = 0; i < 500; i++) {\n    particles.push(new Particle());\n  }\n}\n\nfunction draw() {\n  background(0, 10);\n  \n  let yoff = 0;\n  for (let y = 0; y < rows; y++) {\n    let xoff = 0;\n    for (let x = 0; x < cols; x++) {\n      let angle = noise(xoff, yoff) * TWO_PI * 2;\n      let v = p5.Vector.fromAngle(angle);\n      flowField[x + y * cols] = v;\n      xoff += 0.1;\n    }\n    yoff += 0.1;\n  }\n  \n  particles.forEach(p => {\n    p.follow(flowField);\n    p.update();\n    p.show();\n  });\n}\n```\n\nThis creates mesmerizing particle trails following Perlin noise vectors."
+      },
+      {
+        prompt: "Generate a seeded random color palette",
+        output: "Using seeded randomness for reproducible palettes:\n\n```javascript\nfunction setup() {\n  createCanvas(400, 100);\n  randomSeed(42); // Change seed for different palettes\n  noLoop();\n}\n\nfunction draw() {\n  let palette = generatePalette(5);\n  let w = width / palette.length;\n  \n  palette.forEach((c, i) => {\n    fill(c);\n    noStroke();\n    rect(i * w, 0, w, height);\n  });\n}\n\nfunction generatePalette(count) {\n  let baseHue = random(360);\n  return Array.from({length: count}, (_, i) => {\n    let h = (baseHue + i * 30) % 360;\n    let s = random(60, 90);\n    let b = random(70, 100);\n    return color(h, s, b);\n  });\n}\n```\n\nSeed 42 always produces the same palette - perfect for reproducible art."
+      }
+    ]
   },
   {
     id: 'business-panel',
@@ -154,7 +196,13 @@ export const skills: Skill[] = [
     ],
     compatibility: ['gemini', 'claude'],
     version: '1.0.0',
-    lastUpdated: '2025-12-01'
+    lastUpdated: '2025-12-01',
+    samplePrompts: [
+      {
+        prompt: "Analyze my SaaS pricing strategy from multiple expert perspectives",
+        output: "**Business Panel Analysis: SaaS Pricing Strategy**\n\n**Clayton Christensen (Disruption Theory):**\nYour pricing should consider where you sit on the disruption curve. Are you targeting overserved customers with a simpler, cheaper solution? Or serving underserved markets?\n\n**Michael Porter (Competitive Strategy):**\nExamine your competitive positioning. Premium pricing signals differentiation, while cost leadership requires operational efficiency. Your pricing must align with your strategic choice.\n\n**Peter Drucker (Management):**\nPrice is what customers pay, value is what they receive. Focus on the results your product delivers. What business outcomes justify your price point?\n\n**Seth Godin (Marketing):**\nPricing is a story. A $99/month price tells a different story than $97. Consider what narrative your pricing creates and whether it resonates with your tribe.\n\n**Synthesis:**\nConsider a value-based pricing model with tiers that serve different customer segments, allowing you to capture both price-sensitive and premium customers."
+      }
+    ]
   },
   {
     id: 'frontend-design',
