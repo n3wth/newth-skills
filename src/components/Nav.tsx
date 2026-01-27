@@ -109,7 +109,7 @@ export function Nav() {
 
   return (
     <>
-      <nav className="glass-nav fixed top-0 left-0 right-0 z-[60] px-6 md:px-12 py-3 md:py-4 flex items-center justify-between">
+      <nav className="glass-nav px-6 md:px-12 py-3 md:py-4 flex items-center justify-between">
         <Link
           to="/"
           className="text-base md:text-lg font-semibold hover:opacity-70 transition-opacity"

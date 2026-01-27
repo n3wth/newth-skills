@@ -353,12 +353,12 @@ export function SkillDetail() {
           </div>
 
           {(() => {
-            const relatedSkills = getRelatedSkills(skill, skills)
+            const relatedSkills = getRelatedSkills(skill, skills, 2)
             if (relatedSkills.length === 0) return null
             return (
               <div className="mt-16">
                 <h2 className="text-2xl font-semibold text-white mb-8">Related Skills</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {relatedSkills.map(relatedSkill => (
                     <SkillCard key={relatedSkill.id} skill={relatedSkill} />
                   ))}
