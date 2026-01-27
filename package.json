@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@neondatabase/serverless": "^1.0.2",
     "@tailwindcss/vite": "^4.1.18",
     "canvas-confetti": "^1.9.4",
     "geist": "^1.5.1",
@@ -31,6 +32,7 @@
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
+    "@vercel/node": "^5.5.28",
     "@vitejs/plugin-react": "^5.1.1",
     "@vitest/coverage-v8": "^4.0.18",
     "eslint": "^9.39.1",

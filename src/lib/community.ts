@@ -1,3 +1,5 @@
+import { getFingerprint } from './fingerprint'
+
 // Community features: bundles, voting, and feature requests
 const BUNDLES_STORAGE_KEY = 'newth-skills-bundles'
 const VOTES_STORAGE_KEY = 'newth-skills-votes'
@@ -174,17 +176,33 @@ function saveVoteData(data: VoteData): void {
 
 export function voteForSkill(skillId: string): { votes: number; hasVoted: boolean } {
   const data = getVoteData()
-  
-  if (data.userVotedSkills.includes(skillId)) {
+  const fingerprint = getFingerprint()
+  const wasVoted = data.userVotedSkills.includes(skillId)
+
+  if (wasVoted) {
     // Unvote
     data.userVotedSkills = data.userVotedSkills.filter(id => id !== skillId)
     data.skillVotes[skillId] = Math.max(0, (data.skillVotes[skillId] || 1) - 1)
+
+    // Send to API
+    fetch(`/api/vote?skillId=${skillId}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fingerprint }),
+    }).catch(() => {})
   } else {
     // Vote
     data.userVotedSkills.push(skillId)
     data.skillVotes[skillId] = (data.skillVotes[skillId] || 0) + 1
+
+    // Send to API
+    fetch(`/api/vote?skillId=${skillId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fingerprint }),
+    }).catch(() => {})
   }
-  
+
   saveVoteData(data)
   return {
     votes: data.skillVotes[skillId] || 0,

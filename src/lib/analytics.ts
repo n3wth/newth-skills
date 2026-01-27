@@ -54,21 +54,28 @@ function saveData(data: AnalyticsData): void {
 
 export function trackCopyEvent(skillId: string): void {
   const data = getStoredData()
-  
+
   const event: CopyEvent = {
     skillId,
     timestamp: Date.now(),
   }
-  
+
   data.copyEvents.push(event)
   data.skillCopyCounts[skillId] = (data.skillCopyCounts[skillId] || 0) + 1
-  
+
   if (data.copyEvents.length > MAX_EVENTS) {
     data.copyEvents = data.copyEvents.slice(-MAX_EVENTS)
   }
-  
+
   saveData(data)
-  
+
+  // Send to API
+  fetch('/api/analytics', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ skillId, eventType: 'copy' }),
+  }).catch(() => {})
+
   // Send to Plausible if available (privacy-respecting analytics)
   if (typeof window !== 'undefined' && 'plausible' in window) {
     const plausible = window.plausible as (event: string, options?: { props?: Record<string, string> }) => void
@@ -117,21 +124,28 @@ export function clearAnalytics(): void {
 // View tracking functions
 export function trackViewEvent(skillId: string): void {
   const data = getStoredData()
-  
+
   const event: ViewEvent = {
     skillId,
     timestamp: Date.now(),
   }
-  
+
   data.viewEvents.push(event)
   data.skillViewCounts[skillId] = (data.skillViewCounts[skillId] || 0) + 1
-  
+
   if (data.viewEvents.length > MAX_EVENTS) {
     data.viewEvents = data.viewEvents.slice(-MAX_EVENTS)
   }
-  
+
   saveData(data)
-  
+
+  // Send to API
+  fetch('/api/analytics', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ skillId, eventType: 'view' }),
+  }).catch(() => {})
+
   // Send to Plausible if available
   if (typeof window !== 'undefined' && 'plausible' in window) {
     const plausible = window.plausible as (event: string, options?: { props?: Record<string, string> }) => void
