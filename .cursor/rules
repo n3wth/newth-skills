@@ -1,0 +1,204 @@
+# Skills Development Rules for newth-skills
+
+## Project Context
+- Repository: n3wth/newth-skills
+- Type: AI skill discovery and distribution platform
+- Tech: React 18 + TypeScript + Vite, Tailwind CSS, GSAP animations
+- Site: skills.newth.ai - Skills for Claude Code, Gemini CLI, and other AI assistants
+
+## Skill Implementation Standards
+
+### Skill Structure
+Every skill must follow the `.skill` package format:
+```
+skill-name.skill/
+├── SKILL.md                    # Frontmatter + documentation (required)
+├── scripts/
+│   └── <script>py/sh          # Executable scripts (Python or Bash)
+├── templates/
+│   └── <template>.md           # Configuration or code templates
+├── references/
+│   └── <guide>.md              # API guides, documentation
+└── assets/
+    └── <visual>png/svg         # Optional visual assets
+```
+
+### SKILL.md Frontmatter (Required)
+```yaml
+---
+name: Skill Display Name
+slug: skill-slug
+description: One-line description
+author: Oliver Newth
+repo: n3wth/newth-skills
+version: 1.0.0
+categories: [category1, category2]
+platforms: [claude-code, gemini-cli]
+status: stable
+tags: [tag1, tag2]
+---
+```
+
+### Categories
+Choose from: `development`, `documents`, `creative`, `productivity`, `business`
+
+### Skill Types
+Based on created issues (#126-141):
+
+**Workspace & Configuration (4 skills)**
+- Cursor Project Bootstrapper
+- AI Rules Manager
+- Extension Sync Tool
+- Cursor Agent Orchestrator
+
+**Development Workflow (3 skills)**
+- Code Generation Pipeline
+- Cursor-Driven Refactoring
+- Codebase Context Builder
+
+**Project Intelligence (3 skills)**
+- Smart .cursor/rules Generator
+- Cursor Project Scanner
+- Cursor ↔ Linear Bridge
+
+**Integration (3 skills)**
+- Cursor ↔ Git Workflow
+- VSCode ↔ Cursor Sync
+- Cursor Usage Analytics
+
+**Team & Collaboration (3 skills)**
+- Cursor Team Standards Enforcer
+- Cursor Code Review Assistant
+- Settings Distribution Manager
+
+## Code Quality Standards
+
+### Python Scripts
+- Use standard library where possible (avoid dependencies)
+- Type hints on all functions
+- Error handling with clear messages
+- Executable with `python3 script.py [args]`
+- Include --help documentation
+
+### Bash Scripts
+- Use `#!/bin/bash` header
+- Clear error messages
+- Exit codes: 0 (success), 1 (error)
+- Executable with `bash script.sh [args]`
+
+### Templates & Guides
+- Markdown format only
+- Include YAML/JSON examples where applicable
+- Comment all configuration with rationale
+- Provide copy-paste ready snippets
+
+## Site Integration
+
+### Skill Registration
+New skills are added to `src/data/skills.ts`:
+```typescript
+{
+  id: 'skill-slug',
+  name: 'Skill Name',
+  category: 'category',
+  description: 'Brief description',
+  author: 'Oliver Newth',
+  tags: ['tag1', 'tag2'],
+  command: 'install-command',
+  links: { ... }
+}
+```
+
+### Data Source
+Skills data lives in:
+- `src/data/skills.ts` - Main registry
+- `skills/` directory - Skill definitions (markdown + YAML)
+
+## Development Workflow
+
+### For Implementing Skills
+1. Create feature branch: `feature/skill-<name>`
+2. Implement skill in `.skill` package format
+3. Add to `src/data/skills.ts`
+4. Test with actual installation commands
+5. Update `skills/` directory markdown
+6. Create PR with skill demo/examples
+7. Merge to main via fast-forward
+
+### For Copilot Agent Use
+Commands to delegate Cursor skill development to Copilot:
+```bash
+# Assign issue to Copilot agent
+gh issue edit <issue_num> --add-assignee copilot-swe-agent[bot]
+
+# With custom agent setup skill
+/copilot-agent-setup --assign-issue <issue_num> --agent workspace-expert
+```
+
+## Design Consistency
+
+### Naming
+- Skills: kebab-case (e.g., `cursor-project-bootstrapper`)
+- Categories: lowercase (development, documents, creative, productivity, business)
+- Scripts: snake_case.py or kebab-case.sh
+
+### Documentation
+- Keep descriptions under 100 characters
+- Use active voice ("Create workspaces..." not "Used for creating...")
+- Include real usage examples
+- Document all command-line arguments
+
+## Testing & Validation
+
+### Before Submitting PR
+- Test skill installation on clean environment
+- Verify all scripts execute without errors
+- Check SKILL.md YAML syntax validity
+- Ensure markdown renders correctly on GitHub
+- Validate that site build passes (`npm run build`)
+
+### CI/CD
+GitHub Actions validate:
+- TypeScript compilation (`npm run build`)
+- ESLint (`npm run lint`)
+- Skill data integrity
+- SKILL.md frontmatter correctness
+
+## Copilot Integration
+
+### Assign New Skill Issues to Copilot
+Use the copilot-agent-setup skill:
+```bash
+npm run copilot -- --assign-issue 126 --model claude-opus-4-5 --agent workspace-expert
+```
+
+### Agent Models Available
+- `claude-opus-4-5` (powerful, best for complex skills)
+- `claude-sonnet-4` (balanced, good for most skills)
+- `claude-haiku-4.5` (fast, suitable for templates/docs)
+
+### Custom Instructions for Copilot
+Pass via agent setup or embedded in issue:
+```
+Focus on: [skill-specific area]
+Constraints: [technical limits]
+Testing: [validation approach]
+```
+
+## Reference Links
+- GitHub Issues: https://github.com/n3wth/newth-skills/issues
+- Project Board: https://github.com/orgs/n3wth/projects
+- Site Repo: https://github.com/n3wth/newth-skills
+- Live Site: https://skills.newth.ai
+
+## Quick Checklist for New Skills
+- [ ] Create `.skill` package directory
+- [ ] Write SKILL.md with proper frontmatter
+- [ ] Implement scripts with error handling
+- [ ] Add templates/references as needed
+- [ ] Test scripts independently
+- [ ] Register in src/data/skills.ts
+- [ ] Add markdown to skills/ directory
+- [ ] Verify npm run build passes
+- [ ] Create PR with demo/examples
+- [ ] Assign to Copilot if delegating further work
