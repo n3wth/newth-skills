@@ -137,22 +137,26 @@ export function CuratedBundles() {
               </h2>
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="p-6 rounded-xl bg-[var(--glass-bg)] border border-[var(--glass-border)]">
-                  <div className="w-8 h-8 mb-3 rounded-lg bg-[var(--color-sage)] opacity-80" />
+                  <svg className="w-8 h-8 mb-3" viewBox="0 0 32 32">
+                    <rect x="2" y="2" width="28" height="28" fill="#ff6961" opacity={0.8} />
+                  </svg>
                   <h3 className="text-lg font-medium text-[var(--color-white)] mb-2">Pre-Curated</h3>
                   <p className="text-sm text-[var(--color-grey-400)]">
                     Each bundle is carefully selected to complement each other and solve real problems for your role.
                   </p>
                 </div>
                 <div className="p-6 rounded-xl bg-[var(--glass-bg)] border border-[var(--glass-border)]">
-                  <div className="w-8 h-8 mb-3 rounded-full bg-[var(--color-coral)] opacity-80" />
+                  <svg className="w-8 h-8 mb-3" viewBox="0 0 32 32">
+                    <circle cx="16" cy="16" r="14" fill="#30d158" opacity={0.8} />
+                  </svg>
                   <h3 className="text-lg font-medium text-[var(--color-white)] mb-2">One Command</h3>
                   <p className="text-sm text-[var(--color-grey-400)]">
                     Install an entire bundle with a single command. No manual selection needed.
                   </p>
                 </div>
                 <div className="p-6 rounded-xl bg-[var(--glass-bg)] border border-[var(--glass-border)]">
-                  <svg className="w-8 h-8 mb-3" viewBox="0 0 24 24" fill="var(--color-sky)" opacity={0.8}>
-                    <polygon points="12,2 22,22 2,22" />
+                  <svg className="w-8 h-8 mb-3" viewBox="0 0 32 32">
+                    <polygon points="16,2 30,30 2,30" fill="#64d2ff" opacity={0.8} />
                   </svg>
                   <h3 className="text-lg font-medium text-[var(--color-white)] mb-2">Proven Workflows</h3>
                   <p className="text-sm text-[var(--color-grey-400)]">

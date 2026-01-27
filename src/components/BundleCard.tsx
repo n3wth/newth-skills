@@ -7,42 +7,56 @@ interface BundleCardProps {
   index?: number
 }
 
-const personaColors: Record<string, string> = {
-  frontend: 'var(--color-sage)',
-  backend: 'var(--color-coral)',
-  devops: 'var(--color-sky)',
-  creator: 'var(--color-gold)',
-  analyst: 'var(--color-sage)',
-  founder: 'var(--color-coral)',
+// Shape colors matching design system from categories.ts
+const shapeConfig: Record<string, { color: string; shape: 'circle' | 'square' | 'triangle' | 'diamond' | 'hexagon' }> = {
+  frontend: { color: '#30d158', shape: 'circle' },      // development green
+  backend: { color: '#ff6961', shape: 'square' },       // documents coral
+  devops: { color: '#64d2ff', shape: 'triangle' },      // creative sky
+  creator: { color: '#ffd60a', shape: 'diamond' },      // business gold
+  analyst: { color: '#a855f7', shape: 'hexagon' },      // productivity purple
+  founder: { color: '#ff6961', shape: 'square' },       // documents coral
 }
 
 function BundleIcon({ persona }: { persona: string }) {
-  const color = personaColors[persona] || 'var(--color-grey-400)'
+  const config = shapeConfig[persona] || { color: '#666', shape: 'square' }
 
-  // Different shapes for different personas
-  switch (persona) {
-    case 'frontend':
-      return <div className="w-10 h-10 rounded-full" style={{ backgroundColor: color, opacity: 0.8 }} />
-    case 'backend':
-      return <div className="w-10 h-10 rounded-lg" style={{ backgroundColor: color, opacity: 0.8 }} />
-    case 'devops':
+  switch (config.shape) {
+    case 'circle':
       return (
         <svg className="w-10 h-10" viewBox="0 0 40 40">
-          <polygon points="20,4 36,36 4,36" fill={color} opacity={0.8} />
+          <circle cx="20" cy="20" r="18" fill={config.color} opacity={0.8} />
         </svg>
       )
-    case 'creator':
+    case 'square':
       return (
         <svg className="w-10 h-10" viewBox="0 0 40 40">
-          <polygon points="20,2 38,20 20,38 2,20" fill={color} opacity={0.8} />
+          <rect x="4" y="4" width="32" height="32" fill={config.color} opacity={0.8} />
         </svg>
       )
-    case 'analyst':
-      return <div className="w-10 h-10 rounded-full" style={{ backgroundColor: color, opacity: 0.8 }} />
-    case 'founder':
-      return <div className="w-10 h-10 rounded-lg" style={{ backgroundColor: color, opacity: 0.8 }} />
+    case 'triangle':
+      return (
+        <svg className="w-10 h-10" viewBox="0 0 40 40">
+          <polygon points="20,4 36,36 4,36" fill={config.color} opacity={0.8} />
+        </svg>
+      )
+    case 'diamond':
+      return (
+        <svg className="w-10 h-10" viewBox="0 0 40 40">
+          <polygon points="20,2 38,20 20,38 2,20" fill={config.color} opacity={0.8} />
+        </svg>
+      )
+    case 'hexagon':
+      return (
+        <svg className="w-10 h-10" viewBox="0 0 40 40">
+          <polygon points="20,2 36,10 36,30 20,38 4,30 4,10" fill={config.color} opacity={0.8} />
+        </svg>
+      )
     default:
-      return <div className="w-10 h-10 rounded-lg" style={{ backgroundColor: color, opacity: 0.8 }} />
+      return (
+        <svg className="w-10 h-10" viewBox="0 0 40 40">
+          <rect x="4" y="4" width="32" height="32" fill={config.color} opacity={0.8} />
+        </svg>
+      )
   }
 }
 
