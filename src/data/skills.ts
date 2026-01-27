@@ -115,6 +115,44 @@ export const skills: Skill[] = [
     ]
   },
   {
+    id: 'monorepo-manager',
+    name: 'Monorepo Manager',
+    description: 'Comprehensive guide for managing monorepo workspaces with Turborepo, Nx, or pnpm workspaces. Build caching, dependency management, and package publishing workflows.',
+    longDescription: 'Master the art of monorepo management with best practices for Turborepo, Nx, and pnpm workspaces. This skill helps you configure build pipelines, optimize caching strategies, manage cross-package dependencies, and streamline your monorepo development workflow.',
+    category: 'development',
+    tags: ['monorepo', 'turborepo', 'nx', 'workspaces', 'build-optimization'],
+    icon: '⬡',
+    color: 'oklch(0.72 0.16 260)',
+    skillFile: `${GITHUB_RAW_BASE}/monorepo-manager.md`,
+    features: [
+      'Turborepo configuration and pipeline setup',
+      'Nx workspace optimization',
+      'pnpm workspaces and dependency management',
+      'Build caching and remote cache strategies',
+      'Package publishing and versioning workflows'
+    ],
+    useCases: [
+      'Setting up new monorepos',
+      'Managing shared packages and libraries',
+      'Optimizing CI/CD build times',
+      'Handling cross-package dependencies',
+      'Coordinated package publishing'
+    ],
+    compatibility: ['gemini', 'claude', 'cursor', 'windsurf', 'copilot'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    samplePrompts: [
+      {
+        prompt: "Set up a Turborepo monorepo with remote caching",
+        output: "I'll help you set up Turborepo with remote caching:\n\n```json\n// turbo.json\n{\n  \"$schema\": \"https://turbo.build/schema.json\",\n  \"globalDependencies\": [\"**/.env.*local\"],\n  \"pipeline\": {\n    \"build\": {\n      \"dependsOn\": [\"^build\"],\n      \"outputs\": [\"dist/**\", \".next/**\"]\n    },\n    \"test\": {\n      \"dependsOn\": [\"build\"],\n      \"outputs\": [\"coverage/**\"]\n    },\n    \"lint\": {\n      \"outputs\": []\n    },\n    \"dev\": {\n      \"cache\": false,\n      \"persistent\": true\n    }\n  },\n  \"remoteCache\": {\n    \"signature\": true\n  }\n}\n```\n\nEnable remote caching:\n```bash\nnpx turbo login\nnpx turbo link\n```\n\nThis configures build pipelines with proper dependency ordering and enables remote caching for faster CI/CD builds."
+      },
+      {
+        prompt: "How do I manage shared dependencies in a pnpm workspace?",
+        output: "Use pnpm workspace protocol for local dependencies:\n\n```yaml\n# pnpm-workspace.yaml\npackages:\n  - 'apps/*'\n  - 'packages/*'\n```\n\n```json\n// apps/web/package.json\n{\n  \"name\": \"@myorg/web\",\n  \"dependencies\": {\n    \"@myorg/ui\": \"workspace:*\",\n    \"@myorg/utils\": \"workspace:^1.0.0\"\n  }\n}\n```\n\n```json\n// package.json (root)\n{\n  \"scripts\": {\n    \"build\": \"turbo run build\",\n    \"dev\": \"turbo run dev --parallel\",\n    \"test\": \"turbo run test\"\n  },\n  \"devDependencies\": {\n    \"turbo\": \"latest\"\n  }\n}\n```\n\nThe `workspace:*` protocol ensures you always use the local version, while `workspace:^1.0.0` allows for version constraints."
+      }
+    ]
+  },
+  {
     id: 'skill-creator',
     name: 'Skill Creator',
     description: 'Guide for creating effective Claude Code skills with specialized knowledge, workflows, and tool integrations.',
