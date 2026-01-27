@@ -5,6 +5,7 @@ import { categoryConfig } from '../config/categories'
 import { siteConfig } from '../config/site'
 import { CategoryShape } from './CategoryShape'
 import { FloatingShapes } from './FloatingShapes'
+import { HeroConstellation } from './HeroConstellation'
 
 export function Hero() {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -42,6 +43,7 @@ export function Hero() {
   return (
     <div ref={heroRef} className="relative h-screen flex items-center px-6 md:px-12 pt-14">
       <FloatingShapes />
+      <HeroConstellation />
       <div className="relative z-10 w-full">
         <div className="max-w-5xl">
           <h1
