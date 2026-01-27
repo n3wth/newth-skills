@@ -114,12 +114,26 @@ export function Home() {
     return () => window.removeEventListener('keydown', handleEnterKey)
   }, [selectedIndex, filteredSkills, navigate, showHelp])
 
+  // Only scroll to selected card if using keyboard navigation (j/k/arrows)
+  const isKeyboardNav = useRef(false)
+
   useEffect(() => {
-    if (selectedIndex >= 0 && skillCardRefs.current[selectedIndex]) {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (['j', 'k', 'ArrowUp', 'ArrowDown'].includes(e.key)) {
+        isKeyboardNav.current = true
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
+
+  useEffect(() => {
+    if (isKeyboardNav.current && selectedIndex >= 0 && skillCardRefs.current[selectedIndex]) {
       skillCardRefs.current[selectedIndex]?.scrollIntoView({
         behavior: 'smooth',
         block: 'nearest',
       })
+      isKeyboardNav.current = false
     }
   }, [selectedIndex])
 
