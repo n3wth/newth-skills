@@ -1,7 +1,7 @@
 // Site-wide configuration
 export const siteConfig = {
   name: 'skills.newth.ai',
-  description: 'Powerful skills for Gemini CLI, Claude Code, and other AI coding assistants.',
+  description: 'Skills for Gemini CLI, Claude Code, and AI assistants.',
   tagline: 'One command to install. Instantly ready.',
   author: 'Oliver Newth',
   links: {

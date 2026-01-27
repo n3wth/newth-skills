@@ -2,11 +2,15 @@ export interface Skill {
   id: string
   name: string
   description: string
+  longDescription?: string
   category: 'development' | 'documents' | 'creative' | 'productivity' | 'business'
   tags: string[]
   featured?: boolean
   icon: string
   color: string
+  features?: string[]
+  useCases?: string[]
+  compatibility?: ('gemini' | 'claude')[]
 }
 
 export const skills: Skill[] = [
@@ -14,31 +18,79 @@ export const skills: Skill[] = [
     id: 'gsap-animations',
     name: 'GSAP Animations',
     description: 'Create beautiful, production-ready GSAP animations with ScrollTrigger, SplitText, and other plugins. Build scroll effects, text animations, hero entrances, and micro-interactions.',
+    longDescription: 'A comprehensive skill for creating sophisticated web animations using GSAP (GreenSock Animation Platform). This skill understands GSAP\'s core concepts, timing functions, and plugin ecosystem to help you build smooth, performant animations that work across all browsers.',
     category: 'development',
     tags: ['animation', 'gsap', 'scrolltrigger', 'motion'],
     featured: true,
     icon: '✦',
-    color: 'oklch(0.75 0.18 145)'
+    color: 'oklch(0.75 0.18 145)',
+    features: [
+      'ScrollTrigger for scroll-based animations',
+      'SplitText for text reveal effects',
+      'Timeline-based sequencing',
+      'Easing and timing control',
+      'Performance-optimized animations'
+    ],
+    useCases: [
+      'Hero section entrances',
+      'Scroll-triggered reveals',
+      'Page transitions',
+      'Micro-interactions',
+      'Loading animations'
+    ],
+    compatibility: ['gemini', 'claude']
   },
   {
     id: 'mcp-builder',
     name: 'MCP Builder',
     description: 'Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools.',
+    longDescription: 'Build custom MCP servers that extend your AI assistant\'s capabilities. This skill guides you through the complete process of designing, implementing, and testing MCP tools that connect to external APIs and services.',
     category: 'development',
     tags: ['mcp', 'servers', 'api', 'integration'],
     featured: true,
     icon: '⚡',
-    color: 'oklch(0.78 0.15 65)'
+    color: 'oklch(0.78 0.15 65)',
+    features: [
+      'FastMCP for Python development',
+      'TypeScript SDK support',
+      'Tool schema design patterns',
+      'Error handling best practices',
+      'Testing and validation'
+    ],
+    useCases: [
+      'Connecting to databases',
+      'API integrations',
+      'Custom tool development',
+      'Automation workflows',
+      'External service access'
+    ],
+    compatibility: ['claude']
   },
   {
     id: 'skill-creator',
     name: 'Skill Creator',
     description: 'Guide for creating effective Claude Code skills with specialized knowledge, workflows, and tool integrations.',
+    longDescription: 'Learn how to create your own skills that extend AI coding assistants. This skill covers the structure, best practices, and patterns for building effective skills that provide specialized knowledge and workflows.',
     category: 'development',
     tags: ['skills', 'claude', 'automation'],
     featured: true,
     icon: '◈',
-    color: 'oklch(0.70 0.15 280)'
+    color: 'oklch(0.70 0.15 280)',
+    features: [
+      'Skill structure and conventions',
+      'Trigger word design',
+      'Context and instruction writing',
+      'Tool integration patterns',
+      'Testing and iteration'
+    ],
+    useCases: [
+      'Creating domain-specific skills',
+      'Workflow automation',
+      'Knowledge encapsulation',
+      'Team skill sharing',
+      'Custom tooling'
+    ],
+    compatibility: ['gemini', 'claude']
   },
   {
     id: 'algorithmic-art',

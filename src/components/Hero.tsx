@@ -66,11 +66,11 @@ export function Hero() {
               {siteConfig.tagline}
             </p>
 
-            <div className="flex flex-wrap items-center gap-4 md:gap-6">
+            <div className="flex flex-wrap items-center gap-6 md:gap-8">
               {Object.entries(categoryConfig).map(([key]) => (
-                <div key={key} className="flex items-center gap-2">
-                  <CategoryShape category={key} size={14} />
-                  <span className="text-[10px] md:text-[11px] tracking-wide" style={{ color: 'var(--color-grey-400)' }}>
+                <div key={key} className="flex items-center gap-2.5">
+                  <CategoryShape category={key} size={16} />
+                  <span className="text-sm" style={{ color: 'var(--color-grey-300)' }}>
                     {key.charAt(0).toUpperCase() + key.slice(1)}
                   </span>
                 </div>

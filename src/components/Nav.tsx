@@ -1,14 +1,16 @@
+import { Link } from 'react-router-dom'
 import { siteConfig } from '../config/site'
 
 export function Nav() {
   return (
     <nav className="glass-nav fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-3 md:py-4 flex items-center justify-between">
-      <div
-        className="text-base md:text-lg font-semibold"
+      <Link
+        to="/"
+        className="text-base md:text-lg font-semibold hover:opacity-70 transition-opacity"
         style={{ color: 'var(--color-accent)' }}
       >
         {siteConfig.name}
-      </div>
+      </Link>
       <div className="flex items-center gap-4 md:gap-6">
         <a
           href={siteConfig.links.about}
