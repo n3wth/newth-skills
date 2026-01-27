@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { skills, type Skill } from '../data/skills'
 import { CategoryShape } from '../components/CategoryShape'
 import { CommandBox } from '../components/CommandBox'
@@ -13,11 +13,12 @@ import { ShareButtons } from '../components/ShareButtons'
 import { VoteButton } from '../components/VoteButton'
 import { CompareButton } from '../components/CompareButton'
 import { AddToBundleButton } from '../components/AddToBundleButton'
+import { StarRating } from '../components/StarRating'
 import { categoryConfig } from '../config/categories'
 import { assistants, type AssistantId } from '../config/assistants'
 import { getSkillInstallCommand } from '../config/commands'
-import { useKeyboardShortcuts } from '../hooks'
-import { trackViewEvent } from '../lib/analytics'
+import { useKeyboardShortcuts, useRating } from '../hooks'
+import { trackViewEvent, getCopyCount } from '../lib/analytics'
 
 function getRelatedSkills(currentSkill: Skill, allSkills: Skill[], limit: number = 4): Skill[] {
   const otherSkills = allSkills.filter(s => s.id !== currentSkill.id)
@@ -44,6 +45,20 @@ export function SkillDetail() {
   const { skillId } = useParams<{ skillId: string }>()
   const skill = skills.find(s => s.id === skillId)
   const { showHelp, setShowHelp } = useKeyboardShortcuts()
+  const { rating, count, submitRating, userRating } = useRating(skillId || '')
+  const [isSubmittingRating, setIsSubmittingRating] = useState(false)
+  const installCount = skillId ? getCopyCount(skillId) : 0
+
+  const handleRatingSubmit = useCallback(async (newRating: number) => {
+    setIsSubmittingRating(true)
+    try {
+      await submitRating(newRating)
+    } catch (error) {
+      console.error('Failed to submit rating:', error)
+    } finally {
+      setIsSubmittingRating(false)
+    }
+  }, [submitRating])
 
   // Track view when skill page is visited (only for valid skills)
   useEffect(() => {
@@ -253,6 +268,110 @@ export function SkillDetail() {
                 )}
               </span>
             )}
+          </div>
+
+          {/* Metrics Section */}
+          <div className="glass-card p-6 mb-12">
+            <h2 className="text-lg font-semibold text-white mb-4">Skill Metrics</h2>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+              {/* Install Count */}
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{ color: 'var(--color-grey-400)' }}
+                  >
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                  </svg>
+                  <span className="text-sm font-medium text-white">Installs</span>
+                </div>
+                <p className="text-2xl font-semibold text-white">
+                  {installCount > 0 ? installCount : '-'}
+                </p>
+                <p className="text-xs mt-1" style={{ color: 'var(--color-grey-400)' }}>
+                  Local install count
+                </p>
+              </div>
+
+              {/* Rating */}
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{ color: 'var(--color-grey-400)' }}
+                  >
+                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                  </svg>
+                  <span className="text-sm font-medium text-white">Rating</span>
+                </div>
+                <div className="flex items-center gap-2 mb-2">
+                  <StarRating rating={rating} count={count} size="md" showCount={false} />
+                  {count > 0 && (
+                    <span className="text-sm" style={{ color: 'var(--color-grey-400)' }}>
+                      {rating.toFixed(1)} ({count} {count === 1 ? 'rating' : 'ratings'})
+                    </span>
+                  )}
+                  {count === 0 && (
+                    <span className="text-sm" style={{ color: 'var(--color-grey-400)' }}>
+                      No ratings yet
+                    </span>
+                  )}
+                </div>
+                <p className="text-xs" style={{ color: 'var(--color-grey-400)' }}>
+                  Community feedback
+                </p>
+              </div>
+            </div>
+
+            {/* Rate this skill */}
+            <div 
+              className="pt-4"
+              style={{ borderTop: '1px solid var(--glass-border)' }}
+            >
+              <p className="text-sm font-medium text-white mb-2">
+                {userRating ? 'Your rating' : 'Rate this skill'}
+              </p>
+              <div className="flex items-center gap-3">
+                <StarRating 
+                  rating={userRating || 0} 
+                  count={0} 
+                  size="lg" 
+                  interactive={true}
+                  onRate={handleRatingSubmit}
+                  showCount={false}
+                />
+                {userRating && (
+                  <span className="text-xs" style={{ color: 'var(--color-grey-400)' }}>
+                    You rated this {userRating} {userRating === 1 ? 'star' : 'stars'}
+                  </span>
+                )}
+                {isSubmittingRating && (
+                  <span className="text-xs" style={{ color: 'var(--color-grey-400)' }}>
+                    Saving...
+                  </span>
+                )}
+              </div>
+              <p className="text-xs mt-2" style={{ color: 'var(--color-grey-500)' }}>
+                Your rating is anonymous and helps others discover quality skills
+              </p>
+            </div>
           </div>
 
           {skill.features && skill.features.length > 0 && (

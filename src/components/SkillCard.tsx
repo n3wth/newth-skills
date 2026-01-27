@@ -5,6 +5,8 @@ import { CategoryShape } from './CategoryShape'
 import { CompatibilityMatrix } from './CompatibilityMatrix'
 import { getCopyCount } from '../lib/analytics'
 import { HoverPreview } from './HoverPreview'
+import { StarRating } from './StarRating'
+import { useRating } from '../hooks'
 
 interface SkillCardProps {
   skill: Skill
@@ -13,6 +15,7 @@ interface SkillCardProps {
   isTrending?: boolean
   isPopular?: boolean
   showContributor?: boolean
+  showRating?: boolean
 }
 
 function isRecentlyUpdated(lastUpdated: string): boolean {
@@ -29,7 +32,7 @@ function supportsHover(): boolean {
 }
 
 export const SkillCard = memo(forwardRef<HTMLAnchorElement, SkillCardProps>(
-  function SkillCard({ skill, isSelected = false, showPopularity = false, isTrending = false, isPopular = false, showContributor = true }, ref) {
+  function SkillCard({ skill, isSelected = false, showPopularity = false, isTrending = false, isPopular = false, showContributor = true, showRating = true }, ref) {
     const copyCount = showPopularity ? getCopyCount(skill.id) : 0
     const isNew = isRecentlyUpdated(skill.lastUpdated)
     const [showPreview, setShowPreview] = useState(false)
@@ -37,6 +40,7 @@ export const SkillCard = memo(forwardRef<HTMLAnchorElement, SkillCardProps>(
     const cardRef = useRef<HTMLAnchorElement | null>(null)
     const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
     const leaveTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+    const { rating, count } = useRating(skill.id)
 
     // Combine refs
     const setRefs = useCallback(
@@ -240,6 +244,12 @@ export const SkillCard = memo(forwardRef<HTMLAnchorElement, SkillCardProps>(
         {skill.compatibility && skill.compatibility.length > 0 && (
           <div className="mb-3">
             <CompatibilityMatrix compatibility={skill.compatibility} size="sm" />
+          </div>
+        )}
+
+        {showRating && count > 0 && (
+          <div className="mb-3">
+            <StarRating rating={rating} count={count} size="sm" showCount={true} />
           </div>
         )}
 
