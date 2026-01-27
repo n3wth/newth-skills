@@ -1,0 +1,124 @@
+{
+  "name": "newth-skills",
+  "displayName": "Newth Skills",
+  "description": "Contextual skill suggestions for AI coding assistants (Gemini CLI & Claude Code)",
+  "version": "0.1.0",
+  "publisher": "newth",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/n3wth/newth-skills"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Machine Learning",
+    "Programming Languages"
+  ],
+  "keywords": [
+    "ai",
+    "skills",
+    "gemini",
+    "claude",
+    "coding assistant"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "newthSkills.showSkillBrowser",
+        "title": "Show Skill Browser",
+        "category": "Newth Skills"
+      },
+      {
+        "command": "newthSkills.suggestSkills",
+        "title": "Suggest Skills for Current File",
+        "category": "Newth Skills"
+      },
+      {
+        "command": "newthSkills.analyzeProject",
+        "title": "Analyze Project Tech Stack",
+        "category": "Newth Skills"
+      },
+      {
+        "command": "newthSkills.installSkill",
+        "title": "Install Skill",
+        "category": "Newth Skills"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "newth-skills",
+          "title": "Newth Skills",
+          "icon": "resources/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "newth-skills": [
+        {
+          "id": "newthSkills.skillBrowser",
+          "name": "Skill Browser",
+          "type": "webview"
+        },
+        {
+          "id": "newthSkills.suggestions",
+          "name": "Suggested Skills"
+        },
+        {
+          "id": "newthSkills.projectContext",
+          "name": "Project Context"
+        }
+      ]
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "command": "newthSkills.suggestSkills",
+          "group": "newthSkills"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Newth Skills",
+      "properties": {
+        "newthSkills.preferredAssistant": {
+          "type": "string",
+          "default": "claude",
+          "enum": ["gemini", "claude"],
+          "description": "Preferred AI assistant for skill installation"
+        },
+        "newthSkills.autoSuggest": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically suggest skills when opening files"
+        },
+        "newthSkills.showStatusBarItem": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show skill suggestions in status bar"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.54.0",
+    "typescript": "^5.3.0"
+  }
+}

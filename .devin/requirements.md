@@ -1,34 +1,44 @@
-# Skill Marketplace with Community Contributions - Requirements
+# VS Code Extension for Contextual Skill Suggestions
 
-## Issue #66 Requirements
+## Issue Reference
+GitHub Issue #71: https://github.com/n3wth/newth-skills/issues/71
 
-### Core MVP Features
+## Requirements
 
-1. **Skill Submission Form/Page** - Enhance existing SubmitSkill page to support full skill contributions
-   - Allow contributors to submit complete skill definitions
-   - Include all required fields from Skill interface
-   - GitHub-based submission workflow (creates issue with skill template)
+### Core Features
+1. **VS Code Extension with Skill Browser**
+   - Extension that integrates into VS Code
+   - Sidebar panel for browsing available skills
+   - Search and filter capabilities
 
-2. **Skill Template Structure** - Create a template that contributors can follow
-   - Document the Skill interface structure
-   - Provide example skill definition
-   - Include guidelines for writing good skills
+2. **Project Type Detection**
+   - Analyze project files (package.json, requirements.txt, etc.)
+   - Detect tech stack (React, Python, Node.js, etc.)
+   - Identify project patterns and frameworks
 
-3. **Contributor Attribution** - Add author/contributor info to skills
-   - Extend Skill interface with optional contributor fields
-   - Display contributor info on SkillCard component
-   - Show contributor details on SkillDetail page
+3. **File-Based Skill Suggestions**
+   - Analyze current file content and type
+   - Suggest relevant skills based on file context
+   - Show suggestions in status bar or sidebar
 
-4. **Review Queue Concept** - GitHub-based review workflow
-   - Create a page showing pending skill submissions
-   - Link to GitHub issues with skill-request label
-   - Explain the review process
+4. **One-Click Skill Installation**
+   - Install skills directly from VS Code
+   - Integration with Gemini CLI / Claude Code
+   - Copy installation commands
 
-### Implementation Details
+5. **Skill Usage Within Editor**
+   - Quick access to skill information
+   - View skill features and use cases
+   - Link to full skill documentation
 
-- Extend Skill interface with: `contributor?: { name: string; github?: string; url?: string }`
-- Update SkillCard to show contributor attribution when available
-- Update SkillDetail to show contributor section
-- Enhance SubmitSkill page with more comprehensive form
-- Create ContributeGuide page/section with skill template
-- Create ReviewQueue page showing pending submissions
+### Technical Implementation
+- VS Code extension scaffold in `vscode-extension/` directory
+- TypeScript-based extension
+- Skills data synced from main `src/data/skills.ts`
+- Webview for skill browser UI
+- Context analysis for intelligent suggestions
+
+### Integration Points
+- Main skills catalog from `src/data/skills.ts`
+- Gemini CLI installation commands
+- Claude Code installation commands
