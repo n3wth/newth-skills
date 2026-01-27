@@ -240,13 +240,7 @@ export function HeroConstellation() {
         })
 
         nodes.forEach(node => {
-          // Flat circle background
-          ctx.beginPath()
-          ctx.arc(node.x, node.y, node.size * 0.5, 0, Math.PI * 2)
-          ctx.fillStyle = node.color + '25'
-          ctx.fill()
-
-          // Icon
+          // Icon only - no background
           ctx.font = `${node.size * 0.5}px system-ui`
           ctx.textAlign = 'center'
           ctx.textBaseline = 'middle'
