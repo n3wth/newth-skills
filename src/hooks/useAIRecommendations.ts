@@ -61,19 +61,19 @@ export function useAIRecommendations(query: string, maxResults: number = 6) {
 
         if (aiRecs.length > 0) {
           // Map AI recommendations to full skill objects
-          const aiResults: RecommendationResult[] = aiRecs
-            .map((rec, index) => {
-              const skill = skills.find(s => s.id === rec.skillId)
-              if (!skill) return null
-              return {
+          const aiResults: RecommendationResult[] = []
+          for (let i = 0; i < aiRecs.length && aiResults.length < maxResults; i++) {
+            const rec = aiRecs[i]
+            const skill = skills.find(s => s.id === rec.skillId)
+            if (skill) {
+              aiResults.push({
                 skill,
-                score: 100 - index * 10, // AI results are pre-sorted by relevance
+                score: 100 - i * 10,
                 matchedTerms: [],
                 aiReason: rec.reason
-              }
-            })
-            .filter((r): r is RecommendationResult => r !== null)
-            .slice(0, maxResults)
+              })
+            }
+          }
 
           if (aiResults.length > 0) {
             setResults(aiResults)

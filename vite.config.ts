@@ -7,17 +7,18 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    process.env.SENTRY_AUTH_TOKEN &&
-      sentryVitePlugin({
-        org: process.env.SENTRY_ORG,
-        project: process.env.SENTRY_PROJECT,
-        authToken: process.env.SENTRY_AUTH_TOKEN,
-        sourcemaps: {
-          filesToDeleteAfterUpload: ['**/*.map']
-        },
-        telemetry: false
-      })
-  ].filter(Boolean),
+    ...(process.env.SENTRY_AUTH_TOKEN
+      ? [sentryVitePlugin({
+          org: process.env.SENTRY_ORG,
+          project: process.env.SENTRY_PROJECT,
+          authToken: process.env.SENTRY_AUTH_TOKEN,
+          sourcemaps: {
+            filesToDeleteAfterUpload: ['**/*.map']
+          },
+          telemetry: false
+        })]
+      : []),
+  ],
   build: {
     target: 'esnext',
     minify: 'esbuild',
