@@ -31,7 +31,7 @@ export interface Skill {
   skillFile?: string
 }
 
-const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/onewth/newth-skills/main/skills'
+const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/n3wth/newth-skills/main/skills'
 
 export const skills: Skill[] = [
   {
@@ -157,6 +157,7 @@ export const skills: Skill[] = [
     featured: true,
     icon: '◉',
     color: 'oklch(0.72 0.20 330)',
+    skillFile: `${GITHUB_RAW_BASE}/algorithmic-art.md`,
     features: [
       'Seeded randomness for reproducible outputs',
       'Interactive parameter exploration',
@@ -195,6 +196,7 @@ export const skills: Skill[] = [
     featured: true,
     icon: '◆',
     color: 'oklch(0.65 0.12 220)',
+    skillFile: `${GITHUB_RAW_BASE}/business-panel.md`,
     features: [
       'Multi-expert perspective synthesis',
       'Sequential analysis mode',
@@ -284,6 +286,7 @@ export const skills: Skill[] = [
     tags: ['word', 'documents', 'office'],
     icon: '▤',
     color: 'oklch(0.55 0.18 240)',
+    skillFile: `${GITHUB_RAW_BASE}/docx.md`,
     features: [
       'Document creation and editing',
       'Tracked changes support',
@@ -311,6 +314,7 @@ export const skills: Skill[] = [
     tags: ['powerpoint', 'slides', 'presentations'],
     icon: '▥',
     color: 'oklch(0.65 0.18 35)',
+    skillFile: `${GITHUB_RAW_BASE}/pptx.md`,
     features: [
       'Slide creation with layouts',
       'Speaker notes management',
@@ -338,6 +342,7 @@ export const skills: Skill[] = [
     tags: ['excel', 'spreadsheets', 'data'],
     icon: '▦',
     color: 'oklch(0.60 0.20 145)',
+    skillFile: `${GITHUB_RAW_BASE}/xlsx.md`,
     features: [
       'Formula creation and evaluation',
       'Conditional formatting',
@@ -365,6 +370,7 @@ export const skills: Skill[] = [
     tags: ['testing', 'playwright', 'e2e', 'automation'],
     icon: '◇',
     color: 'oklch(0.68 0.12 200)',
+    skillFile: `${GITHUB_RAW_BASE}/webapp-testing.md`,
     features: [
       'Cross-browser testing support',
       'Screenshot and visual comparison',
@@ -392,6 +398,7 @@ export const skills: Skill[] = [
     tags: ['design', 'art', 'visual', 'canvas'],
     icon: '◎',
     color: 'oklch(0.75 0.16 300)',
+    skillFile: `${GITHUB_RAW_BASE}/canvas-design.md`,
     features: [
       'High-resolution PNG export',
       'PDF generation for print',
@@ -419,6 +426,7 @@ export const skills: Skill[] = [
     tags: ['gif', 'slack', 'animation'],
     icon: '◌',
     color: 'oklch(0.70 0.18 350)',
+    skillFile: `${GITHUB_RAW_BASE}/slack-gif-creator.md`,
     features: [
       'Slack-optimized file constraints',
       'GIF validation and testing',
@@ -446,6 +454,7 @@ export const skills: Skill[] = [
     tags: ['themes', 'styling', 'design-system'],
     icon: '◐',
     color: 'oklch(0.72 0.14 100)',
+    skillFile: `${GITHUB_RAW_BASE}/theme-factory.md`,
     features: [
       '10 curated theme presets',
       'Color palette definitions',
@@ -473,6 +482,7 @@ export const skills: Skill[] = [
     tags: ['documentation', 'writing', 'collaboration'],
     icon: '◑',
     color: 'oklch(0.62 0.10 250)',
+    skillFile: `${GITHUB_RAW_BASE}/doc-coauthoring.md`,
     features: [
       'Structured document workflows',
       'Proposal writing frameworks',
@@ -500,6 +510,7 @@ export const skills: Skill[] = [
     tags: ['communication', 'writing', 'enterprise'],
     icon: '◒',
     color: 'oklch(0.58 0.12 200)',
+    skillFile: `${GITHUB_RAW_BASE}/internal-comms.md`,
     features: [
       'Status report templates',
       'Leadership update formats',
@@ -527,6 +538,7 @@ export const skills: Skill[] = [
     tags: ['marketing', 'copy', 'conversion'],
     icon: '◓',
     color: 'oklch(0.68 0.16 45)',
+    skillFile: `${GITHUB_RAW_BASE}/copywriting.md`,
     features: [
       'Headline and tagline writing',
       'Value proposition crafting',
@@ -554,6 +566,7 @@ export const skills: Skill[] = [
     tags: ['fonts', 'typography', 'design'],
     icon: 'Aa',
     color: 'oklch(0.64 0.08 280)',
+    skillFile: `${GITHUB_RAW_BASE}/typography-selector.md`,
     features: [
       'Google Fonts integration',
       'Curated font pairings',
@@ -581,6 +594,7 @@ export const skills: Skill[] = [
     tags: ['git', 'version-control', 'workflow', 'collaboration'],
     icon: '⎇',
     color: 'oklch(0.68 0.16 30)',
+    skillFile: `${GITHUB_RAW_BASE}/git-workflow.md`,
     features: [
       'GitFlow and trunk-based branching',
       'Conventional commit message formatting',
