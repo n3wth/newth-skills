@@ -620,6 +620,44 @@ export const skills: Skill[] = [
     }
   },
   {
+    id: 'code-reviewer',
+    name: 'Code Reviewer',
+    description: 'Automated code review with best practices. Identify code smells, suggest refactoring improvements, check for security issues, and enforce coding standards.',
+    longDescription: 'A comprehensive code review skill that helps you maintain high code quality through automated analysis. This skill identifies code smells, suggests refactoring improvements, checks for security vulnerabilities, enforces coding standards, and provides performance optimization recommendations.',
+    category: 'development',
+    tags: ['code-review', 'quality', 'best-practices', 'refactoring'],
+    icon: '◇',
+    color: 'oklch(0.72 0.17 160)',
+    skillFile: `${GITHUB_RAW_BASE}/code-reviewer.md`,
+    features: [
+      'Identify code smells and anti-patterns',
+      'Suggest refactoring improvements',
+      'Check for security vulnerabilities',
+      'Enforce coding standards and conventions',
+      'Performance optimization recommendations'
+    ],
+    useCases: [
+      'Pull request code reviews',
+      'Code quality audits',
+      'Refactoring guidance',
+      'Learning best practices',
+      'Pre-commit quality checks'
+    ],
+    compatibility: ['gemini', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    samplePrompts: [
+      {
+        prompt: "Review this React component for best practices",
+        output: "I'll analyze your React component for best practices:\n\n**Code Smells Identified:**\n1. ❌ Missing prop validation\n2. ❌ Inline function creation in render (performance)\n3. ❌ Direct state mutation\n\n**Recommendations:**\n```tsx\n// Before\nfunction UserCard({ user }) {\n  const [count, setCount] = useState(0);\n  return <button onClick={() => setCount(count + 1)}>Click</button>;\n}\n\n// After\ninterface UserCardProps {\n  user: User;\n}\n\nfunction UserCard({ user }: UserCardProps) {\n  const [count, setCount] = useState(0);\n  const handleClick = useCallback(() => {\n    setCount(prev => prev + 1);\n  }, []);\n  \n  return <button onClick={handleClick}>Click {count}</button>;\n}\n```\n\n**Improvements:**\n✅ Added TypeScript interface for props\n✅ Used useCallback to prevent function recreation\n✅ Used functional setState to avoid stale closures"
+      },
+      {
+        prompt: "Check this API endpoint for security issues",
+        output: "Security review of your API endpoint:\n\n**Security Issues Found:**\n\n1. 🔴 **SQL Injection Risk** (Critical)\n```javascript\n// Vulnerable\nconst query = `SELECT * FROM users WHERE id = ${req.params.id}`;\n\n// Secure\nconst query = 'SELECT * FROM users WHERE id = ?';\ndb.query(query, [req.params.id]);\n```\n\n2. 🟡 **Missing Input Validation** (High)\n```javascript\n// Add validation\nconst { error, value } = schema.validate(req.body);\nif (error) return res.status(400).json({ error: error.message });\n```\n\n3. 🟡 **No Rate Limiting** (Medium)\n```javascript\n// Add rate limiting middleware\nconst rateLimit = require('express-rate-limit');\napp.use('/api/', rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));\n```\n\n**Best Practices:**\n✅ Use parameterized queries\n✅ Validate all user input\n✅ Implement rate limiting\n✅ Add authentication checks\n✅ Log security events"
+      }
+    ]
+  },
+  {
     id: 'imessage',
     name: 'iMessage',
     description: 'Manage iMessage conversations with database queries and AppleScript automation. Find unreplied threads, search contacts, read history, and send messages.',
