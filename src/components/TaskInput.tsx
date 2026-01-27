@@ -80,7 +80,7 @@ export function TaskInput({ value, onChange, onFocus, onBlur }: TaskInputProps) 
           >
             I want to
           </span>
-          <div className="relative flex-1">
+          <div className="relative flex-1 min-w-0">
             <input
               ref={inputRef}
               type="text"
@@ -88,13 +88,13 @@ export function TaskInput({ value, onChange, onFocus, onBlur }: TaskInputProps) 
               onChange={(e) => onChange(e.target.value)}
               onFocus={handleFocus}
               onBlur={handleBlur}
-              className="w-full bg-transparent text-base md:text-lg font-medium text-white outline-none"
+              className="w-full bg-transparent text-base md:text-lg font-medium text-white outline-none leading-normal"
               aria-label="Describe what you want to accomplish"
             />
             {showPlaceholder && (
               <span
-                className={`absolute left-0 top-1/2 -translate-y-1/2 text-base md:text-lg font-medium pointer-events-none transition-all duration-200 ${
-                  isAnimating ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'
+                className={`absolute left-0 top-1/2 text-base md:text-lg font-medium pointer-events-none whitespace-nowrap transition-all duration-200 ${
+                  isAnimating ? 'opacity-0 -translate-y-1/2 translate-y-2' : 'opacity-100 -translate-y-1/2'
                 }`}
                 style={{ color: 'var(--color-grey-600)' }}
               >

@@ -643,6 +643,47 @@ body {
   overflow: hidden;
 }
 
+/* Hidden scrollbar utility */
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+/* Workflow node animations */
+@keyframes nodeEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.workflow-node-enter {
+  animation: nodeEnter 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Connection line animation */
+@keyframes connectionDraw {
+  from {
+    stroke-dashoffset: 100%;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.connection-line {
+  stroke-dasharray: 100%;
+  animation: connectionDraw 0.3s ease-out forwards;
+}
+
 /* Reduced motion for hover preview */
 @media (prefers-reduced-motion: reduce) {
   .hover-preview-content {

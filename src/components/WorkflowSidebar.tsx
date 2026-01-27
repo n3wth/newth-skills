@@ -94,7 +94,7 @@ export function WorkflowSidebar({ onAddSkill, workflow }: WorkflowSidebarProps) 
         </div>
       </div>
       
-      <div className="flex-1 overflow-y-auto p-2">
+      <div className="flex-1 overflow-y-auto p-2 scrollbar-hidden">
         {filteredSkills.length === 0 ? (
           <div className="text-center py-8">
             <p className="text-sm text-[var(--color-grey-600)]">No skills found</p>

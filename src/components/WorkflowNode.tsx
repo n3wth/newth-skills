@@ -1,4 +1,6 @@
-import { useState, useCallback, useRef, useEffect } from 'react'
+import { useCallback, useRef, useEffect } from 'react'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
 import type { Skill } from '../data/skills'
 import { type WorkflowNode, getSkillIOSchema, type SkillIO } from '../data/workflows'
 import { categoryConfig } from '../config/categories'
@@ -14,6 +16,7 @@ interface WorkflowNodeComponentProps {
   onStartConnection: (outputId: string) => void
   onCompleteConnection: (inputId: string) => void
   onRemove: () => void
+  isNew?: boolean
 }
 
 export function WorkflowNodeComponent({
@@ -26,51 +29,106 @@ export function WorkflowNodeComponent({
   onUpdatePosition,
   onStartConnection,
   onCompleteConnection,
-  onRemove
+  onRemove,
+  isNew = false
 }: WorkflowNodeComponentProps) {
-  const [isDragging, setIsDragging] = useState(false)
-  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 })
   const nodeRef = useRef<HTMLDivElement>(null)
-  
+  const isDraggingRef = useRef(false)
+  const dragOffsetRef = useRef({ x: 0, y: 0 })
+
   const schema = getSkillIOSchema(skill.id)
   const config = categoryConfig[skill.category]
 
-  const handleMouseDown = useCallback((e: React.MouseEvent) => {
-    if ((e.target as HTMLElement).closest('.port-button')) return
-    
-    e.preventDefault()
-    e.stopPropagation()
-    
-    const rect = nodeRef.current?.getBoundingClientRect()
-    if (rect) {
-      setDragOffset({
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top
+  // Entrance animation
+  useGSAP(() => {
+    if (isNew && nodeRef.current) {
+      gsap.fromTo(nodeRef.current,
+        { scale: 0.8, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.25, ease: 'back.out(1.7)' }
+      )
+    }
+  }, [isNew])
+
+  // Selection animation
+  useGSAP(() => {
+    if (nodeRef.current) {
+      gsap.to(nodeRef.current, {
+        scale: isSelected ? 1.02 : 1,
+        duration: 0.15,
+        ease: 'power2.out'
       })
     }
-    setIsDragging(true)
+  }, [isSelected])
+
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    if ((e.target as HTMLElement).closest('.port-button')) return
+
+    e.preventDefault()
+    e.stopPropagation()
+
+    const rect = nodeRef.current?.getBoundingClientRect()
+    if (rect) {
+      dragOffsetRef.current = {
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top
+      }
+    }
+    isDraggingRef.current = true
     onSelect()
+
+    // Add grabbing cursor
+    document.body.style.cursor = 'grabbing'
+    if (nodeRef.current) {
+      nodeRef.current.style.zIndex = '50'
+    }
   }, [onSelect])
 
   useEffect(() => {
-    if (!isDragging) return
-
     const handleMouseMove = (e: MouseEvent) => {
-      const parent = nodeRef.current?.parentElement
+      if (!isDraggingRef.current || !nodeRef.current) return
+
+      const parent = nodeRef.current.parentElement
       if (!parent) return
-      
+
       const parentRect = parent.getBoundingClientRect()
-      const newX = e.clientX - parentRect.left + parent.scrollLeft - dragOffset.x
-      const newY = e.clientY - parentRect.top + parent.scrollTop - dragOffset.y
-      
-      onUpdatePosition({
-        x: Math.max(0, newX),
-        y: Math.max(0, newY)
+      const newX = e.clientX - parentRect.left + parent.scrollLeft - dragOffsetRef.current.x
+      const newY = e.clientY - parentRect.top + parent.scrollTop - dragOffsetRef.current.y
+
+      // Use GSAP for smooth position updates
+      gsap.to(nodeRef.current, {
+        x: Math.max(0, newX) - node.position.x,
+        y: Math.max(0, newY) - node.position.y,
+        duration: 0.1,
+        ease: 'power2.out',
+        overwrite: true
       })
     }
 
     const handleMouseUp = () => {
-      setIsDragging(false)
+      if (!isDraggingRef.current || !nodeRef.current) return
+
+      const parent = nodeRef.current.parentElement
+      if (parent) {
+        // Get final position from GSAP transform
+        const transform = gsap.getProperty(nodeRef.current, 'x') as number
+        const transformY = gsap.getProperty(nodeRef.current, 'y') as number
+
+        const finalX = node.position.x + transform
+        const finalY = node.position.y + transformY
+
+        // Reset GSAP transform and update actual position
+        gsap.set(nodeRef.current, { x: 0, y: 0 })
+        onUpdatePosition({
+          x: Math.max(0, finalX),
+          y: Math.max(0, finalY)
+        })
+      }
+
+      isDraggingRef.current = false
+      document.body.style.cursor = ''
+      if (nodeRef.current) {
+        nodeRef.current.style.zIndex = ''
+      }
     }
 
     window.addEventListener('mousemove', handleMouseMove)
@@ -80,7 +138,7 @@ export function WorkflowNodeComponent({
       window.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('mouseup', handleMouseUp)
     }
-  }, [isDragging, dragOffset, onUpdatePosition])
+  }, [node.position.x, node.position.y, onUpdatePosition])
 
   const renderPort = (port: SkillIO, isOutput: boolean) => {
     const handleClick = (e: React.MouseEvent) => {
@@ -143,27 +201,28 @@ export function WorkflowNodeComponent({
   return (
     <div
       ref={nodeRef}
-      className={`absolute w-[280px] rounded-xl border transition-all ${
-        isSelected 
-          ? 'border-[var(--color-white)] shadow-lg shadow-white/10' 
+      className={`absolute w-[280px] rounded-xl border transition-colors ${
+        isSelected
+          ? 'border-[var(--color-white)]'
           : 'border-[var(--glass-border)] hover:border-[var(--glass-highlight)]'
-      } ${isDragging ? 'cursor-grabbing z-50' : 'cursor-grab'}`}
+      } cursor-grab active:cursor-grabbing`}
       style={{
         left: node.position.x,
         top: node.position.y,
-        backgroundColor: 'var(--color-bg-secondary)'
+        backgroundColor: 'var(--color-bg-secondary)',
+        willChange: 'transform'
       }}
       onMouseDown={handleMouseDown}
     >
-      <div 
+      <div
         className="flex items-center gap-3 p-4 border-b border-[var(--glass-border)] rounded-t-xl"
-        style={{ 
+        style={{
           background: `linear-gradient(135deg, color-mix(in oklch, ${config?.color || skill.color} 15%, transparent), transparent)`
         }}
       >
-        <div 
+        <div
           className="w-10 h-10 rounded-lg flex items-center justify-center text-lg"
-          style={{ 
+          style={{
             backgroundColor: `color-mix(in oklch, ${config?.color || skill.color} 20%, transparent)`,
             color: config?.color || skill.color
           }}
@@ -186,7 +245,7 @@ export function WorkflowNodeComponent({
           </svg>
         </button>
       </div>
-      
+
       {schema && (
         <div className="flex">
           <div className="flex-1 py-2 border-r border-[var(--glass-border)]">
@@ -201,7 +260,7 @@ export function WorkflowNodeComponent({
               </div>
             )}
           </div>
-          
+
           <div className="flex-1 py-2">
             <div className="px-3 py-1 text-[10px] uppercase tracking-wider text-[var(--color-grey-600)] text-right">
               Outputs

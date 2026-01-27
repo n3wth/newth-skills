@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
-import { Nav, SEO } from '../components'
+import { SEO } from '../components'
 import { WorkflowBuilder as WorkflowBuilderComponent } from '../components/WorkflowBuilder'
 import { workflowTemplates, type Workflow } from '../data/workflows'
 
@@ -60,23 +60,21 @@ export function WorkflowBuilderPage() {
 
   return (
     <>
-      <SEO 
-        title={initialWorkflow ? `Edit ${initialWorkflow.name}` : 'Create Workflow'} 
+      <SEO
+        title={initialWorkflow ? `Edit ${initialWorkflow.name}` : 'Create Workflow'}
         description="Build custom workflows by chaining skills together"
       />
-      
-      <div className="min-h-screen relative">
+
+      <div className="h-screen relative overflow-hidden">
         <div className="mesh-gradient" />
         <div className="noise-overlay" />
-        
-        <Nav />
-        
-        <main className="pt-20">
-                    <WorkflowBuilderComponent 
-                      key={initialWorkflow?.id ?? 'new'}
-                      initialWorkflow={initialWorkflow}
-                      onSave={handleSave}
-                    />
+
+        <main className="h-full">
+          <WorkflowBuilderComponent
+            key={initialWorkflow?.id ?? 'new'}
+            initialWorkflow={initialWorkflow}
+            onSave={handleSave}
+          />
         </main>
       </div>
     </>
