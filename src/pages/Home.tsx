@@ -2,9 +2,10 @@ import { useState, useLayoutEffect, useMemo, useRef, useCallback, useEffect } fr
 import { useNavigate } from 'react-router-dom'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { skills, categories } from '../data/skills'
-import { Nav, Footer, Hero, InstallSection, SkillCard, CategoryFilter, SearchInput, KeyboardShortcutsHelp, SEO, SortDropdown } from '../components'
+import { Nav, Footer, Hero, InstallSection, SkillCard, CategoryFilter, SearchInput, KeyboardShortcutsHelp, SEO, SortDropdown, TaskInput, SkillRecommendations } from '../components'
 import type { SortOption } from '../components'
 import { useKeyboardShortcuts } from '../hooks'
+import { getRecommendations } from '../lib/recommendations'
 
 const SORT_STORAGE_KEY = 'newth-skills-sort-preference'
 
@@ -22,6 +23,8 @@ export function Home() {
   const [activeCategory, setActiveCategory] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [sortOption, setSortOption] = useState<SortOption>(getStoredSortPreference)
+  const [taskQuery, setTaskQuery] = useState('')
+  const [showRecommendations, setShowRecommendations] = useState(false)
   const searchInputRef = useRef<HTMLInputElement>(null)
   const skillCardRefs = useRef<(HTMLAnchorElement | null)[]>([])
 
@@ -72,6 +75,20 @@ export function Home() {
   const handleSortChange = useCallback((newSortOption: SortOption) => {
     setSortOption(newSortOption)
     localStorage.setItem(SORT_STORAGE_KEY, newSortOption)
+  }, [])
+
+  const recommendations = useMemo(() => {
+    return getRecommendations(taskQuery, 6)
+  }, [taskQuery])
+
+  const handleTaskChange = useCallback((value: string) => {
+    setTaskQuery(value)
+    setShowRecommendations(value.trim().length > 0)
+  }, [])
+
+  const handleClearRecommendations = useCallback(() => {
+    setTaskQuery('')
+    setShowRecommendations(false)
   }, [])
 
   const { showHelp, setShowHelp, selectedIndex, setSelectedIndex } = useKeyboardShortcuts({
@@ -129,6 +146,26 @@ export function Home() {
       <Hero />
 
       <main className="px-6 md:px-12 pb-24">
+        <section className="mb-16 md:mb-20">
+          <div className="text-center mb-6">
+            <h2 className="text-xl md:text-2xl font-medium mb-2 text-white">
+              Find the Right Skill
+            </h2>
+            <p className="label">
+              Describe what you want to accomplish
+            </p>
+          </div>
+          <TaskInput
+            value={taskQuery}
+            onChange={handleTaskChange}
+          />
+          <SkillRecommendations
+            recommendations={recommendations}
+            isVisible={showRecommendations}
+            onClose={handleClearRecommendations}
+          />
+        </section>
+
         <InstallSection />
 
         <div className="mb-6 md:mb-8">
