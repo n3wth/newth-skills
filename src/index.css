@@ -21,7 +21,7 @@
   --font-sans: 'Saans', system-ui, sans-serif;
   --font-mono: ui-monospace, 'SF Mono', Menlo, Monaco, 'Cascadia Code', monospace;
 
-  /* Dark iOS-inspired palette */
+  /* Dark iOS-inspired palette (default) */
   --color-bg: #000000;
   --color-bg-secondary: #0a0a0a;
   --color-white: #ffffff;
@@ -48,6 +48,31 @@
   --glass-highlight: rgba(255, 255, 255, 0.15);
 }
 
+/* Light mode overrides */
+:root[data-theme='light'] {
+  --color-bg: #ffffff;
+  --color-bg-secondary: #f5f5f7;
+  --color-white: #1d1d1f;
+  --color-grey-100: #1d1d1f;
+  --color-grey-200: #3a3a3c;
+  --color-grey-300: #48484a;
+  --color-grey-400: #636366;
+  --color-grey-600: #8e8e93;
+  --color-grey-800: #e5e5ea;
+
+  --color-accent: #1d1d1f;
+  --color-accent-soft: rgba(0, 0, 0, 0.1);
+
+  --color-sage: #248a3d;
+  --color-coral: #d70015;
+  --color-mint: #0071e3;
+  --color-gold: #b25000;
+
+  --glass-bg: rgba(0, 0, 0, 0.03);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-highlight: rgba(0, 0, 0, 0.12);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -58,6 +83,7 @@ html {
   font-family: var(--font-sans);
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body {
@@ -119,6 +145,10 @@ body {
   -webkit-backdrop-filter: blur(20px) saturate(180%);
 }
 
+:root[data-theme='light'] .glass-nav {
+  background: rgba(255, 255, 255, 0.8);
+}
+
 /* Glass Pill */
 .glass-pill {
   background: var(--glass-bg);
@@ -138,6 +168,22 @@ body {
 .glass-pill.active {
   background: var(--color-white);
   border-color: var(--color-white);
+  color: var(--color-bg);
+}
+
+:root[data-theme='light'] .glass-pill {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+:root[data-theme='light'] .glass-pill:hover {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+:root[data-theme='light'] .glass-pill.active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
   color: var(--color-bg);
 }
 
@@ -230,6 +276,10 @@ body {
   background: #000000;
 }
 
+:root[data-theme='light'] .mesh-gradient {
+  background: #ffffff;
+}
+
 /* Noise texture overlay */
 .noise-overlay {
   position: fixed;
@@ -238,4 +288,37 @@ body {
   opacity: 0.015;
   z-index: 9999;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Skeleton loading shimmer */
+@keyframes shimmer {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.skeleton-shimmer {
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Content fade-in transition */
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.content-loaded {
+  animation: contentFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }

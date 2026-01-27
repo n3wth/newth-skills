@@ -8,7 +8,7 @@ interface CategoryFilterProps {
 
 export function CategoryFilter({ activeCategory, onCategoryChange }: CategoryFilterProps) {
   return (
-    <div className="flex flex-wrap gap-2 mb-8 md:mb-10">
+    <div className="flex flex-wrap gap-2">
       {categories.map(cat => (
         <button
           key={cat.id}
