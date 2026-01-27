@@ -50,7 +50,7 @@ export function Home() {
 
   useEffect(() => {
     const handleEnterKey = (event: KeyboardEvent) => {
-      if (event.key === 'Enter' && selectedIndex >= 0 && selectedIndex < filteredSkills.length) {
+      if (event.key === 'Enter' && !showHelp && selectedIndex >= 0 && selectedIndex < filteredSkills.length) {
         const activeElement = document.activeElement
         const isTyping = activeElement?.tagName.toLowerCase() === 'input' ||
                          activeElement?.tagName.toLowerCase() === 'textarea'
@@ -62,7 +62,7 @@ export function Home() {
     }
     window.addEventListener('keydown', handleEnterKey)
     return () => window.removeEventListener('keydown', handleEnterKey)
-  }, [selectedIndex, filteredSkills, navigate])
+  }, [selectedIndex, filteredSkills, navigate, showHelp])
 
   useEffect(() => {
     if (selectedIndex >= 0 && skillCardRefs.current[selectedIndex]) {
