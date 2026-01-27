@@ -622,6 +622,34 @@ export const skills: Skill[] = [
     }
   },
   {
+    id: 'cursor-project-bootstrapper',
+    name: 'Cursor Project Bootstrapper',
+    description: 'Create new Cursor workspaces with pre-configured rules, extensions, and settings. Automate workspace initialization for different project types with context-aware configuration.',
+    longDescription: 'A comprehensive workspace setup skill for Cursor IDE. This skill guides you through creating properly configured Cursor workspaces for different project types including React, Python, Monorepo, and more. It helps you set up .cursor/rules with project-specific AI instructions, configure settings for team synchronization, and follow framework conventions.',
+    category: 'development',
+    tags: ['cursor', 'workspace', 'setup', 'configuration', 'templates'],
+    icon: '◉',
+    color: 'oklch(0.70 0.20 200)',
+    skillFile: `${GITHUB_RAW_BASE}/cursor-project-bootstrapper.md`,
+    features: [
+      'Template-based setup for React, Python, Monorepo, etc.',
+      'Auto-populate .cursor/rules with project-specific AI instructions',
+      'Sync settings across team members',
+      'Support for different framework conventions',
+      'Extension recommendations per project type'
+    ],
+    useCases: [
+      'Initialize new Cursor workspace for React project',
+      'Set up Python FastAPI project with Cursor configuration',
+      'Bootstrap monorepo with team-wide Cursor settings',
+      'Configure Cursor for Next.js App Router',
+      'Sync workspace settings across development team'
+    ],
+    compatibility: ['claude', 'cursor'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27'
+  },
+  {
     id: 'imessage',
     name: 'iMessage',
     description: 'Manage iMessage conversations with database queries and AppleScript automation. Find unreplied threads, search contacts, read history, and send messages.',
