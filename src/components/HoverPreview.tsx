@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { type Skill } from '../data/skills'
 import { CategoryShape } from './CategoryShape'
+import { PlatformBadges } from './PlatformBadge'
 import { categoryConfig } from '../config/categories'
 import { trackCopyEvent } from '../lib/analytics'
 
@@ -159,6 +160,11 @@ export function HoverPreview({ skill, isVisible, anchorRect, onClose }: HoverPre
             </div>
           </div>
         </div>
+
+        {/* Compatibility badges */}
+        {skill.compatibility && skill.compatibility.length > 0 && (
+          <PlatformBadges platforms={skill.compatibility} size="sm" className="mb-3" />
+        )}
 
         {/* Preview items */}
         {previewItems.length > 0 && (

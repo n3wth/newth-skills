@@ -37,7 +37,7 @@ export function Contribute() {
     <div className="min-h-screen relative">
       <SEO
         title="Contribute a Skill - newth.ai skills"
-        description="Learn how to contribute your own skills to the newth.ai skills marketplace."
+        description="Built something useful? Share it. Submit your skill and get it listed in the catalog with full attribution."
         canonicalUrl="/contribute"
       />
       <div className="mesh-gradient" />
@@ -61,7 +61,7 @@ export function Contribute() {
             className="text-lg mb-12"
             style={{ color: 'var(--color-grey-200)' }}
           >
-            Help grow the skills ecosystem by contributing your own skills. Follow this guide to submit a skill for review.
+            Built something useful? Share it. Submit your skill and get it listed in the catalog with full attribution.
           </p>
 
           <section className="mb-16">
@@ -78,7 +78,7 @@ export function Contribute() {
                   <div>
                     <h3 className="text-lg font-medium text-white mb-2">Create Your Skill</h3>
                     <p style={{ color: 'var(--color-grey-300)' }}>
-                      Build a skill that extends AI coding assistants. Your skill should provide specialized knowledge, workflows, or tool integrations.
+                      Write a markdown file that teaches AI assistants a specific skill: framework knowledge, coding patterns, or tool usage.
                     </p>
                   </div>
                 </div>
@@ -95,7 +95,7 @@ export function Contribute() {
                   <div>
                     <h3 className="text-lg font-medium text-white mb-2">Submit for Review</h3>
                     <p style={{ color: 'var(--color-grey-300)' }}>
-                      Use our submission form to create a GitHub issue with your skill details. Include all required information following the template below.
+                      Fill out the submission form. It creates a GitHub issue with your skill details for review.
                     </p>
                   </div>
                 </div>
@@ -197,19 +197,19 @@ export function Contribute() {
               <ul className="space-y-4">
                 <li className="flex items-start gap-3" style={{ color: 'var(--color-grey-200)' }}>
                   <span className="text-white mt-0.5">•</span>
-                  <span><strong className="text-white">Clear purpose:</strong> Your skill should solve a specific problem or provide distinct value.</span>
+                  <span><strong className="text-white">One clear purpose:</strong> Each skill should do one thing well. Combine related features, but don't try to cover everything.</span>
                 </li>
                 <li className="flex items-start gap-3" style={{ color: 'var(--color-grey-200)' }}>
                   <span className="text-white mt-0.5">•</span>
-                  <span><strong className="text-white">Complete documentation:</strong> Include detailed descriptions, features, and use cases.</span>
+                  <span><strong className="text-white">Real examples:</strong> Include sample prompts and expected outputs so users know what to expect.</span>
                 </li>
                 <li className="flex items-start gap-3" style={{ color: 'var(--color-grey-200)' }}>
                   <span className="text-white mt-0.5">•</span>
-                  <span><strong className="text-white">Tested functionality:</strong> Ensure your skill works reliably with supported platforms.</span>
+                  <span><strong className="text-white">Actually tested:</strong> Try your skill with both Gemini CLI and Claude Code before submitting.</span>
                 </li>
                 <li className="flex items-start gap-3" style={{ color: 'var(--color-grey-200)' }}>
                   <span className="text-white mt-0.5">•</span>
-                  <span><strong className="text-white">No duplicates:</strong> Check existing skills to avoid submitting duplicates.</span>
+                  <span><strong className="text-white">No overlap:</strong> Check the existing catalog. If a similar skill exists, consider contributing improvements instead.</span>
                 </li>
               </ul>
             </div>

@@ -139,7 +139,7 @@ export function Home() {
     <div className="min-h-screen relative content-loaded">
       <SEO
         title="Skills for AI Coding Assistants - Gemini CLI & Claude Code"
-        description="Give your AI superpowers. Install skills that teach Gemini CLI and Claude Code to build animations, generate documents, create art, and more. One command to install."
+        description="Teach your AI to build animations, generate documents, and create art. Skills for Gemini CLI and Claude Code. One command to install, works offline."
         canonicalUrl="/"
         keywords={['AI skills', 'Gemini CLI', 'Claude Code', 'AI coding assistant', 'developer tools']}
       />
@@ -156,7 +156,7 @@ export function Home() {
               What do you want to build?
             </h2>
             <p className="label">
-              Tell us your goal and we'll find the right skill
+              Describe your project and see which skills can help
             </p>
           </div>
           <TaskInput
@@ -174,10 +174,10 @@ export function Home() {
 
         <div className="mb-6 md:mb-8">
           <h2 className="text-xl md:text-2xl font-medium mb-2 text-white">
-            All Skills
+            Browse Skills
           </h2>
           <p className="label">
-            {skills.length} ready-to-use skills in {categories.length - 1} categories
+            {skills.length} skills across {categories.length - 1} categories
           </p>
         </div>
 
@@ -216,13 +216,13 @@ export function Home() {
           <div className="text-center py-24">
             <p className="text-lg text-white mb-2">
               {searchQuery.trim()
-                ? 'No matching skills found'
-                : 'This category is empty'}
+                ? 'No matches'
+                : 'Nothing here yet'}
             </p>
             <p className="label mb-4">
               {searchQuery.trim()
-                ? 'Try different keywords or browse all skills'
-                : 'Check back soon for new skills'}
+                ? 'Try broader keywords or clear the filter'
+                : 'This category is coming soon'}
             </p>
             {searchQuery.trim() && (
               <button

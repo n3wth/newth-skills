@@ -8,7 +8,7 @@ export function About() {
     <div className="min-h-screen relative">
       <SEO
         title="What are AI Skills? - newth.ai"
-        description="Skills are portable instruction sets that teach your AI coding assistant new capabilities. No servers, no infrastructure. Just markdown files that work immediately."
+        description="Skills are markdown files that teach your AI assistant how to do specific things. No servers, no infrastructure. Works offline, installs in seconds."
         canonicalUrl="/about"
         keywords={['AI skills', 'MCP servers', 'Gemini CLI', 'Claude Code', 'AI coding assistant']}
       />
@@ -33,19 +33,19 @@ export function About() {
           <div className="space-y-12">
             <section>
               <h2 className="text-2xl md:text-3xl font-medium text-white mb-4">
-                Domain expertise for your AI
+                Specialized knowledge, instantly loaded
               </h2>
               <p
                 className="text-lg leading-relaxed mb-4"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                Skills are portable instruction sets that extend what your AI coding assistant can do. They're markdown files containing specialized knowledge, best practices, and workflows that Gemini CLI and Claude Code can follow to help you with specific tasks.
+                Skills are markdown files that teach your AI assistant how to do specific things. When you install a skill, your AI gains the context it needs to help with that domain: the right patterns, best practices, and common pitfalls to avoid.
               </p>
               <p
                 className="text-lg leading-relaxed"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                Think of skills as giving your AI expertise in a particular domain. Whether it's creating GSAP animations, building MCP servers, or generating algorithmic art, skills provide the context and instructions your assistant needs to help you effectively.
+                Want Claude to build scroll animations? Install the GSAP skill. Need it to generate PDFs? There's a skill for that. Each skill is curated knowledge that your AI can reference immediately.
               </p>
             </section>
 
@@ -57,7 +57,7 @@ export function About() {
                 className="text-lg leading-relaxed mb-4"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                MCP (Model Context Protocol) servers are powerful tools that give AI assistants the ability to interact with external systems, APIs, and databases. They run as separate processes and require server infrastructure to operate.
+                You might be wondering: why skills instead of MCP servers? MCP servers connect your AI to live systems: databases, APIs, real-time data. Skills are different. They're static files that work without any infrastructure.
               </p>
               <p
                 className="text-lg leading-relaxed mb-4"
@@ -197,13 +197,13 @@ export function About() {
                     className="text-lg font-medium mb-2"
                     style={{ color: 'var(--color-gold)' }}
                   >
-                    Works immediately
+                    Works offline
                   </h3>
                   <p
                     className="text-base"
                     style={{ color: 'var(--color-grey-300)' }}
                   >
-                    Install with one command. Your AI has new capabilities in seconds.
+                    No network dependency. Your AI reads skills from your local filesystem.
                   </p>
                 </div>
               </div>

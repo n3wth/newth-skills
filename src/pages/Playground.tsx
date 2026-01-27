@@ -116,7 +116,7 @@ export function Playground() {
               className="text-lg md:text-xl max-w-2xl"
               style={{ color: 'var(--color-grey-300)' }}
             >
-              Try skills before installing. See example prompts and outputs to understand what each skill can do.
+              See what each skill actually does. Example prompts, real outputs.
             </p>
           </div>
 
@@ -304,12 +304,6 @@ export function Playground() {
                       border: '1px solid var(--glass-border)',
                     }}
                   >
-                    <p
-                      className="text-sm mb-3"
-                      style={{ color: 'var(--color-grey-400)' }}
-                    >
-                      Ready to use this skill?
-                    </p>
                     <Link
                       to={`/skill/${selectedSkill.id}`}
                       className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-opacity hover:opacity-90"
