@@ -6,7 +6,7 @@ import { HeroConstellation } from './HeroConstellation'
 
 export function Hero() {
   return (
-    <div className="relative h-screen flex items-center px-6 md:px-12 pt-14">
+    <div className="relative h-screen flex items-center px-6 md:px-12">
       <FloatingShapes />
       <HeroConstellation />
       <div className="relative z-10 w-full">
