@@ -4,6 +4,7 @@ import gsap from 'gsap'
 import type { Skill } from '../data/skills'
 import { type WorkflowNode, getSkillIOSchema, type SkillIO } from '../data/workflows'
 import { categoryConfig } from '../config/categories'
+import type { NodeExecutionState } from '../lib/workflowExecutor'
 
 interface WorkflowNodeComponentProps {
   node: WorkflowNode
@@ -17,6 +18,7 @@ interface WorkflowNodeComponentProps {
   onCompleteConnection: (inputId: string) => void
   onRemove: () => void
   isNew?: boolean
+  executionState?: NodeExecutionState
 }
 
 export function WorkflowNodeComponent({
@@ -30,7 +32,8 @@ export function WorkflowNodeComponent({
   onStartConnection,
   onCompleteConnection,
   onRemove,
-  isNew = false
+  isNew = false,
+  executionState
 }: WorkflowNodeComponentProps) {
   const nodeRef = useRef<HTMLDivElement>(null)
   const isDraggingRef = useRef(false)
@@ -178,18 +181,38 @@ export function WorkflowNodeComponent({
     )
   }
 
+  // Execution state styling
+  const executionBorderColor = executionState === 'running'
+    ? 'var(--color-sage)'
+    : executionState === 'completed'
+      ? 'var(--color-sage)'
+      : executionState === 'error'
+        ? 'var(--color-coral)'
+        : undefined
+
+  const executionBgOverlay = executionState === 'completed'
+    ? 'rgba(136, 211, 170, 0.05)'
+    : executionState === 'error'
+      ? 'rgba(255, 105, 97, 0.05)'
+      : undefined
+
   return (
     <div
       ref={nodeRef}
       className={`absolute w-[280px] rounded-xl border transition-colors ${
+        executionState === 'running' ? 'animate-pulse' : ''
+      } ${
         isSelected
           ? 'border-[var(--color-white)]'
-          : 'border-[var(--glass-border)] hover:border-[var(--glass-highlight)]'
+          : executionBorderColor
+            ? ''
+            : 'border-[var(--glass-border)] hover:border-[var(--glass-highlight)]'
       } cursor-grab active:cursor-grabbing`}
       style={{
         left: node.position.x,
         top: node.position.y,
-        backgroundColor: 'var(--color-bg-secondary)'
+        backgroundColor: executionBgOverlay || 'var(--color-bg-secondary)',
+        borderColor: executionBorderColor || undefined
       }}
       onMouseDown={handleMouseDown}
     >
@@ -212,17 +235,50 @@ export function WorkflowNodeComponent({
           <h4 className="text-sm font-medium text-[var(--color-white)] truncate">{skill.name}</h4>
           <p className="text-xs text-[var(--color-grey-600)] truncate">{skill.category}</p>
         </div>
-        <button
-          onClick={(e) => {
-            e.stopPropagation()
-            onRemove()
-          }}
-          className="port-button w-6 h-6 rounded-md flex items-center justify-center text-[var(--color-grey-600)] hover:text-[var(--color-coral)] hover:bg-[var(--color-coral)]/10 transition-colors"
-        >
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+        {executionState && (
+          <div
+            className={`flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium ${
+              executionState === 'running' ? 'bg-[var(--color-sage)]/20 text-[var(--color-sage)]' :
+              executionState === 'completed' ? 'bg-[var(--color-sage)]/20 text-[var(--color-sage)]' :
+              executionState === 'error' ? 'bg-[var(--color-coral)]/20 text-[var(--color-coral)]' :
+              'bg-[var(--glass-bg)] text-[var(--color-grey-400)]'
+            }`}
+          >
+            {executionState === 'running' && (
+              <svg className="w-3 h-3 animate-spin" viewBox="0 0 24 24" fill="none">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              </svg>
+            )}
+            {executionState === 'completed' && (
+              <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            )}
+            {executionState === 'error' && (
+              <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            )}
+            {executionState === 'pending' && '...'}
+            {executionState === 'running' && 'Running'}
+            {executionState === 'completed' && 'Done'}
+            {executionState === 'error' && 'Error'}
+          </div>
+        )}
+        {!executionState && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation()
+              onRemove()
+            }}
+            className="port-button w-6 h-6 rounded-md flex items-center justify-center text-[var(--color-grey-600)] hover:text-[var(--color-coral)] hover:bg-[var(--color-coral)]/10 transition-colors"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        )}
       </div>
 
       {schema && (

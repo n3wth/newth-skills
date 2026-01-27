@@ -1,11 +1,12 @@
 import { forwardRef, useCallback, useState, useRef } from 'react'
 import { skills } from '../data/skills'
-import { 
-  type WorkflowNode, 
+import {
+  type WorkflowNode,
   type WorkflowConnection,
   getSkillIOSchema
 } from '../data/workflows'
 import { WorkflowNodeComponent } from './WorkflowNode'
+import type { NodeExecutionState } from '../lib/workflowExecutor'
 
 interface WorkflowCanvasProps {
   nodes: WorkflowNode[]
@@ -19,6 +20,7 @@ interface WorkflowCanvasProps {
   onRemoveNode: (nodeId: string) => void
   onRemoveConnection: (connectionId: string) => void
   onCancelConnection: () => void
+  nodeExecutionStates?: Record<string, NodeExecutionState>
 }
 
 export const WorkflowCanvas = forwardRef<HTMLDivElement, WorkflowCanvasProps>(({
@@ -32,7 +34,8 @@ export const WorkflowCanvas = forwardRef<HTMLDivElement, WorkflowCanvasProps>(({
   onCompleteConnection,
   onRemoveNode,
   onRemoveConnection,
-  onCancelConnection
+  onCancelConnection,
+  nodeExecutionStates
 }, ref) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const svgRef = useRef<SVGSVGElement>(null)
@@ -228,6 +231,7 @@ export const WorkflowCanvas = forwardRef<HTMLDivElement, WorkflowCanvasProps>(({
             onStartConnection={(outputId) => onStartConnection(node.id, outputId)}
             onCompleteConnection={(inputId) => onCompleteConnection(node.id, inputId)}
             onRemove={() => onRemoveNode(node.id)}
+            executionState={nodeExecutionStates?.[node.id]}
           />
         )
       })}
