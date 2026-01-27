@@ -692,3 +692,28 @@ body {
     transform: none !important;
   }
 }
+
+/* Code example styles */
+.code-example-content pre {
+  margin: 0;
+  padding: 1rem;
+  overflow-x: auto;
+  background: transparent !important;
+}
+
+.code-example-content code {
+  font-family: 'Geist Mono', 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Mobile responsive code blocks */
+@media (max-width: 640px) {
+  .code-example-content pre {
+    font-size: 12px;
+  }
+  
+  .code-example-content {
+    max-width: 100%;
+  }
+}

@@ -11,6 +11,13 @@ export interface SamplePrompt {
   output: string
 }
 
+export interface SkillExample {
+  title: string
+  description: string
+  language: 'bash' | 'typescript' | 'python' | 'markdown' | 'javascript' | 'json' | 'tsx' | 'jsx'
+  code: string
+}
+
 export type SkillCategory = 'development' | 'documents' | 'creative' | 'productivity' | 'business'
 
 export interface Skill {
@@ -31,6 +38,7 @@ export interface Skill {
   contributor?: Contributor
   samplePrompts?: SamplePrompt[]
   skillFile?: string
+  examples?: SkillExample[]
 }
 
 const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/n3wth/newth-skills/main/skills'
@@ -73,6 +81,85 @@ export const skills: Skill[] = [
         prompt: "Animate text splitting each word with a stagger effect",
         output: "Using SplitText with staggered animations:\n\n```javascript\nconst split = new SplitText('.headline', { type: 'words' });\n\ngsap.from(split.words, {\n  opacity: 0,\n  y: 50,\n  rotationX: -40,\n  stagger: 0.1,\n  duration: 0.8,\n  ease: 'back.out(1.7)'\n});\n```\n\nEach word will animate in sequence with a slight rotation for a dynamic reveal effect."
       }
+    ],
+    examples: [
+      {
+        title: "Basic ScrollTrigger",
+        description: "Fade in elements as they enter the viewport with a smooth upward motion.",
+        language: "javascript",
+        code: `import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.from('.hero', {
+  scrollTrigger: {
+    trigger: '.hero',
+    start: 'top 80%',
+    end: 'top 20%',
+    scrub: 1,
+    markers: false // set to true for debugging
+  },
+  opacity: 0,
+  y: 100,
+  duration: 1,
+  ease: 'power3.out'
+});`
+      },
+      {
+        title: "Text Animation with Stagger",
+        description: "Animate text word-by-word with a stagger effect for dynamic reveals.",
+        language: "javascript",
+        code: `import gsap from 'gsap';
+import { SplitText } from 'gsap/SplitText';
+
+gsap.registerPlugin(SplitText);
+
+// Split text into words
+const split = new SplitText('.headline', { 
+  type: 'words',
+  wordsClass: 'word'
+});
+
+// Animate each word with stagger
+gsap.from(split.words, {
+  opacity: 0,
+  y: 50,
+  rotationX: -40,
+  stagger: 0.1,
+  duration: 0.8,
+  ease: 'back.out(1.7)'
+});`
+      },
+      {
+        title: "Advanced Timeline",
+        description: "Create complex animation sequences with precise timing control.",
+        language: "javascript",
+        code: `import gsap from 'gsap';
+
+// Create a timeline
+const tl = gsap.timeline({
+  defaults: { ease: 'power3.out' }
+});
+
+// Chain multiple animations
+tl.from('.logo', {
+  y: -100,
+  opacity: 0,
+  duration: 0.8
+})
+.from('.nav-item', {
+  y: -50,
+  opacity: 0,
+  stagger: 0.1,
+  duration: 0.6
+}, '-=0.4') // Start 0.4s before previous animation ends
+.from('.hero-content', {
+  scale: 0.8,
+  opacity: 0,
+  duration: 1
+}, '-=0.2');`
+      }
     ]
   },
   {
@@ -112,6 +199,135 @@ export const skills: Skill[] = [
         prompt: "How do I handle errors in MCP tools?",
         output: "Use structured error handling with descriptive messages:\n\n```python\nfrom fastmcp import FastMCP\nfrom fastmcp.exceptions import ToolError\n\nmcp = FastMCP('my-server')\n\n@mcp.tool()\nasync def fetch_data(id: str) -> dict:\n    if not id:\n        raise ToolError('ID is required')\n    \n    try:\n        result = await database.get(id)\n        if not result:\n            raise ToolError(f'No data found for ID: {id}')\n        return result\n    except ConnectionError:\n        raise ToolError('Database connection failed')\n```\n\nToolError messages are shown to the user, so make them helpful and actionable."
       }
+    ],
+    examples: [
+      {
+        title: "Basic FastMCP Server",
+        description: "Create a simple MCP server with a tool that fetches data from an API.",
+        language: "python",
+        code: `from fastmcp import FastMCP
+import httpx
+
+# Initialize the MCP server
+mcp = FastMCP('weather-server')
+
+@mcp.tool()
+async def get_weather(city: str) -> dict:
+    """Get current weather for a city.
+    
+    Args:
+        city: Name of the city to get weather for
+        
+    Returns:
+        Weather data including temperature and conditions
+    """
+    async with httpx.AsyncClient() as client:
+        response = await client.get(
+            'https://api.openweathermap.org/data/2.5/weather',
+            params={'q': city, 'appid': 'YOUR_API_KEY'}
+        )
+        response.raise_for_status()
+        return response.json()
+
+if __name__ == '__main__':
+    mcp.run()`
+      },
+      {
+        title: "Error Handling",
+        description: "Implement robust error handling in your MCP tools to provide helpful feedback.",
+        language: "python",
+        code: `from fastmcp import FastMCP
+from fastmcp.exceptions import ToolError
+
+mcp = FastMCP('database-server')
+
+@mcp.tool()
+async def fetch_user(user_id: str) -> dict:
+    """Fetch user data from database.
+    
+    Args:
+        user_id: The unique identifier for the user
+        
+    Returns:
+        User profile data
+    """
+    # Validate input
+    if not user_id or not user_id.strip():
+        raise ToolError('user_id is required and cannot be empty')
+    
+    try:
+        # Fetch from database
+        user = await database.get_user(user_id)
+        
+        if not user:
+            raise ToolError(f'No user found with ID: {user_id}')
+            
+        return user
+        
+    except ConnectionError as e:
+        raise ToolError(f'Database connection failed: {str(e)}')
+    except Exception as e:
+        raise ToolError(f'Unexpected error: {str(e)}')`
+      },
+      {
+        title: "TypeScript MCP Server",
+        description: "Build an MCP server using the TypeScript SDK for type safety.",
+        language: "typescript",
+        code: `import { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import {
+  CallToolRequestSchema,
+  ListToolsRequestSchema,
+} from '@modelcontextprotocol/sdk/types.js';
+
+// Create the server
+const server = new Server(
+  {
+    name: 'example-server',
+    version: '1.0.0',
+  },
+  {
+    capabilities: {
+      tools: {},
+    },
+  }
+);
+
+// Register tools
+server.setRequestHandler(ListToolsRequestSchema, async () => {
+  return {
+    tools: [
+      {
+        name: 'get_time',
+        description: 'Get the current time',
+        inputSchema: {
+          type: 'object',
+          properties: {},
+        },
+      },
+    ],
+  };
+});
+
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  if (request.params.name === 'get_time') {
+    return {
+      content: [
+        {
+          type: 'text',
+          text: new Date().toISOString(),
+        },
+      ],
+    };
+  }
+  
+  throw new Error(\`Unknown tool: \${request.params.name}\`);
+});
+
+// Start the server
+const transport = new StdioServerTransport();
+await server.connect(transport);`
+      }
     ]
   },
   {
@@ -146,6 +362,128 @@ export const skills: Skill[] = [
       {
         prompt: "Create a skill for React component development",
         output: "Here's a skill structure for React development:\n\n```markdown\n# React Component Skill\n\n## Trigger Words\n- \"create component\"\n- \"react component\"\n- \"build ui\"\n\n## Instructions\nWhen creating React components:\n1. Use functional components with hooks\n2. Apply TypeScript for type safety\n3. Follow naming conventions (PascalCase)\n4. Include prop types and defaults\n5. Add JSDoc comments for documentation\n\n## Example Output\n```tsx\ninterface ButtonProps {\n  label: string;\n  onClick: () => void;\n  variant?: 'primary' | 'secondary';\n}\n\nexport function Button({ label, onClick, variant = 'primary' }: ButtonProps) {\n  return (\n    <button className={`btn btn-${variant}`} onClick={onClick}>\n      {label}\n    </button>\n  );\n}\n```\n```"
+      }
+    ],
+    examples: [
+      {
+        title: "Basic Skill Structure",
+        description: "Create a simple skill file with instructions and examples for your AI assistant.",
+        language: "markdown",
+        code: `# API Documentation Skill
+
+## Description
+Help developers create clear and comprehensive API documentation.
+
+## Instructions
+When documenting APIs:
+1. Start with an overview of the API's purpose
+2. Document all endpoints with HTTP methods
+3. Include request/response examples
+4. Specify authentication requirements
+5. List common error codes and meanings
+
+## Example Output
+\`\`\`markdown
+# User API
+
+## GET /api/users/:id
+
+Retrieve a single user by ID.
+
+**Authentication:** Bearer token required
+
+**Parameters:**
+- id (path): User ID
+
+**Response (200):**
+\`\`\`json
+{
+  "id": "123",
+  "name": "John Doe",
+  "email": "john@example.com"
+}
+\`\`\`
+\`\`\``
+      },
+      {
+        title: "Advanced Skill with Context",
+        description: "Create a skill with comprehensive context and multiple trigger patterns.",
+        language: "markdown",
+        code: `# Testing Best Practices Skill
+
+## Trigger Words
+- "write tests"
+- "test coverage"
+- "testing strategy"
+- "unit test"
+
+## Context
+You are an expert in software testing with deep knowledge of:
+- Test-Driven Development (TDD)
+- Behavior-Driven Development (BDD)
+- Unit, integration, and E2E testing
+- Test coverage and quality metrics
+- Mocking and stubbing strategies
+
+## Instructions
+When writing tests:
+1. Follow the Arrange-Act-Assert pattern
+2. Use descriptive test names
+3. Test one thing per test case
+4. Mock external dependencies
+5. Aim for high coverage of critical paths
+
+## Example Output
+\`\`\`typescript
+describe('UserService', () => {
+  describe('createUser', () => {
+    it('should create user with valid data', async () => {
+      // Arrange
+      const userData = { name: 'John', email: 'john@test.com' };
+      const mockDb = jest.fn().mockResolvedValue({ id: '1', ...userData });
+      
+      // Act
+      const result = await userService.createUser(userData);
+      
+      // Assert
+      expect(result).toEqual({ id: '1', ...userData });
+      expect(mockDb).toHaveBeenCalledWith(userData);
+    });
+  });
+});
+\`\`\`
+
+## Tips
+- Write tests before implementation (TDD)
+- Keep tests isolated and independent
+- Use fixtures for test data
+- Test edge cases and error conditions`
+      },
+      {
+        title: "Installation Script",
+        description: "Example bash script for installing skills to your AI assistant.",
+        language: "bash",
+        code: `#!/bin/bash
+
+# Install skill to Claude Code
+SKILL_NAME="api-documentation"
+SKILL_URL="https://raw.githubusercontent.com/username/skills/main/\${SKILL_NAME}.md"
+SKILLS_DIR="$HOME/.claude/skills"
+
+# Create skills directory if it doesn't exist
+mkdir -p "$SKILLS_DIR"
+
+# Download the skill
+echo "Installing \${SKILL_NAME} skill..."
+curl -fsSL "$SKILL_URL" -o "$SKILLS_DIR/\${SKILL_NAME}.md"
+
+if [ $? -eq 0 ]; then
+  echo "✓ Skill installed successfully!"
+  echo "Location: $SKILLS_DIR/\${SKILL_NAME}.md"
+else
+  echo "✗ Failed to install skill"
+  exit 1
+fi`
       }
     ]
   },
