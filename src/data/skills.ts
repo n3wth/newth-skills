@@ -152,6 +152,45 @@ export const skills: Skill[] = [
     ]
   },
   {
+    id: 'ai-rules-manager',
+    name: 'AI Rules Manager',
+    description: 'Generate, version, and manage .cursor/rules files with automatic pattern learning. Create scoped AI instructions from codebase patterns.',
+    longDescription: 'Automatically learn project conventions and create scoped AI instructions from your codebase patterns. This skill helps you generate, version control, and manage .cursor/rules files, track rule effectiveness, and maintain consistent AI assistance across your project.',
+    category: 'development',
+    tags: ['ai', 'cursor', 'rules', 'automation', 'patterns'],
+    featured: false,
+    icon: '⚙',
+    color: 'oklch(0.68 0.16 210)',
+    skillFile: `${GITHUB_RAW_BASE}/ai-rules-manager.md`,
+    features: [
+      'Auto-generate rules from code patterns',
+      'Version control and comparison',
+      'Quick rule templates',
+      'Rule effectiveness tracking',
+      'Pattern learning from codebase'
+    ],
+    useCases: [
+      'Creating project-specific AI guidelines',
+      'Maintaining consistent code patterns',
+      'Tracking rule compliance',
+      'Versioning AI instructions',
+      'Team-wide AI configuration'
+    ],
+    compatibility: ['claude', 'cursor', 'windsurf', 'copilot'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    samplePrompts: [
+      {
+        prompt: "Generate cursor rules from my React codebase",
+        output: "I'll analyze your codebase patterns and generate appropriate rules:\n\n```markdown\n# React TypeScript Project Rules\n\n## Component Patterns\n- Use functional components with TypeScript\n- Prefer named exports for components\n- Use React.FC or explicit return types\n- Organize components in feature-based folders\n\n## State Management\n- Use hooks (useState, useReducer) for local state\n- Use Context API for app-wide state\n\n## Styling\n- Use Tailwind utility classes\n- Follow existing spacing patterns (4px grid)\n\n## Testing\n- Write tests using React Testing Library\n- Aim for 80%+ code coverage\n```\n\nThese rules are based on patterns detected in your existing components."
+      },
+      {
+        prompt: "Compare cursor rules between v1.0.0 and v1.1.0",
+        output: "Here's the diff between rule versions:\n\n```diff\n# v1.0.0 → v1.1.0 Changes\n\n## Added\n+ - Mandatory test coverage requirements (80%+)\n+ - Performance budget rules for API endpoints\n+ - Security scanning requirements\n\n## Changed\n~ - Updated TypeScript config to strict mode\n~ - Modified component structure guidelines\n\n## Removed\n- - Class component patterns (deprecated)\n```\n\nThe v1.1.0 rules add stricter quality requirements and remove deprecated patterns."
+      }
+    ]
+  },
+  {
     id: 'algorithmic-art',
     name: 'Algorithmic Art',
     description: 'Create algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Build flow fields, particle systems, and generative visuals.',
