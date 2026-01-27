@@ -219,7 +219,7 @@ export function WorkflowNodeComponent({
       <div
         className="flex items-center gap-3 p-4 border-b border-[var(--glass-border)] rounded-t-xl"
         style={{
-          background: `linear-gradient(135deg, color-mix(in oklch, ${config?.color || skill.color} 15%, transparent), transparent)`
+          backgroundColor: `color-mix(in oklch, ${config?.color || skill.color} 10%, transparent)`
         }}
       >
         <div

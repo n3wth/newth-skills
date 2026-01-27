@@ -46,7 +46,7 @@ export function SkillTestimonials({ skillId, limit = 3 }: SkillTestimonialsProps
 
             <div className="pt-4 border-t border-[var(--glass-border)] border-opacity-50">
               <p className="text-xs text-[var(--color-sage)] font-semibold">
-                📈 {testimonial.impact}
+                Impact: {testimonial.impact}
               </p>
             </div>
           </div>

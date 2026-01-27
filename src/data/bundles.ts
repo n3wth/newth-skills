@@ -29,7 +29,7 @@ export const bundles: Bundle[] = [
     ],
     persona: 'frontend',
     difficulty: 'intermediate',
-    icon: '💻',
+    icon: 'code',
     tags: ['animation', 'design', 'testing', 'ui', 'css'],
     estimatedSetupTime: '5 minutes',
     whatYouCanBuild: [
@@ -56,7 +56,7 @@ export const bundles: Bundle[] = [
     ],
     persona: 'backend',
     difficulty: 'advanced',
-    icon: '⚙️',
+    icon: 'gear',
     tags: ['api', 'database', 'infrastructure', 'devops', 'security'],
     estimatedSetupTime: '10 minutes',
     whatYouCanBuild: [
@@ -83,7 +83,7 @@ export const bundles: Bundle[] = [
     ],
     persona: 'devops',
     difficulty: 'advanced',
-    icon: '🚀',
+    icon: 'rocket',
     tags: ['automation', 'deployment', 'monitoring', 'infrastructure', 'scale'],
     estimatedSetupTime: '15 minutes',
     whatYouCanBuild: [
@@ -111,7 +111,7 @@ export const bundles: Bundle[] = [
     ],
     persona: 'creator',
     difficulty: 'beginner',
-    icon: '✨',
+    icon: 'star',
     tags: ['design', 'writing', 'marketing', 'social', 'visual'],
     estimatedSetupTime: '5 minutes',
     whatYouCanBuild: [
@@ -139,7 +139,7 @@ export const bundles: Bundle[] = [
     ],
     persona: 'analyst',
     difficulty: 'intermediate',
-    icon: '📊',
+    icon: 'chart',
     tags: ['analytics', 'database', 'visualization', 'insights', 'reporting'],
     estimatedSetupTime: '8 minutes',
     whatYouCanBuild: [
@@ -167,7 +167,7 @@ export const bundles: Bundle[] = [
     ],
     persona: 'founder',
     difficulty: 'beginner',
-    icon: '🎯',
+    icon: 'target',
     tags: ['strategy', 'marketing', 'operations', 'communication', 'growth'],
     estimatedSetupTime: '5 minutes',
     whatYouCanBuild: [

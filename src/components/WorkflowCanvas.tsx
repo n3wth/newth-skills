@@ -159,13 +159,10 @@ export const WorkflowCanvas = forwardRef<HTMLDivElement, WorkflowCanvasProps>(({
       onClick={handleCanvasClick}
       onMouseMove={handleMouseMove}
     >
-      <div 
-        className="absolute inset-0 opacity-[0.03]"
+      <div
+        className="absolute inset-0"
         style={{
-          backgroundImage: `
-            linear-gradient(var(--color-grey-400) 1px, transparent 1px),
-            linear-gradient(90deg, var(--color-grey-400) 1px, transparent 1px)
-          `,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23666' fill-opacity='0.1'/%3E%3C/svg%3E")`,
           backgroundSize: '40px 40px'
         }}
       />

@@ -293,46 +293,6 @@ body {
 }
 
 
-/* Hero gradient text animation */
-@keyframes gradientShift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-.hero-gradient-text {
-  background: linear-gradient(
-    90deg,
-    var(--color-white) 0%,
-    var(--color-grey-300) 25%,
-    var(--color-white) 50%,
-    var(--color-grey-300) 75%,
-    var(--color-white) 100%
-  );
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientShift 8s ease-in-out infinite;
-}
-
-:root[data-theme='light'] .hero-gradient-text {
-  background: linear-gradient(
-    90deg,
-    var(--color-white) 0%,
-    var(--color-grey-400) 25%,
-    var(--color-white) 50%,
-    var(--color-grey-400) 75%,
-    var(--color-white) 100%
-  );
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 
 
 /* Constellation pattern */
@@ -542,11 +502,6 @@ body {
   .floating-shape {
     animation: none !important;
     opacity: 0.5 !important;
-  }
-
-  .hero-gradient-text {
-    animation: none !important;
-    -webkit-text-fill-color: var(--color-white) !important;
   }
 
   .constellation-dot {

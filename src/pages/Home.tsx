@@ -4,6 +4,7 @@ import { Nav } from '../components/Nav'
 import { Footer } from '../components/Footer'
 import { Hero } from '../components/Hero'
 import { InstallSection } from '../components/InstallSection'
+import { StatsRow } from '../components/StatsRow'
 import { SkillCard } from '../components/SkillCard'
 import { CategoryFilter } from '../components/CategoryFilter'
 import { SearchInput } from '../components/SearchInput'
@@ -103,6 +104,8 @@ export function Home() {
 
         <InstallSection />
 
+        <StatsRow />
+
         {/* Browse Section Header */}
         <div ref={browseHeaderRef} className="mb-6 md:mb-8">
           <h2 className="text-xl md:text-2xl font-medium mb-2 text-white">
@@ -137,9 +140,27 @@ export function Home() {
           ))}
         </div>
 
-        {/* Empty State */}
+        {/* Empty State - Delightful */}
         {filteredSkills.length === 0 && (
           <div className="text-center py-24">
+            <div className="empty-state-icon inline-block mb-6">
+              <svg
+                width="64"
+                height="64"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{ color: 'var(--color-grey-400)' }}
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="M21 21l-4.35-4.35" />
+                <path d="M8 8l6 6" />
+                <path d="M14 8l-6 6" />
+              </svg>
+            </div>
             <p className="text-lg text-white mb-2">
               {query.trim() ? 'Nothing fits that description' : 'This category is empty right now'}
             </p>
@@ -147,7 +168,7 @@ export function Home() {
               {query.trim() ? 'Try something broader, or skip straight to browsing all skills' : 'Check back soon or explore what exists'}
             </p>
             {query.trim() && (
-              <button onClick={clearSearch} className="glass-pill px-4 py-2 rounded-full text-sm font-medium">
+              <button onClick={clearSearch} className="glass-pill btn-press px-4 py-2 rounded-full text-sm font-medium">
                 See all skills
               </button>
             )}

@@ -6,14 +6,14 @@ import type { Bundle } from '../data/bundles'
 
 type PersonaFilter = 'all' | Bundle['persona']
 
-const personas: { value: PersonaFilter; label: string; icon: string }[] = [
-  { value: 'all', label: 'All Bundles', icon: '🎯' },
-  { value: 'frontend', label: 'Frontend', icon: '💻' },
-  { value: 'backend', label: 'Backend', icon: '⚙️' },
-  { value: 'devops', label: 'DevOps', icon: '🚀' },
-  { value: 'creator', label: 'Creator', icon: '✨' },
-  { value: 'analyst', label: 'Analyst', icon: '📊' },
-  { value: 'founder', label: 'Founder', icon: '🎯' },
+const personas: { value: PersonaFilter; label: string }[] = [
+  { value: 'all', label: 'All Bundles' },
+  { value: 'frontend', label: 'Frontend' },
+  { value: 'backend', label: 'Backend' },
+  { value: 'devops', label: 'DevOps' },
+  { value: 'creator', label: 'Creator' },
+  { value: 'analyst', label: 'Analyst' },
+  { value: 'founder', label: 'Founder' },
 ]
 
 export function CuratedBundles() {
@@ -93,7 +93,7 @@ export function CuratedBundles() {
                         : 'bg-[var(--glass-bg)] text-[var(--color-grey-400)] border border-[var(--glass-border)] hover:border-[var(--glass-highlight)]'
                     }`}
                   >
-                    {persona.icon} {persona.label}
+                    {persona.label}
                   </button>
                 ))}
               </div>
@@ -137,21 +137,23 @@ export function CuratedBundles() {
               </h2>
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="p-6 rounded-xl bg-[var(--glass-bg)] border border-[var(--glass-border)]">
-                  <div className="text-3xl mb-3">📦</div>
+                  <div className="w-8 h-8 mb-3 rounded-lg bg-[var(--color-sage)] opacity-80" />
                   <h3 className="text-lg font-medium text-[var(--color-white)] mb-2">Pre-Curated</h3>
                   <p className="text-sm text-[var(--color-grey-400)]">
                     Each bundle is carefully selected to complement each other and solve real problems for your role.
                   </p>
                 </div>
                 <div className="p-6 rounded-xl bg-[var(--glass-bg)] border border-[var(--glass-border)]">
-                  <div className="text-3xl mb-3">⚡</div>
+                  <div className="w-8 h-8 mb-3 rounded-full bg-[var(--color-coral)] opacity-80" />
                   <h3 className="text-lg font-medium text-[var(--color-white)] mb-2">One Command</h3>
                   <p className="text-sm text-[var(--color-grey-400)]">
                     Install an entire bundle with a single command. No manual selection needed.
                   </p>
                 </div>
                 <div className="p-6 rounded-xl bg-[var(--glass-bg)] border border-[var(--glass-border)]">
-                  <div className="text-3xl mb-3">🎯</div>
+                  <svg className="w-8 h-8 mb-3" viewBox="0 0 24 24" fill="var(--color-sky)" opacity={0.8}>
+                    <polygon points="12,2 22,22 2,22" />
+                  </svg>
                   <h3 className="text-lg font-medium text-[var(--color-white)] mb-2">Proven Workflows</h3>
                   <p className="text-sm text-[var(--color-grey-400)]">
                     Based on how professionals use these skills together in real projects.

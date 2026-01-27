@@ -46,8 +46,17 @@ export function useShake() {
     if (prefersReducedMotion) return
 
     gsap.to(element, {
-      x: [-8, 8, -6, 6, -4, 4, -2, 2, 0] as any,
-      duration: 0.5,
+      keyframes: [
+        { x: -8, duration: 0.05 },
+        { x: 8, duration: 0.05 },
+        { x: -6, duration: 0.05 },
+        { x: 6, duration: 0.05 },
+        { x: -4, duration: 0.05 },
+        { x: 4, duration: 0.05 },
+        { x: -2, duration: 0.05 },
+        { x: 2, duration: 0.05 },
+        { x: 0, duration: 0.05 },
+      ],
       ease: 'power2.out',
     })
   }, [])

@@ -17,6 +17,13 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="AI Skills" />
+    <style>
+      /* Critical CSS - prevents white flash on load */
+      html, body { margin: 0; padding: 0; }
+      html { background: #000000; }
+      html[data-theme='light'] { background: #ffffff; }
+      body { background: inherit; min-height: 100vh; }
+    </style>
     <script>
       (function() {
         const stored = localStorage.getItem('theme-preference');
