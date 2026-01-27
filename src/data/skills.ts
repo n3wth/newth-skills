@@ -1,3 +1,9 @@
+export interface Contributor {
+  name: string
+  github?: string
+  url?: string
+}
+
 export interface SamplePrompt {
   prompt: string
   output: string
@@ -18,6 +24,7 @@ export interface Skill {
   compatibility?: ('gemini' | 'claude')[]
   version: string
   lastUpdated: string
+  contributor?: Contributor
   samplePrompts?: SamplePrompt[]
   skillFile?: string
 }
@@ -562,6 +569,37 @@ export const skills: Skill[] = [
     compatibility: ['gemini', 'claude'],
     version: '1.0.0',
     lastUpdated: '2025-12-15'
+  },
+  {
+    id: 'git-workflow',
+    name: 'Git Workflow',
+    description: 'Streamlined Git workflows for common development tasks. Handles branching strategies, commit conventions, and merge conflict resolution.',
+    longDescription: 'A comprehensive Git workflow skill that helps you follow best practices for version control. This community-contributed skill covers branching strategies like GitFlow and trunk-based development, conventional commit messages, interactive rebasing, and efficient merge conflict resolution.',
+    category: 'development',
+    tags: ['git', 'version-control', 'workflow', 'collaboration'],
+    icon: '⎇',
+    color: 'oklch(0.68 0.16 30)',
+    features: [
+      'GitFlow and trunk-based branching',
+      'Conventional commit message formatting',
+      'Interactive rebase guidance',
+      'Merge conflict resolution strategies',
+      'Git hooks and automation'
+    ],
+    useCases: [
+      'Setting up project branching strategy',
+      'Writing clear commit messages',
+      'Resolving complex merge conflicts',
+      'Automating Git workflows',
+      'Code review preparation'
+    ],
+    compatibility: ['gemini', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    contributor: {
+      name: 'Community Contributor',
+      github: 'example-contributor'
+    }
   }
 ]
 

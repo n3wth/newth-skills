@@ -173,7 +173,7 @@ export function SkillDetail() {
             ))}
           </div>
 
-          <div className="flex items-center gap-4 mb-12 text-sm" style={{ color: 'var(--color-grey-400)' }}>
+          <div className="flex flex-wrap items-center gap-4 mb-12 text-sm" style={{ color: 'var(--color-grey-400)' }}>
             <span className="flex items-center gap-2">
               <svg
                 width="16"
@@ -208,6 +208,46 @@ export function SkillDetail() {
               </svg>
               Updated {new Date(skill.lastUpdated).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
             </span>
+            {skill.contributor && (
+              <span className="flex items-center gap-2">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+                {skill.contributor.github ? (
+                  <a
+                    href={`https://github.com/${skill.contributor.github}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {skill.contributor.name}
+                  </a>
+                ) : skill.contributor.url ? (
+                  <a
+                    href={skill.contributor.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {skill.contributor.name}
+                  </a>
+                ) : (
+                  skill.contributor.name
+                )}
+              </span>
+            )}
           </div>
 
           {(skill.features || skill.useCases) && (

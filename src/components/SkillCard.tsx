@@ -9,6 +9,7 @@ interface SkillCardProps {
   skill: Skill
   isSelected?: boolean
   showPopularity?: boolean
+  showContributor?: boolean
 }
 
 function isRecentlyUpdated(lastUpdated: string): boolean {
@@ -25,7 +26,7 @@ function supportsHover(): boolean {
 }
 
 export const SkillCard = forwardRef<HTMLAnchorElement, SkillCardProps>(
-  function SkillCard({ skill, isSelected = false, showPopularity = false }, ref) {
+  function SkillCard({ skill, isSelected = false, showPopularity = false, showContributor = true }, ref) {
     const copyCount = showPopularity ? getCopyCount(skill.id) : 0
     const isNew = isRecentlyUpdated(skill.lastUpdated)
     const [showPreview, setShowPreview] = useState(false)
@@ -190,7 +191,7 @@ export const SkillCard = forwardRef<HTMLAnchorElement, SkillCardProps>(
           {skill.description}
         </p>
 
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 mb-3">
           {skill.tags.slice(0, 3).map(tag => (
             <span
               key={tag}
@@ -201,6 +202,34 @@ export const SkillCard = forwardRef<HTMLAnchorElement, SkillCardProps>(
             </span>
           ))}
         </div>
+
+        {showContributor && skill.contributor && (
+          <div 
+            className="flex items-center gap-2 pt-3 mt-auto"
+            style={{ borderTop: '1px solid var(--glass-border)' }}
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              style={{ color: 'var(--color-grey-500)' }}
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            <span
+              className="text-[10px]"
+              style={{ color: 'var(--color-grey-400)' }}
+            >
+              by {skill.contributor.name}
+            </span>
+          </div>
+        )}
       </Link>
 
       {showPreview && (
