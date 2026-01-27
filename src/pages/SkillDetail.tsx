@@ -3,6 +3,7 @@ import { skills } from '../data/skills'
 import { CategoryShape } from '../components/CategoryShape'
 import { Nav } from '../components/Nav'
 import { Footer } from '../components/Footer'
+import { SEO } from '../components/SEO'
 import { categoryConfig } from '../config/categories'
 
 export function SkillDetail() {
@@ -12,6 +13,11 @@ export function SkillDetail() {
   if (!skill) {
     return (
       <div className="min-h-screen relative">
+        <SEO
+          title="Skill Not Found - newth.ai skills"
+          description="The skill you're looking for doesn't exist."
+          canonicalUrl={`/skill/${skillId}`}
+        />
         <div className="mesh-gradient" />
         <div className="noise-overlay" />
         <Nav />
@@ -38,8 +44,17 @@ export function SkillDetail() {
 
   const config = categoryConfig[skill.category]
 
+  const seoDescription = skill.longDescription || skill.description
+
   return (
     <div className="min-h-screen relative">
+      <SEO
+        title={`${skill.name} - newth.ai skills`}
+        description={seoDescription}
+        canonicalUrl={`/skill/${skill.id}`}
+        keywords={skill.tags}
+        ogType="article"
+      />
       <div className="mesh-gradient" />
       <div className="noise-overlay" />
       <Nav />

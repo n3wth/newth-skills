@@ -1,7 +1,7 @@
 import { useState, useLayoutEffect, useMemo } from 'react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { skills, categories } from '../data/skills'
-import { Nav, Footer, Hero, InstallSection, SkillCard, CategoryFilter, SearchInput } from '../components'
+import { Nav, Footer, Hero, InstallSection, SkillCard, CategoryFilter, SearchInput, SEO } from '../components'
 
 export function Home() {
   const [activeCategory, setActiveCategory] = useState('all')
@@ -30,6 +30,12 @@ export function Home() {
 
   return (
     <div className="min-h-screen relative">
+      <SEO
+        title="newth.ai skills - Extend Your AI Coding Assistant"
+        description="Browse and install skills for Gemini CLI, Claude Code, and more. Extend your AI coding assistant with specialized capabilities in development, documents, creative, and business domains."
+        canonicalUrl="/"
+        keywords={['AI skills', 'Gemini CLI', 'Claude Code', 'AI coding assistant', 'developer tools']}
+      />
       <div className="mesh-gradient" />
       <div className="noise-overlay" />
 
