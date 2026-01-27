@@ -182,7 +182,7 @@ export const skills: Skill[] = [
     samplePrompts: [
       {
         prompt: "Generate cursor rules from my React codebase",
-        output: "I'll analyze your codebase patterns and generate appropriate rules:\n\n```markdown\n# React TypeScript Project Rules\n\n## Component Patterns\n- Use functional components with TypeScript\n- Prefer named exports for components\n- Use React.FC or explicit return types\n- Organize components in feature-based folders\n\n## State Management\n- Use hooks (useState, useReducer) for local state\n- Use Context API for app-wide state\n\n## Styling\n- Use Tailwind utility classes\n- Follow existing spacing patterns (4px grid)\n\n## Testing\n- Write tests using React Testing Library\n- Aim for 80%+ code coverage\n```\n\nThese rules are based on patterns detected in your existing components."
+        output: "I'll analyze your codebase patterns and generate appropriate rules:\n\n```markdown\n# React TypeScript Project Rules\n\n## Component Patterns\n- Use functional components with TypeScript\n- Prefer named exports for components\n- Use React.FC or explicit return types\n- Organize components in feature-based folders\n\n## State Management\n- Use hooks (useState, useReducer) for local state\n- Use Context API for app-wide state\n\n## Styling\n- Follow detected styling approach (e.g., CSS modules, styled-components, or utility classes)\n- Maintain consistent spacing patterns\n\n## Testing\n- Write tests using React Testing Library\n- Aim for 80%+ code coverage\n```\n\nThese rules are based on patterns detected in your existing components."
       },
       {
         prompt: "Compare cursor rules between v1.0.0 and v1.1.0",
