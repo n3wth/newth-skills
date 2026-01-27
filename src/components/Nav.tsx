@@ -12,15 +12,13 @@ export function Nav() {
         {siteConfig.name}
       </Link>
       <div className="flex items-center gap-4 md:gap-6">
-        <a
-          href={siteConfig.links.about}
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          to="/about"
           className="text-sm link-hover"
           style={{ color: 'var(--color-grey-400)' }}
         >
           About
-        </a>
+        </Link>
         <a
           href={siteConfig.links.github}
           target="_blank"
