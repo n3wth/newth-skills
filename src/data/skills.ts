@@ -11,12 +11,14 @@ export interface SamplePrompt {
   output: string
 }
 
+export type SkillCategory = 'development' | 'documents' | 'creative' | 'productivity' | 'business'
+
 export interface Skill {
   id: string
   name: string
   description: string
   longDescription?: string
-  category: 'development' | 'documents' | 'creative' | 'productivity' | 'business'
+  category: SkillCategory
   tags: string[]
   featured?: boolean
   icon: string
@@ -616,6 +618,36 @@ export const skills: Skill[] = [
       name: 'Community Contributor',
       github: 'example-contributor'
     }
+  },
+  {
+    id: 'imessage',
+    name: 'iMessage',
+    description: 'Manage iMessage conversations with database queries and AppleScript automation. Find unreplied threads, search contacts, read history, and send messages.',
+    longDescription: 'A comprehensive iMessage management skill that provides direct access to the Messages database and AppleScript automation. Find unreplied threads, search contacts with disambiguation, read conversation history from both individual and group chats, and send messages with proper confirmation workflows.',
+    category: 'productivity',
+    tags: ['imessage', 'messaging', 'automation', 'macos'],
+    featured: true,
+    icon: '◈',
+    color: 'oklch(0.65 0.18 220)',
+    skillFile: `${GITHUB_RAW_BASE}/imessage.md`,
+    features: [
+      'Find unreplied message threads',
+      'Search contacts with disambiguation',
+      'Read individual and group chat history',
+      'Send messages via AppleScript',
+      'Filter reactions and tapbacks',
+      'Handle group chat participants'
+    ],
+    useCases: [
+      'Catching up on unreplied messages',
+      'Finding the right contact to message',
+      'Reading conversation context before replying',
+      'Sending messages hands-free',
+      'Managing group chat communications'
+    ],
+    compatibility: ['claude'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-26'
   }
 ]
 
@@ -624,5 +656,6 @@ export const categories = [
   { id: 'development', name: 'Development', count: skills.filter(s => s.category === 'development').length },
   { id: 'documents', name: 'Documents', count: skills.filter(s => s.category === 'documents').length },
   { id: 'creative', name: 'Creative', count: skills.filter(s => s.category === 'creative').length },
+  { id: 'productivity', name: 'Productivity', count: skills.filter(s => s.category === 'productivity').length },
   { id: 'business', name: 'Business', count: skills.filter(s => s.category === 'business').length },
 ]

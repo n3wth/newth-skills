@@ -12,7 +12,7 @@ export function Hero() {
       <div className="relative z-10 w-full">
         <div className="max-w-5xl">
           <h1
-            className="text-5xl sm:text-6xl md:text-8xl lg:text-[10rem] font-semibold tracking-tighter leading-[0.85] mb-6 md:mb-8"
+            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-[10rem] font-semibold tracking-tighter leading-[0.85] mb-4 md:mb-6 lg:mb-8"
           >
             {siteConfig.hero.title.map((word, i) => (
               <span key={i}>
@@ -24,18 +24,18 @@ export function Hero() {
 
           <div className="flex flex-col gap-6 md:gap-8">
             <p
-              className="text-base md:text-xl leading-relaxed max-w-xl"
+              className="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-xl"
               style={{ color: 'var(--color-grey-200)' }}
             >
               {siteConfig.description}<br />
               {siteConfig.tagline}
             </p>
 
-            <div className="flex flex-wrap items-center gap-6 md:gap-8">
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6 md:gap-8">
               {Object.entries(categoryConfig).map(([key]) => (
-                <div key={key} className="flex items-center gap-2.5">
-                  <CategoryShape category={key} size={16} />
-                  <span className="text-sm" style={{ color: 'var(--color-grey-300)' }}>
+                <div key={key} className="flex items-center gap-2">
+                  <CategoryShape category={key} size={14} className="sm:w-4 sm:h-4" />
+                  <span className="text-xs sm:text-sm" style={{ color: 'var(--color-grey-300)' }}>
                     {key.charAt(0).toUpperCase() + key.slice(1)}
                   </span>
                 </div>

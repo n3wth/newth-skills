@@ -149,11 +149,11 @@ export const SkillCard = forwardRef<HTMLAnchorElement, SkillCardProps>(
         <Link
           ref={setRefs}
           to={`/skill/${skill.id}`}
-          className={`skill-card glass-card group cursor-pointer p-5 md:p-6 flex flex-col h-full ${isSelected ? 'ring-2 ring-white/40' : ''}`}
+          className={`skill-card glass-card group cursor-pointer p-4 sm:p-5 md:p-6 flex flex-col h-full ${isSelected ? 'ring-2 ring-white/40' : ''}`}
           aria-current={isSelected ? 'true' : undefined}
           onTouchStart={handleTouchStart}
         >
-        <div className="flex items-start justify-between mb-3 md:mb-4">
+        <div className="flex items-start justify-between mb-2 sm:mb-3 md:mb-4">
           <div className="flex items-center gap-2 flex-wrap">
             <CategoryShape category={skill.category} size={12} />
             {isTrending && (
@@ -219,17 +219,17 @@ export const SkillCard = forwardRef<HTMLAnchorElement, SkillCardProps>(
         </h3>
 
         <p
-          className="text-xs md:text-sm leading-relaxed mb-3 md:mb-4 flex-grow"
+          className="text-[11px] sm:text-xs md:text-sm leading-relaxed mb-2 sm:mb-3 md:mb-4 flex-grow"
           style={{ color: 'var(--color-grey-200)' }}
         >
           {skill.description}
         </p>
 
-        <div className="flex flex-wrap gap-2 mb-3">
+        <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-3">
           {skill.tags.slice(0, 3).map(tag => (
             <span
               key={tag}
-              className="text-[9px] md:text-[10px] uppercase tracking-wider"
+              className="text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-wider"
               style={{ color: 'var(--color-grey-400)' }}
             >
               {tag}

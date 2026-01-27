@@ -255,78 +255,115 @@ export function SkillDetail() {
             )}
           </div>
 
-          {(skill.features || skill.useCases) && (
-            <div className="grid md:grid-cols-2 gap-6 mb-12">
-              {skill.features && skill.features.length > 0 && (
-                <div className="glass-card p-6 md:p-8">
-                  <h2 className="text-lg font-medium text-white mb-5 flex items-center gap-2">
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke={config?.color || 'var(--color-grey-400)'}
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
+          {skill.features && skill.features.length > 0 && (
+            <div className="mb-12">
+              <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke={config?.color || 'var(--color-grey-400)'}
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <path d="M9 9h6" />
+                  <path d="M9 12h6" />
+                  <path d="M9 15h4" />
+                </svg>
+                Capabilities
+              </h2>
+              <div className="grid gap-3">
+                {skill.features.map((feature, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center gap-4 p-4 rounded-lg transition-colors"
+                    style={{
+                      backgroundColor: 'var(--glass-bg)',
+                      border: '1px solid var(--glass-border)',
+                    }}
+                  >
+                    <div
+                      className="w-8 h-8 rounded-md flex items-center justify-center shrink-0"
+                      style={{ backgroundColor: `${config?.color || '#666'}15` }}
                     >
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                    </svg>
-                    Features
-                  </h2>
-                  <ul className="space-y-3">
-                    {skill.features.map((feature, index) => (
-                      <li
-                        key={index}
-                        className="flex items-start gap-3 text-sm"
-                        style={{ color: 'var(--color-grey-200)' }}
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke={config?.color || 'var(--color-grey-400)'}
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       >
-                        <span
-                          className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0"
-                          style={{ backgroundColor: config?.color || 'var(--color-grey-400)' }}
-                        />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+                        <polyline points="9 11 12 14 22 4" />
+                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                      </svg>
+                    </div>
+                    <span className="text-sm" style={{ color: 'var(--color-grey-200)' }}>
+                      {feature}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
-              {skill.useCases && skill.useCases.length > 0 && (
-                <div className="glass-card p-6 md:p-8">
-                  <h2 className="text-lg font-medium text-white mb-5 flex items-center gap-2">
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke={config?.color || 'var(--color-grey-400)'}
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
+          {skill.useCases && skill.useCases.length > 0 && (
+            <div className="mb-12">
+              <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke={config?.color || 'var(--color-grey-400)'}
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+                Use Cases
+              </h2>
+              <div className="grid gap-3">
+                {skill.useCases.map((useCase, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center gap-4 p-4 rounded-lg transition-colors"
+                    style={{
+                      backgroundColor: 'var(--glass-bg)',
+                      border: '1px solid var(--glass-border)',
+                    }}
+                  >
+                    <div
+                      className="w-8 h-8 rounded-md flex items-center justify-center shrink-0"
+                      style={{ backgroundColor: `${config?.color || '#666'}15` }}
                     >
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                      <polyline points="22 4 12 14.01 9 11.01" />
-                    </svg>
-                    Use Cases
-                  </h2>
-                  <ul className="space-y-3">
-                    {skill.useCases.map((useCase, index) => (
-                      <li
-                        key={index}
-                        className="flex items-start gap-3 text-sm"
-                        style={{ color: 'var(--color-grey-200)' }}
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke={config?.color || 'var(--color-grey-400)'}
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       >
-                        <span
-                          className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0"
-                          style={{ backgroundColor: config?.color || 'var(--color-grey-400)' }}
-                        />
-                        {useCase}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                        <path d="M9 12l2 2 4-4" />
+                      </svg>
+                    </div>
+                    <span className="text-sm" style={{ color: 'var(--color-grey-200)' }}>
+                      {useCase}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
 

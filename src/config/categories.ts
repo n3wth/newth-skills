@@ -1,11 +1,12 @@
 // Category configuration - colors and shapes for each skill category
 export const categoryConfig: Record<string, {
   color: string
-  shape: 'circle' | 'square' | 'triangle' | 'diamond'
+  shape: 'circle' | 'square' | 'triangle' | 'diamond' | 'hexagon'
 }> = {
   development: { color: '#30d158', shape: 'circle' },
   documents: { color: '#ff6961', shape: 'square' },
   creative: { color: '#64d2ff', shape: 'triangle' },
+  productivity: { color: '#a855f7', shape: 'hexagon' },
   business: { color: '#ffd60a', shape: 'diamond' },
 }
 

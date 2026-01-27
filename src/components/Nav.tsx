@@ -10,7 +10,7 @@ function ThemeToggle() {
     <button
       onClick={toggleTheme}
       className="p-3 rounded-full transition-all duration-200 hover:opacity-70 min-w-[44px] min-h-[44px] flex items-center justify-center"
-      style={{ color: 'var(--color-grey-400)' }}
+      style={{ color: 'var(--color-grey-200)' }}
       aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
       title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
     >
@@ -122,21 +122,21 @@ export function Nav() {
           <Link
             to="/analytics"
             className="text-sm link-hover"
-            style={{ color: 'var(--color-grey-400)' }}
+            style={{ color: 'var(--color-grey-200)' }}
           >
             Analytics
           </Link>
           <Link
             to="/contribute"
             className="text-sm link-hover"
-            style={{ color: 'var(--color-grey-400)' }}
+            style={{ color: 'var(--color-grey-200)' }}
           >
             Contribute
           </Link>
           <Link
             to="/about"
             className="text-sm link-hover"
-            style={{ color: 'var(--color-grey-400)' }}
+            style={{ color: 'var(--color-grey-200)' }}
           >
             About
           </Link>
@@ -145,7 +145,7 @@ export function Nav() {
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm link-hover"
-            style={{ color: 'var(--color-grey-400)' }}
+            style={{ color: 'var(--color-grey-200)' }}
           >
             GitHub
           </a>
@@ -155,7 +155,7 @@ export function Nav() {
         <button
           onClick={toggleMenu}
           className="md:hidden p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg transition-all duration-200 hover:opacity-70"
-          style={{ color: 'var(--color-grey-400)' }}
+          style={{ color: 'var(--color-grey-200)' }}
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMenuOpen}
         >
