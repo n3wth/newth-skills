@@ -11,61 +11,31 @@ export function FloatingShapes() {
     if (!containerRef.current) return
 
     const shapes = containerRef.current.querySelectorAll('.floating-shape')
+    const ctx = gsap.context(() => {
+      shapes.forEach((shape, i) => {
+        const delay = 0.3 + i * 0.2
 
-    shapes.forEach((shape, i) => {
-      // Randomize entrance timing for organic feel
-      const entranceDelay = 0.3 + (i * 0.25) + (Math.random() * 0.3)
+        // Simple fade in
+        gsap.fromTo(shape,
+          { opacity: 0, scale: 0.8, y: 30 },
+          { opacity: 1, scale: 1, y: 0, duration: 0.8, delay, ease: 'power2.out' }
+        )
 
-      // Initial state - scattered and invisible
-      gsap.set(shape, {
-        opacity: 0,
-        scale: 0,
-        rotation: Math.random() * 180 - 90,
-        y: 50 + Math.random() * 30,
+        // Single combined float animation (less overhead than multiple)
+        gsap.to(shape, {
+          x: `random(-60, 60)`,
+          y: `random(-40, 40)`,
+          rotation: `random(-15, 15)`,
+          duration: 10 + i * 2,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+          delay: delay + 0.5,
+        })
       })
+    }, containerRef)
 
-      // Entrance animation - bounce in with varied stagger
-      gsap.to(shape, {
-        opacity: 1,
-        scale: 1,
-        rotation: Math.random() * 10 - 5,
-        y: 0,
-        duration: 1 + Math.random() * 0.5,
-        delay: entranceDelay,
-        ease: 'elastic.out(1, 0.5)',
-      })
-
-      // Continuous floating movement
-      gsap.to(shape, {
-        x: `random(-100, 100)`,
-        y: `random(-80, 80)`,
-        duration: `random(8, 14)`,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-        delay: i * 0.2,
-      })
-
-      // Rotation wobble
-      gsap.to(shape, {
-        rotation: `random(-30, 30)`,
-        duration: `random(5, 9)`,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-        delay: i * 0.3,
-      })
-
-      // Scale breathing
-      gsap.to(shape, {
-        scale: `random(0.8, 1.2)`,
-        duration: `random(4, 7)`,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-        delay: i * 0.1,
-      })
-    })
+    return () => ctx.revert()
   }, { scope: containerRef })
 
   return (

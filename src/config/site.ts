@@ -1,7 +1,7 @@
 // Site-wide configuration
 export const siteConfig = {
   name: 'skills.newth.ai',
-  description: 'Teach your AI to build animations, generate documents, and create art.',
+  description: 'Build animations. Generate documents. Create art.',
   tagline: 'One command. Works offline. No servers.',
   author: 'Oliver Newth',
   links: {

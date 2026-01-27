@@ -5,6 +5,10 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   build: {
+    target: 'esnext',
+    minify: 'esbuild',
+    cssMinify: true,
+    reportCompressedSize: true,
     rollupOptions: {
       output: {
         manualChunks(id) {

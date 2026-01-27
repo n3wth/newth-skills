@@ -173,6 +173,7 @@ body {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
+  border-radius: 9999px;
   color: var(--color-grey-400);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   transform: scale(1);

@@ -1,6 +1,5 @@
-import { useState, useLayoutEffect, useMemo, useRef, useCallback, useEffect } from 'react'
+import { useState, useMemo, useRef, useCallback, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { skills, categories } from '../data/skills'
 import { Nav, Footer, Hero, InstallSection, SkillCard, CategoryFilter, SearchInput, KeyboardShortcutsHelp, SEO, SortDropdown, TaskInput, SkillRecommendations, ComparisonBar } from '../components'
 import type { SortOption } from '../components'
@@ -127,10 +126,6 @@ export function Home() {
   useEffect(() => {
     setSelectedIndex(-1)
   }, [activeCategory, searchQuery, setSelectedIndex])
-
-  useLayoutEffect(() => {
-    ScrollTrigger.refresh()
-  }, [activeCategory, searchQuery])
 
   // Compute badge status once for all skills (performance optimization)
   const badgeStatus = useMemo(() => getSkillBadgeStatus(), [])

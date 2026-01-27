@@ -286,3 +286,150 @@ export function getAnalyticsSummary(): AnalyticsSummary {
     mostCopied: getMostPopularSkills(5),
   }
 }
+
+export interface ErrorEvent {
+  message: string
+  timestamp: number
+  metadata?: Record<string, string | undefined>
+}
+
+const ERROR_STORAGE_KEY = 'newth-skills-errors'
+const MAX_ERRORS = 100
+
+function getStoredErrors(): ErrorEvent[] {
+  if (typeof window === 'undefined') return []
+  
+  try {
+    const stored = localStorage.getItem(ERROR_STORAGE_KEY)
+    if (stored) {
+      return JSON.parse(stored)
+    }
+  } catch {
+    // localStorage not available or corrupted data
+  }
+  
+  return []
+}
+
+function saveErrors(errors: ErrorEvent[]): void {
+  if (typeof window === 'undefined') return
+  
+  try {
+    localStorage.setItem(ERROR_STORAGE_KEY, JSON.stringify(errors))
+  } catch {
+    // localStorage not available or quota exceeded
+  }
+}
+
+export function trackError(
+  message: string,
+  metadata?: Record<string, string | undefined>
+): void {
+  const errors = getStoredErrors()
+  
+  const event: ErrorEvent = {
+    message,
+    timestamp: Date.now(),
+    metadata,
+  }
+  
+  errors.push(event)
+  
+  if (errors.length > MAX_ERRORS) {
+    errors.splice(0, errors.length - MAX_ERRORS)
+  }
+  
+  saveErrors(errors)
+  
+  // Send to Plausible if available
+  if (typeof window !== 'undefined' && 'plausible' in window) {
+    const plausible = window.plausible as (event: string, options?: { props?: Record<string, string> }) => void
+    plausible('Error', { props: { message, ...metadata } as Record<string, string> })
+  }
+  
+  // Also log to console in development
+  if (import.meta.env.DEV) {
+    console.error('[Analytics Error]', message, metadata)
+  }
+}
+
+export function getRecentErrors(limit: number = 10): ErrorEvent[] {
+  const errors = getStoredErrors()
+  return errors.slice(-limit).reverse()
+}
+
+export function clearErrors(): void {
+  if (typeof window === 'undefined') return
+  
+  try {
+    localStorage.removeItem(ERROR_STORAGE_KEY)
+  } catch {
+    // localStorage not available
+  }
+}
+
+export function trackPerformance(metric: string, value: number): void {
+  // Send to Plausible if available
+  if (typeof window !== 'undefined' && 'plausible' in window) {
+    const plausible = window.plausible as (event: string, options?: { props?: Record<string, string> }) => void
+    plausible('Performance', { props: { metric, value: String(value) } })
+  }
+}
+
+export function reportWebVitals(): void {
+  if (typeof window === 'undefined') return
+  
+  // Report Core Web Vitals using Performance Observer
+  if ('PerformanceObserver' in window) {
+    // Largest Contentful Paint
+    try {
+      const lcpObserver = new PerformanceObserver((entryList) => {
+        const entries = entryList.getEntries()
+        const lastEntry = entries[entries.length - 1]
+        if (lastEntry) {
+          trackPerformance('LCP', lastEntry.startTime)
+        }
+      })
+      lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true })
+    } catch {
+      // LCP not supported
+    }
+    
+    // First Input Delay
+    try {
+      const fidObserver = new PerformanceObserver((entryList) => {
+        const entries = entryList.getEntries()
+        const firstEntry = entries[0] as PerformanceEventTiming | undefined
+        if (firstEntry) {
+          trackPerformance('FID', firstEntry.processingStart - firstEntry.startTime)
+        }
+      })
+      fidObserver.observe({ type: 'first-input', buffered: true })
+    } catch {
+      // FID not supported
+    }
+    
+    // Cumulative Layout Shift
+    try {
+      let clsValue = 0
+      const clsObserver = new PerformanceObserver((entryList) => {
+        for (const entry of entryList.getEntries()) {
+          const layoutShiftEntry = entry as PerformanceEntry & { hadRecentInput?: boolean; value?: number }
+          if (!layoutShiftEntry.hadRecentInput && layoutShiftEntry.value) {
+            clsValue += layoutShiftEntry.value
+          }
+        }
+      })
+      clsObserver.observe({ type: 'layout-shift', buffered: true })
+      
+      // Report CLS when page is hidden
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden') {
+          trackPerformance('CLS', clsValue)
+        }
+      })
+    } catch {
+      // CLS not supported
+    }
+  }
+}

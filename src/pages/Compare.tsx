@@ -6,7 +6,7 @@ import { Footer } from '../components/Footer'
 import { SEO } from '../components/SEO'
 import { CategoryShape } from '../components/CategoryShape'
 import { CommandBox } from '../components/CommandBox'
-import { PlatformBadges } from '../components/PlatformBadge'
+import { AssistantBadge } from '../components/AssistantBadge'
 import { categoryConfig } from '../config/categories'
 import { clearComparison, removeFromComparison, getComparisonSkills } from '../lib/community'
 
@@ -171,7 +171,11 @@ export function Compare() {
                   </td>
                   {comparedSkills.map(skill => (
                     <td key={skill.id} className="p-4">
-                      <PlatformBadges platforms={skill.compatibility} />
+                      <div className="flex flex-wrap gap-1">
+                        {skill.compatibility?.map(assistantId => (
+                          <AssistantBadge key={assistantId} assistantId={assistantId} size="sm" />
+                        ))}
+                      </div>
                     </td>
                   ))}
                 </tr>
