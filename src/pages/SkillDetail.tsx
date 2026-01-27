@@ -13,6 +13,7 @@ import { ShareButtons } from '../components/ShareButtons'
 import { VoteButton } from '../components/VoteButton'
 import { CompareButton } from '../components/CompareButton'
 import { AddToBundleButton } from '../components/AddToBundleButton'
+import { ExamplesSection } from '../components/ExamplesSection'
 import { categoryConfig } from '../config/categories'
 import { assistants, type AssistantId } from '../config/assistants'
 import { getSkillInstallCommand } from '../config/commands'
@@ -309,6 +310,13 @@ export function SkillDetail() {
                 ))}
               </div>
             </div>
+          )}
+
+          {skill.examples && skill.examples.length > 0 && (
+            <ExamplesSection 
+              examples={skill.examples} 
+              categoryColor={config?.color}
+            />
           )}
 
           <div className="glass-card p-6 md:p-8">
