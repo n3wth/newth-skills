@@ -46,16 +46,13 @@ Visit [skills.newth.ai](https://skills.newth.ai) and click any skill to copy the
 curl -sL https://skills.newth.ai/api/install/<skill-name> | bash
 ```
 
-### CLI Tool (Coming Soon)
+### CLI Tool (In Development)
 
-```bash
-npm install -g newth-skills
-newth-skills install <skill-name>
-```
+A dedicated CLI tool is in development. For now, use the web UI installation method above.
 
-### VS Code Extension (Coming Soon)
+### VS Code Extension (In Development)
 
-Search for "Newth Skills" in the VS Code marketplace.
+A VS Code extension for skill management is in development.
 
 ---
 
