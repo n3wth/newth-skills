@@ -39,7 +39,7 @@ export function SkillDetail() {
   const config = categoryConfig[skill.category]
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative content-loaded">
       <div className="mesh-gradient" />
       <div className="noise-overlay" />
       <Nav />

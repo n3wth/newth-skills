@@ -29,7 +29,7 @@ export function Home() {
   }, [activeCategory, searchQuery])
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative content-loaded">
       <div className="mesh-gradient" />
       <div className="noise-overlay" />
 
