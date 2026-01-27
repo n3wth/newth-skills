@@ -1,10 +1,17 @@
 import { Link } from 'react-router-dom'
 import { Nav } from '../components/Nav'
 import { Footer } from '../components/Footer'
+import { SEO } from '../components/SEO'
 
 export function About() {
   return (
     <div className="min-h-screen relative">
+      <SEO
+        title="About AI Coding Skills - newth.ai skills"
+        description="Learn what AI coding assistant skills are, how they differ from MCP servers, and how to extend Gemini CLI and Claude Code with specialized capabilities."
+        canonicalUrl="/about"
+        keywords={['AI skills', 'MCP servers', 'Gemini CLI', 'Claude Code', 'AI coding assistant']}
+      />
       <div className="mesh-gradient" />
       <div className="noise-overlay" />
       <Nav />
