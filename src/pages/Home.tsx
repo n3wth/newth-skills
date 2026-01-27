@@ -1,12 +1,26 @@
 import { useState, useMemo, useRef, useCallback, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { skills, categories } from '../data/skills'
-import { Nav, Footer, Hero, InstallSection, SkillCard, CategoryFilter, SearchInput, KeyboardShortcutsHelp, SEO, SortDropdown, TaskInput, SkillRecommendations, ComparisonBar } from '../components'
-import type { SortOption } from '../components'
+import { Nav } from '../components/Nav'
+import { Footer } from '../components/Footer'
+import { Hero } from '../components/Hero'
+import { InstallSection } from '../components/InstallSection'
+import { SkillCard } from '../components/SkillCard'
+import { CategoryFilter } from '../components/CategoryFilter'
+import { SearchInput } from '../components/SearchInput'
+import { KeyboardShortcutsHelp } from '../components/KeyboardShortcutsHelp'
+import { SEO } from '../components/SEO'
+import { SortDropdown, type SortOption } from '../components/SortDropdown'
+import { TaskInput } from '../components/TaskInput'
+import { SkillRecommendations } from '../components/SkillRecommendations'
+import { ComparisonBar } from '../components/ComparisonBar'
 import { useKeyboardShortcuts, useAIRecommendations } from '../hooks'
 import { getSkillBadgeStatus } from '../lib/analytics'
 
 const SORT_STORAGE_KEY = 'newth-skills-sort-preference'
+
+// Hoist static props outside component (rerender-memo-with-default-value)
+const SEO_KEYWORDS = ['AI skills', 'Gemini CLI', 'Claude Code', 'AI coding assistant', 'developer tools']
 
 function getStoredSortPreference(): SortOption {
   if (typeof window === 'undefined') return 'name-asc'
@@ -147,7 +161,7 @@ export function Home() {
         title="Skills for AI Coding Assistants - Gemini CLI & Claude Code"
         description="Teach your AI to build animations, generate documents, and create art. Skills for Gemini CLI and Claude Code. One command to install, works offline."
         canonicalUrl="/"
-        keywords={['AI skills', 'Gemini CLI', 'Claude Code', 'AI coding assistant', 'developer tools']}
+        keywords={SEO_KEYWORDS}
       />
       <div className="mesh-gradient" />
       <div className="noise-overlay" />

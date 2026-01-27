@@ -18,35 +18,51 @@ export interface AnalyticsData {
   skillViewCounts: Record<string, number>
 }
 
+// Cache localStorage reads to avoid repeated parsing (js-cache-storage)
+let cachedData: AnalyticsData | null = null
+let cacheTimestamp = 0
+const CACHE_TTL = 100 // 100ms cache for read-heavy operations
+
 function getStoredData(): AnalyticsData {
   if (typeof window === 'undefined') {
     return { copyEvents: [], skillCopyCounts: {}, viewEvents: [], skillViewCounts: {} }
   }
-  
+
+  const now = Date.now()
+  if (cachedData && now - cacheTimestamp < CACHE_TTL) {
+    return cachedData
+  }
+
   try {
     const stored = localStorage.getItem(STORAGE_KEY)
     if (stored) {
       const data = JSON.parse(stored)
-      // Ensure backward compatibility with older data format
-      return {
+      cachedData = {
         copyEvents: data.copyEvents || [],
         skillCopyCounts: data.skillCopyCounts || {},
         viewEvents: data.viewEvents || [],
         skillViewCounts: data.skillViewCounts || {},
       }
+      cacheTimestamp = now
+      return cachedData
     }
   } catch {
     // localStorage not available or corrupted data
   }
-  
-  return { copyEvents: [], skillCopyCounts: {}, viewEvents: [], skillViewCounts: {} }
+
+  cachedData = { copyEvents: [], skillCopyCounts: {}, viewEvents: [], skillViewCounts: {} }
+  cacheTimestamp = now
+  return cachedData
 }
 
 function saveData(data: AnalyticsData): void {
   if (typeof window === 'undefined') return
-  
+
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+    // Invalidate cache after write
+    cachedData = data
+    cacheTimestamp = Date.now()
   } catch {
     // localStorage not available or quota exceeded
   }

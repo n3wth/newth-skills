@@ -97,12 +97,12 @@ async function networkFirstStrategy(request) {
 
 async function staleWhileRevalidateStrategy(request) {
   const cachedResponse = await caches.match(request);
-  
-  const fetchPromise = fetch(request).then((networkResponse) => {
+
+  const fetchPromise = fetch(request).then(async (networkResponse) => {
     if (networkResponse.ok) {
-      caches.open(DYNAMIC_CACHE).then((cache) => {
-        cache.put(request, networkResponse.clone());
-      });
+      const responseToCache = networkResponse.clone();
+      const cache = await caches.open(DYNAMIC_CACHE);
+      await cache.put(request, responseToCache);
     }
     return networkResponse;
   }).catch(() => {

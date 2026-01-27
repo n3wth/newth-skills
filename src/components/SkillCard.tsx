@@ -1,4 +1,4 @@
-import { forwardRef, useState, useRef, useCallback, useEffect } from 'react'
+import { forwardRef, useState, useRef, useCallback, useEffect, memo } from 'react'
 import { Link } from 'react-router-dom'
 import { type Skill } from '../data/skills'
 import { CategoryShape } from './CategoryShape'
@@ -28,7 +28,7 @@ function supportsHover(): boolean {
   return window.matchMedia('(hover: hover)').matches
 }
 
-export const SkillCard = forwardRef<HTMLAnchorElement, SkillCardProps>(
+export const SkillCard = memo(forwardRef<HTMLAnchorElement, SkillCardProps>(
   function SkillCard({ skill, isSelected = false, showPopularity = false, isTrending = false, isPopular = false, showContributor = true }, ref) {
     const copyCount = showPopularity ? getCopyCount(skill.id) : 0
     const isNew = isRecentlyUpdated(skill.lastUpdated)
@@ -291,4 +291,4 @@ export const SkillCard = forwardRef<HTMLAnchorElement, SkillCardProps>(
     </div>
     )
   }
-)
+))
