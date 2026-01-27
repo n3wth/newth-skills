@@ -650,6 +650,45 @@ export const skills: Skill[] = [
     compatibility: ['claude'],
     version: '1.0.0',
     lastUpdated: '2026-01-26'
+  },
+  {
+    id: 'cursor-usage-analytics',
+    name: 'Cursor Usage Analytics',
+    description: 'Track Cursor usage patterns, model preferences, and code quality improvements. Optimize your AI-assisted development workflow through data-driven insights.',
+    longDescription: 'Understand how you use Cursor\'s AI features to optimize configuration, reduce costs, and improve code quality. Track agent modes, analyze code patterns, and measure the impact of AI assistance on your development workflow.',
+    category: 'development',
+    tags: ['cursor', 'analytics', 'ai-coding', 'metrics', 'optimization'],
+    featured: false,
+    icon: '📊',
+    color: 'oklch(0.72 0.15 220)',
+    skillFile: `${GITHUB_RAW_BASE}/cursor-usage-analytics.md`,
+    features: [
+      'Track agent modes and usage patterns',
+      'Analyze code generation quality',
+      'Measure productivity improvements',
+      'Optimize AI model costs',
+      'Pattern recognition and templates'
+    ],
+    useCases: [
+      'Monitor Cursor usage across projects',
+      'Optimize model selection for cost',
+      'Track code quality improvements',
+      'Identify common code patterns',
+      'Generate usage reports'
+    ],
+    compatibility: ['cursor', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    samplePrompts: [
+      {
+        prompt: "Set up basic Cursor usage tracking",
+        output: "I'll help you create a simple usage tracker:\n\n```python\nfrom cursor_analytics import CursorAnalytics\n\nanalytics = CursorAnalytics()\nanalytics.log_session(\n    mode='composer',\n    model='claude-3.5-sonnet',\n    tokens_used=2500,\n    code_lines=45,\n    duration_minutes=15\n)\n\n# Get weekly summary\nsummary = analytics.get_usage_summary(days=7)\nprint(f\"Sessions: {summary['total_sessions']}\")\nprint(f\"Lines generated: {summary['total_lines']}\")\n```"
+      },
+      {
+        prompt: "How can I optimize my Cursor costs?",
+        output: "Here's how to track and optimize costs:\n\n```python\nfrom cost_optimizer import CostOptimizer\n\noptimizer = CostOptimizer()\nbreakdown = optimizer.get_cost_breakdown(days=30)\nprint(f\"Monthly cost: ${breakdown['total_cost']:.2f}\")\n\n# Get optimization suggestions\nsuggestions = optimizer.suggest_optimizations()\nfor tip in suggestions['suggestions']:\n    print(f\"💡 {tip}\")\n```\n\nTips:\n- Use claude-3.5-sonnet for most tasks\n- Reserve opus for complex refactoring\n- Track which models you use most"
+      }
+    ]
   }
 ]
 
