@@ -648,6 +648,32 @@ export const skills: Skill[] = [
     compatibility: ['claude'],
     version: '1.0.0',
     lastUpdated: '2026-01-26'
+  },
+  {
+    id: 'research-assistant',
+    name: 'Research Assistant',
+    description: 'Deep research with citations and sources. Summarize research papers, compare multiple sources, and create comprehensive research reports.',
+    longDescription: 'A comprehensive research skill that helps you conduct thorough investigations on any topic. This skill excels at finding credible sources, verifying information, summarizing academic papers, and synthesizing insights from multiple sources into well-structured research reports with proper citations.',
+    category: 'productivity',
+    tags: ['research', 'analysis', 'citations', 'knowledge'],
+    icon: '◉',
+    color: 'oklch(0.68 0.16 250)',
+    features: [
+      'Deep topic research across multiple sources',
+      'Source citation and verification',
+      'Summarize research papers and academic content',
+      'Compare and synthesize multiple sources',
+      'Create structured research reports'
+    ],
+    useCases: [
+      'Academic research and literature reviews',
+      'Market research and competitive analysis',
+      'Technical deep dives and documentation',
+      'Fact-checking and source verification'
+    ],
+    compatibility: ['gemini', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27'
   }
 ]
 
