@@ -2,9 +2,12 @@ import { lazy, Suspense, useLayoutEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { SkillDetailSkeleton } from './components'
+import { SkillDetailSkeleton, ErrorBoundary, PageErrorFallback } from './components'
+import { reportWebVitals } from './lib/analytics'
 
 gsap.registerPlugin(ScrollTrigger)
+
+reportWebVitals()
 
 const Home = lazy(() => import('./pages/Home').then(m => ({ default: m.Home })))
 const SkillDetail = lazy(() => import('./pages/SkillDetail').then(m => ({ default: m.SkillDetail })))
@@ -35,83 +38,103 @@ function HomeSkeleton() {
 
 function App() {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Suspense fallback={<HomeSkeleton />}>
-              <Home />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/skill/:skillId"
-          element={
-            <Suspense fallback={<SkillDetailSkeleton />}>
-              <SkillDetail />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/about"
-          element={
-            <Suspense fallback={<HomeSkeleton />}>
-              <About />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/submit"
-          element={
-            <Suspense fallback={<HomeSkeleton />}>
-              <SubmitSkill />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/contribute"
-          element={
-            <Suspense fallback={<HomeSkeleton />}>
-              <Contribute />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/playground"
-          element={
-            <Suspense fallback={<HomeSkeleton />}>
-              <Playground />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/analytics"
-          element={
-            <Suspense fallback={<HomeSkeleton />}>
-              <Analytics />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/create"
-          element={
-            <Suspense fallback={<HomeSkeleton />}>
-              <CreateSkill />
-            </Suspense>
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <Suspense fallback={<HomeSkeleton />}>
-              <NotFound />
-            </Suspense>
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+    <ErrorBoundary fallback={<PageErrorFallback />}>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ErrorBoundary>
+                <Suspense fallback={<HomeSkeleton />}>
+                  <Home />
+                </Suspense>
+              </ErrorBoundary>
+            }
+          />
+          <Route
+            path="/skill/:skillId"
+            element={
+              <ErrorBoundary>
+                <Suspense fallback={<SkillDetailSkeleton />}>
+                  <SkillDetail />
+                </Suspense>
+              </ErrorBoundary>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <ErrorBoundary>
+                <Suspense fallback={<HomeSkeleton />}>
+                  <About />
+                </Suspense>
+              </ErrorBoundary>
+            }
+          />
+          <Route
+            path="/submit"
+            element={
+              <ErrorBoundary>
+                <Suspense fallback={<HomeSkeleton />}>
+                  <SubmitSkill />
+                </Suspense>
+              </ErrorBoundary>
+            }
+          />
+          <Route
+            path="/contribute"
+            element={
+              <ErrorBoundary>
+                <Suspense fallback={<HomeSkeleton />}>
+                  <Contribute />
+                </Suspense>
+              </ErrorBoundary>
+            }
+          />
+          <Route
+            path="/playground"
+            element={
+              <ErrorBoundary>
+                <Suspense fallback={<HomeSkeleton />}>
+                  <Playground />
+                </Suspense>
+              </ErrorBoundary>
+            }
+          />
+          <Route
+            path="/analytics"
+            element={
+              <ErrorBoundary>
+                <Suspense fallback={<HomeSkeleton />}>
+                  <Analytics />
+                </Suspense>
+              </ErrorBoundary>
+            }
+          />
+          <Route
+            path="/create"
+            element={
+              <ErrorBoundary>
+                <Suspense fallback={<HomeSkeleton />}>
+                  <CreateSkill />
+                </Suspense>
+              </ErrorBoundary>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <ErrorBoundary>
+                <Suspense fallback={<HomeSkeleton />}>
+                  <NotFound />
+                </Suspense>
+              </ErrorBoundary>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </ErrorBoundary>
   )
 }
 

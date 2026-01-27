@@ -1,4 +1,5 @@
 // Component exports for easy importing
+export { ErrorBoundary, PageErrorFallback } from './ErrorBoundary'
 export { CategoryShape, RenderShape } from './CategoryShape'
 export { FloatingShapes } from './FloatingShapes'
 export { Nav } from './Nav'
