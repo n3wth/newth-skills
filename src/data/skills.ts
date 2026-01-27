@@ -11,6 +11,8 @@ export interface Skill {
   features?: string[]
   useCases?: string[]
   compatibility?: ('gemini' | 'claude')[]
+  version: string
+  lastUpdated: string
 }
 
 export const skills: Skill[] = [
@@ -38,7 +40,9 @@ export const skills: Skill[] = [
       'Micro-interactions',
       'Loading animations'
     ],
-    compatibility: ['gemini', 'claude']
+    compatibility: ['gemini', 'claude'],
+    version: '1.2.0',
+    lastUpdated: '2026-01-20'
   },
   {
     id: 'mcp-builder',
@@ -64,7 +68,9 @@ export const skills: Skill[] = [
       'Automation workflows',
       'External service access'
     ],
-    compatibility: ['claude']
+    compatibility: ['claude'],
+    version: '2.0.0',
+    lastUpdated: '2026-01-25'
   },
   {
     id: 'skill-creator',
@@ -90,7 +96,9 @@ export const skills: Skill[] = [
       'Team skill sharing',
       'Custom tooling'
     ],
-    compatibility: ['gemini', 'claude']
+    compatibility: ['gemini', 'claude'],
+    version: '1.1.0',
+    lastUpdated: '2026-01-10'
   },
   {
     id: 'algorithmic-art',
@@ -116,7 +124,9 @@ export const skills: Skill[] = [
       'NFT artwork creation',
       'Interactive installations'
     ],
-    compatibility: ['gemini', 'claude']
+    compatibility: ['gemini', 'claude'],
+    version: '1.3.0',
+    lastUpdated: '2026-01-15'
   },
   {
     id: 'business-panel',
@@ -142,7 +152,9 @@ export const skills: Skill[] = [
       'Market entry decisions',
       'Innovation strategy development'
     ],
-    compatibility: ['gemini', 'claude']
+    compatibility: ['gemini', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2025-12-01'
   },
   {
     id: 'frontend-design',
@@ -167,7 +179,9 @@ export const skills: Skill[] = [
       'Marketing site development',
       'SaaS application UI'
     ],
-    compatibility: ['gemini', 'claude']
+    compatibility: ['gemini', 'claude'],
+    version: '1.4.0',
+    lastUpdated: '2026-01-22'
   },
   {
     id: 'pdf',
@@ -192,7 +206,9 @@ export const skills: Skill[] = [
       'Form automation',
       'Contract processing'
     ],
-    compatibility: ['gemini', 'claude']
+    compatibility: ['gemini', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2025-11-15'
   },
   {
     id: 'docx',
@@ -217,7 +233,9 @@ export const skills: Skill[] = [
       'Template-based document creation',
       'Bulk document processing'
     ],
-    compatibility: ['gemini', 'claude']
+    compatibility: ['gemini', 'claude'],
+    version: '1.1.0',
+    lastUpdated: '2025-12-20'
   },
   {
     id: 'pptx',
@@ -242,7 +260,9 @@ export const skills: Skill[] = [
       'Presentation template building',
       'Slide content extraction'
     ],
-    compatibility: ['gemini', 'claude']
+    compatibility: ['gemini', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2025-11-20'
   },
   {
     id: 'xlsx',
@@ -267,7 +287,9 @@ export const skills: Skill[] = [
       'Budget and forecast modeling',
       'Data import and export'
     ],
-    compatibility: ['gemini', 'claude']
+    compatibility: ['gemini', 'claude'],
+    version: '1.2.0',
+    lastUpdated: '2026-01-05'
   },
   {
     id: 'webapp-testing',
@@ -292,7 +314,9 @@ export const skills: Skill[] = [
       'Authentication flow testing',
       'Performance monitoring'
     ],
-    compatibility: ['gemini', 'claude']
+    compatibility: ['gemini', 'claude'],
+    version: '1.5.0',
+    lastUpdated: '2026-01-18'
   },
   {
     id: 'canvas-design',
@@ -317,7 +341,9 @@ export const skills: Skill[] = [
       'Event promotional materials',
       'Digital art pieces'
     ],
-    compatibility: ['gemini', 'claude']
+    compatibility: ['gemini', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2025-12-10'
   },
   {
     id: 'slack-gif-creator',
@@ -342,7 +368,9 @@ export const skills: Skill[] = [
       'Onboarding welcome animations',
       'Status update visuals'
     ],
-    compatibility: ['gemini', 'claude']
+    compatibility: ['gemini', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2025-11-25'
   },
   {
     id: 'theme-factory',
@@ -367,7 +395,9 @@ export const skills: Skill[] = [
       'Landing page design',
       'Marketing material consistency'
     ],
-    compatibility: ['gemini', 'claude']
+    compatibility: ['gemini', 'claude'],
+    version: '1.1.0',
+    lastUpdated: '2026-01-08'
   },
   {
     id: 'doc-coauthoring',
@@ -392,7 +422,9 @@ export const skills: Skill[] = [
       'Product requirement documents',
       'Team knowledge bases'
     ],
-    compatibility: ['gemini', 'claude']
+    compatibility: ['gemini', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2025-12-05'
   },
   {
     id: 'internal-comms',
@@ -417,7 +449,9 @@ export const skills: Skill[] = [
       'Crisis communication',
       'Onboarding documentation'
     ],
-    compatibility: ['gemini', 'claude']
+    compatibility: ['gemini', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2025-11-10'
   },
   {
     id: 'copywriting',
@@ -442,7 +476,9 @@ export const skills: Skill[] = [
       'Feature announcements',
       'Product launch content'
     ],
-    compatibility: ['gemini', 'claude']
+    compatibility: ['gemini', 'claude'],
+    version: '1.2.0',
+    lastUpdated: '2026-01-12'
   },
   {
     id: 'typography-selector',
@@ -467,7 +503,9 @@ export const skills: Skill[] = [
       'Presentation design',
       'Marketing material fonts'
     ],
-    compatibility: ['gemini', 'claude']
+    compatibility: ['gemini', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2025-12-15'
   }
 ]
 
