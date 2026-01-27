@@ -76,7 +76,7 @@ export function FloatingShapes() {
       {floatingShapes.map((shape, i) => (
         <div
           key={i}
-          className="floating-shape shape-glow absolute hidden md:block"
+          className="floating-shape absolute hidden md:block"
           style={{
             top: shape.top,
             right: shape.right,

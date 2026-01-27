@@ -1,13 +1,12 @@
-// Category configuration - colors, glows, and shapes for each skill category
+// Category configuration - colors and shapes for each skill category
 export const categoryConfig: Record<string, {
   color: string
-  glow: string
   shape: 'circle' | 'square' | 'triangle' | 'diamond'
 }> = {
-  development: { color: '#30d158', glow: 'rgba(48, 209, 88, 0.3)', shape: 'circle' },
-  documents: { color: '#ff6961', glow: 'rgba(255, 105, 97, 0.3)', shape: 'square' },
-  creative: { color: '#64d2ff', glow: 'rgba(100, 210, 255, 0.3)', shape: 'triangle' },
-  business: { color: '#ffd60a', glow: 'rgba(255, 214, 10, 0.3)', shape: 'diamond' },
+  development: { color: '#30d158', shape: 'circle' },
+  documents: { color: '#ff6961', shape: 'square' },
+  creative: { color: '#64d2ff', shape: 'triangle' },
+  business: { color: '#ffd60a', shape: 'diamond' },
 }
 
 // Floating shapes configuration for hero section

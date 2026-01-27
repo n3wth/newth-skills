@@ -5,7 +5,6 @@ import { categoryConfig } from '../config/categories'
 import { siteConfig } from '../config/site'
 import { CategoryShape } from './CategoryShape'
 import { FloatingShapes } from './FloatingShapes'
-import { Constellation } from './Constellation'
 
 export function Hero() {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -42,14 +41,6 @@ export function Hero() {
 
   return (
     <div ref={heroRef} className="relative h-screen flex items-center px-6 md:px-12 pt-14">
-      {/* Ambient gradient orbs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="hero-orb hero-orb-1" />
-        <div className="hero-orb hero-orb-2" />
-        <div className="hero-orb hero-orb-3" />
-      </div>
-
-      <Constellation />
       <FloatingShapes />
       <div className="relative z-10 w-full">
         <div className="max-w-5xl">
