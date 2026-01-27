@@ -1,4 +1,5 @@
 const STORAGE_KEY = 'newth-skills-analytics'
+const MAX_EVENTS = 1000
 
 export interface CopyEvent {
   skillId: string
@@ -47,6 +48,10 @@ export function trackCopyEvent(skillId: string): void {
   
   data.copyEvents.push(event)
   data.skillCopyCounts[skillId] = (data.skillCopyCounts[skillId] || 0) + 1
+  
+  if (data.copyEvents.length > MAX_EVENTS) {
+    data.copyEvents = data.copyEvents.slice(-MAX_EVENTS)
+  }
   
   saveData(data)
   
