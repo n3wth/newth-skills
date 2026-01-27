@@ -622,6 +622,38 @@ export const skills: Skill[] = [
     }
   },
   {
+    id: 'cursor-git-workflow',
+    name: 'Cursor ↔ Git Workflow',
+    description: 'Integrate Cursor AI editor seamlessly into git workflows. Generate branch-specific contexts, create PR-based rules, validate code with git hooks, and auto-stash experimental changes.',
+    longDescription: 'A comprehensive skill for integrating Cursor AI editor with Git-based development workflows. Automatically generate branch-specific .cursorrules, create context from PR changes, validate AI-generated code with pre-commit hooks, and manage experimental changes with auto-stash functionality.',
+    category: 'development',
+    tags: ['cursor', 'git', 'workflow', 'automation', 'ai-editor'],
+    icon: '⚡',
+    color: 'oklch(0.72 0.20 260)',
+    skillFile: `${GITHUB_RAW_BASE}/cursor-git-workflow.md`,
+    features: [
+      'Branch-specific context generation',
+      'PR-based Cursor rule creation',
+      'Git hooks for AI code validation',
+      'Auto-stash experimental changes',
+      'Conventional commit enforcement'
+    ],
+    useCases: [
+      'Generate Cursor rules from git branch changes',
+      'Create context from GitHub PR for code review',
+      'Validate AI-generated code before commits',
+      'Auto-stash experimental Cursor changes',
+      'Maintain branch-focused AI context'
+    ],
+    compatibility: ['claude'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    contributor: {
+      name: 'newth.ai',
+      github: 'n3wth'
+    }
+  },
+  {
     id: 'imessage',
     name: 'iMessage',
     description: 'Manage iMessage conversations with database queries and AppleScript automation. Find unreplied threads, search contacts, read history, and send messages.',
