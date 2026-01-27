@@ -8,8 +8,10 @@ import { Footer } from '../components/Footer'
 import { KeyboardShortcutsHelp } from '../components/KeyboardShortcutsHelp'
 import { SEO } from '../components/SEO'
 import { SkillCard } from '../components/SkillCard'
-import { PlatformBadges } from '../components/PlatformBadge'
+import { AssistantBadge } from '../components/AssistantBadge'
 import { categoryConfig } from '../config/categories'
+import { assistants, type AssistantId } from '../config/assistants'
+import { getSkillInstallCommand } from '../config/commands'
 import { useKeyboardShortcuts } from '../hooks'
 import { trackViewEvent } from '../lib/analytics'
 
@@ -119,7 +121,13 @@ export function SkillDetail() {
             >
               {skill.category.charAt(0).toUpperCase() + skill.category.slice(1)}
             </span>
-            <PlatformBadges platforms={skill.compatibility} className="sm:ml-auto" />
+            {skill.compatibility && skill.compatibility.length > 0 && (
+              <div className="flex items-center gap-2 sm:ml-auto flex-wrap">
+                {skill.compatibility.map(assistantId => (
+                  <AssistantBadge key={assistantId} assistantId={assistantId} size="md" />
+                ))}
+              </div>
+            )}
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-6 tracking-tight">
@@ -312,24 +320,24 @@ export function SkillDetail() {
 
           <div className="glass-card p-6 md:p-8">
             <h2 className="text-lg font-medium text-white mb-2">Add to your AI assistant</h2>
-            <p className="text-sm mb-4" style={{ color: 'var(--color-grey-400)' }}>
-              Run this command in your terminal to install
+            <p className="text-sm mb-6" style={{ color: 'var(--color-grey-400)' }}>
+              Choose your AI assistant and run the command in your terminal
             </p>
-            {skill.skillFile ? (
-              <CommandBox
-                name="Install"
-                command={`curl -fsSL ${skill.skillFile} -o ~/.claude/skills/${skill.id}.md`}
-                primary={true}
-                skillId={skill.id}
-              />
-            ) : (
-              <CommandBox
-                name="Install"
-                command={`curl -fsSL https://skills.newth.ai/install.sh | bash -s -- ${skill.id}`}
-                primary={true}
-                skillId={skill.id}
-              />
-            )}
+            <div className="space-y-3">
+              {(skill.compatibility || ['gemini', 'claude'] as AssistantId[]).map((assistantId, index) => {
+                const assistant = assistants[assistantId]
+                const command = getSkillInstallCommand(assistantId, skill.id, skill.skillFile)
+                return (
+                  <CommandBox
+                    key={assistantId}
+                    name={assistant.shortName}
+                    command={command}
+                    primary={index === 0}
+                    skillId={`${skill.id}-${assistantId}`}
+                  />
+                )
+              })}
+            </div>
           </div>
 
           {(() => {

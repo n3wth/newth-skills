@@ -2,6 +2,7 @@ import { forwardRef, useState, useRef, useCallback, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { type Skill } from '../data/skills'
 import { CategoryShape } from './CategoryShape'
+import { CompatibilityMatrix } from './CompatibilityMatrix'
 import { getCopyCount } from '../lib/analytics'
 import { HoverPreview } from './HoverPreview'
 
@@ -235,6 +236,12 @@ export const SkillCard = forwardRef<HTMLAnchorElement, SkillCardProps>(
             </span>
           ))}
         </div>
+
+        {skill.compatibility && skill.compatibility.length > 0 && (
+          <div className="mb-3">
+            <CompatibilityMatrix compatibility={skill.compatibility} size="sm" />
+          </div>
+        )}
 
         {showContributor && skill.contributor && (
           <div 

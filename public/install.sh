@@ -1,6 +1,6 @@
 #!/bin/bash
 # newth.ai skills installer
-# Usage: curl -fsSL https://skills.newth.ai/install.sh | bash [-s -- gemini|claude]
+# Usage: curl -fsSL https://skills.newth.ai/install.sh | bash [-s -- gemini|claude|cursor|windsurf|cody|copilot]
 
 set -e
 
@@ -76,7 +76,7 @@ install_gemini() {
         print_info "Linking skills from $SOURCE"
 
         for skill in "$SOURCE"/*; do
-            if [ -d "$skill" ]; then
+            if [ -f "$skill" ]; then
                 name=$(basename "$skill")
                 if [ ! -e "$GEMINI_SKILLS/$name" ]; then
                     ln -s "$skill" "$GEMINI_SKILLS/$name"
@@ -131,7 +131,7 @@ install_claude() {
         print_info "Linking skills from $SOURCE"
 
         for skill in "$SOURCE"/*; do
-            if [ -d "$skill" ]; then
+            if [ -f "$skill" ]; then
                 name=$(basename "$skill")
                 if [ ! -e "$CLAUDE_SKILLS/$name" ]; then
                     ln -s "$skill" "$CLAUDE_SKILLS/$name"
@@ -169,6 +169,198 @@ install_claude() {
     print_success "Claude Code skills installed to $CLAUDE_SKILLS"
 }
 
+# Install for Cursor
+install_cursor() {
+    print_info "Installing skills for Cursor..."
+
+    CURSOR_DIR="$HOME/.cursor"
+    CURSOR_SKILLS="$CURSOR_DIR/skills"
+
+    # Create directory if needed
+    mkdir -p "$CURSOR_SKILLS"
+
+    # Check if source skills exist
+    SOURCE=$(get_skills_source)
+
+    if [ -n "$SOURCE" ] && [ "$SOURCE" != "$CURSOR_SKILLS" ]; then
+        print_info "Linking skills from $SOURCE"
+
+        for skill in "$SOURCE"/*; do
+            if [ -f "$skill" ]; then
+                name=$(basename "$skill")
+                if [ ! -e "$CURSOR_SKILLS/$name" ]; then
+                    ln -s "$skill" "$CURSOR_SKILLS/$name"
+                    print_success "Linked $name"
+                else
+                    print_warning "$name already exists, skipping"
+                fi
+            fi
+        done
+    else
+        print_info "Downloading skills from repository..."
+
+        # Clone to temp and copy skills
+        TMP_DIR=$(mktemp -d)
+        git clone --depth 1 "$SKILLS_REPO" "$TMP_DIR" 2>/dev/null || {
+            print_error "Failed to clone skills repository"
+            rm -rf "$TMP_DIR"
+            exit 1
+        }
+
+        if [ -d "$TMP_DIR/skills" ]; then
+            cp -r "$TMP_DIR/skills/"* "$CURSOR_SKILLS/" 2>/dev/null || true
+        fi
+
+        rm -rf "$TMP_DIR"
+    fi
+
+    print_success "Cursor skills installed to $CURSOR_SKILLS"
+}
+
+# Install for Windsurf
+install_windsurf() {
+    print_info "Installing skills for Windsurf..."
+
+    WINDSURF_DIR="$HOME/.windsurf"
+    WINDSURF_SKILLS="$WINDSURF_DIR/skills"
+
+    # Create directory if needed
+    mkdir -p "$WINDSURF_SKILLS"
+
+    # Check if source skills exist
+    SOURCE=$(get_skills_source)
+
+    if [ -n "$SOURCE" ] && [ "$SOURCE" != "$WINDSURF_SKILLS" ]; then
+        print_info "Linking skills from $SOURCE"
+
+        for skill in "$SOURCE"/*; do
+            if [ -f "$skill" ]; then
+                name=$(basename "$skill")
+                if [ ! -e "$WINDSURF_SKILLS/$name" ]; then
+                    ln -s "$skill" "$WINDSURF_SKILLS/$name"
+                    print_success "Linked $name"
+                else
+                    print_warning "$name already exists, skipping"
+                fi
+            fi
+        done
+    else
+        print_info "Downloading skills from repository..."
+
+        # Clone to temp and copy skills
+        TMP_DIR=$(mktemp -d)
+        git clone --depth 1 "$SKILLS_REPO" "$TMP_DIR" 2>/dev/null || {
+            print_error "Failed to clone skills repository"
+            rm -rf "$TMP_DIR"
+            exit 1
+        }
+
+        if [ -d "$TMP_DIR/skills" ]; then
+            cp -r "$TMP_DIR/skills/"* "$WINDSURF_SKILLS/" 2>/dev/null || true
+        fi
+
+        rm -rf "$TMP_DIR"
+    fi
+
+    print_success "Windsurf skills installed to $WINDSURF_SKILLS"
+}
+
+# Install for Cody
+install_cody() {
+    print_info "Installing skills for Sourcegraph Cody..."
+
+    CODY_DIR="$HOME/.cody"
+    CODY_SKILLS="$CODY_DIR/skills"
+
+    # Create directory if needed
+    mkdir -p "$CODY_SKILLS"
+
+    # Check if source skills exist
+    SOURCE=$(get_skills_source)
+
+    if [ -n "$SOURCE" ] && [ "$SOURCE" != "$CODY_SKILLS" ]; then
+        print_info "Linking skills from $SOURCE"
+
+        for skill in "$SOURCE"/*; do
+            if [ -f "$skill" ]; then
+                name=$(basename "$skill")
+                if [ ! -e "$CODY_SKILLS/$name" ]; then
+                    ln -s "$skill" "$CODY_SKILLS/$name"
+                    print_success "Linked $name"
+                else
+                    print_warning "$name already exists, skipping"
+                fi
+            fi
+        done
+    else
+        print_info "Downloading skills from repository..."
+
+        # Clone to temp and copy skills
+        TMP_DIR=$(mktemp -d)
+        git clone --depth 1 "$SKILLS_REPO" "$TMP_DIR" 2>/dev/null || {
+            print_error "Failed to clone skills repository"
+            rm -rf "$TMP_DIR"
+            exit 1
+        }
+
+        if [ -d "$TMP_DIR/skills" ]; then
+            cp -r "$TMP_DIR/skills/"* "$CODY_SKILLS/" 2>/dev/null || true
+        fi
+
+        rm -rf "$TMP_DIR"
+    fi
+
+    print_success "Cody skills installed to $CODY_SKILLS"
+}
+
+# Install for GitHub Copilot
+install_copilot() {
+    print_info "Installing skills for GitHub Copilot..."
+
+    COPILOT_DIR="$HOME/.copilot"
+    COPILOT_SKILLS="$COPILOT_DIR/skills"
+
+    # Create directory if needed
+    mkdir -p "$COPILOT_SKILLS"
+
+    # Check if source skills exist
+    SOURCE=$(get_skills_source)
+
+    if [ -n "$SOURCE" ] && [ "$SOURCE" != "$COPILOT_SKILLS" ]; then
+        print_info "Linking skills from $SOURCE"
+
+        for skill in "$SOURCE"/*; do
+            if [ -f "$skill" ]; then
+                name=$(basename "$skill")
+                if [ ! -e "$COPILOT_SKILLS/$name" ]; then
+                    ln -s "$skill" "$COPILOT_SKILLS/$name"
+                    print_success "Linked $name"
+                else
+                    print_warning "$name already exists, skipping"
+                fi
+            fi
+        done
+    else
+        print_info "Downloading skills from repository..."
+
+        # Clone to temp and copy skills
+        TMP_DIR=$(mktemp -d)
+        git clone --depth 1 "$SKILLS_REPO" "$TMP_DIR" 2>/dev/null || {
+            print_error "Failed to clone skills repository"
+            rm -rf "$TMP_DIR"
+            exit 1
+        }
+
+        if [ -d "$TMP_DIR/skills" ]; then
+            cp -r "$TMP_DIR/skills/"* "$COPILOT_SKILLS/" 2>/dev/null || true
+        fi
+
+        rm -rf "$TMP_DIR"
+    fi
+
+    print_success "GitHub Copilot skills installed to $COPILOT_SKILLS"
+}
+
 # Main
 print_header
 
@@ -184,10 +376,35 @@ case "$TARGET" in
     claude)
         install_claude
         ;;
-    all|*)
+    cursor)
+        install_cursor
+        ;;
+    windsurf)
+        install_windsurf
+        ;;
+    cody)
+        install_cody
+        ;;
+    copilot)
+        install_copilot
+        ;;
+    all)
         install_gemini
         echo ""
         install_claude
+        echo ""
+        install_cursor
+        echo ""
+        install_windsurf
+        echo ""
+        install_cody
+        echo ""
+        install_copilot
+        ;;
+    *)
+        print_error "Unknown target: $TARGET"
+        echo "Usage: $0 [gemini|claude|cursor|windsurf|cody|copilot|all]"
+        exit 1
         ;;
 esac
 

@@ -4,6 +4,8 @@ export interface Contributor {
   url?: string
 }
 
+import type { AssistantId } from '../config/assistants'
+
 export interface SamplePrompt {
   prompt: string
   output: string
@@ -21,7 +23,7 @@ export interface Skill {
   color: string
   features?: string[]
   useCases?: string[]
-  compatibility?: ('gemini' | 'claude')[]
+  compatibility?: AssistantId[]
   version: string
   lastUpdated: string
   contributor?: Contributor
@@ -57,7 +59,7 @@ export const skills: Skill[] = [
       'Micro-interactions',
       'Loading animations'
     ],
-    compatibility: ['gemini', 'claude'],
+    compatibility: ['gemini', 'claude', 'cursor', 'windsurf', 'cody', 'copilot'],
     version: '1.2.0',
     lastUpdated: '2026-01-20',
     samplePrompts: [
@@ -135,7 +137,7 @@ export const skills: Skill[] = [
       'Team skill sharing',
       'Custom tooling'
     ],
-    compatibility: ['gemini', 'claude'],
+    compatibility: ['gemini', 'claude', 'cursor', 'windsurf', 'cody', 'copilot'],
     version: '1.1.0',
     lastUpdated: '2026-01-10',
     samplePrompts: [
@@ -169,7 +171,7 @@ export const skills: Skill[] = [
       'NFT artwork creation',
       'Interactive installations'
     ],
-    compatibility: ['gemini', 'claude'],
+    compatibility: ['gemini', 'claude', 'cursor', 'windsurf', 'copilot'],
     version: '1.3.0',
     lastUpdated: '2026-01-15',
     samplePrompts: [
