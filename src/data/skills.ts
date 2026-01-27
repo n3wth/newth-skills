@@ -19,7 +19,10 @@ export interface Skill {
   version: string
   lastUpdated: string
   samplePrompts?: SamplePrompt[]
+  skillFile?: string
 }
+
+const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/onewth/newth-skills/main/skills'
 
 export const skills: Skill[] = [
   {
@@ -32,6 +35,7 @@ export const skills: Skill[] = [
     featured: true,
     icon: '✦',
     color: 'oklch(0.75 0.18 145)',
+    skillFile: `${GITHUB_RAW_BASE}/gsap-animations.md`,
     features: [
       'ScrollTrigger for scroll-based animations',
       'SplitText for text reveal effects',
@@ -70,6 +74,7 @@ export const skills: Skill[] = [
     featured: true,
     icon: '⚡',
     color: 'oklch(0.78 0.15 65)',
+    skillFile: `${GITHUB_RAW_BASE}/mcp-builder.md`,
     features: [
       'FastMCP for Python development',
       'TypeScript SDK support',
@@ -108,6 +113,7 @@ export const skills: Skill[] = [
     featured: true,
     icon: '◈',
     color: 'oklch(0.70 0.15 280)',
+    skillFile: `${GITHUB_RAW_BASE}/skill-creator.md`,
     features: [
       'Skill structure and conventions',
       'Trigger word design',
@@ -213,6 +219,7 @@ export const skills: Skill[] = [
     tags: ['ui', 'react', 'design', 'components'],
     icon: '□',
     color: 'oklch(0.70 0.14 180)',
+    skillFile: `${GITHUB_RAW_BASE}/frontend-design.md`,
     features: [
       'Production-ready React components',
       'Thoughtful typography and spacing',
@@ -240,6 +247,7 @@ export const skills: Skill[] = [
     tags: ['pdf', 'documents', 'extraction'],
     icon: '▣',
     color: 'oklch(0.60 0.15 25)',
+    skillFile: `${GITHUB_RAW_BASE}/pdf.md`,
     features: [
       'Text and table extraction',
       'PDF creation from scratch',

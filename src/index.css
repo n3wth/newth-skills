@@ -283,6 +283,144 @@ body {
   box-shadow: 0 0 40px 10px rgba(100, 210, 255, 0.2);
 }
 
+/* Hero gradient text animation */
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.hero-gradient-text {
+  background: linear-gradient(
+    90deg,
+    var(--color-white) 0%,
+    var(--color-grey-300) 25%,
+    var(--color-white) 50%,
+    var(--color-grey-300) 75%,
+    var(--color-white) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 8s ease-in-out infinite;
+}
+
+:root[data-theme='light'] .hero-gradient-text {
+  background: linear-gradient(
+    90deg,
+    var(--color-white) 0%,
+    var(--color-grey-400) 25%,
+    var(--color-white) 50%,
+    var(--color-grey-400) 75%,
+    var(--color-white) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Shape glow pulse animation */
+@keyframes glowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px currentColor) drop-shadow(0 0 20px currentColor);
+    opacity: 0.9;
+  }
+  50% {
+    filter: drop-shadow(0 0 15px currentColor) drop-shadow(0 0 35px currentColor);
+    opacity: 1;
+  }
+}
+
+.shape-glow {
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+/* Constellation pattern */
+@keyframes constellationTwinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes constellationDrift {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-100vh) rotate(180deg);
+  }
+}
+
+.constellation-dot {
+  animation: constellationTwinkle var(--twinkle-duration, 3s) ease-in-out infinite;
+  animation-delay: var(--twinkle-delay, 0s);
+}
+
+/* Hero ambient gradient orbs */
+@keyframes orbFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.15;
+  }
+  33% {
+    transform: translate(30px, -20px) scale(1.1);
+    opacity: 0.25;
+  }
+  66% {
+    transform: translate(-20px, 30px) scale(0.9);
+    opacity: 0.2;
+  }
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: orbFloat 20s ease-in-out infinite;
+}
+
+.hero-orb-1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--color-sage) 0%, transparent 70%);
+  top: 10%;
+  right: 10%;
+  animation-delay: 0s;
+}
+
+.hero-orb-2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, var(--color-mint) 0%, transparent 70%);
+  top: 50%;
+  right: 25%;
+  animation-delay: -7s;
+}
+
+.hero-orb-3 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, var(--color-coral) 0%, transparent 70%);
+  top: 70%;
+  right: 5%;
+  animation-delay: -14s;
+}
+
+:root[data-theme='light'] .hero-orb {
+  opacity: 0.08;
+}
+
 /* Staggered fade animation */
 @keyframes fadeUp {
   from {
@@ -476,6 +614,26 @@ body {
     opacity: 0.5 !important;
   }
 
+  .hero-gradient-text {
+    animation: none !important;
+    -webkit-text-fill-color: var(--color-white) !important;
+  }
+
+  .shape-glow {
+    animation: none !important;
+    filter: none !important;
+  }
+
+  .constellation-dot {
+    animation: none !important;
+    opacity: 0.5 !important;
+  }
+
+  .hero-orb {
+    animation: none !important;
+    opacity: 0.1 !important;
+  }
+
   .content-loaded,
   .page-enter,
   .page-exit,
@@ -516,4 +674,81 @@ body {
 
 :root[data-theme='light'] .mobile-menu-overlay {
   background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Hover Preview */
+.hover-preview {
+  width: 320px;
+  pointer-events: auto;
+}
+
+.hover-preview-content {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.5),
+              0 0 40px 0 rgba(255, 255, 255, 0.03);
+  animation: hoverPreviewEnter 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+:root[data-theme='light'] .hover-preview-content {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15),
+              0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+@keyframes hoverPreviewEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.hover-preview[data-placement="left"] .hover-preview-content {
+  transform-origin: right center;
+}
+
+.hover-preview[data-placement="right"] .hover-preview-content {
+  transform-origin: left center;
+}
+
+.hover-preview[data-placement="top"] .hover-preview-content {
+  transform-origin: bottom center;
+}
+
+.hover-preview[data-placement="bottom"] .hover-preview-content {
+  transform-origin: top center;
+}
+
+.hover-preview button:hover {
+  background: var(--glass-highlight) !important;
+  border-color: var(--glass-highlight) !important;
+}
+
+.hover-preview button:active {
+  transform: scale(0.98);
+}
+
+/* Line clamp utility */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Reduced motion for hover preview */
+@media (prefers-reduced-motion: reduce) {
+  .hover-preview-content {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

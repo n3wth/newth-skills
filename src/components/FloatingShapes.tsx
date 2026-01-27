@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
-import { floatingShapes } from '../config/categories'
+import { floatingShapes, categoryConfig } from '../config/categories'
 import { RenderShape } from './CategoryShape'
 
 export function FloatingShapes() {
@@ -76,8 +76,13 @@ export function FloatingShapes() {
       {floatingShapes.map((shape, i) => (
         <div
           key={i}
-          className="floating-shape absolute hidden md:block"
-          style={{ top: shape.top, right: shape.right }}
+          className="floating-shape shape-glow absolute hidden md:block"
+          style={{
+            top: shape.top,
+            right: shape.right,
+            color: categoryConfig[shape.category]?.color,
+            animationDelay: `${i * 0.5}s`,
+          }}
         >
           <RenderShape category={shape.category} size={shape.size} />
         </div>

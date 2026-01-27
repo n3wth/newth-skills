@@ -99,11 +99,11 @@ export function getRecommendations(query: string, maxResults: number = 6): Recom
 
 export function getSuggestedTasks(): string[] {
   return [
-    'animate my website',
-    'create a PDF report',
-    'build an MCP server',
-    'design a landing page',
-    'test my web app',
-    'make generative art'
+    'add scroll animations to my hero section',
+    'extract data from a PDF invoice',
+    'connect Claude to a custom API',
+    'write copy that converts',
+    'run end-to-end tests on my React app',
+    'generate algorithmic art with p5.js'
   ]
 }
