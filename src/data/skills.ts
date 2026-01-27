@@ -622,6 +622,44 @@ export const skills: Skill[] = [
     }
   },
   {
+    id: 'cursor-project-scanner',
+    name: 'Cursor Project Scanner',
+    description: 'Audit Cursor configuration health and identify configuration gaps across projects. Ensure all projects have optimal Cursor configuration.',
+    longDescription: 'A comprehensive auditing tool for Cursor IDE configurations. Scan multiple projects to identify missing or outdated .cursor/rules files, generate compliance reports, and ensure consistent Cursor setup across your development environment with automated health checks.',
+    category: 'development',
+    tags: ['cursor', 'configuration', 'audit', 'devtools'],
+    icon: '⚙',
+    color: 'oklch(0.72 0.17 200)',
+    skillFile: `${GITHUB_RAW_BASE}/cursor-project-scanner.md`,
+    features: [
+      'Configuration health audit across projects',
+      'Missing rules detection',
+      'Outdated configuration identification',
+      'Compliance report generation',
+      'Multi-project scanning support'
+    ],
+    useCases: [
+      'Auditing team Cursor configurations',
+      'Finding projects missing setup',
+      'Ensuring configuration consistency',
+      'Generating compliance reports',
+      'Automating configuration checks'
+    ],
+    compatibility: ['claude', 'cursor'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    samplePrompts: [
+      {
+        prompt: "Scan all my projects for Cursor configuration",
+        output: "I'll create a scanner to audit your projects:\n\n```bash\n#!/bin/bash\nPROJECTS_DIR=\"$HOME/projects\"\n\nfor project in \"$PROJECTS_DIR\"/*; do\n  if [ -d \"$project\" ]; then\n    echo \"Checking: $(basename \"$project\")\"\n    \n    if [ -d \"$project/.cursor\" ]; then\n      echo \"  ✓ .cursor directory found\"\n      \n      if [ -f \"$project/.cursor/rules\" ]; then\n        echo \"  ✓ .cursor/rules file exists\"\n      else\n        echo \"  ✗ Missing .cursor/rules file\"\n      fi\n    else\n      echo \"  ✗ No Cursor configuration found\"\n    fi\n  fi\ndone\n```\n\nThis script will check each project for Cursor configuration and report any gaps."
+      },
+      {
+        prompt: "Generate a compliance report for Cursor configurations",
+        output: "I'll create a Python script to generate a detailed compliance report:\n\n```python\nimport os\nimport json\nfrom pathlib import Path\nfrom datetime import datetime\n\nclass CursorScanner:\n    def scan_project(self, project_path):\n        result = {\n            'name': project_path.name,\n            'has_cursor_dir': (project_path / '.cursor').exists(),\n            'has_rules': (project_path / '.cursor' / 'rules').exists(),\n            'status': 'missing'\n        }\n        \n        if result['has_rules']:\n            result['status'] = 'healthy'\n        elif result['has_cursor_dir']:\n            result['status'] = 'partial'\n        \n        return result\n    \n    def generate_report(self, projects_dir):\n        results = []\n        for item in Path(projects_dir).iterdir():\n            if item.is_dir():\n                results.append(self.scan_project(item))\n        \n        return {\n            'generated': datetime.now().isoformat(),\n            'projects': results,\n            'summary': {\n                'total': len(results),\n                'healthy': sum(1 for r in results if r['status'] == 'healthy')\n            }\n        }\n\nscanner = CursorScanner()\nreport = scanner.generate_report(os.path.expanduser('~/projects'))\nprint(json.dumps(report, indent=2))\n```\n\nThis creates a JSON report showing configuration health across all projects."
+      }
+    ]
+  },
+  {
     id: 'imessage',
     name: 'iMessage',
     description: 'Manage iMessage conversations with database queries and AppleScript automation. Find unreplied threads, search contacts, read history, and send messages.',
