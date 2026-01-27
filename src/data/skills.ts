@@ -620,6 +620,45 @@ export const skills: Skill[] = [
     }
   },
   {
+    id: 'cicd-builder',
+    name: 'CI/CD Builder',
+    description: 'Create CI/CD pipelines and automation workflows for GitHub Actions, GitLab CI, and more. Build multi-stage pipelines, deployment automation, and code quality checks.',
+    longDescription: 'A comprehensive skill for creating continuous integration and deployment pipelines. This skill guides you through building GitHub Actions workflows, GitLab CI configurations, and other automation pipelines with best practices for testing, building, and deploying your applications.',
+    category: 'development',
+    tags: ['cicd', 'github-actions', 'automation', 'devops'],
+    icon: '⚙',
+    color: 'oklch(0.72 0.16 180)',
+    skillFile: `${GITHUB_RAW_BASE}/cicd-builder.md`,
+    features: [
+      'GitHub Actions workflow templates',
+      'GitLab CI/CD configuration',
+      'Multi-stage build pipelines',
+      'Deployment automation workflows',
+      'Testing and linting integration',
+      'Environment and secrets management'
+    ],
+    useCases: [
+      'Setting up automated testing pipelines',
+      'Creating deployment workflows',
+      'Building release automation',
+      'Automating code quality checks',
+      'Configuring multi-environment deployments'
+    ],
+    compatibility: ['gemini', 'claude', 'cursor', 'windsurf', 'copilot'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    samplePrompts: [
+      {
+        prompt: "Create a GitHub Actions workflow for a Node.js app with testing and deployment",
+        output: "Here's a comprehensive GitHub Actions workflow for Node.js:\n\n```yaml\nname: CI/CD Pipeline\n\non:\n  push:\n    branches: [main, develop]\n  pull_request:\n    branches: [main]\n\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: Setup Node.js\n        uses: actions/setup-node@v4\n        with:\n          node-version: '20'\n          cache: 'npm'\n      - run: npm ci\n      - run: npm test\n      - run: npm run lint\n\n  deploy:\n    needs: test\n    if: github.ref == 'refs/heads/main'\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: Deploy to production\n        env:\n          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}\n        run: npm run deploy\n```\n\nThis workflow runs tests and linting on every push, then deploys to production when merged to main."
+      },
+      {
+        prompt: "Set up a multi-stage Docker build pipeline with caching",
+        output: "Here's a GitHub Actions workflow with optimized Docker builds:\n\n```yaml\nname: Docker Build\n\non:\n  push:\n    branches: [main]\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      \n      - name: Set up Docker Buildx\n        uses: docker/setup-buildx-action@v3\n      \n      - name: Login to Docker Hub\n        uses: docker/login-action@v3\n        with:\n          username: ${{ secrets.DOCKER_USERNAME }}\n          password: ${{ secrets.DOCKER_TOKEN }}\n      \n      - name: Build and push\n        uses: docker/build-push-action@v5\n        with:\n          context: .\n          push: true\n          tags: myapp:latest\n          cache-from: type=registry,ref=myapp:buildcache\n          cache-to: type=registry,ref=myapp:buildcache,mode=max\n```\n\nThis uses layer caching to speed up builds significantly."
+      }
+    ]
+  },
+  {
     id: 'imessage',
     name: 'iMessage',
     description: 'Manage iMessage conversations with database queries and AppleScript automation. Find unreplied threads, search contacts, read history, and send messages.',
