@@ -2,7 +2,6 @@ import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
-import { categoryConfig } from '../config/categories'
 import { CategoryShape } from './CategoryShape'
 import type { Skill } from '../data/skills'
 
@@ -120,43 +119,24 @@ export function SkillRecommendations({ recommendations, isVisible, isLoading, on
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {recommendations.map((result, index) => {
-          const config = categoryConfig[result.skill.category]
-          return (
+        {recommendations.map((result, index) => (
             <Link
               key={result.skill.id}
               ref={(el) => { if (el) cardsRef.current[index] = el }}
               to={`/skill/${result.skill.id}`}
               className="glass-card skill-card p-5 block group"
             >
-              <div className="flex items-start justify-between mb-3">
-                <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center text-lg"
-                  style={{
-                    background: `${result.skill.color}15`,
-                    color: result.skill.color
-                  }}
-                >
-                  {result.skill.icon}
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CategoryShape category={result.skill.category} size={12} />
-                  <span
-                    className="text-xs capitalize"
-                    style={{ color: config?.color || 'var(--color-grey-400)' }}
-                  >
-                    {result.skill.category}
-                  </span>
-                </div>
+              <div className="flex items-center gap-2 mb-3">
+                <CategoryShape category={result.skill.category} size={12} />
               </div>
 
-              <h4 className="text-base font-medium text-white mb-1.5 group-hover:text-white/90 transition-colors">
+              <h4 className="text-sm font-semibold text-white mb-2 group-hover:text-white/90 transition-colors">
                 {result.skill.name}
               </h4>
 
               <p
-                className="text-sm line-clamp-2 mb-3"
-                style={{ color: 'var(--color-grey-300)' }}
+                className="text-xs leading-relaxed mb-3"
+                style={{ color: 'var(--color-grey-200)' }}
               >
                 {result.skill.description}
               </p>
@@ -168,26 +148,33 @@ export function SkillRecommendations({ recommendations, isVisible, isLoading, on
                 >
                   {result.aiReason}
                 </p>
-              ) : result.matchedTerms.length > 0 && (
+              ) : result.matchedTerms.length > 0 ? (
                 <div className="flex flex-wrap gap-1.5">
                   {result.matchedTerms.slice(0, 3).map((term) => (
                     <span
                       key={term}
-                      className="px-2 py-0.5 rounded-full text-xs"
-                      style={{
-                        background: 'var(--color-sage)',
-                        color: 'var(--color-bg)',
-                        opacity: 0.9
-                      }}
+                      className="text-[10px] uppercase tracking-wider"
+                      style={{ color: 'var(--color-grey-400)' }}
                     >
                       {term}
                     </span>
                   ))}
                 </div>
+              ) : (
+                <div className="flex flex-wrap gap-1.5">
+                  {result.skill.tags.slice(0, 3).map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[10px] uppercase tracking-wider"
+                      style={{ color: 'var(--color-grey-400)' }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               )}
             </Link>
-          )
-        })}
+        ))}
       </div>
     </div>
   )
