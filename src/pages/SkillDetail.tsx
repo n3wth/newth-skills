@@ -16,7 +16,7 @@ export function SkillDetail() {
         <SEO
           title="Skill Not Found - newth.ai skills"
           description="The skill you're looking for doesn't exist."
-          canonicalUrl={`/skill/${skillId}`}
+          canonicalUrl="/"
         />
         <div className="mesh-gradient" />
         <div className="noise-overlay" />
