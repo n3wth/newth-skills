@@ -620,6 +620,33 @@ export const skills: Skill[] = [
     }
   },
   {
+    id: 'email-drafter',
+    name: 'Email Drafter',
+    description: 'Draft professional emails for business correspondence, sales outreach, customer support, and internal communications with tone adjustment and templates.',
+    longDescription: 'A professional email writing skill that helps you craft effective emails for any business context. This skill provides templates for various scenarios, tone adjustment capabilities (formal to casual), follow-up email sequences, cold outreach templates, and response drafting assistance to ensure your email communications are clear, professional, and effective.',
+    category: 'business',
+    tags: ['email', 'communication', 'professional', 'writing'],
+    icon: '✉',
+    color: 'oklch(0.66 0.13 85)',
+    skillFile: `${GITHUB_RAW_BASE}/email-drafter.md`,
+    features: [
+      'Professional email templates',
+      'Tone adjustment (formal/casual)',
+      'Follow-up email sequences',
+      'Cold outreach templates',
+      'Response drafting'
+    ],
+    useCases: [
+      'Business correspondence',
+      'Sales outreach',
+      'Customer support replies',
+      'Internal communications'
+    ],
+    compatibility: ['gemini', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27'
+  },
+  {
     id: 'imessage',
     name: 'iMessage',
     description: 'Manage iMessage conversations with database queries and AppleScript automation. Find unreplied threads, search contacts, read history, and send messages.',
