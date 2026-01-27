@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { skills, categories } from '../data/skills'
 import { Nav, Footer, Hero, InstallSection, SkillCard, CategoryFilter, SearchInput, KeyboardShortcutsHelp, SEO, SortDropdown, TaskInput, SkillRecommendations, ComparisonBar } from '../components'
 import type { SortOption } from '../components'
-import { useKeyboardShortcuts } from '../hooks'
-import { getRecommendations } from '../lib/recommendations'
+import { useKeyboardShortcuts, useAIRecommendations } from '../hooks'
 import { getSkillBadgeStatus } from '../lib/analytics'
 
 const SORT_STORAGE_KEY = 'newth-skills-sort-preference'
@@ -77,9 +76,7 @@ export function Home() {
     localStorage.setItem(SORT_STORAGE_KEY, newSortOption)
   }, [])
 
-  const recommendations = useMemo(() => {
-    return getRecommendations(taskQuery, 6)
-  }, [taskQuery])
+  const { results: recommendations, isLoading: isLoadingRecommendations } = useAIRecommendations(taskQuery, 6)
 
   const handleTaskChange = useCallback((value: string) => {
     setTaskQuery(value)
@@ -175,6 +172,7 @@ export function Home() {
           <SkillRecommendations
             recommendations={recommendations}
             isVisible={showRecommendations}
+            isLoading={isLoadingRecommendations}
             onClose={handleClearRecommendations}
           />
         </section>

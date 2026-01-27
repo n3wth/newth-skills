@@ -10,15 +10,17 @@ interface RecommendationResult {
   skill: Skill
   score: number
   matchedTerms: string[]
+  aiReason?: string
 }
 
 interface SkillRecommendationsProps {
   recommendations: RecommendationResult[]
   isVisible: boolean
+  isLoading?: boolean
   onClose: () => void
 }
 
-export function SkillRecommendations({ recommendations, isVisible, onClose }: SkillRecommendationsProps) {
+export function SkillRecommendations({ recommendations, isVisible, isLoading, onClose }: SkillRecommendationsProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<HTMLAnchorElement[]>([])
 
@@ -79,8 +81,30 @@ export function SkillRecommendations({ recommendations, isVisible, onClose }: Sk
             </svg>
           </div>
           <div>
-            <h3 className="text-lg font-medium text-white">
+            <h3 className="text-lg font-medium text-white flex items-center gap-2">
               Recommended Skills
+              {isLoading && (
+                <svg
+                  className="w-4 h-4 animate-spin"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  style={{ color: 'var(--color-sage)' }}
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                  />
+                </svg>
+              )}
             </h3>
             <p className="text-xs" style={{ color: 'var(--color-grey-400)' }}>
               {recommendations.length} skill{recommendations.length !== 1 ? 's' : ''} match your task
@@ -137,7 +161,14 @@ export function SkillRecommendations({ recommendations, isVisible, onClose }: Sk
                 {result.skill.description}
               </p>
 
-              {result.matchedTerms.length > 0 && (
+              {result.aiReason ? (
+                <p
+                  className="text-xs italic"
+                  style={{ color: 'var(--color-sage)' }}
+                >
+                  {result.aiReason}
+                </p>
+              ) : result.matchedTerms.length > 0 && (
                 <div className="flex flex-wrap gap-1.5">
                   {result.matchedTerms.slice(0, 3).map((term) => (
                     <span
