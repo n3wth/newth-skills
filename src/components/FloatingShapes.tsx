@@ -72,7 +72,6 @@ export function FloatingShapes() {
     <div
       ref={containerRef}
       className="absolute inset-0 overflow-hidden pointer-events-none"
-      style={{ top: '60px' }}
     >
       {floatingShapes.map((shape, i) => (
         <div

@@ -56,7 +56,6 @@ html {
   background: var(--color-bg);
   color: var(--color-white);
   font-family: var(--font-sans);
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
 }
 
