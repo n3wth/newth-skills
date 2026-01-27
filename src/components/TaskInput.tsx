@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { getSuggestedTasks } from '../lib/recommendations'
 
 interface TaskInputProps {
@@ -8,12 +8,41 @@ interface TaskInputProps {
   onBlur?: () => void
 }
 
+const PLACEHOLDER_OPTIONS = [
+  'add smooth scroll animations...',
+  'build a contact form...',
+  'create API documentation...',
+  'generate test coverage...',
+  'refactor this component...',
+  'add dark mode support...',
+  'optimize performance...',
+  'write unit tests...',
+]
+
 export function TaskInput({ value, onChange, onFocus, onBlur }: TaskInputProps) {
   const [isFocused, setIsFocused] = useState(false)
+  const [placeholderIndex, setPlaceholderIndex] = useState(0)
+  const [isAnimating, setIsAnimating] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const suggestedTasks = getSuggestedTasks()
 
   const showSuggestions = isFocused && !value
+  const showPlaceholder = !isFocused && !value
+
+  // Animate through placeholder options
+  useEffect(() => {
+    if (isFocused || value) return
+
+    const interval = setInterval(() => {
+      setIsAnimating(true)
+      setTimeout(() => {
+        setPlaceholderIndex((prev) => (prev + 1) % PLACEHOLDER_OPTIONS.length)
+        setIsAnimating(false)
+      }, 200)
+    }, 3000)
+
+    return () => clearInterval(interval)
+  }, [isFocused, value])
 
   const handleFocus = () => {
     setIsFocused(true)
@@ -46,22 +75,33 @@ export function TaskInput({ value, onChange, onFocus, onBlur }: TaskInputProps) 
       >
         <div className="flex items-center px-5 py-4">
           <span
-            className="text-base md:text-lg font-medium mr-2 whitespace-nowrap"
-            style={{ color: 'var(--color-grey-400)' }}
+            className="text-base md:text-lg font-medium mr-2 whitespace-nowrap transition-colors duration-200"
+            style={{ color: isFocused || value ? 'var(--color-white)' : 'var(--color-grey-400)' }}
           >
             I want to
           </span>
-          <input
-            ref={inputRef}
-            type="text"
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            placeholder="add smooth scroll animations..."
-            className="flex-1 bg-transparent text-base md:text-lg font-medium text-white placeholder:text-grey-600 outline-none"
-            aria-label="Describe what you want to accomplish"
-          />
+          <div className="relative flex-1">
+            <input
+              ref={inputRef}
+              type="text"
+              value={value}
+              onChange={(e) => onChange(e.target.value)}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              className="w-full bg-transparent text-base md:text-lg font-medium text-white outline-none"
+              aria-label="Describe what you want to accomplish"
+            />
+            {showPlaceholder && (
+              <span
+                className={`absolute left-0 top-1/2 -translate-y-1/2 text-base md:text-lg font-medium pointer-events-none transition-all duration-200 ${
+                  isAnimating ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'
+                }`}
+                style={{ color: 'var(--color-grey-600)' }}
+              >
+                {PLACEHOLDER_OPTIONS[placeholderIndex]}
+              </span>
+            )}
+          </div>
           {value && (
             <button
               type="button"
