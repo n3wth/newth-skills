@@ -178,6 +178,12 @@ export function Contribute() {
                 </p>
               </div>
               <div className="glass-card p-5">
+                <h3 className="text-base font-medium text-white mb-2">Productivity</h3>
+                <p className="text-sm" style={{ color: 'var(--color-grey-300)' }}>
+                  Task management, automation, workflows, and productivity tools.
+                </p>
+              </div>
+              <div className="glass-card p-5">
                 <h3 className="text-base font-medium text-white mb-2">Business</h3>
                 <p className="text-sm" style={{ color: 'var(--color-grey-300)' }}>
                   Strategy, communication, analysis, and enterprise tools.
