@@ -622,6 +622,36 @@ export const skills: Skill[] = [
     }
   },
   {
+    id: 'codebase-context-builder',
+    name: 'Codebase Context Builder',
+    description: 'Analyze project structure and generate AI context for Cursor rules. Improve AI understanding of project architecture and coding patterns.',
+    longDescription: 'A comprehensive skill for analyzing codebases and generating AI-friendly documentation. This skill helps you understand project structure, extract architectural patterns, analyze dependencies, and create effective Cursor rules that improve AI assistant understanding of your codebase.',
+    category: 'development',
+    tags: ['analysis', 'architecture', 'documentation', 'cursor', 'ai-context'],
+    featured: false,
+    icon: '◉',
+    color: 'oklch(0.72 0.17 180)',
+    skillFile: `${GITHUB_RAW_BASE}/codebase-context-builder.md`,
+    features: [
+      'Project structure analysis',
+      'Dependency mapping and analysis',
+      'Architectural pattern detection',
+      'Cursor rules generation',
+      'Extract architectural decisions',
+      'Automated codebase documentation'
+    ],
+    useCases: [
+      'Creating Cursor rules for new projects',
+      'Documenting project architecture for AI',
+      'Analyzing unfamiliar codebases',
+      'Generating project context documentation',
+      'Extracting coding conventions'
+    ],
+    compatibility: ['claude', 'cursor', 'windsurf', 'copilot'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27'
+  },
+  {
     id: 'imessage',
     name: 'iMessage',
     description: 'Manage iMessage conversations with database queries and AppleScript automation. Find unreplied threads, search contacts, read history, and send messages.',
