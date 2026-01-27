@@ -73,7 +73,7 @@ export function TaskInput({ value, onChange, onFocus, onBlur }: TaskInputProps) 
           border: '1px solid var(--glass-border)',
         }}
       >
-        <div className="flex items-center px-5 py-4">
+        <div className="flex items-center flex-nowrap px-5 py-4">
           <span
             className="text-base md:text-lg font-medium mr-2 whitespace-nowrap transition-colors duration-200"
             style={{ color: isFocused || value ? 'var(--color-white)' : 'var(--color-grey-400)' }}

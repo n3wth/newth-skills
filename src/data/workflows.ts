@@ -58,126 +58,240 @@ export const skillIOSchemas: SkillIOSchema[] = [
   {
     skillId: 'gsap-animations',
     inputs: [
-      { id: 'target', name: 'Target Element', type: 'text', description: 'CSS selector or element description', required: true },
-      { id: 'animation-type', name: 'Animation Type', type: 'text', description: 'Type of animation (scroll, entrance, hover, etc.)' },
-      { id: 'design-specs', name: 'Design Specs', type: 'document', description: 'Design specifications or mockups' }
+      { id: 'target', name: 'Target', type: 'text', description: 'CSS selector or element description', required: true },
+      { id: 'animation-type', name: 'Type', type: 'text', description: 'Type of animation (scroll, entrance, hover, etc.)' },
+      { id: 'design-specs', name: 'Specs', type: 'document', description: 'Design specifications or mockups' }
     ],
     outputs: [
-      { id: 'animation-code', name: 'Animation Code', type: 'code', description: 'GSAP animation code' },
-      { id: 'implementation-guide', name: 'Implementation Guide', type: 'text', description: 'Instructions for implementing the animation' }
+      { id: 'animation-code', name: 'Code', type: 'code', description: 'GSAP animation code' },
+      { id: 'implementation-guide', name: 'Guide', type: 'text', description: 'Instructions for implementing the animation' }
     ]
   },
   {
     skillId: 'mcp-builder',
     inputs: [
-      { id: 'api-spec', name: 'API Specification', type: 'document', description: 'API documentation or specification', required: true },
+      { id: 'api-spec', name: 'API Spec', type: 'document', description: 'API documentation or specification', required: true },
       { id: 'use-case', name: 'Use Case', type: 'text', description: 'Description of the intended use case' }
     ],
     outputs: [
-      { id: 'mcp-server', name: 'MCP Server Code', type: 'code', description: 'Complete MCP server implementation' },
-      { id: 'tool-schemas', name: 'Tool Schemas', type: 'data', description: 'JSON schemas for MCP tools' }
+      { id: 'mcp-server', name: 'Server', type: 'code', description: 'Complete MCP server implementation' },
+      { id: 'tool-schemas', name: 'Schemas', type: 'data', description: 'JSON schemas for MCP tools' }
     ]
   },
   {
     skillId: 'skill-creator',
     inputs: [
       { id: 'domain', name: 'Domain', type: 'text', description: 'The domain or area of expertise', required: true },
-      { id: 'requirements', name: 'Requirements', type: 'text', description: 'Specific requirements for the skill' }
+      { id: 'requirements', name: 'Reqs', type: 'text', description: 'Specific requirements for the skill' }
     ],
     outputs: [
-      { id: 'skill-definition', name: 'Skill Definition', type: 'document', description: 'Complete skill definition file' },
-      { id: 'trigger-words', name: 'Trigger Words', type: 'text', description: 'Suggested trigger words for the skill' }
+      { id: 'skill-definition', name: 'Definition', type: 'document', description: 'Complete skill definition file' },
+      { id: 'trigger-words', name: 'Triggers', type: 'text', description: 'Suggested trigger words' }
     ]
   },
   {
     skillId: 'algorithmic-art',
     inputs: [
       { id: 'concept', name: 'Concept', type: 'text', description: 'Art concept or theme', required: true },
-      { id: 'parameters', name: 'Parameters', type: 'data', description: 'Generation parameters (colors, seed, etc.)' }
+      { id: 'parameters', name: 'Params', type: 'data', description: 'Generation parameters (colors, seed, etc.)' }
     ],
     outputs: [
-      { id: 'p5-code', name: 'p5.js Code', type: 'code', description: 'Complete p5.js sketch' },
-      { id: 'preview', name: 'Preview Description', type: 'text', description: 'Description of the generated artwork' }
+      { id: 'p5-code', name: 'Code', type: 'code', description: 'Complete p5.js sketch' },
+      { id: 'preview', name: 'Preview', type: 'text', description: 'Description of the generated artwork' }
     ]
   },
   {
     skillId: 'business-panel',
     inputs: [
-      { id: 'question', name: 'Business Question', type: 'text', description: 'Strategic question to analyze', required: true },
-      { id: 'context', name: 'Business Context', type: 'document', description: 'Background information about the business' },
-      { id: 'mode', name: 'Analysis Mode', type: 'text', description: 'sequential, debate, or socratic' }
+      { id: 'question', name: 'Question', type: 'text', description: 'Strategic question to analyze', required: true },
+      { id: 'context', name: 'Context', type: 'document', description: 'Background information about the business' },
+      { id: 'mode', name: 'Mode', type: 'text', description: 'sequential, debate, or socratic' }
     ],
     outputs: [
-      { id: 'analysis', name: 'Expert Analysis', type: 'analysis', description: 'Multi-perspective strategic analysis' },
-      { id: 'recommendations', name: 'Recommendations', type: 'text', description: 'Actionable recommendations' }
+      { id: 'analysis', name: 'Analysis', type: 'analysis', description: 'Multi-perspective strategic analysis' },
+      { id: 'recommendations', name: 'Recs', type: 'text', description: 'Actionable recommendations' }
     ]
   },
   {
     skillId: 'frontend-design',
     inputs: [
-      { id: 'requirements', name: 'UI Requirements', type: 'text', description: 'Description of the UI to create', required: true },
-      { id: 'design-system', name: 'Design System', type: 'document', description: 'Existing design system or brand guidelines' }
+      { id: 'requirements', name: 'Reqs', type: 'text', description: 'Description of the UI to create', required: true },
+      { id: 'design-system', name: 'Design', type: 'document', description: 'Existing design system or brand guidelines' }
     ],
     outputs: [
-      { id: 'component-code', name: 'Component Code', type: 'code', description: 'React component implementation' },
+      { id: 'component-code', name: 'Component', type: 'code', description: 'React component implementation' },
       { id: 'styles', name: 'Styles', type: 'code', description: 'CSS/Tailwind styles' }
     ]
   },
   {
     skillId: 'pdf',
     inputs: [
-      { id: 'pdf-file', name: 'PDF File', type: 'document', description: 'PDF document to process', required: true },
+      { id: 'pdf-file', name: 'PDF', type: 'document', description: 'PDF document to process', required: true },
       { id: 'operation', name: 'Operation', type: 'text', description: 'Extract, merge, split, or create' }
     ],
     outputs: [
-      { id: 'extracted-data', name: 'Extracted Data', type: 'data', description: 'Extracted text, tables, or form data' },
-      { id: 'processed-pdf', name: 'Processed PDF', type: 'document', description: 'Modified or created PDF' }
+      { id: 'extracted-data', name: 'Data', type: 'data', description: 'Extracted text, tables, or form data' },
+      { id: 'processed-pdf', name: 'Output', type: 'document', description: 'Modified or created PDF' }
     ]
   },
   {
     skillId: 'docx',
     inputs: [
-      { id: 'document', name: 'Word Document', type: 'document', description: 'Word document to process' },
+      { id: 'document', name: 'Doc', type: 'document', description: 'Word document to process' },
       { id: 'content', name: 'Content', type: 'text', description: 'Content to add or modify' },
       { id: 'template', name: 'Template', type: 'document', description: 'Document template to use' }
     ],
     outputs: [
-      { id: 'output-document', name: 'Output Document', type: 'document', description: 'Created or modified Word document' },
-      { id: 'extracted-text', name: 'Extracted Text', type: 'text', description: 'Text content from the document' }
+      { id: 'output-document', name: 'Output', type: 'document', description: 'Created or modified Word document' },
+      { id: 'extracted-text', name: 'Text', type: 'text', description: 'Text content from the document' }
     ]
   },
   {
     skillId: 'pptx',
     inputs: [
-      { id: 'content', name: 'Presentation Content', type: 'text', description: 'Content for the presentation', required: true },
+      { id: 'content', name: 'Content', type: 'text', description: 'Content for the presentation', required: true },
       { id: 'template', name: 'Template', type: 'document', description: 'Presentation template' }
     ],
     outputs: [
-      { id: 'presentation', name: 'Presentation', type: 'presentation', description: 'PowerPoint presentation' },
-      { id: 'speaker-notes', name: 'Speaker Notes', type: 'text', description: 'Generated speaker notes' }
+      { id: 'presentation', name: 'Slides', type: 'presentation', description: 'PowerPoint presentation' },
+      { id: 'speaker-notes', name: 'Notes', type: 'text', description: 'Generated speaker notes' }
     ]
   },
   {
     skillId: 'research-assistant',
     inputs: [
-      { id: 'topic', name: 'Research Topic', type: 'text', description: 'Topic to research', required: true },
-      { id: 'depth', name: 'Research Depth', type: 'text', description: 'Surface, moderate, or deep' }
+      { id: 'topic', name: 'Topic', type: 'text', description: 'Topic to research', required: true },
+      { id: 'depth', name: 'Depth', type: 'text', description: 'Surface, moderate, or deep' }
     ],
     outputs: [
-      { id: 'findings', name: 'Research Findings', type: 'analysis', description: 'Compiled research findings' },
+      { id: 'findings', name: 'Findings', type: 'analysis', description: 'Compiled research findings' },
       { id: 'sources', name: 'Sources', type: 'data', description: 'List of sources and references' }
     ]
   },
   {
     skillId: 'doc-coauthoring',
     inputs: [
-      { id: 'draft', name: 'Document Draft', type: 'document', description: 'Initial draft or outline' },
-      { id: 'style', name: 'Writing Style', type: 'text', description: 'Desired writing style' },
+      { id: 'draft', name: 'Draft', type: 'document', description: 'Initial draft or outline' },
+      { id: 'style', name: 'Style', type: 'text', description: 'Desired writing style' },
       { id: 'feedback', name: 'Feedback', type: 'text', description: 'Feedback to incorporate' }
     ],
     outputs: [
-      { id: 'revised-document', name: 'Revised Document', type: 'document', description: 'Improved document' },
-      { id: 'suggestions', name: 'Suggestions', type: 'text', description: 'Writing suggestions and improvements' }
+      { id: 'revised-document', name: 'Document', type: 'document', description: 'Improved document' },
+      { id: 'suggestions', name: 'Suggestions', type: 'text', description: 'Writing suggestions' }
+    ]
+  },
+  {
+    skillId: 'xlsx',
+    inputs: [
+      { id: 'spreadsheet', name: 'Spreadsheet', type: 'document', description: 'Excel file to process' },
+      { id: 'data', name: 'Data', type: 'data', description: 'Data to add or analyze' },
+      { id: 'operation', name: 'Operation', type: 'text', description: 'Create, edit, or analyze' }
+    ],
+    outputs: [
+      { id: 'output-spreadsheet', name: 'Spreadsheet', type: 'document', description: 'Output Excel file' },
+      { id: 'analysis', name: 'Analysis', type: 'analysis', description: 'Data analysis results' }
+    ]
+  },
+  {
+    skillId: 'webapp-testing',
+    inputs: [
+      { id: 'url', name: 'URL', type: 'text', description: 'Web application URL', required: true },
+      { id: 'test-cases', name: 'Test Cases', type: 'text', description: 'Test scenarios to run' }
+    ],
+    outputs: [
+      { id: 'test-results', name: 'Results', type: 'analysis', description: 'Test execution results' },
+      { id: 'screenshots', name: 'Screenshots', type: 'image', description: 'Captured screenshots' }
+    ]
+  },
+  {
+    skillId: 'canvas-design',
+    inputs: [
+      { id: 'concept', name: 'Concept', type: 'text', description: 'Design concept or brief', required: true },
+      { id: 'dimensions', name: 'Dimensions', type: 'text', description: 'Output size (e.g., 1920x1080)' }
+    ],
+    outputs: [
+      { id: 'artwork', name: 'Artwork', type: 'image', description: 'Generated visual design' },
+      { id: 'design-code', name: 'Code', type: 'code', description: 'Canvas rendering code' }
+    ]
+  },
+  {
+    skillId: 'slack-gif-creator',
+    inputs: [
+      { id: 'concept', name: 'Concept', type: 'text', description: 'GIF concept or idea', required: true },
+      { id: 'duration', name: 'Duration', type: 'text', description: 'Animation length' }
+    ],
+    outputs: [
+      { id: 'gif', name: 'GIF', type: 'image', description: 'Animated GIF file' },
+      { id: 'animation-code', name: 'Code', type: 'code', description: 'Animation source code' }
+    ]
+  },
+  {
+    skillId: 'theme-factory',
+    inputs: [
+      { id: 'theme-name', name: 'Theme', type: 'text', description: 'Theme name or custom specs', required: true },
+      { id: 'artifact', name: 'Artifact', type: 'document', description: 'Document to style' }
+    ],
+    outputs: [
+      { id: 'styled-artifact', name: 'Styled', type: 'document', description: 'Themed document' },
+      { id: 'theme-tokens', name: 'Tokens', type: 'data', description: 'Design tokens JSON' }
+    ]
+  },
+  {
+    skillId: 'internal-comms',
+    inputs: [
+      { id: 'topic', name: 'Topic', type: 'text', description: 'Communication topic', required: true },
+      { id: 'audience', name: 'Audience', type: 'text', description: 'Target audience' },
+      { id: 'type', name: 'Type', type: 'text', description: 'Status, update, newsletter, etc.' }
+    ],
+    outputs: [
+      { id: 'communication', name: 'Content', type: 'document', description: 'Written communication' },
+      { id: 'summary', name: 'Summary', type: 'text', description: 'Executive summary' }
+    ]
+  },
+  {
+    skillId: 'copywriting',
+    inputs: [
+      { id: 'product', name: 'Product', type: 'text', description: 'Product or service details', required: true },
+      { id: 'page-type', name: 'Page Type', type: 'text', description: 'Homepage, landing, pricing, etc.' },
+      { id: 'tone', name: 'Tone', type: 'text', description: 'Desired voice and tone' }
+    ],
+    outputs: [
+      { id: 'copy', name: 'Copy', type: 'text', description: 'Marketing copy' },
+      { id: 'headlines', name: 'Headlines', type: 'text', description: 'Headline variations' }
+    ]
+  },
+  {
+    skillId: 'typography-selector',
+    inputs: [
+      { id: 'style', name: 'Style', type: 'text', description: 'Desired aesthetic', required: true },
+      { id: 'use-case', name: 'Use Case', type: 'text', description: 'Web, print, presentation' }
+    ],
+    outputs: [
+      { id: 'font-pairing', name: 'Fonts', type: 'data', description: 'Font pairing recommendation' },
+      { id: 'css', name: 'CSS', type: 'code', description: 'Font import CSS' }
+    ]
+  },
+  {
+    skillId: 'git-workflow',
+    inputs: [
+      { id: 'task', name: 'Task', type: 'text', description: 'Git task to perform', required: true },
+      { id: 'context', name: 'Context', type: 'text', description: 'Repository context' }
+    ],
+    outputs: [
+      { id: 'commands', name: 'Commands', type: 'code', description: 'Git commands to run' },
+      { id: 'explanation', name: 'Guide', type: 'text', description: 'Step-by-step guide' }
+    ]
+  },
+  {
+    skillId: 'imessage',
+    inputs: [
+      { id: 'action', name: 'Action', type: 'text', description: 'Read, send, or search', required: true },
+      { id: 'contact', name: 'Contact', type: 'text', description: 'Contact name or number' },
+      { id: 'message', name: 'Message', type: 'text', description: 'Message to send' }
+    ],
+    outputs: [
+      { id: 'messages', name: 'Messages', type: 'data', description: 'Retrieved messages' },
+      { id: 'status', name: 'Status', type: 'text', description: 'Action result status' }
     ]
   }
 ]

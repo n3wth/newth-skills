@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import { sql } from './_lib/db'
+import { sql } from './_lib/db.js'
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // CORS
@@ -66,6 +66,22 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: 'Method not allowed' })
   } catch (error) {
     console.error('Analytics error:', error)
-    return res.status(500).json({ error: 'Internal server error' })
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error'
+
+    if (errorMessage.includes('relation') && errorMessage.includes('does not exist')) {
+      return res.status(500).json({
+        error: 'Database table not found. Run schema.sql to create tables.',
+        details: errorMessage
+      })
+    }
+
+    if (!process.env.DATABASE_URL) {
+      return res.status(500).json({
+        error: 'DATABASE_URL not configured',
+        details: 'Set DATABASE_URL environment variable in Vercel'
+      })
+    }
+
+    return res.status(500).json({ error: 'Internal server error', details: errorMessage })
   }
 }

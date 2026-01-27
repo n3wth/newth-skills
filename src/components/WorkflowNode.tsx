@@ -109,27 +109,27 @@ export function WorkflowNodeComponent({
     return (
       <div
         key={port.id}
-        className={`flex items-center gap-2 py-1.5 px-3 text-xs ${isOutput ? 'flex-row-reverse text-right' : ''}`}
+        className={`flex items-center gap-1.5 py-1 px-2 text-[11px] ${isOutput ? 'flex-row-reverse text-right' : ''}`}
       >
         <button
           onClick={handleClick}
-          className={`port-button w-3 h-3 rounded-full border-2 transition-all ${
-            canConnect 
-              ? 'scale-125 border-[var(--color-sage)] bg-[var(--color-sage)]/20' 
+          className={`port-button w-2.5 h-2.5 rounded-full border-2 transition-all shrink-0 ${
+            canConnect
+              ? 'scale-125 border-[var(--color-sage)] bg-[var(--color-sage)]/20'
               : 'border-current hover:scale-110'
           }`}
-          style={{ 
+          style={{
             borderColor: canConnect ? undefined : portColor,
             backgroundColor: canConnect ? undefined : 'var(--color-bg)'
           }}
           title={`${port.name} (${port.type})`}
         />
-        <span className="text-[var(--color-grey-400)] truncate max-w-[100px]" title={port.description}>
+        <span className="text-[var(--color-grey-400)] shrink-0" title={port.description}>
           {port.name}
         </span>
-        <span 
-          className="text-[10px] px-1.5 py-0.5 rounded-full"
-          style={{ 
+        <span
+          className="text-[9px] px-1 py-0.5 rounded shrink-0"
+          style={{
             backgroundColor: `color-mix(in oklch, ${portColor} 20%, transparent)`,
             color: portColor
           }}
