@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import confetti from 'canvas-confetti'
@@ -59,6 +59,7 @@ export function CommandBox({ name, command, primary, skillId, assistantId }: Com
   const [verified, setVerified] = useState(false)
   const copyButtonRef = useRef<HTMLSpanElement>(null)
   const checkmarkRef = useRef<SVGSVGElement>(null)
+  const announcementRef = useRef<HTMLDivElement | null>(null)
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(command)
@@ -72,13 +73,37 @@ export function CommandBox({ name, command, primary, skillId, assistantId }: Com
     announcement.className = 'sr-only'
     announcement.textContent = 'Command copied to clipboard'
     document.body.appendChild(announcement)
-    setTimeout(() => document.body.removeChild(announcement), 1000)
+    announcementRef.current = announcement
     
     setTimeout(() => setCopied(false), 2000)
     
     const trackingId = skillId || name.toLowerCase().replace(/\s+/g, '-')
     trackCopyEvent(trackingId)
   }
+
+  // Clean up announcement on unmount or when it's no longer needed
+  useEffect(() => {
+    return () => {
+      if (announcementRef.current && document.body.contains(announcementRef.current)) {
+        document.body.removeChild(announcementRef.current)
+        announcementRef.current = null
+      }
+    }
+  }, [])
+
+  // Remove announcement after delay
+  useEffect(() => {
+    if (announcementRef.current) {
+      const announcementElement = announcementRef.current
+      const timer = setTimeout(() => {
+        if (announcementElement && document.body.contains(announcementElement)) {
+          document.body.removeChild(announcementElement)
+          announcementRef.current = null
+        }
+      }, 1000)
+      return () => clearTimeout(timer)
+    }
+  }, [copied])
 
   // Animate copy feedback with GSAP
   useGSAP(() => {
@@ -93,14 +118,17 @@ export function CommandBox({ name, command, primary, skillId, assistantId }: Com
           scale: 1.1, 
           duration: 0.2, 
           ease: 'back.out(2)',
-          onComplete: () => {
-            gsap.to(copyButtonRef.current, {
-              scale: 1,
-              duration: 0.15,
-              ease: 'power2.out'
-            })
-          }
         }
+      )
+      
+      timeline.to(
+        copyButtonRef.current,
+        {
+          scale: 1,
+          duration: 0.15,
+          ease: 'power2.out'
+        },
+        '-=0.05'
       )
       
       // Animate checkmark entrance
@@ -114,7 +142,7 @@ export function CommandBox({ name, command, primary, skillId, assistantId }: Com
           duration: 0.3, 
           ease: 'back.out(1.7)' 
         },
-        '-=0.1'
+        '-=0.15'
       )
     }
   }, [copied])
