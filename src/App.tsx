@@ -12,6 +12,8 @@ const About = lazy(() => import('./pages/About').then(m => ({ default: m.About }
 const NotFound = lazy(() => import('./pages/NotFound').then(m => ({ default: m.NotFound })))
 const SubmitSkill = lazy(() => import('./pages/SubmitSkill').then(m => ({ default: m.SubmitSkill })))
 const Playground = lazy(() => import('./pages/Playground').then(m => ({ default: m.Playground })))
+const Workflows = lazy(() => import('./pages/Workflows').then(m => ({ default: m.Workflows })))
+const WorkflowBuilderPage = lazy(() => import('./pages/WorkflowBuilder').then(m => ({ default: m.WorkflowBuilderPage })))
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -72,6 +74,22 @@ function App() {
           element={
             <Suspense fallback={<HomeSkeleton />}>
               <Playground />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/workflows"
+          element={
+            <Suspense fallback={<HomeSkeleton />}>
+              <Workflows />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/workflows/:workflowId"
+          element={
+            <Suspense fallback={<HomeSkeleton />}>
+              <WorkflowBuilderPage />
             </Suspense>
           }
         />

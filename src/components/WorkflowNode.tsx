@@ -1,0 +1,221 @@
+import { useState, useCallback, useRef, useEffect } from 'react'
+import type { Skill } from '../data/skills'
+import { type WorkflowNode, getSkillIOSchema, type SkillIO } from '../data/workflows'
+import { categoryConfig } from '../config/categories'
+
+interface WorkflowNodeComponentProps {
+  node: WorkflowNode
+  skill: Skill
+  isSelected: boolean
+  isConnecting: boolean
+  connectingFromThis: boolean
+  onSelect: () => void
+  onUpdatePosition: (position: { x: number; y: number }) => void
+  onStartConnection: (outputId: string) => void
+  onCompleteConnection: (inputId: string) => void
+  onRemove: () => void
+}
+
+export function WorkflowNodeComponent({
+  node,
+  skill,
+  isSelected,
+  isConnecting,
+  connectingFromThis,
+  onSelect,
+  onUpdatePosition,
+  onStartConnection,
+  onCompleteConnection,
+  onRemove
+}: WorkflowNodeComponentProps) {
+  const [isDragging, setIsDragging] = useState(false)
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 })
+  const nodeRef = useRef<HTMLDivElement>(null)
+  
+  const schema = getSkillIOSchema(skill.id)
+  const config = categoryConfig[skill.category]
+
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    if ((e.target as HTMLElement).closest('.port-button')) return
+    
+    e.preventDefault()
+    e.stopPropagation()
+    
+    const rect = nodeRef.current?.getBoundingClientRect()
+    if (rect) {
+      setDragOffset({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top
+      })
+    }
+    setIsDragging(true)
+    onSelect()
+  }, [onSelect])
+
+  useEffect(() => {
+    if (!isDragging) return
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const parent = nodeRef.current?.parentElement
+      if (!parent) return
+      
+      const parentRect = parent.getBoundingClientRect()
+      const newX = e.clientX - parentRect.left - dragOffset.x
+      const newY = e.clientY - parentRect.top - dragOffset.y
+      
+      onUpdatePosition({
+        x: Math.max(0, newX),
+        y: Math.max(0, newY)
+      })
+    }
+
+    const handleMouseUp = () => {
+      setIsDragging(false)
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('mouseup', handleMouseUp)
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('mouseup', handleMouseUp)
+    }
+  }, [isDragging, dragOffset, onUpdatePosition])
+
+  const renderPort = (port: SkillIO, isOutput: boolean) => {
+    const handleClick = (e: React.MouseEvent) => {
+      e.stopPropagation()
+      if (isOutput) {
+        onStartConnection(port.id)
+      } else if (isConnecting && !connectingFromThis) {
+        onCompleteConnection(port.id)
+      }
+    }
+
+    const typeColors: Record<string, string> = {
+      text: 'var(--color-grey-300)',
+      code: 'var(--color-sage)',
+      document: 'var(--color-mint)',
+      data: 'var(--color-gold)',
+      image: 'var(--color-coral)',
+      presentation: 'var(--color-gold)',
+      analysis: 'var(--color-mint)',
+      any: 'var(--color-grey-400)'
+    }
+
+    const portColor = typeColors[port.type] || 'var(--color-grey-400)'
+    const canConnect = isConnecting && !connectingFromThis && !isOutput
+
+    return (
+      <div
+        key={port.id}
+        className={`flex items-center gap-2 py-1.5 px-3 text-xs ${isOutput ? 'flex-row-reverse text-right' : ''}`}
+      >
+        <button
+          onClick={handleClick}
+          className={`port-button w-3 h-3 rounded-full border-2 transition-all ${
+            canConnect 
+              ? 'scale-125 border-[var(--color-sage)] bg-[var(--color-sage)]/20' 
+              : 'border-current hover:scale-110'
+          }`}
+          style={{ 
+            borderColor: canConnect ? undefined : portColor,
+            backgroundColor: canConnect ? undefined : 'var(--color-bg)'
+          }}
+          title={`${port.name} (${port.type})`}
+        />
+        <span className="text-[var(--color-grey-400)] truncate max-w-[100px]" title={port.description}>
+          {port.name}
+        </span>
+        <span 
+          className="text-[10px] px-1.5 py-0.5 rounded-full"
+          style={{ 
+            backgroundColor: `color-mix(in oklch, ${portColor} 20%, transparent)`,
+            color: portColor
+          }}
+        >
+          {port.type}
+        </span>
+      </div>
+    )
+  }
+
+  return (
+    <div
+      ref={nodeRef}
+      className={`absolute w-[280px] rounded-xl border transition-all ${
+        isSelected 
+          ? 'border-[var(--color-white)] shadow-lg shadow-white/10' 
+          : 'border-[var(--glass-border)] hover:border-[var(--glass-highlight)]'
+      } ${isDragging ? 'cursor-grabbing z-50' : 'cursor-grab'}`}
+      style={{
+        left: node.position.x,
+        top: node.position.y,
+        backgroundColor: 'var(--color-bg-secondary)'
+      }}
+      onMouseDown={handleMouseDown}
+    >
+      <div 
+        className="flex items-center gap-3 p-4 border-b border-[var(--glass-border)] rounded-t-xl"
+        style={{ 
+          background: `linear-gradient(135deg, color-mix(in oklch, ${config?.color || skill.color} 15%, transparent), transparent)`
+        }}
+      >
+        <div 
+          className="w-10 h-10 rounded-lg flex items-center justify-center text-lg"
+          style={{ 
+            backgroundColor: `color-mix(in oklch, ${config?.color || skill.color} 20%, transparent)`,
+            color: config?.color || skill.color
+          }}
+        >
+          {skill.icon}
+        </div>
+        <div className="flex-1 min-w-0">
+          <h4 className="text-sm font-medium text-[var(--color-white)] truncate">{skill.name}</h4>
+          <p className="text-xs text-[var(--color-grey-600)] truncate">{skill.category}</p>
+        </div>
+        <button
+          onClick={(e) => {
+            e.stopPropagation()
+            onRemove()
+          }}
+          className="port-button w-6 h-6 rounded-md flex items-center justify-center text-[var(--color-grey-600)] hover:text-[var(--color-coral)] hover:bg-[var(--color-coral)]/10 transition-colors"
+        >
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      
+      {schema && (
+        <div className="flex">
+          <div className="flex-1 py-2 border-r border-[var(--glass-border)]">
+            <div className="px-3 py-1 text-[10px] uppercase tracking-wider text-[var(--color-grey-600)]">
+              Inputs
+            </div>
+            {schema.inputs.length > 0 ? (
+              schema.inputs.map(input => renderPort(input, false))
+            ) : (
+              <div className="px-3 py-1.5 text-xs text-[var(--color-grey-600)] italic">
+                No inputs
+              </div>
+            )}
+          </div>
+          
+          <div className="flex-1 py-2">
+            <div className="px-3 py-1 text-[10px] uppercase tracking-wider text-[var(--color-grey-600)] text-right">
+              Outputs
+            </div>
+            {schema.outputs.length > 0 ? (
+              schema.outputs.map(output => renderPort(output, true))
+            ) : (
+              <div className="px-3 py-1.5 text-xs text-[var(--color-grey-600)] italic text-right">
+                No outputs
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}

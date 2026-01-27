@@ -120,6 +120,13 @@ export function Nav() {
 
         <div className="hidden md:flex items-center gap-6">
           <Link
+            to="/workflows"
+            className="text-sm link-hover"
+            style={{ color: 'var(--color-grey-400)' }}
+          >
+            Workflows
+          </Link>
+          <Link
             to="/playground"
             className="text-sm link-hover"
             style={{ color: 'var(--color-grey-400)' }}
@@ -191,6 +198,14 @@ export function Nav() {
               style={{ color: 'var(--color-white)' }}
             >
               Home
+            </Link>
+            <Link
+              to="/workflows"
+              onClick={closeMenu}
+              className="mobile-nav-link text-lg py-4 px-4 rounded-xl transition-all duration-200 min-h-[52px] flex items-center"
+              style={{ color: 'var(--color-white)' }}
+            >
+              Workflows
             </Link>
             <Link
               to="/playground"
