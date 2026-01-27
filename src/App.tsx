@@ -15,6 +15,9 @@ const Contribute = lazy(() => import('./pages/Contribute').then(m => ({ default:
 const Playground = lazy(() => import('./pages/Playground').then(m => ({ default: m.Playground })))
 const Analytics = lazy(() => import('./pages/Analytics').then(m => ({ default: m.Analytics })))
 const CreateSkill = lazy(() => import('./pages/CreateSkill').then(m => ({ default: m.CreateSkill })))
+const Compare = lazy(() => import('./pages/Compare').then(m => ({ default: m.Compare })))
+const Bundles = lazy(() => import('./pages/Bundles').then(m => ({ default: m.Bundles })))
+const FeatureRequests = lazy(() => import('./pages/FeatureRequests').then(m => ({ default: m.FeatureRequests })))
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -99,6 +102,30 @@ function App() {
           element={
             <Suspense fallback={<HomeSkeleton />}>
               <CreateSkill />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/compare"
+          element={
+            <Suspense fallback={<HomeSkeleton />}>
+              <Compare />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/bundles"
+          element={
+            <Suspense fallback={<HomeSkeleton />}>
+              <Bundles />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/requests"
+          element={
+            <Suspense fallback={<HomeSkeleton />}>
+              <FeatureRequests />
             </Suspense>
           }
         />

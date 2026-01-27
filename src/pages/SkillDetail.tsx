@@ -9,6 +9,10 @@ import { KeyboardShortcutsHelp } from '../components/KeyboardShortcutsHelp'
 import { SEO } from '../components/SEO'
 import { SkillCard } from '../components/SkillCard'
 import { PlatformBadges } from '../components/PlatformBadge'
+import { ShareButtons } from '../components/ShareButtons'
+import { VoteButton } from '../components/VoteButton'
+import { CompareButton } from '../components/CompareButton'
+import { AddToBundleButton } from '../components/AddToBundleButton'
 import { categoryConfig } from '../config/categories'
 import { useKeyboardShortcuts } from '../hooks'
 import { trackViewEvent } from '../lib/analytics'
@@ -156,6 +160,14 @@ export function SkillDetail() {
                 {tag}
               </span>
             ))}
+          </div>
+
+          <div className="flex flex-wrap items-center gap-3 mb-8">
+            <VoteButton skillId={skill.id} />
+            <CompareButton skillId={skill.id} />
+            <AddToBundleButton skillId={skill.id} skillName={skill.name} />
+            <div className="hidden sm:block h-4 w-px mx-1" style={{ backgroundColor: 'var(--glass-border)' }} />
+            <ShareButtons skill={skill} />
           </div>
 
           <div className="flex flex-wrap items-center gap-4 mb-12 text-sm" style={{ color: 'var(--color-grey-400)' }}>
