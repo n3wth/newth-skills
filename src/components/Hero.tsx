@@ -12,7 +12,7 @@ export function Hero() {
       <div className="relative z-10 w-full">
         <div className="max-w-5xl">
           <h1
-            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-[10rem] font-semibold tracking-tighter leading-[0.85] mb-4 md:mb-6 lg:mb-8"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[10rem] font-semibold tracking-tighter leading-[0.85] mb-4 md:mb-6 lg:mb-8"
           >
             {siteConfig.hero.title.map((word, i) => (
               <span key={i}>
