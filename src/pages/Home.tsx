@@ -33,7 +33,7 @@ export function Home() {
 
   useLayoutEffect(() => {
     ScrollTrigger.refresh()
-  }, [activeCategory, searchQuery])
+  }, [activeCategory, searchQuery, showFavoritesOnly, favorites])
 
   return (
     <div className="min-h-screen relative content-loaded">
