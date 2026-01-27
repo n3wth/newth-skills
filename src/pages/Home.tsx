@@ -1,11 +1,16 @@
-import { useState, useLayoutEffect, useMemo } from 'react'
+import { useState, useLayoutEffect, useMemo, useRef, useCallback, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { skills, categories } from '../data/skills'
-import { Nav, Footer, Hero, InstallSection, SkillCard, CategoryFilter, SearchInput, SEO } from '../components'
+import { Nav, Footer, Hero, InstallSection, SkillCard, CategoryFilter, SearchInput, KeyboardShortcutsHelp, SEO } from '../components'
+import { useKeyboardShortcuts } from '../hooks'
 
 export function Home() {
+  const navigate = useNavigate()
   const [activeCategory, setActiveCategory] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
+  const searchInputRef = useRef<HTMLInputElement>(null)
+  const skillCardRefs = useRef<(HTMLAnchorElement | null)[]>([])
 
   const filteredSkills = useMemo(() => {
     let result = activeCategory === 'all'
@@ -23,6 +28,54 @@ export function Home() {
 
     return result
   }, [activeCategory, searchQuery])
+
+  const handleFocusSearch = useCallback(() => {
+    searchInputRef.current?.focus()
+  }, [])
+
+  const handleClearSearch = useCallback(() => {
+    setSearchQuery('')
+  }, [])
+
+  const handleCategoryChange = useCallback((categoryId: string) => {
+    setActiveCategory(categoryId)
+  }, [])
+
+  const { showHelp, setShowHelp, selectedIndex, setSelectedIndex } = useKeyboardShortcuts({
+    onFocusSearch: handleFocusSearch,
+    onClearSearch: handleClearSearch,
+    onCategoryChange: handleCategoryChange,
+    filteredSkillsCount: filteredSkills.length,
+  })
+
+  useEffect(() => {
+    const handleEnterKey = (event: KeyboardEvent) => {
+      if (event.key === 'Enter' && !showHelp && selectedIndex >= 0 && selectedIndex < filteredSkills.length) {
+        const activeElement = document.activeElement
+        const isTyping = activeElement?.tagName.toLowerCase() === 'input' ||
+                         activeElement?.tagName.toLowerCase() === 'textarea'
+        if (!isTyping) {
+          event.preventDefault()
+          navigate(`/skill/${filteredSkills[selectedIndex].id}`)
+        }
+      }
+    }
+    window.addEventListener('keydown', handleEnterKey)
+    return () => window.removeEventListener('keydown', handleEnterKey)
+  }, [selectedIndex, filteredSkills, navigate, showHelp])
+
+  useEffect(() => {
+    if (selectedIndex >= 0 && skillCardRefs.current[selectedIndex]) {
+      skillCardRefs.current[selectedIndex]?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+      })
+    }
+  }, [selectedIndex])
+
+  useEffect(() => {
+    setSelectedIndex(-1)
+  }, [activeCategory, searchQuery, setSelectedIndex])
 
   useLayoutEffect(() => {
     ScrollTrigger.refresh()
@@ -57,17 +110,23 @@ export function Home() {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8 md:mb-10">
           <CategoryFilter
             activeCategory={activeCategory}
-            onCategoryChange={setActiveCategory}
+            onCategoryChange={handleCategoryChange}
           />
           <SearchInput
+            ref={searchInputRef}
             value={searchQuery}
             onChange={setSearchQuery}
           />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {filteredSkills.map((skill) => (
-            <SkillCard key={skill.id} skill={skill} />
+          {filteredSkills.map((skill, index) => (
+            <SkillCard
+              key={skill.id}
+              ref={(el) => { skillCardRefs.current[index] = el }}
+              skill={skill}
+              isSelected={selectedIndex === index}
+            />
           ))}
         </div>
 
@@ -91,6 +150,11 @@ export function Home() {
       </main>
 
       <Footer />
+
+      <KeyboardShortcutsHelp
+        isOpen={showHelp}
+        onClose={() => setShowHelp(false)}
+      />
     </div>
   )
 }
