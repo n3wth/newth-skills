@@ -257,22 +257,7 @@ export function SkillDetail() {
 
           {skill.features && skill.features.length > 0 && (
             <div className="mb-12">
-              <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke={config?.color || 'var(--color-grey-400)'}
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect x="3" y="3" width="18" height="18" rx="2" />
-                  <path d="M9 9h6" />
-                  <path d="M9 12h6" />
-                  <path d="M9 15h4" />
-                </svg>
+              <h2 className="text-xl font-semibold text-white mb-6">
                 Capabilities
               </h2>
               <div className="grid gap-3">
@@ -286,23 +271,9 @@ export function SkillDetail() {
                     }}
                   >
                     <div
-                      className="w-8 h-8 rounded-md flex items-center justify-center shrink-0"
-                      style={{ backgroundColor: `${config?.color || '#666'}15` }}
-                    >
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke={config?.color || 'var(--color-grey-400)'}
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <polyline points="9 11 12 14 22 4" />
-                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
-                      </svg>
-                    </div>
+                      className="w-2 h-2 rounded-full shrink-0"
+                      style={{ backgroundColor: config?.color || 'var(--color-grey-400)' }}
+                    />
                     <span className="text-sm" style={{ color: 'var(--color-grey-200)' }}>
                       {feature}
                     </span>
@@ -314,20 +285,7 @@ export function SkillDetail() {
 
           {skill.useCases && skill.useCases.length > 0 && (
             <div className="mb-12">
-              <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke={config?.color || 'var(--color-grey-400)'}
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                  <polyline points="22 4 12 14.01 9 11.01" />
-                </svg>
+              <h2 className="text-xl font-semibold text-white mb-6">
                 Use Cases
               </h2>
               <div className="grid gap-3">
@@ -341,23 +299,9 @@ export function SkillDetail() {
                     }}
                   >
                     <div
-                      className="w-8 h-8 rounded-md flex items-center justify-center shrink-0"
-                      style={{ backgroundColor: `${config?.color || '#666'}15` }}
-                    >
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke={config?.color || 'var(--color-grey-400)'}
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
-                        <path d="M9 12l2 2 4-4" />
-                      </svg>
-                    </div>
+                      className="w-2 h-2 rounded-full shrink-0"
+                      style={{ backgroundColor: config?.color || 'var(--color-grey-400)' }}
+                    />
                     <span className="text-sm" style={{ color: 'var(--color-grey-200)' }}>
                       {useCase}
                     </span>
