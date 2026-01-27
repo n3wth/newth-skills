@@ -1,0 +1,10 @@
+// Component exports for easy importing
+export { CategoryShape, RenderShape } from './CategoryShape'
+export { FloatingShapes } from './FloatingShapes'
+export { Nav } from './Nav'
+export { Footer } from './Footer'
+export { Hero } from './Hero'
+export { CommandBox } from './CommandBox'
+export { InstallSection } from './InstallSection'
+export { SkillCard } from './SkillCard'
+export { CategoryFilter } from './CategoryFilter'
