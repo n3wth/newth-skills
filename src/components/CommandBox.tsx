@@ -1,18 +1,23 @@
 import { useState } from 'react'
+import { trackCopyEvent } from '../lib/analytics'
 
 interface CommandBoxProps {
   name: string
   command: string
   primary: boolean
+  skillId?: string
 }
 
-export function CommandBox({ name, command, primary }: CommandBoxProps) {
+export function CommandBox({ name, command, primary, skillId }: CommandBoxProps) {
   const [copied, setCopied] = useState(false)
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(command)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
+    
+    const trackingId = skillId || name.toLowerCase().replace(/\s+/g, '-')
+    trackCopyEvent(trackingId)
   }
 
   return (

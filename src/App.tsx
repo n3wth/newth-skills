@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Home, SkillDetail } from './pages'
+import { AnalyticsDashboard } from './components'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/skill/:skillId" element={<SkillDetail />} />
       </Routes>
+      <AnalyticsDashboard />
     </BrowserRouter>
   )
 }
