@@ -66,6 +66,13 @@ export function Nav() {
       </Link>
       <div className="flex items-center gap-4 md:gap-6">
         <Link
+          to="/submit"
+          className="text-sm link-hover"
+          style={{ color: 'var(--color-grey-400)' }}
+        >
+          Submit
+        </Link>
+        <Link
           to="/about"
           className="text-sm link-hover"
           style={{ color: 'var(--color-grey-400)' }}
