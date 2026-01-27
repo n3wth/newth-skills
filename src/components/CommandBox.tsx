@@ -83,7 +83,7 @@ export function CommandBox({ name, command, primary, skillId, assistantId }: Com
         className={`command-box flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-4 cursor-pointer ${primary ? 'primary' : ''}`}
       >
         <span
-          className="label shrink-0 sm:w-24"
+          className="label shrink-0 whitespace-nowrap"
           style={{ color: primary ? 'var(--color-accent)' : 'var(--color-grey-400)' }}
         >
           {name}
