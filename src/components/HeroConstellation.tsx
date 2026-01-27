@@ -242,23 +242,14 @@ export function HeroConstellation() {
         })
 
         nodes.forEach(node => {
-          const pulseScale = 1 + Math.sin(time * 2 + node.x * 0.01) * 0.1
-          const glowSize = node.size * pulseScale
-
-          const gradient = ctx.createRadialGradient(
-            node.x, node.y, 0,
-            node.x, node.y, glowSize
-          )
-          gradient.addColorStop(0, node.color + '40')
-          gradient.addColorStop(0.5, node.color + '15')
-          gradient.addColorStop(1, 'transparent')
-
+          // Flat circle background
           ctx.beginPath()
-          ctx.arc(node.x, node.y, glowSize, 0, Math.PI * 2)
-          ctx.fillStyle = gradient
+          ctx.arc(node.x, node.y, node.size * 0.5, 0, Math.PI * 2)
+          ctx.fillStyle = node.color + '25'
           ctx.fill()
 
-          ctx.font = `${node.size * 0.6}px system-ui`
+          // Icon
+          ctx.font = `${node.size * 0.5}px system-ui`
           ctx.textAlign = 'center'
           ctx.textBaseline = 'middle'
           ctx.fillStyle = node.color

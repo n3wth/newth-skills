@@ -50,10 +50,10 @@ describe('CategoryShape', () => {
     expect(circle).toBeInTheDocument()
   })
 
-  it('applies drop-shadow filter', () => {
+  it('renders without shadow effects', () => {
     const { container } = render(<CategoryShape category="development" />)
     const wrapper = container.firstChild as HTMLElement
-    expect(wrapper.style.filter).toContain('drop-shadow')
+    expect(wrapper.style.filter).toBe('')
   })
 })
 

@@ -81,7 +81,7 @@ export const skills: Skill[] = [
     category: 'development',
     tags: ['mcp', 'servers', 'api', 'integration'],
     featured: true,
-    icon: '⚡',
+    icon: '◆',
     color: 'oklch(0.78 0.15 65)',
     skillFile: `${GITHUB_RAW_BASE}/mcp-builder.md`,
     features: [

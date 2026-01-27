@@ -10,17 +10,13 @@ describe('categoryConfig', () => {
     })
   })
 
-  it('should have valid color, glow, and shape for each category', () => {
+  it('should have valid color and shape for each category', () => {
     const validShapes = ['circle', 'square', 'triangle', 'diamond']
 
     Object.values(categoryConfig).forEach((config) => {
       expect(config.color).toBeDefined()
       expect(typeof config.color).toBe('string')
       expect(config.color.startsWith('#') || config.color.startsWith('rgb')).toBe(true)
-
-      expect(config.glow).toBeDefined()
-      expect(typeof config.glow).toBe('string')
-      expect(config.glow.startsWith('rgba')).toBe(true)
 
       expect(validShapes).toContain(config.shape)
     })
