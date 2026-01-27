@@ -134,11 +134,11 @@ export function Nav() {
             Playground
           </Link>
           <Link
-            to="/submit"
+            to="/contribute"
             className="text-sm link-hover"
             style={{ color: 'var(--color-grey-400)' }}
           >
-            Submit
+            Contribute
           </Link>
           <Link
             to="/about"
@@ -216,12 +216,12 @@ export function Nav() {
               Playground
             </Link>
             <Link
-              to="/submit"
+              to="/contribute"
               onClick={closeMenu}
               className="mobile-nav-link text-lg py-4 px-4 rounded-xl transition-all duration-200 min-h-[52px] flex items-center"
               style={{ color: 'var(--color-white)' }}
             >
-              Submit
+              Contribute
             </Link>
             <Link
               to="/about"

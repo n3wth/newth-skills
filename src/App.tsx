@@ -2,7 +2,7 @@ import { lazy, Suspense, useLayoutEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { SkillDetailSkeleton, AnalyticsDashboard } from './components'
+import { SkillDetailSkeleton } from './components'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -11,6 +11,7 @@ const SkillDetail = lazy(() => import('./pages/SkillDetail').then(m => ({ defaul
 const About = lazy(() => import('./pages/About').then(m => ({ default: m.About })))
 const NotFound = lazy(() => import('./pages/NotFound').then(m => ({ default: m.NotFound })))
 const SubmitSkill = lazy(() => import('./pages/SubmitSkill').then(m => ({ default: m.SubmitSkill })))
+const Contribute = lazy(() => import('./pages/Contribute').then(m => ({ default: m.Contribute })))
 const Playground = lazy(() => import('./pages/Playground').then(m => ({ default: m.Playground })))
 const Workflows = lazy(() => import('./pages/Workflows').then(m => ({ default: m.Workflows })))
 const WorkflowBuilderPage = lazy(() => import('./pages/WorkflowBuilder').then(m => ({ default: m.WorkflowBuilderPage })))
@@ -70,6 +71,14 @@ function App() {
           }
         />
         <Route
+          path="/contribute"
+          element={
+            <Suspense fallback={<HomeSkeleton />}>
+              <Contribute />
+            </Suspense>
+          }
+        />
+        <Route
           path="/playground"
           element={
             <Suspense fallback={<HomeSkeleton />}>
@@ -102,7 +111,6 @@ function App() {
           }
         />
       </Routes>
-      <AnalyticsDashboard />
     </BrowserRouter>
   )
 }

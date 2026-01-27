@@ -1,23 +1,23 @@
 // Site-wide configuration
 export const siteConfig = {
   name: 'skills.newth.ai',
-  description: 'Skills for Gemini CLI, Claude Code, and AI assistants.',
-  tagline: 'One command to install. Instantly ready.',
+  description: 'Give your AI coding assistant superpowers.',
+  tagline: 'Install in seconds. Use immediately.',
   author: 'Oliver Newth',
   links: {
     about: 'https://newth.ai',
     github: 'https://github.com/n3wth/newth-skills',
   },
   hero: {
-    title: ['Extend', 'Your AI'],
+    title: ['Teach', 'Your AI'],
   },
   sections: {
     install: {
-      title: 'Install',
-      subtitle: 'One command. All skills.',
+      title: 'Get Started',
+      subtitle: 'One command installs everything you need.',
     },
     browse: {
-      title: 'Browse Skills',
+      title: 'Explore Skills',
     },
   },
 }

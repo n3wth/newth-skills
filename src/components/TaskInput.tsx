@@ -58,7 +58,7 @@ export function TaskInput({ value, onChange, onFocus, onBlur }: TaskInputProps) 
             onChange={(e) => onChange(e.target.value)}
             onFocus={handleFocus}
             onBlur={handleBlur}
-            placeholder="animate my website..."
+            placeholder="add smooth scroll animations..."
             className="flex-1 bg-transparent text-base md:text-lg font-medium text-white placeholder:text-grey-600 outline-none"
             aria-label="Describe what you want to accomplish"
           />

@@ -7,8 +7,8 @@ export function About() {
   return (
     <div className="min-h-screen relative">
       <SEO
-        title="About AI Coding Skills - newth.ai skills"
-        description="Learn what AI coding assistant skills are, how they differ from MCP servers, and how to extend Gemini CLI and Claude Code with specialized capabilities."
+        title="What are AI Skills? - newth.ai"
+        description="Skills are portable instruction sets that teach your AI coding assistant new capabilities. No servers, no infrastructure. Just markdown files that work immediately."
         canonicalUrl="/about"
         keywords={['AI skills', 'MCP servers', 'Gemini CLI', 'Claude Code', 'AI coding assistant']}
       />
@@ -27,31 +27,31 @@ export function About() {
           </Link>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-8 tracking-tight">
-            About Skills
+            What are Skills?
           </h1>
 
           <div className="space-y-12">
             <section>
               <h2 className="text-2xl md:text-3xl font-medium text-white mb-4">
-                What are AI coding assistant skills?
+                Domain expertise for your AI
               </h2>
               <p
                 className="text-lg leading-relaxed mb-4"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                Skills are portable instruction sets that extend the capabilities of AI coding assistants like Gemini CLI and Claude Code. They're simple markdown files containing specialized knowledge, best practices, and workflows that your AI assistant can follow to help you with specific tasks.
+                Skills are portable instruction sets that extend what your AI coding assistant can do. They're markdown files containing specialized knowledge, best practices, and workflows that Gemini CLI and Claude Code can follow to help you with specific tasks.
               </p>
               <p
                 className="text-lg leading-relaxed"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                Think of skills as giving your AI assistant expertise in a particular domain. Whether it's creating GSAP animations, building MCP servers, or generating algorithmic art, skills provide the context and instructions your assistant needs to help you effectively.
+                Think of skills as giving your AI expertise in a particular domain. Whether it's creating GSAP animations, building MCP servers, or generating algorithmic art, skills provide the context and instructions your assistant needs to help you effectively.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl md:text-3xl font-medium text-white mb-4">
-                How skills differ from MCP servers
+                Skills vs MCP servers
               </h2>
               <p
                 className="text-lg leading-relaxed mb-4"
@@ -111,37 +111,37 @@ export function About() {
 
             <section>
               <h2 className="text-2xl md:text-3xl font-medium text-white mb-4">
-                When to use skills vs MCPs
+                When to use each
               </h2>
               <p
                 className="text-lg leading-relaxed mb-4"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                Choose skills when you need to give your AI assistant knowledge about how to do something, like following best practices for a framework, writing code in a particular style, or understanding domain-specific concepts. Skills excel at providing guidance, patterns, and workflows.
+                <strong style={{ color: 'var(--color-white)' }}>Use skills</strong> when you need to teach your AI how to do something: following framework best practices, writing code in a particular style, or understanding domain-specific concepts. Skills excel at guidance, patterns, and workflows.
               </p>
               <p
                 className="text-lg leading-relaxed"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                Choose MCP servers when you need your AI assistant to actively interact with external systems, fetch real-time data, or perform actions that require API access. MCPs are ideal for integrations with databases, third-party services, or any system that requires live connections.
+                <strong style={{ color: 'var(--color-white)' }}>Use MCP servers</strong> when your AI needs to interact with external systems, fetch real-time data, or perform actions that require API access. MCPs are ideal for databases, third-party services, and live connections.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl md:text-3xl font-medium text-white mb-4">
-                How skills work
+                How it works
               </h2>
               <p
                 className="text-lg leading-relaxed mb-4"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                Skills are markdown files that get installed into your AI assistant's configuration directory. When you ask your assistant for help with a task, it reads the relevant skill files to understand how to approach the problem.
+                Skills are markdown files that get installed into your AI assistant's configuration directory. When you ask for help, your assistant reads the relevant skill to understand how to approach the problem.
               </p>
               <p
                 className="text-lg leading-relaxed mb-4"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                Each skill contains structured instructions, examples, and best practices. The AI assistant uses this information to provide more accurate, consistent, and helpful responses for the specific domain covered by the skill.
+                Each skill contains structured instructions, examples, and best practices. Your AI uses this to provide more accurate and consistent help for that specific domain.
               </p>
               <div className="command-box p-4 mt-6">
                 <code
@@ -155,13 +155,13 @@ export function About() {
                 className="text-sm mt-3"
                 style={{ color: 'var(--color-grey-400)' }}
               >
-                One command installs skills to your assistant's configuration directory.
+                Skills are installed to your assistant's config directory. Takes about 5 seconds.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl md:text-3xl font-medium text-white mb-4">
-                Benefits of skills
+                Why skills?
               </h2>
               <div className="grid md:grid-cols-3 gap-6 mt-6">
                 <div className="glass-card p-6">
@@ -169,13 +169,13 @@ export function About() {
                     className="text-lg font-medium mb-2"
                     style={{ color: 'var(--color-sage)' }}
                   >
-                    Portable
+                    Just files
                   </h3>
                   <p
                     className="text-base"
                     style={{ color: 'var(--color-grey-300)' }}
                   >
-                    Skills are just files. Copy them anywhere, share them with your team, or version control them with your project.
+                    Copy them anywhere, share with your team, or version control them alongside your project.
                   </p>
                 </div>
                 <div className="glass-card p-6">
@@ -183,13 +183,13 @@ export function About() {
                     className="text-lg font-medium mb-2"
                     style={{ color: 'var(--color-mint)' }}
                   >
-                    No Server
+                    Zero infrastructure
                   </h3>
                   <p
                     className="text-base"
                     style={{ color: 'var(--color-grey-300)' }}
                   >
-                    No processes to run, no ports to manage, no infrastructure to maintain. Skills work entirely within your AI assistant.
+                    No processes, no ports, no servers. Skills run entirely within your AI assistant.
                   </p>
                 </div>
                 <div className="glass-card p-6">
@@ -197,13 +197,13 @@ export function About() {
                     className="text-lg font-medium mb-2"
                     style={{ color: 'var(--color-gold)' }}
                   >
-                    Instant
+                    Works immediately
                   </h3>
                   <p
                     className="text-base"
                     style={{ color: 'var(--color-grey-300)' }}
                   >
-                    Install in seconds with a single command. Your AI assistant immediately has access to new capabilities.
+                    Install with one command. Your AI has new capabilities in seconds.
                   </p>
                 </div>
               </div>
@@ -214,15 +214,15 @@ export function About() {
                 className="text-lg leading-relaxed"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                Ready to extend your AI assistant?{' '}
+                Ready to give your AI new capabilities?{' '}
                 <Link
                   to="/"
                   className="link-hover"
                   style={{ color: 'var(--color-white)' }}
                 >
-                  Browse available skills
+                  Browse all skills
                 </Link>{' '}
-                and install them with a single command.
+                and start building.
               </p>
             </section>
           </div>

@@ -41,7 +41,7 @@ export function SkillDetail() {
       <div className="min-h-screen relative">
         <SEO
           title="Skill Not Found - newth.ai skills"
-          description="The skill you're looking for doesn't exist."
+          description="The skill you're looking for doesn't exist or may have been moved."
           canonicalUrl="/"
         />
         <div className="mesh-gradient" />
@@ -52,14 +52,17 @@ export function SkillDetail() {
             <h1 className="text-3xl md:text-4xl font-semibold text-white mb-4">
               Skill not found
             </h1>
-            <p className="text-lg mb-8" style={{ color: 'var(--color-grey-400)' }}>
-              The skill you're looking for doesn't exist.
+            <p className="text-lg mb-2" style={{ color: 'var(--color-grey-200)' }}>
+              This skill doesn't exist or may have been renamed.
+            </p>
+            <p className="text-base mb-8" style={{ color: 'var(--color-grey-400)' }}>
+              Browse the full collection to find what you need.
             </p>
             <Link
               to="/"
               className="inline-flex items-center gap-2 text-white hover:opacity-70 transition-opacity"
             >
-              <span>&larr;</span> Back to all skills
+              <span>&larr;</span> Browse all skills
             </Link>
           </div>
         </main>
@@ -170,7 +173,7 @@ export function SkillDetail() {
             ))}
           </div>
 
-          <div className="flex items-center gap-4 mb-12 text-sm" style={{ color: 'var(--color-grey-400)' }}>
+          <div className="flex flex-wrap items-center gap-4 mb-12 text-sm" style={{ color: 'var(--color-grey-400)' }}>
             <span className="flex items-center gap-2">
               <svg
                 width="16"
@@ -205,6 +208,46 @@ export function SkillDetail() {
               </svg>
               Updated {new Date(skill.lastUpdated).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
             </span>
+            {skill.contributor && (
+              <span className="flex items-center gap-2">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+                {skill.contributor.github ? (
+                  <a
+                    href={`https://github.com/${skill.contributor.github}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {skill.contributor.name}
+                  </a>
+                ) : skill.contributor.url ? (
+                  <a
+                    href={skill.contributor.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {skill.contributor.name}
+                  </a>
+                ) : (
+                  skill.contributor.name
+                )}
+              </span>
+            )}
           </div>
 
           {(skill.features || skill.useCases) && (
@@ -283,13 +326,25 @@ export function SkillDetail() {
           )}
 
           <div className="glass-card p-6 md:p-8">
-            <h2 className="text-lg font-medium text-white mb-4">Install this skill</h2>
-            <CommandBox
-              name="Install"
-              command={`curl -fsSL https://skills.newth.ai/install.sh | bash -s -- ${skill.id}`}
-              primary={true}
-              skillId={skill.id}
-            />
+            <h2 className="text-lg font-medium text-white mb-2">Add to your AI assistant</h2>
+            <p className="text-sm mb-4" style={{ color: 'var(--color-grey-400)' }}>
+              Run this command in your terminal to install
+            </p>
+            {skill.skillFile ? (
+              <CommandBox
+                name="Install"
+                command={`curl -fsSL ${skill.skillFile} -o ~/.claude/skills/${skill.id}.md`}
+                primary={true}
+                skillId={skill.id}
+              />
+            ) : (
+              <CommandBox
+                name="Install"
+                command={`curl -fsSL https://skills.newth.ai/install.sh | bash -s -- ${skill.id}`}
+                primary={true}
+                skillId={skill.id}
+              />
+            )}
           </div>
 
           {(() => {

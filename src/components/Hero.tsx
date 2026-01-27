@@ -52,7 +52,7 @@ export function Hero() {
             {siteConfig.hero.title.map((word, i) => (
               <span key={i}>
                 {i > 0 && <br />}
-                <span className="hero-word inline-block text-white">{word}</span>
+                <span className="hero-word hero-gradient-text inline-block">{word}</span>
               </span>
             ))}
           </h1>

@@ -32,7 +32,7 @@ export function CategoryShape({ category, size = 12 }: CategoryShapeProps) {
   }
 
   return (
-    <div style={{ filter: `drop-shadow(0 0 8px ${config.glow})` }}>
+    <div>
       {shapes[config.shape]}
     </div>
   )

@@ -134,8 +134,8 @@ export function Home() {
   return (
     <div className="min-h-screen relative content-loaded">
       <SEO
-        title="newth.ai skills - Extend Your AI Coding Assistant"
-        description="Browse and install skills for Gemini CLI, Claude Code, and more. Extend your AI coding assistant with specialized capabilities in development, documents, creative, and business domains."
+        title="Skills for AI Coding Assistants - Gemini CLI & Claude Code"
+        description="Give your AI superpowers. Install skills that teach Gemini CLI and Claude Code to build animations, generate documents, create art, and more. One command to install."
         canonicalUrl="/"
         keywords={['AI skills', 'Gemini CLI', 'Claude Code', 'AI coding assistant', 'developer tools']}
       />
@@ -149,10 +149,10 @@ export function Home() {
         <section className="mb-16 md:mb-20">
           <div className="text-center mb-6">
             <h2 className="text-xl md:text-2xl font-medium mb-2 text-white">
-              Find the Right Skill
+              What do you want to build?
             </h2>
             <p className="label">
-              Describe what you want to accomplish
+              Tell us your goal and we'll find the right skill
             </p>
           </div>
           <TaskInput
@@ -170,10 +170,10 @@ export function Home() {
 
         <div className="mb-6 md:mb-8">
           <h2 className="text-xl md:text-2xl font-medium mb-2 text-white">
-            Browse Skills
+            All Skills
           </h2>
           <p className="label">
-            {skills.length} skills across {categories.length - 1} categories
+            {skills.length} ready-to-use skills in {categories.length - 1} categories
           </p>
         </div>
 
@@ -208,17 +208,22 @@ export function Home() {
 
         {filteredSkills.length === 0 && (
           <div className="text-center py-24">
-            <p className="label mb-2">
+            <p className="text-lg text-white mb-2">
               {searchQuery.trim()
-                ? 'No skills match your search'
-                : 'No skills in this category yet'}
+                ? 'No matching skills found'
+                : 'This category is empty'}
+            </p>
+            <p className="label mb-4">
+              {searchQuery.trim()
+                ? 'Try different keywords or browse all skills'
+                : 'Check back soon for new skills'}
             </p>
             {searchQuery.trim() && (
               <button
                 onClick={() => setSearchQuery('')}
                 className="glass-pill px-4 py-2 rounded-full text-sm font-medium"
               >
-                Clear search
+                Show all skills
               </button>
             )}
           </div>

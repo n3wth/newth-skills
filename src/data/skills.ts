@@ -1,3 +1,9 @@
+export interface Contributor {
+  name: string
+  github?: string
+  url?: string
+}
+
 export interface SamplePrompt {
   prompt: string
   output: string
@@ -18,8 +24,12 @@ export interface Skill {
   compatibility?: ('gemini' | 'claude')[]
   version: string
   lastUpdated: string
+  contributor?: Contributor
   samplePrompts?: SamplePrompt[]
+  skillFile?: string
 }
+
+const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/onewth/newth-skills/main/skills'
 
 export const skills: Skill[] = [
   {
@@ -32,6 +42,7 @@ export const skills: Skill[] = [
     featured: true,
     icon: '✦',
     color: 'oklch(0.75 0.18 145)',
+    skillFile: `${GITHUB_RAW_BASE}/gsap-animations.md`,
     features: [
       'ScrollTrigger for scroll-based animations',
       'SplitText for text reveal effects',
@@ -70,6 +81,7 @@ export const skills: Skill[] = [
     featured: true,
     icon: '⚡',
     color: 'oklch(0.78 0.15 65)',
+    skillFile: `${GITHUB_RAW_BASE}/mcp-builder.md`,
     features: [
       'FastMCP for Python development',
       'TypeScript SDK support',
@@ -108,6 +120,7 @@ export const skills: Skill[] = [
     featured: true,
     icon: '◈',
     color: 'oklch(0.70 0.15 280)',
+    skillFile: `${GITHUB_RAW_BASE}/skill-creator.md`,
     features: [
       'Skill structure and conventions',
       'Trigger word design',
@@ -213,6 +226,7 @@ export const skills: Skill[] = [
     tags: ['ui', 'react', 'design', 'components'],
     icon: '□',
     color: 'oklch(0.70 0.14 180)',
+    skillFile: `${GITHUB_RAW_BASE}/frontend-design.md`,
     features: [
       'Production-ready React components',
       'Thoughtful typography and spacing',
@@ -240,6 +254,7 @@ export const skills: Skill[] = [
     tags: ['pdf', 'documents', 'extraction'],
     icon: '▣',
     color: 'oklch(0.60 0.15 25)',
+    skillFile: `${GITHUB_RAW_BASE}/pdf.md`,
     features: [
       'Text and table extraction',
       'PDF creation from scratch',
@@ -554,6 +569,37 @@ export const skills: Skill[] = [
     compatibility: ['gemini', 'claude'],
     version: '1.0.0',
     lastUpdated: '2025-12-15'
+  },
+  {
+    id: 'git-workflow',
+    name: 'Git Workflow',
+    description: 'Streamlined Git workflows for common development tasks. Handles branching strategies, commit conventions, and merge conflict resolution.',
+    longDescription: 'A comprehensive Git workflow skill that helps you follow best practices for version control. This community-contributed skill covers branching strategies like GitFlow and trunk-based development, conventional commit messages, interactive rebasing, and efficient merge conflict resolution.',
+    category: 'development',
+    tags: ['git', 'version-control', 'workflow', 'collaboration'],
+    icon: '⎇',
+    color: 'oklch(0.68 0.16 30)',
+    features: [
+      'GitFlow and trunk-based branching',
+      'Conventional commit message formatting',
+      'Interactive rebase guidance',
+      'Merge conflict resolution strategies',
+      'Git hooks and automation'
+    ],
+    useCases: [
+      'Setting up project branching strategy',
+      'Writing clear commit messages',
+      'Resolving complex merge conflicts',
+      'Automating Git workflows',
+      'Code review preparation'
+    ],
+    compatibility: ['gemini', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    contributor: {
+      name: 'Community Contributor',
+      github: 'example-contributor'
+    }
   }
 ]
 
