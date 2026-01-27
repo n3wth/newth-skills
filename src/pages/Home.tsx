@@ -2,19 +2,32 @@ import { useState, useLayoutEffect, useMemo, useRef, useCallback, useEffect } fr
 import { useNavigate } from 'react-router-dom'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { skills, categories } from '../data/skills'
-import { Nav, Footer, Hero, InstallSection, SkillCard, CategoryFilter, SearchInput, KeyboardShortcutsHelp, SEO } from '../components'
+import { Nav, Footer, Hero, InstallSection, SkillCard, CategoryFilter, SearchInput, KeyboardShortcutsHelp, SEO, SortDropdown } from '../components'
+import type { SortOption } from '../components'
 import { useKeyboardShortcuts } from '../hooks'
+
+const SORT_STORAGE_KEY = 'newth-skills-sort-preference'
+
+function getStoredSortPreference(): SortOption {
+  if (typeof window === 'undefined') return 'name-asc'
+  const stored = localStorage.getItem(SORT_STORAGE_KEY)
+  if (stored && ['name-asc', 'name-desc', 'category', 'recently-updated'].includes(stored)) {
+    return stored as SortOption
+  }
+  return 'name-asc'
+}
 
 export function Home() {
   const navigate = useNavigate()
   const [activeCategory, setActiveCategory] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
+  const [sortOption, setSortOption] = useState<SortOption>(getStoredSortPreference)
   const searchInputRef = useRef<HTMLInputElement>(null)
   const skillCardRefs = useRef<(HTMLAnchorElement | null)[]>([])
 
   const filteredSkills = useMemo(() => {
     let result = activeCategory === 'all'
-      ? skills
+      ? [...skills]
       : skills.filter(s => s.category === activeCategory)
 
     if (searchQuery.trim()) {
@@ -26,8 +39,23 @@ export function Home() {
       )
     }
 
+    switch (sortOption) {
+      case 'name-asc':
+        result.sort((a, b) => a.name.localeCompare(b.name))
+        break
+      case 'name-desc':
+        result.sort((a, b) => b.name.localeCompare(a.name))
+        break
+      case 'category':
+        result.sort((a, b) => a.category.localeCompare(b.category) || a.name.localeCompare(b.name))
+        break
+      case 'recently-updated':
+        result.sort((a, b) => new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime())
+        break
+    }
+
     return result
-  }, [activeCategory, searchQuery])
+  }, [activeCategory, searchQuery, sortOption])
 
   const handleFocusSearch = useCallback(() => {
     searchInputRef.current?.focus()
@@ -39,6 +67,11 @@ export function Home() {
 
   const handleCategoryChange = useCallback((categoryId: string) => {
     setActiveCategory(categoryId)
+  }, [])
+
+  const handleSortChange = useCallback((newSortOption: SortOption) => {
+    setSortOption(newSortOption)
+    localStorage.setItem(SORT_STORAGE_KEY, newSortOption)
   }, [])
 
   const { showHelp, setShowHelp, selectedIndex, setSelectedIndex } = useKeyboardShortcuts({
@@ -112,11 +145,17 @@ export function Home() {
             activeCategory={activeCategory}
             onCategoryChange={handleCategoryChange}
           />
-          <SearchInput
-            ref={searchInputRef}
-            value={searchQuery}
-            onChange={setSearchQuery}
-          />
+          <div className="flex items-center gap-3">
+            <SortDropdown
+              value={sortOption}
+              onChange={handleSortChange}
+            />
+            <SearchInput
+              ref={searchInputRef}
+              value={searchQuery}
+              onChange={setSearchQuery}
+            />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">

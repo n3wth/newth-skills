@@ -16,6 +16,8 @@ const mockSkill: Skill = {
   tags: ['test', 'unit', 'vitest'],
   icon: '◎',
   color: 'oklch(0.75 0.18 145)',
+  version: '1.0.0',
+  lastUpdated: '2026-01-01',
 }
 
 const renderWithRouter = (ui: React.ReactElement) => {
