@@ -15,28 +15,21 @@ Sentry.init({
   replaysOnErrorSampleRate: 1.0
 })
 
+// Unregister any existing service workers to fix caching issues
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker
-      .register('/sw.js')
-      .then((registration) => {
-        console.log('SW registered:', registration.scope)
-        
-        registration.addEventListener('updatefound', () => {
-          const newWorker = registration.installing
-          if (newWorker) {
-            newWorker.addEventListener('statechange', () => {
-              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                console.log('New content available, refresh to update')
-              }
-            })
-          }
-        })
-      })
-      .catch((error) => {
-        console.log('SW registration failed:', error)
-      })
+  navigator.serviceWorker.getRegistrations().then((registrations) => {
+    registrations.forEach((registration) => {
+      registration.unregister()
+    })
   })
+  // Clear caches
+  if ('caches' in window) {
+    caches.keys().then((names) => {
+      names.forEach((name) => {
+        caches.delete(name)
+      })
+    })
+  }
 }
 
 createRoot(document.getElementById('root')!).render(
