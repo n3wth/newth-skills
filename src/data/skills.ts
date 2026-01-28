@@ -981,6 +981,45 @@ export const skills: Skill[] = [
     lastUpdated: '2026-01-26'
   },
   {
+    id: 'cursor-rules-generator',
+    name: 'Smart .cursor/rules Generator',
+    description: 'Auto-generate AI rules from coding patterns and project characteristics. Create project-specific AI rules that match team coding style.',
+    longDescription: 'Automatically analyze your codebase to detect coding patterns, naming conventions, and architectural decisions, then generate AI-specific rules that guide code generation to match your project\'s established patterns. Track rule effectiveness and version changes over time.',
+    category: 'development',
+    tags: ['cursor', 'ai-rules', 'code-analysis', 'automation', 'patterns'],
+    featured: true,
+    icon: '◉',
+    color: 'oklch(0.72 0.16 150)',
+    skillFile: `${GITHUB_RAW_BASE}/cursor-rules-generator.md`,
+    features: [
+      'Analyze coding patterns across project',
+      'Generate AI rules matching style',
+      'Create team-specific rules from code',
+      'Version and compare rule effectiveness',
+      'Extract naming conventions automatically'
+    ],
+    useCases: [
+      'Setting up new project AI rules',
+      'Standardizing team coding practices',
+      'Onboarding new developers with AI assistance',
+      'Maintaining consistent code style',
+      'Evolving rules as project matures'
+    ],
+    compatibility: ['claude', 'cursor', 'windsurf', 'copilot'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    samplePrompts: [
+      {
+        prompt: "Analyze my React project and generate .cursor/rules",
+        output: "I'll analyze your React project patterns:\n\n1. Scanning components for naming conventions...\n2. Detecting import/export patterns...\n3. Identifying TypeScript usage...\n\nBased on 147 files analyzed:\n- 98% functional components with hooks\n- PascalCase for components, camelCase for utilities\n- Absolute imports with @ alias\n- Props interfaces defined before components\n\nGenerated rules saved to .cursor/rules with:\n- Component structure guidelines\n- Naming conventions\n- Import organization\n- TypeScript patterns\n- Testing co-location requirements"
+      },
+      {
+        prompt: "Compare my current .cursor/rules effectiveness with the previous version",
+        output: "Comparing rule versions:\n\n**v1.0 (3 months ago)**\n- Code consistency: 75%\n- Review time: baseline\n- Pattern compliance: 68%\n\n**v2.0 (current)**\n- Code consistency: 92% (+17%)\n- Review time: -35% faster\n- Pattern compliance: 87% (+19%)\n\n**Key improvements:**\n- Added specific TypeScript patterns\n- Clarified component structure rules\n- Included error handling guidelines\n\n**Recommendations:**\n- Update state management section (detected new patterns)\n- Add accessibility rules (low compliance detected)\n- Consider splitting into domain-specific rule files"
+      }
+    ]
+  },
+  {
     id: 'research-assistant',
     name: 'Research Assistant',
     description: 'Deep research with citations and sources. Summarize research papers, compare multiple sources, and create comprehensive research reports.',
