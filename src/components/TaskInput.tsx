@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import gsap from 'gsap'
 import { getSuggestedTasks } from '../lib/recommendations'
 
 interface TaskInputProps {
@@ -60,6 +61,29 @@ export function TaskInput({ value, onChange, onFocus, onBlur }: TaskInputProps) 
     onChange(suggestion)
     inputRef.current?.focus()
   }
+
+  const suggestionsRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!showSuggestions || !suggestionsRef.current) return
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReducedMotion) return
+
+    const buttons = suggestionsRef.current.querySelectorAll('button')
+    gsap.fromTo(
+      buttons,
+      { opacity: 0, y: 10, scale: 0.9 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.3,
+        stagger: 0.05,
+        ease: 'back.out(2)',
+      }
+    )
+  }, [showSuggestions])
 
   return (
     <div className="relative w-full max-w-2xl mx-auto">
@@ -130,9 +154,10 @@ export function TaskInput({ value, onChange, onFocus, onBlur }: TaskInputProps) 
 
       {showSuggestions && (
         <div
+          ref={suggestionsRef}
           className="absolute top-full left-0 right-0 mt-2 p-3 rounded-xl z-20"
           style={{
-            background: 'rgba(0, 0, 0, 0.9)',
+            background: 'var(--color-bg)',
             border: '1px solid var(--glass-border)',
             backdropFilter: 'blur(20px)',
           }}
@@ -149,7 +174,7 @@ export function TaskInput({ value, onChange, onFocus, onBlur }: TaskInputProps) 
                 key={task}
                 type="button"
                 onClick={() => handleSuggestionClick(task)}
-                className="glass-pill px-3 py-1.5 rounded-full text-sm"
+                className="glass-pill btn-press px-3 py-1.5 rounded-full text-sm"
               >
                 {task}
               </button>

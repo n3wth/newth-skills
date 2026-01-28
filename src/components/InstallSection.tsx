@@ -3,9 +3,11 @@ import { installCommands } from '../config/commands'
 import { assistantList } from '../config/assistants'
 import { CommandBox } from './CommandBox'
 import { AssistantIcon } from './AssistantIcon'
+import { useScrollReveal } from '../hooks'
 
 export function InstallSection() {
   const [showAll, setShowAll] = useState(false)
+  const sectionRef = useScrollReveal({ direction: 'up', distance: 35, stagger: 0.15, duration: 0.9 })
   
   const primaryCommands = installCommands.filter(cmd => 
     cmd.assistantId === 'gemini' || cmd.assistantId === 'claude' || cmd.assistantId === 'all'
@@ -15,14 +17,16 @@ export function InstallSection() {
   )
 
   return (
-    <div className="mb-16 md:mb-24">
-      <h2 className="text-xl md:text-2xl font-medium mb-2 text-white">
-        Get Started
-      </h2>
-      <p className="label mb-4">
-        Pick your AI assistant and run one command to install all skills.
-      </p>
-      
+    <div ref={sectionRef} className="mb-16 md:mb-24">
+      <div>
+        <h2 className="text-xl md:text-2xl font-medium mb-2 text-white">
+          Install
+        </h2>
+        <p className="label mb-4">
+          One command. Works completely offline. No servers, no waiting, no limits.
+        </p>
+      </div>
+
       <div className="flex flex-wrap gap-2 mb-6">
         {assistantList.map(assistant => (
           <span

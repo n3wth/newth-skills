@@ -279,47 +279,20 @@ body {
   transform: scale(1);
 }
 
-
-/* Hero gradient text animation */
-@keyframes gradientShift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
-.hero-gradient-text {
-  background: linear-gradient(
-    90deg,
-    var(--color-white) 0%,
-    var(--color-grey-300) 25%,
-    var(--color-white) 50%,
-    var(--color-grey-300) 75%,
-    var(--color-white) 100%
-  );
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientShift 8s ease-in-out infinite;
-}
 
-:root[data-theme='light'] .hero-gradient-text {
-  background: linear-gradient(
-    90deg,
-    var(--color-white) 0%,
-    var(--color-grey-400) 25%,
-    var(--color-white) 50%,
-    var(--color-grey-400) 75%,
-    var(--color-white) 100%
-  );
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 
 
 /* Constellation pattern */
@@ -531,11 +504,6 @@ body {
     opacity: 0.5 !important;
   }
 
-  .hero-gradient-text {
-    animation: none !important;
-    -webkit-text-fill-color: var(--color-white) !important;
-  }
-
   .constellation-dot {
     animation: none !important;
     opacity: 0.5 !important;
@@ -691,4 +659,122 @@ body {
     opacity: 1 !important;
     transform: none !important;
   }
+}
+
+/* Hero category hover delight */
+.hero-category {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-category:hover {
+  transform: translateY(-2px);
+}
+
+/* Delightful underline animation for links */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 50%;
+  background: currentColor;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.link-underline:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Badge pulse animation for "New" badges */
+@keyframes badgePulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.badge-pulse {
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+/* Skill card shine effect on hover */
+.skill-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.03),
+    transparent
+  );
+  transition: left 0.5s ease;
+  pointer-events: none;
+  border-radius: 20px;
+}
+
+.skill-card:hover::before {
+  left: 100%;
+}
+
+/* Stats counter animation helper */
+.counter-animate {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Interactive tag hover */
+.interactive-tag {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.interactive-tag:hover {
+  transform: scale(1.05);
+  background: var(--glass-highlight);
+}
+
+/* Empty state bounce animation */
+@keyframes emptyBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.empty-state-icon {
+  animation: emptyBounce 2s ease-in-out infinite;
+}
+
+/* Search input focus glow (flat border version) */
+.search-focus-ring {
+  transition: border-color 0.2s ease;
+}
+
+.search-focus-ring:focus-within {
+  border-color: var(--color-white);
+}
+
+/* Button press state */
+.btn-press:active {
+  transform: scale(0.96);
+  transition: transform 0.1s ease;
+}
+
+/* Smooth number transitions */
+.number-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

@@ -20,6 +20,8 @@ const Analytics = lazy(() => import('./pages/Analytics').then(m => ({ default: m
 const CreateSkill = lazy(() => import('./pages/CreateSkill').then(m => ({ default: m.CreateSkill })))
 const Compare = lazy(() => import('./pages/Compare').then(m => ({ default: m.Compare })))
 const Bundles = lazy(() => import('./pages/Bundles').then(m => ({ default: m.Bundles })))
+const CuratedBundles = lazy(() => import('./pages/CuratedBundles').then(m => ({ default: m.CuratedBundles })))
+const BundleDetail = lazy(() => import('./pages/BundleDetail').then(m => ({ default: m.BundleDetail })))
 const FeatureRequests = lazy(() => import('./pages/FeatureRequests').then(m => ({ default: m.FeatureRequests })))
 const Workflows = lazy(() => import('./pages/Workflows').then(m => ({ default: m.Workflows })))
 const WorkflowBuilderPage = lazy(() => import('./pages/WorkflowBuilder').then(m => ({ default: m.WorkflowBuilderPage })))
@@ -156,6 +158,26 @@ function App() {
               <ErrorBoundary>
                 <Suspense fallback={<HomeSkeleton />}>
                   <Bundles />
+                </Suspense>
+              </ErrorBoundary>
+            }
+          />
+          <Route
+            path="/curated-bundles"
+            element={
+              <ErrorBoundary>
+                <Suspense fallback={<HomeSkeleton />}>
+                  <CuratedBundles />
+                </Suspense>
+              </ErrorBoundary>
+            }
+          />
+          <Route
+            path="/curated-bundles/:bundleId"
+            element={
+              <ErrorBoundary>
+                <Suspense fallback={<SkillDetailSkeleton />}>
+                  <BundleDetail />
                 </Suspense>
               </ErrorBoundary>
             }

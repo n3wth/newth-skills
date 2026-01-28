@@ -367,6 +367,160 @@ export const workflowTemplates: Workflow[] = [
     author: 'newth-skills',
     isPublic: true,
     tags: ['creative', 'skills', 'art']
+  },
+  {
+    id: 'email-campaign',
+    name: 'Email Campaign Generator',
+    description: 'Write compelling email copy, design templates, and prepare for delivery',
+    nodes: [
+      { id: 'node-1', skillId: 'copywriting', position: { x: 100, y: 200 } },
+      { id: 'node-2', skillId: 'theme-factory', position: { x: 350, y: 200 } },
+      { id: 'node-3', skillId: 'docx', position: { x: 600, y: 200 } }
+    ],
+    connections: [
+      { id: 'conn-1', sourceNodeId: 'node-1', sourceOutputId: 'copy', targetNodeId: 'node-2', targetInputId: 'artifact' },
+      { id: 'conn-2', sourceNodeId: 'node-2', sourceOutputId: 'styled-artifact', targetNodeId: 'node-3', targetInputId: 'content' }
+    ],
+    createdAt: '2026-01-20',
+    updatedAt: '2026-01-20',
+    author: 'newth-skills',
+    isPublic: true,
+    tags: ['marketing', 'email', 'copywriting']
+  },
+  {
+    id: 'api-documentation',
+    name: 'Complete API Documentation',
+    description: 'Generate professional API documentation from code or specifications',
+    nodes: [
+      { id: 'node-1', skillId: 'api-docs-generator', position: { x: 100, y: 200 } },
+      { id: 'node-2', skillId: 'doc-coauthoring', position: { x: 400, y: 200 } },
+      { id: 'node-3', skillId: 'pptx', position: { x: 700, y: 200 } }
+    ],
+    connections: [
+      { id: 'conn-1', sourceNodeId: 'node-1', sourceOutputId: 'documentation', targetNodeId: 'node-2', targetInputId: 'draft' },
+      { id: 'conn-2', sourceNodeId: 'node-2', sourceOutputId: 'revised-document', targetNodeId: 'node-3', targetInputId: 'content' }
+    ],
+    createdAt: '2026-01-18',
+    updatedAt: '2026-01-18',
+    author: 'newth-skills',
+    isPublic: true,
+    tags: ['development', 'documentation', 'api']
+  },
+  {
+    id: 'content-pipeline',
+    name: 'Social Content Pipeline',
+    description: 'Write, design, and format content for social media platforms',
+    nodes: [
+      { id: 'node-1', skillId: 'copywriting', position: { x: 100, y: 150 } },
+      { id: 'node-2', skillId: 'canvas-design', position: { x: 350, y: 150 } },
+      { id: 'node-3', skillId: 'slack-gif-creator', position: { x: 600, y: 150 } }
+    ],
+    connections: [
+      { id: 'conn-1', sourceNodeId: 'node-1', sourceOutputId: 'copy', targetNodeId: 'node-2', targetInputId: 'concept' },
+      { id: 'conn-2', sourceNodeId: 'node-2', sourceOutputId: 'artwork', targetNodeId: 'node-3', targetInputId: 'concept' }
+    ],
+    createdAt: '2026-01-16',
+    updatedAt: '2026-01-16',
+    author: 'newth-skills',
+    isPublic: true,
+    tags: ['marketing', 'social', 'creative']
+  },
+  {
+    id: 'invoice-processor',
+    name: 'Automated Invoice Processor',
+    description: 'Extract data from invoices, validate, and generate reports',
+    nodes: [
+      { id: 'node-1', skillId: 'pdf', position: { x: 100, y: 200 } },
+      { id: 'node-2', skillId: 'xlsx', position: { x: 400, y: 200 } },
+      { id: 'node-3', skillId: 'business-panel', position: { x: 700, y: 200 } }
+    ],
+    connections: [
+      { id: 'conn-1', sourceNodeId: 'node-1', sourceOutputId: 'extracted-data', targetNodeId: 'node-2', targetInputId: 'data' },
+      { id: 'conn-2', sourceNodeId: 'node-2', sourceOutputId: 'analysis', targetNodeId: 'node-3', targetInputId: 'context' }
+    ],
+    createdAt: '2026-01-14',
+    updatedAt: '2026-01-14',
+    author: 'newth-skills',
+    isPublic: true,
+    tags: ['automation', 'finance', 'reporting']
+  },
+  {
+    id: 'book-chapter',
+    name: 'Book Chapter Writing Workflow',
+    description: 'Research, draft, edit, and format a complete book chapter',
+    nodes: [
+      { id: 'node-1', skillId: 'research-assistant', position: { x: 100, y: 200 } },
+      { id: 'node-2', skillId: 'doc-coauthoring', position: { x: 350, y: 200 } },
+      { id: 'node-3', skillId: 'docx', position: { x: 600, y: 200 } },
+      { id: 'node-4', skillId: 'pdf', position: { x: 850, y: 200 } }
+    ],
+    connections: [
+      { id: 'conn-1', sourceNodeId: 'node-1', sourceOutputId: 'findings', targetNodeId: 'node-2', targetInputId: 'draft' },
+      { id: 'conn-2', sourceNodeId: 'node-2', sourceOutputId: 'revised-document', targetNodeId: 'node-3', targetInputId: 'content' },
+      { id: 'conn-3', sourceNodeId: 'node-3', sourceOutputId: 'output-document', targetNodeId: 'node-4', targetInputId: 'pdf-file' }
+    ],
+    createdAt: '2026-01-12',
+    updatedAt: '2026-01-12',
+    author: 'newth-skills',
+    isPublic: true,
+    tags: ['writing', 'research', 'publishing']
+  },
+  {
+    id: 'ci-cd-setup',
+    name: 'CI/CD Pipeline Generator',
+    description: 'Create a complete deployment pipeline with testing, building, and deployment stages',
+    nodes: [
+      { id: 'node-1', skillId: 'ci-cd-builder', position: { x: 100, y: 200 } },
+      { id: 'node-2', skillId: 'git-workflow', position: { x: 400, y: 200 } },
+      { id: 'node-3', skillId: 'api-docs-generator', position: { x: 700, y: 200 } }
+    ],
+    connections: [
+      { id: 'conn-1', sourceNodeId: 'node-1', sourceOutputId: 'pipeline', targetNodeId: 'node-2', targetInputId: 'context' },
+      { id: 'conn-2', sourceNodeId: 'node-2', sourceOutputId: 'commands', targetNodeId: 'node-3', targetInputId: 'api-spec' }
+    ],
+    createdAt: '2026-01-10',
+    updatedAt: '2026-01-10',
+    author: 'newth-skills',
+    isPublic: true,
+    tags: ['devops', 'automation', 'deployment']
+  },
+  {
+    id: 'competitor-analysis',
+    name: 'Competitive Intelligence Report',
+    description: 'Research competitors and generate actionable competitive analysis',
+    nodes: [
+      { id: 'node-1', skillId: 'research-assistant', position: { x: 100, y: 200 } },
+      { id: 'node-2', skillId: 'business-panel', position: { x: 400, y: 200 } },
+      { id: 'node-3', skillId: 'pptx', position: { x: 700, y: 200 } }
+    ],
+    connections: [
+      { id: 'conn-1', sourceNodeId: 'node-1', sourceOutputId: 'findings', targetNodeId: 'node-2', targetInputId: 'context' },
+      { id: 'conn-2', sourceNodeId: 'node-2', sourceOutputId: 'recommendations', targetNodeId: 'node-3', targetInputId: 'content' }
+    ],
+    createdAt: '2026-01-08',
+    updatedAt: '2026-01-08',
+    author: 'newth-skills',
+    isPublic: true,
+    tags: ['business', 'research', 'strategy']
+  },
+  {
+    id: 'database-optimization',
+    name: 'Database Query Optimization',
+    description: 'Analyze, optimize, and document database queries for performance',
+    nodes: [
+      { id: 'node-1', skillId: 'sql-optimizer', position: { x: 100, y: 200 } },
+      { id: 'node-2', skillId: 'code-reviewer', position: { x: 400, y: 200 } },
+      { id: 'node-3', skillId: 'api-docs-generator', position: { x: 700, y: 200 } }
+    ],
+    connections: [
+      { id: 'conn-1', sourceNodeId: 'node-1', sourceOutputId: 'optimized-query', targetNodeId: 'node-2', targetInputId: 'code' },
+      { id: 'conn-2', sourceNodeId: 'node-2', sourceOutputId: 'feedback', targetNodeId: 'node-3', targetInputId: 'api-spec' }
+    ],
+    createdAt: '2026-01-06',
+    updatedAt: '2026-01-06',
+    author: 'newth-skills',
+    isPublic: true,
+    tags: ['database', 'performance', 'optimization']
   }
 ]
 

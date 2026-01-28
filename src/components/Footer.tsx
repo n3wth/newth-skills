@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom'
 import { siteConfig } from '../config/site'
+import { useScrollReveal } from '../hooks'
 
 export function Footer() {
+  const footerRef = useScrollReveal({ direction: 'up', distance: 20, duration: 0.7 })
+
   return (
-    <footer className="py-12 md:py-20 px-6 md:px-12 border-t" style={{ borderColor: 'var(--glass-border)' }}>
+    <footer ref={footerRef} className="py-12 md:py-20 px-6 md:px-12 border-t" style={{ borderColor: 'var(--glass-border)' }}>
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="flex items-center gap-4">
           <p className="text-sm" style={{ color: 'var(--color-grey-400)' }}>

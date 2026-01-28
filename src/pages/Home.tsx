@@ -4,6 +4,7 @@ import { Nav } from '../components/Nav'
 import { Footer } from '../components/Footer'
 import { Hero } from '../components/Hero'
 import { InstallSection } from '../components/InstallSection'
+import { StatsRow } from '../components/StatsRow'
 import { SkillCard } from '../components/SkillCard'
 import { CategoryFilter } from '../components/CategoryFilter'
 import { SearchInput } from '../components/SearchInput'
@@ -13,13 +14,17 @@ import { SortDropdown } from '../components/SortDropdown'
 import { TaskInput } from '../components/TaskInput'
 import { SkillRecommendations } from '../components/SkillRecommendations'
 import { ComparisonBar } from '../components/ComparisonBar'
-import { useKeyboardShortcuts, useAIRecommendations, useSkillSearch, useSkillNavigation } from '../hooks'
+import { useKeyboardShortcuts, useAIRecommendations, useSkillSearch, useSkillNavigation, useScrollReveal, useCardAnimation, usePageTransition } from '../hooks'
 import { getSkillBadgeStatus } from '../lib/analytics'
 
 const SEO_KEYWORDS = ['AI skills', 'Gemini CLI', 'Claude Code', 'AI coding assistant', 'developer tools']
 
 export function Home() {
   const searchInputRef = useRef<HTMLInputElement>(null)
+  const pageRef = usePageTransition()
+  const gridRef = useCardAnimation({ stagger: 0.08, enableHoverLift: true })
+  const recommendationsRef = useScrollReveal({ direction: 'up', distance: 30, stagger: 0.12 })
+  const browseHeaderRef = useScrollReveal({ direction: 'up', distance: 20, delay: 0.1 })
 
   // Search, filter, and sort
   const {
@@ -64,10 +69,10 @@ export function Home() {
   const badgeStatus = useMemo(() => getSkillBadgeStatus(), [])
 
   return (
-    <div className="min-h-screen relative content-loaded">
+    <div ref={pageRef} className="min-h-screen relative content-loaded">
       <SEO
-        title="Skills for AI Coding Assistants - Gemini CLI & Claude Code"
-        description="Teach your AI to build animations, generate documents, and create art. Skills for Gemini CLI and Claude Code. One command to install, works offline."
+        title="Skills for Claude Code & Gemini CLI - Give Your AI Superpowers"
+        description="Install skills that actually matter. Extend Claude and Gemini with tools that work offline. No API limits. You stay in control."
         canonicalUrl="/"
         keywords={SEO_KEYWORDS}
       />
@@ -79,13 +84,13 @@ export function Home() {
 
       <main className="px-6 md:px-12 pb-24">
         {/* AI Recommendations Section */}
-        <section className="mb-16 md:mb-20">
+        <section ref={recommendationsRef} className="mb-16 md:mb-20">
           <div className="text-center mb-6">
             <h2 className="text-xl md:text-2xl font-medium mb-2 text-white">
-              What do you want to build?
+              What do you need your AI to do?
             </h2>
             <p className="label">
-              Describe your project and see which skills can help
+              Tell us. We'll show you the skills that actually solve it.
             </p>
           </div>
           <TaskInput value={taskQuery} onChange={handleTaskChange} />
@@ -99,13 +104,15 @@ export function Home() {
 
         <InstallSection />
 
+        <StatsRow />
+
         {/* Browse Section Header */}
-        <div className="mb-6 md:mb-8">
+        <div ref={browseHeaderRef} className="mb-6 md:mb-8">
           <h2 className="text-xl md:text-2xl font-medium mb-2 text-white">
-            Browse Skills
+            What works right now
           </h2>
           <p className="label">
-            {skills.length} skills across {categories.length - 1} categories
+            {skills.length} tested skills across {categories.length - 1} categories. All community-built.
           </p>
         </div>
 
@@ -119,31 +126,50 @@ export function Home() {
         </div>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {filteredSkills.map((skill, index) => (
-            <SkillCard
-              key={skill.id}
-              ref={setCardRef(index)}
-              skill={skill}
-              isSelected={selectedIndex === index}
-              isTrending={badgeStatus.trendingSkillIds.has(skill.id)}
-              isPopular={badgeStatus.popularSkillIds.has(skill.id)}
-            />
+            <div key={skill.id} data-card>
+              <SkillCard
+                ref={setCardRef(index)}
+                skill={skill}
+                isSelected={selectedIndex === index}
+                isTrending={badgeStatus.trendingSkillIds.has(skill.id)}
+                isPopular={badgeStatus.popularSkillIds.has(skill.id)}
+              />
+            </div>
           ))}
         </div>
 
-        {/* Empty State */}
+        {/* Empty State - Delightful */}
         {filteredSkills.length === 0 && (
           <div className="text-center py-24">
+            <div className="empty-state-icon inline-block mb-6">
+              <svg
+                width="64"
+                height="64"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{ color: 'var(--color-grey-400)' }}
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="M21 21l-4.35-4.35" />
+                <path d="M8 8l6 6" />
+                <path d="M14 8l-6 6" />
+              </svg>
+            </div>
             <p className="text-lg text-white mb-2">
-              {query.trim() ? 'No matches' : 'Nothing here yet'}
+              {query.trim() ? 'Nothing fits that description' : 'This category is empty right now'}
             </p>
             <p className="label mb-4">
-              {query.trim() ? 'Try broader keywords or clear the filter' : 'This category is coming soon'}
+              {query.trim() ? 'Try something broader, or skip straight to browsing all skills' : 'Check back soon or explore what exists'}
             </p>
             {query.trim() && (
-              <button onClick={clearSearch} className="glass-pill px-4 py-2 rounded-full text-sm font-medium">
-                Show all skills
+              <button onClick={clearSearch} className="glass-pill btn-press px-4 py-2 rounded-full text-sm font-medium">
+                See all skills
               </button>
             )}
           </div>

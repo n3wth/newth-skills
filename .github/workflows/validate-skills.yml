@@ -1,0 +1,84 @@
+name: Validate Skills
+
+on:
+  pull_request:
+    paths:
+      - '*.skill/**'
+      - 'scripts/validate-skill.py'
+  push:
+    branches:
+      - main
+    paths:
+      - '*.skill/**'
+
+jobs:
+  validate-skills:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+
+      - name: Find skill packages
+        id: find-skills
+        run: |
+          # Find all .skill directories
+          SKILLS=$(find . -maxdepth 1 -type d -name "*.skill" | sort)
+          echo "skills<<EOF" >> $GITHUB_OUTPUT
+          echo "$SKILLS" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Validate skill packages
+        if: steps.find-skills.outputs.skills != ''
+        run: |
+          FAILED=0
+          while IFS= read -r skill; do
+            [ -z "$skill" ] && continue
+            echo "Validating: $skill"
+            if ! python3 scripts/validate-skill.py "$skill"; then
+              FAILED=$((FAILED + 1))
+            fi
+          done <<< "${{ steps.find-skills.outputs.skills }}"
+
+          if [ $FAILED -gt 0 ]; then
+            echo "❌ $FAILED skill(s) failed validation"
+            exit 1
+          fi
+          echo "✅ All skills validated successfully"
+
+      - name: Check TypeScript build
+        run: |
+          npm ci
+          npm run build
+        continue-on-error: true
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+        continue-on-error: true
+
+      - name: Run TypeScript check
+        run: npm run build
+        continue-on-error: true

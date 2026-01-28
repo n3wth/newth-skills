@@ -1,3 +1,6 @@
+import { useRef } from 'react'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
 import { categories } from '../data/skills'
 import { CategoryShape } from './CategoryShape'
 
@@ -7,8 +10,41 @@ interface CategoryFilterProps {
 }
 
 export function CategoryFilter({ activeCategory, onCategoryChange }: CategoryFilterProps) {
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(() => {
+    if (!containerRef.current) return
+
+    const buttons = containerRef.current.querySelectorAll('button')
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (prefersReducedMotion) return
+
+    const ctx = gsap.context(() => {
+      buttons.forEach((button) => {
+        button.addEventListener('mouseenter', () => {
+          gsap.to(button, {
+            scale: 1.05,
+            duration: 0.25,
+            ease: 'cubic.out',
+          })
+        })
+
+        button.addEventListener('mouseleave', () => {
+          gsap.to(button, {
+            scale: 1,
+            duration: 0.25,
+            ease: 'cubic.out',
+          })
+        })
+      })
+    }, containerRef)
+
+    return () => ctx.revert()
+  }, { scope: containerRef })
+
   return (
-    <div className="flex flex-wrap gap-2">
+    <div ref={containerRef} className="flex flex-wrap gap-2">
       {categories.map(cat => (
         <button
           key={cat.id}

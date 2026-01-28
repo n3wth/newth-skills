@@ -117,6 +117,44 @@ export const skills: Skill[] = [
     ]
   },
   {
+    id: 'monorepo-manager',
+    name: 'Monorepo Manager',
+    description: 'Comprehensive guide for managing monorepo workspaces with Turborepo, Nx, or pnpm workspaces. Build caching, dependency management, and package publishing workflows.',
+    longDescription: 'Master the art of monorepo management with best practices for Turborepo, Nx, and pnpm workspaces. This skill helps you configure build pipelines, optimize caching strategies, manage cross-package dependencies, and streamline your monorepo development workflow.',
+    category: 'development',
+    tags: ['monorepo', 'turborepo', 'nx', 'workspaces', 'build-optimization'],
+    icon: '⬡',
+    color: 'oklch(0.72 0.16 260)',
+    skillFile: `${GITHUB_RAW_BASE}/monorepo-manager.md`,
+    features: [
+      'Turborepo configuration and pipeline setup',
+      'Nx workspace optimization',
+      'pnpm workspaces and dependency management',
+      'Build caching and remote cache strategies',
+      'Package publishing and versioning workflows'
+    ],
+    useCases: [
+      'Setting up new monorepos',
+      'Managing shared packages and libraries',
+      'Optimizing CI/CD build times',
+      'Handling cross-package dependencies',
+      'Coordinated package publishing'
+    ],
+    compatibility: ['gemini', 'claude', 'cursor', 'windsurf', 'copilot'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    samplePrompts: [
+      {
+        prompt: "Set up a Turborepo monorepo with remote caching",
+        output: "I'll help you set up Turborepo with remote caching:\n\n```json\n// turbo.json\n{\n  \"$schema\": \"https://turbo.build/schema.json\",\n  \"globalDependencies\": [\"**/.env.*local\"],\n  \"pipeline\": {\n    \"build\": {\n      \"dependsOn\": [\"^build\"],\n      \"outputs\": [\"dist/**\", \".next/**\"]\n    },\n    \"test\": {\n      \"dependsOn\": [\"build\"],\n      \"outputs\": [\"coverage/**\"]\n    },\n    \"lint\": {\n      \"outputs\": []\n    },\n    \"dev\": {\n      \"cache\": false,\n      \"persistent\": true\n    }\n  },\n  \"remoteCache\": {\n    \"signature\": true\n  }\n}\n```\n\nEnable remote caching:\n```bash\nnpx turbo login\nnpx turbo link\n```\n\nThis configures build pipelines with proper dependency ordering and enables remote caching for faster CI/CD builds."
+      },
+      {
+        prompt: "How do I manage shared dependencies in a pnpm workspace?",
+        output: "Use pnpm workspace protocol for local dependencies:\n\n```yaml\n# pnpm-workspace.yaml\npackages:\n  - 'apps/*'\n  - 'packages/*'\n```\n\n```json\n// apps/web/package.json\n{\n  \"name\": \"@myorg/web\",\n  \"dependencies\": {\n    \"@myorg/ui\": \"workspace:*\",\n    \"@myorg/utils\": \"workspace:^1.0.0\"\n  }\n}\n```\n\n```json\n// package.json (root)\n{\n  \"scripts\": {\n    \"build\": \"turbo run build\",\n    \"dev\": \"turbo run dev --parallel\",\n    \"test\": \"turbo run test\"\n  },\n  \"devDependencies\": {\n    \"turbo\": \"latest\"\n  }\n}\n```\n\nThe `workspace:*` protocol ensures you always use the local version, while `workspace:^1.0.0` allows for version constraints."
+      }
+    ]
+  },
+  {
     id: 'skill-creator',
     name: 'Skill Creator',
     description: 'Guide for creating effective Claude Code skills with specialized knowledge, workflows, and tool integrations.',
@@ -148,6 +186,45 @@ export const skills: Skill[] = [
       {
         prompt: "Create a skill for React component development",
         output: "Here's a skill structure for React development:\n\n```markdown\n# React Component Skill\n\n## Trigger Words\n- \"create component\"\n- \"react component\"\n- \"build ui\"\n\n## Instructions\nWhen creating React components:\n1. Use functional components with hooks\n2. Apply TypeScript for type safety\n3. Follow naming conventions (PascalCase)\n4. Include prop types and defaults\n5. Add JSDoc comments for documentation\n\n## Example Output\n```tsx\ninterface ButtonProps {\n  label: string;\n  onClick: () => void;\n  variant?: 'primary' | 'secondary';\n}\n\nexport function Button({ label, onClick, variant = 'primary' }: ButtonProps) {\n  return (\n    <button className={`btn btn-${variant}`} onClick={onClick}>\n      {label}\n    </button>\n  );\n}\n```\n```"
+      }
+    ]
+  },
+  {
+    id: 'code-generation-pipeline',
+    name: 'Code Generation Pipeline',
+    description: 'Streamline boilerplate and scaffold generation with automatic validation. Trigger Cursor code generation, extract and organize generated code, validate against project standards, and auto-commit with proper attribution.',
+    longDescription: 'A comprehensive workflow for automating code generation with Cursor. This skill guides you through triggering AI-powered code generation, extracting and organizing generated files, validating against project standards, and automatically committing with proper attribution.',
+    category: 'development',
+    tags: ['cursor', 'code-generation', 'automation', 'validation', 'scaffolding'],
+    featured: true,
+    icon: '⚡',
+    color: 'oklch(0.73 0.19 155)',
+    skillFile: `${GITHUB_RAW_BASE}/code-generation-pipeline.md`,
+    features: [
+      'Cursor integration for AI code generation',
+      'Code extraction and organization by type',
+      'Project standards validation (lint, format, types)',
+      'Auto-commit with attribution',
+      'Multi-file generation workflows'
+    ],
+    useCases: [
+      'Scaffolding React components with tests',
+      'Generating API endpoints and routes',
+      'Creating boilerplate for features',
+      'Automating test suite generation',
+      'Batch file creation with validation'
+    ],
+    compatibility: ['claude', 'cursor', 'windsurf', 'copilot'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    samplePrompts: [
+      {
+        prompt: "Generate a Card component with TypeScript and tests",
+        output: "I'll create a complete Card component with proper structure:\n\n1. Generate files:\n```typescript\n// src/components/Card/Card.tsx\ninterface CardProps {\n  title: string;\n  description: string;\n  imageUrl?: string;\n  onClick?: () => void;\n}\n\nexport function Card({ title, description, imageUrl, onClick }: CardProps) {\n  return (\n    <div className=\"card\" onClick={onClick}>\n      {imageUrl && <img src={imageUrl} alt={title} />}\n      <h3>{title}</h3>\n      <p>{description}</p>\n    </div>\n  );\n}\n```\n\n2. Validate:\n- ✓ ESLint passed\n- ✓ TypeScript check passed\n- ✓ Tests written and passing\n\n3. Auto-commit:\n```bash\ngit commit -m \"feat(components): add Card component\n\nGenerated using Cursor AI\n- TypeScript props interface\n- Accessible markup\n- Unit tests included\n\nCo-authored-by: Cursor AI <cursor@cursor.sh>\"\n```"
+      },
+      {
+        prompt: "Scaffold a REST API for user management",
+        output: "Creating a complete user management API:\n\n```typescript\n// src/api/users/users.controller.ts\nimport { Router } from 'express';\nimport { UsersService } from './users.service';\n\nconst router = Router();\nconst usersService = new UsersService();\n\nrouter.get('/', async (req, res) => {\n  const users = await usersService.findAll();\n  res.json(users);\n});\n\nrouter.post('/', async (req, res) => {\n  const user = await usersService.create(req.body);\n  res.status(201).json(user);\n});\n\nexport { router as usersRouter };\n```\n\nGenerated structure:\n- users.controller.ts (HTTP handlers)\n- users.service.ts (business logic)\n- users.repository.ts (data access)\n- users.types.ts (TypeScript types)\n- __tests__/ (unit & integration tests)\n\nValidation: All linting, type checks, and tests passed ✓"
       }
     ]
   },
@@ -593,24 +670,25 @@ export const skills: Skill[] = [
     id: 'git-workflow',
     name: 'Git Workflow',
     description: 'Streamlined Git workflows for common development tasks. Handles branching strategies, commit conventions, and merge conflict resolution.',
-    longDescription: 'A comprehensive Git workflow skill that helps you follow best practices for version control. This community-contributed skill covers branching strategies like GitFlow and trunk-based development, conventional commit messages, interactive rebasing, and efficient merge conflict resolution.',
+    longDescription: 'A comprehensive Git workflow skill that helps you follow best practices for version control. This community-contributed skill covers branching strategies like GitFlow and trunk-based development, conventional commit messages, interactive rebasing, cherry-picking, and efficient merge conflict resolution.',
     category: 'development',
-    tags: ['git', 'version-control', 'workflow', 'collaboration'],
+    tags: ['git', 'version-control', 'workflow', 'branching'],
     icon: '⎇',
     color: 'oklch(0.68 0.16 30)',
     skillFile: `${GITHUB_RAW_BASE}/git-workflow.md`,
     features: [
       'GitFlow and trunk-based branching',
       'Conventional commit message formatting',
-      'Interactive rebase guidance',
+      'Interactive rebase and cherry-picking',
       'Merge conflict resolution strategies',
+      'Git history cleanup',
       'Git hooks and automation'
     ],
     useCases: [
-      'Setting up project branching strategy',
-      'Writing clear commit messages',
-      'Resolving complex merge conflicts',
-      'Automating Git workflows',
+      'Managing feature branches',
+      'Cleaning up commit history',
+      'Resolving merge conflicts',
+      'Setting up git workflows',
       'Code review preparation'
     ],
     compatibility: ['gemini', 'claude'],
@@ -620,6 +698,257 @@ export const skills: Skill[] = [
       name: 'Community Contributor',
       github: 'example-contributor'
     }
+  },
+  {
+    id: 'sql-optimizer',
+    name: 'SQL Optimizer',
+    description: 'Optimize SQL queries and database performance through execution plan analysis, index suggestions, and query rewriting for maximum efficiency.',
+    longDescription: 'A comprehensive SQL query optimization skill that helps you identify and fix performance bottlenecks in your database queries. Analyze execution plans, suggest optimal indexes, rewrite inefficient queries, detect N+1 query problems, and apply database-specific optimizations for PostgreSQL, MySQL, SQL Server, and more.',
+    category: 'development',
+    tags: ['sql', 'database', 'performance', 'optimization'],
+    icon: '⬢',
+    color: 'oklch(0.70 0.15 190)',
+    features: [
+      'Analyze query execution plans',
+      'Suggest index improvements',
+      'Rewrite inefficient queries',
+      'Identify N+1 query problems',
+      'Database-specific optimizations'
+    ],
+    useCases: [
+      'Improving query performance',
+      'Database tuning',
+      'Identifying bottlenecks',
+      'Migration optimization'
+    ],
+    compatibility: ['gemini', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27'
+  },
+  {
+    id: 'api-docs-generator',
+    name: 'API Docs Generator',
+    description: 'Generate comprehensive API documentation from code. Create OpenAPI/Swagger specs, markdown docs, and SDK references for REST APIs.',
+    longDescription: 'A comprehensive skill for generating API documentation from your codebase. Automatically create OpenAPI/Swagger specifications, generate markdown API documentation, document REST endpoints, and create client SDK references. Supports multiple programming languages including TypeScript, Python, and Go.',
+    category: 'development',
+    tags: ['api', 'documentation', 'openapi', 'swagger'],
+    featured: false,
+    icon: '◇',
+    color: 'oklch(0.73 0.16 160)',
+    skillFile: `${GITHUB_RAW_BASE}/api-docs-generator.md`,
+    features: [
+      'Generate OpenAPI/Swagger specs from code',
+      'Create markdown API documentation',
+      'Document REST endpoints automatically',
+      'Generate client SDK documentation',
+      'Support for multiple languages (TypeScript, Python, Go)'
+    ],
+    useCases: [
+      'Documenting REST APIs',
+      'Creating API reference guides',
+      'Generating SDK documentation',
+      'Maintaining up-to-date API specs',
+      'Auto-generating API documentation from code'
+    ],
+    compatibility: ['gemini', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27'
+  },
+  {
+    id: 'cicd-builder',
+    name: 'CI/CD Builder',
+    description: 'Create CI/CD pipelines and automation workflows for GitHub Actions, GitLab CI, and more. Build multi-stage pipelines, deployment automation, and code quality checks.',
+    longDescription: 'A comprehensive skill for creating continuous integration and deployment pipelines. This skill guides you through building GitHub Actions workflows, GitLab CI configurations, and other automation pipelines with best practices for testing, building, and deploying your applications.',
+    category: 'development',
+    tags: ['cicd', 'github-actions', 'automation', 'devops'],
+    icon: '⚙',
+    color: 'oklch(0.72 0.16 180)',
+    skillFile: `${GITHUB_RAW_BASE}/cicd-builder.md`,
+    features: [
+      'GitHub Actions workflow templates',
+      'GitLab CI/CD configuration',
+      'Multi-stage build pipelines',
+      'Deployment automation workflows',
+      'Testing and linting integration',
+      'Environment and secrets management'
+    ],
+    useCases: [
+      'Setting up automated testing pipelines',
+      'Creating deployment workflows',
+      'Building release automation',
+      'Automating code quality checks',
+      'Configuring multi-environment deployments'
+    ],
+    compatibility: ['gemini', 'claude', 'cursor', 'windsurf', 'copilot'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    samplePrompts: [
+      {
+        prompt: "Create a GitHub Actions workflow for a Node.js app with testing and deployment",
+        output: "Here's a comprehensive GitHub Actions workflow for Node.js:\n\n```yaml\nname: CI/CD Pipeline\n\non:\n  push:\n    branches: [main, develop]\n  pull_request:\n    branches: [main]\n\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: Setup Node.js\n        uses: actions/setup-node@v4\n        with:\n          node-version: '20'\n          cache: 'npm'\n      - run: npm ci\n      - run: npm test\n      - run: npm run lint\n\n  deploy:\n    needs: test\n    if: github.ref == 'refs/heads/main'\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: Deploy to production\n        env:\n          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}\n        run: npm run deploy\n```\n\nThis workflow runs tests and linting on every push, then deploys to production when merged to main."
+      },
+      {
+        prompt: "Set up a multi-stage Docker build pipeline with caching",
+        output: "Here's a GitHub Actions workflow with optimized Docker builds:\n\n```yaml\nname: Docker Build\n\non:\n  push:\n    branches: [main]\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      \n      - name: Set up Docker Buildx\n        uses: docker/setup-buildx-action@v3\n      \n      - name: Login to Docker Hub\n        uses: docker/login-action@v3\n        with:\n          username: ${{ secrets.DOCKER_USERNAME }}\n          password: ${{ secrets.DOCKER_TOKEN }}\n      \n      - name: Build and push\n        uses: docker/build-push-action@v5\n        with:\n          context: .\n          push: true\n          tags: myapp:latest\n          cache-from: type=registry,ref=myapp:buildcache\n          cache-to: type=registry,ref=myapp:buildcache,mode=max\n```\n\nThis uses layer caching to speed up builds significantly."
+      }
+    ]
+  },
+  {
+    id: 'code-reviewer',
+    name: 'Code Reviewer',
+    description: 'Automated code review with best practices. Identify code smells, suggest refactoring improvements, check for security issues, and enforce coding standards.',
+    longDescription: 'A comprehensive code review skill that helps you maintain high code quality through automated analysis. This skill identifies code smells, suggests refactoring improvements, checks for security vulnerabilities, enforces coding standards, and provides performance optimization recommendations.',
+    category: 'development',
+    tags: ['code-review', 'quality', 'best-practices', 'refactoring'],
+    icon: '◇',
+    color: 'oklch(0.72 0.17 160)',
+    skillFile: `${GITHUB_RAW_BASE}/code-reviewer.md`,
+    features: [
+      'Identify code smells and anti-patterns',
+      'Suggest refactoring improvements',
+      'Check for security vulnerabilities',
+      'Enforce coding standards and conventions',
+      'Performance optimization recommendations'
+    ],
+    useCases: [
+      'Pull request code reviews',
+      'Code quality audits',
+      'Refactoring guidance',
+      'Learning best practices',
+      'Pre-commit quality checks'
+    ],
+    compatibility: ['gemini', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    samplePrompts: [
+      {
+        prompt: "Review this React component for best practices",
+        output: "I'll analyze your React component for best practices:\n\n**Code Smells Identified:**\n1. [x] Missing prop validation\n2. [x] Inline function creation in render (performance)\n3. [x] Direct state mutation\n\n**Recommendations:**\n```tsx\n// Before\nfunction UserCard({ user }) {\n  const [count, setCount] = useState(0);\n  return <button onClick={() => setCount(count + 1)}>Click</button>;\n}\n\n// After\ninterface UserCardProps {\n  user: User;\n}\n\nfunction UserCard({ user }: UserCardProps) {\n  const [count, setCount] = useState(0);\n  const handleClick = useCallback(() => {\n    setCount(prev => prev + 1);\n  }, []);\n  \n  return <button onClick={handleClick}>Click {count}</button>;\n}\n```\n\n**Improvements:**\n[+] Added TypeScript interface for props\n[+] Used useCallback to prevent function recreation\n[+] Used functional setState to avoid stale closures"
+      },
+      {
+        prompt: "Check this API endpoint for security issues",
+        output: "Security review of your API endpoint:\n\n**Security Issues Found:**\n\n1. [CRITICAL] **SQL Injection Risk**\n```javascript\n// Vulnerable\nconst query = `SELECT * FROM users WHERE id = ${req.params.id}`;\n\n// Secure\nconst query = 'SELECT * FROM users WHERE id = ?';\ndb.query(query, [req.params.id]);\n```\n\n2. [HIGH] **Missing Input Validation**\n```javascript\n// Add validation\nconst { error, value } = schema.validate(req.body);\nif (error) return res.status(400).json({ error: error.message });\n```\n\n3. [MEDIUM] **No Rate Limiting**\n```javascript\n// Add rate limiting middleware\nconst rateLimit = require('express-rate-limit');\napp.use('/api/', rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));\n```\n\n**Best Practices:**\n[+] Use parameterized queries\n[+] Validate all user input\n[+] Implement rate limiting\n[+] Add authentication checks\n[+] Log security events"
+      }
+    ]
+  },
+  {
+    id: 'data-viz',
+    name: 'Data Viz',
+    description: 'Create charts and data visualizations using D3.js and Chart.js. Build interactive dashboards, analytics displays, and export to SVG/PNG with responsive layouts.',
+    longDescription: 'A comprehensive data visualization skill that enables you to create stunning, interactive charts and graphs using industry-standard libraries like D3.js and Chart.js. Transform raw data into compelling visual stories with responsive layouts that work across all devices.',
+    category: 'creative',
+    tags: ['charts', 'd3js', 'visualization', 'data'],
+    icon: '◬',
+    color: 'oklch(0.70 0.22 200)',
+    features: [
+      'Create charts with D3.js and Chart.js',
+      'Interactive data visualizations',
+      'Dashboard components',
+      'Export to SVG/PNG formats',
+      'Responsive chart layouts'
+    ],
+    useCases: [
+      'Building analytics dashboards',
+      'Creating reports with charts',
+      'Visualizing datasets',
+      'Presenting metrics'
+    ],
+    compatibility: ['gemini', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27'
+  },
+  {
+    id: 'email-drafter',
+    name: 'Email Drafter',
+    description: 'Draft professional emails for business correspondence, sales outreach, customer support, and internal communications with tone adjustment and templates.',
+    longDescription: 'A professional email writing skill that helps you craft effective emails for any business context. This skill provides templates for various scenarios, tone adjustment capabilities (formal to casual), follow-up email sequences, cold outreach templates, and response drafting assistance to ensure your email communications are clear, professional, and effective.',
+    category: 'business',
+    tags: ['email', 'communication', 'professional', 'writing'],
+    icon: '✉',
+    color: 'oklch(0.66 0.13 85)',
+    skillFile: `${GITHUB_RAW_BASE}/email-drafter.md`,
+    features: [
+      'Professional email templates',
+      'Tone adjustment (formal/casual)',
+      'Follow-up email sequences',
+      'Cold outreach templates',
+      'Response drafting'
+    ],
+    useCases: [
+      'Business correspondence',
+      'Sales outreach',
+      'Customer support replies',
+      'Internal communications'
+    ],
+    compatibility: ['gemini', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27'
+  },
+  {
+    id: 'regex-builder',
+    name: 'Regex Builder',
+    description: 'Build and test regular expressions with multi-language syntax support. Create complex patterns, validate against sample data, and explain regex in plain English.',
+    longDescription: 'A comprehensive skill for building, testing, and understanding regular expressions across multiple programming languages. This skill helps you construct complex regex patterns, test them against sample data, translate patterns into plain English explanations, and provides a common pattern library for frequently used validations.',
+    category: 'development',
+    tags: ['regex', 'patterns', 'validation', 'parsing'],
+    icon: '◇',
+    color: 'oklch(0.72 0.16 140)',
+    skillFile: `${GITHUB_RAW_BASE}/regex-builder.md`,
+    features: [
+      'Build complex regex patterns',
+      'Test against sample data',
+      'Explain regex in plain English',
+      'Common pattern library',
+      'Multi-language syntax support'
+    ],
+    useCases: [
+      'Data validation',
+      'Text parsing and extraction',
+      'Search and replace operations',
+      'Input sanitization',
+      'Log file analysis'
+    ],
+    compatibility: ['gemini', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    samplePrompts: [
+      {
+        prompt: "Create a regex pattern to validate email addresses",
+        output: "Here's a regex pattern for email validation:\n\n```regex\n^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$\n```\n\n**Explanation:**\n- `^` - Start of string\n- `[a-zA-Z0-9._%+-]+` - One or more letters, numbers, or special chars (., _, %, +, -)\n- `@` - Literal @ symbol\n- `[a-zA-Z0-9.-]+` - Domain name with letters, numbers, dots, hyphens\n- `\\.` - Literal dot\n- `[a-zA-Z]{2,}` - Top-level domain (2+ letters)\n- `$` - End of string\n\n**Test cases:**\n✓ user@example.com\n✓ john.doe+filter@company.co.uk\n✗ invalid@\n✗ @example.com"
+      },
+      {
+        prompt: "Extract all URLs from text using regex",
+        output: "Pattern to extract URLs:\n\n```regex\nhttps?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&\\/\\/=]*)\n```\n\n**Usage in JavaScript:**\n```javascript\nconst text = \"Visit https://example.com or http://test.org\";\nconst urlRegex = /https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&\\/\\/=]*)/g;\nconst urls = text.match(urlRegex);\nconsole.log(urls); // ['https://example.com', 'http://test.org']\n```\n\n**Python:**\n```python\nimport re\ntext = \"Visit https://example.com or http://test.org\"\npattern = r'https?://(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)'\nurls = re.findall(pattern, text)\nprint(urls)\n```"
+      }
+    ]
+  },
+  {
+    id: 'schema-designer',
+    name: 'Schema Designer',
+    description: 'Design and visualize database schemas with SQL migration generation, ERD diagrams, and normalization support for PostgreSQL, MySQL, and SQLite.',
+    longDescription: 'A comprehensive database schema design skill that helps you create, visualize, and manage database structures. Design schemas visually, generate SQL migrations, create Entity-Relationship Diagrams (ERD), and normalize database structures following best practices. Supports PostgreSQL, MySQL, and SQLite with production-ready migration scripts.',
+    category: 'development',
+    tags: ['database', 'schema', 'sql', 'erd'],
+    icon: '◫',
+    color: 'oklch(0.72 0.16 160)',
+    skillFile: `${GITHUB_RAW_BASE}/schema-designer.md`,
+    features: [
+      'Visual database schema design',
+      'SQL migration generation',
+      'ERD diagram creation',
+      'Database normalization',
+      'PostgreSQL, MySQL, SQLite support'
+    ],
+    useCases: [
+      'Designing new databases',
+      'Refactoring existing schemas',
+      'Creating migration scripts',
+      'Documenting data models',
+      'Schema optimization'
+    ],
+    compatibility: ['gemini', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27'
   },
   {
     id: 'imessage',
@@ -689,6 +1018,32 @@ export const skills: Skill[] = [
         output: "Comparing rule versions:\n\n**v1.0 (3 months ago)**\n- Code consistency: 75%\n- Review time: baseline\n- Pattern compliance: 68%\n\n**v2.0 (current)**\n- Code consistency: 92% (+17%)\n- Review time: -35% faster\n- Pattern compliance: 87% (+19%)\n\n**Key improvements:**\n- Added specific TypeScript patterns\n- Clarified component structure rules\n- Included error handling guidelines\n\n**Recommendations:**\n- Update state management section (detected new patterns)\n- Add accessibility rules (low compliance detected)\n- Consider splitting into domain-specific rule files"
       }
     ]
+  },
+  {
+    id: 'research-assistant',
+    name: 'Research Assistant',
+    description: 'Deep research with citations and sources. Summarize research papers, compare multiple sources, and create comprehensive research reports.',
+    longDescription: 'A comprehensive research skill that helps you conduct thorough investigations on any topic. This skill excels at finding credible sources, verifying information, summarizing academic papers, and synthesizing insights from multiple sources into well-structured research reports with proper citations.',
+    category: 'productivity',
+    tags: ['research', 'analysis', 'citations', 'knowledge'],
+    icon: '◉',
+    color: 'oklch(0.68 0.16 250)',
+    features: [
+      'Deep topic research across multiple sources',
+      'Source citation and verification',
+      'Summarize research papers and academic content',
+      'Compare and synthesize multiple sources',
+      'Create structured research reports'
+    ],
+    useCases: [
+      'Academic research and literature reviews',
+      'Market research and competitive analysis',
+      'Technical deep dives and documentation',
+      'Fact-checking and source verification'
+    ],
+    compatibility: ['gemini', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27'
   }
 ]
 

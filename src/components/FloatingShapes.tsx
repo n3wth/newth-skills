@@ -12,17 +12,55 @@ export function FloatingShapes() {
 
     const shapes = containerRef.current.querySelectorAll('.floating-shape')
     const ctx = gsap.context(() => {
+      // Stagger entrance of shapes
+      gsap.fromTo(
+        shapes,
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 0.6,
+          duration: 1.2,
+          delay: (i: number) => i * 0.1,
+          ease: 'power2.out',
+          stagger: 0.05,
+        }
+      )
+
+      // Floating animation - layered and orchestrated
       shapes.forEach((shape, i) => {
-        // Floating animation only - no fade in
-        gsap.to(shape, {
-          x: `random(-60, 60)`,
-          y: `random(-40, 40)`,
-          rotation: `random(-15, 15)`,
-          duration: 10 + i * 2,
-          repeat: -1,
-          yoyo: true,
-          ease: 'sine.inOut',
-        })
+        // Create a layered floating effect with varied speeds
+        const timeline = gsap.timeline({ repeat: -1, yoyo: true })
+
+        timeline.to(
+          shape,
+          {
+            x: `random(-60, 60)`,
+            duration: 12 + i * 1.5,
+            ease: 'sine.inOut',
+          },
+          0
+        )
+
+        timeline.to(
+          shape,
+          {
+            y: `random(-40, 40)`,
+            duration: 14 + i * 1.8,
+            ease: 'sine.inOut',
+          },
+          0
+        )
+
+        timeline.to(
+          shape,
+          {
+            rotation: `random(-20, 20)`,
+            duration: 16 + i * 2,
+            ease: 'sine.inOut',
+          },
+          0
+        )
       })
     }, containerRef)
 
