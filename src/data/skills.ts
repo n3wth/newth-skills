@@ -1084,7 +1084,416 @@ export const skills: Skill[] = [
     compatibility: ['gemini', 'claude'],
     version: '1.0.0',
     lastUpdated: '2026-01-27'
-  }
+  },
+  {
+    id: 'ai-rules-manager',
+    name: 'AI Rules Manager',
+    description: 'Generate, version, and manage .cursor/rules files with automatic pattern learning. Create scoped AI instructions from codebase patterns.',
+    longDescription: 'Automatically learn project conventions and create scoped AI instructions from your codebase patterns. This skill helps you generate, version control, and manage .cursor/rules files, track rule effectiveness, and maintain consistent AI assistance across your project.',
+    category: 'development',
+    tags: ['ai', 'cursor', 'rules', 'automation', 'patterns'],
+    featured: false,
+    icon: '⚙',
+    color: 'oklch(0.68 0.16 210)',
+    skillFile: `${GITHUB_RAW_BASE}/ai-rules-manager.md`,
+    features: [
+      'Auto-generate rules from code patterns',
+      'Version control and comparison',
+      'Quick rule templates',
+      'Rule effectiveness tracking',
+      'Pattern learning from codebase'
+    ],
+    useCases: [
+      'Creating project-specific AI guidelines',
+      'Maintaining consistent code patterns',
+      'Tracking rule compliance',
+      'Versioning AI instructions',
+      'Team-wide AI configuration'
+    ],
+    compatibility: ['claude', 'cursor', 'windsurf', 'copilot'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    samplePrompts: [
+      {
+        prompt: "Generate cursor rules from my React codebase",
+        output: "I'll analyze your codebase patterns and generate appropriate rules:\n\n```markdown\n# React TypeScript Project Rules\n\n## Component Patterns\n- Use functional components with TypeScript\n- Prefer named exports for components\n- Use React.FC or explicit return types\n- Organize components in feature-based folders\n\n## State Management\n- Use hooks (useState, useReducer) for local state\n- Use Context API for app-wide state\n\n## Styling\n- Follow detected styling approach (e.g., CSS modules, styled-components, or utility classes)\n- Maintain consistent spacing patterns\n\n## Testing\n- Write tests using React Testing Library\n- Aim for 80%+ code coverage\n```\n\nThese rules are based on patterns detected in your existing components."
+      },
+      {
+        prompt: "Compare cursor rules between v1.0.0 and v1.1.0",
+        output: "Here's the diff between rule versions:\n\n```diff\n# v1.0.0 → v1.1.0 Changes\n\n## Added\n+ - Mandatory test coverage requirements (80%+)\n+ - Performance budget rules for API endpoints\n+ - Security scanning requirements\n\n## Changed\n~ - Updated TypeScript config to strict mode\n~ - Modified component structure guidelines\n\n## Removed\n- - Class component patterns (deprecated)\n```\n\nThe v1.1.0 rules add stricter quality requirements and remove deprecated patterns."
+      }
+    ]
+  },
+  {
+    id: 'codebase-context-builder',
+    name: 'Codebase Context Builder',
+    description: 'Analyze project structure and generate AI context for Cursor rules. Improve AI understanding of project architecture and coding patterns.',
+    longDescription: 'A comprehensive skill for analyzing codebases and generating AI-friendly documentation. This skill helps you understand project structure, extract architectural patterns, analyze dependencies, and create effective Cursor rules that improve AI assistant understanding of your codebase.',
+    category: 'development',
+    tags: ['analysis', 'architecture', 'documentation', 'cursor', 'ai-context'],
+    featured: false,
+    icon: '◉',
+    color: 'oklch(0.72 0.17 180)',
+    skillFile: `${GITHUB_RAW_BASE}/codebase-context-builder.md`,
+    features: [
+      'Project structure analysis',
+      'Dependency mapping and analysis',
+      'Architectural pattern detection',
+      'Cursor rules generation',
+      'Extract architectural decisions',
+      'Automated codebase documentation'
+    ],
+    useCases: [
+      'Creating Cursor rules for new projects',
+      'Documenting project architecture for AI',
+      'Analyzing unfamiliar codebases',
+      'Generating project context documentation',
+      'Extracting coding conventions'
+    ],
+    compatibility: ['claude', 'cursor', 'windsurf', 'copilot'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27'
+  },
+  {
+    id: 'cursor-code-review',
+    name: 'Cursor Code Review Assistant',
+    description: 'Review AI-generated code for quality and suggest improvements to your AI rules based on output quality. Ensures code meets team standards and continuously improves AI assistant configurations.',
+    longDescription: 'A comprehensive code review skill that helps you validate AI-generated code against team standards before committing. This skill analyzes code quality, identifies patterns in issues, suggests improvements to your Cursor AI rules, and tracks quality metrics over time to ensure continuous improvement of AI-generated code.',
+    category: 'development',
+    tags: ['code-review', 'cursor', 'quality', 'standards', 'ai-rules'],
+    featured: true,
+    icon: '✓',
+    color: 'oklch(0.70 0.16 280)',
+    skillFile: `${GITHUB_RAW_BASE}/cursor-code-review.md`,
+    features: [
+      'Pre-commit quality review process',
+      'Team standards validation',
+      'AI rules improvement suggestions',
+      'Quality metrics tracking',
+      'Context-aware code analysis'
+    ],
+    useCases: [
+      'Reviewing generated code before commit',
+      'Checking against team coding standards',
+      'Improving Cursor AI rules configuration',
+      'Tracking code quality trends',
+      'Setting up automated code review workflows'
+    ],
+    compatibility: ['cursor', 'claude', 'windsurf'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    samplePrompts: [
+      {
+        prompt: "Review the authentication code I just generated before I commit",
+        output: "## Code Review: Authentication Module\n\n### ✅ Strengths\n- Proper TypeScript types used throughout\n- Password hashing implemented correctly\n- JWT token generation follows best practices\n\n### ⚠️ Issues Found\n1. Missing error handling in `login()` function\n   - Line 45: API call not wrapped in try-catch\n   - Recommendation: Add error handling with specific error types\n\n2. Hardcoded JWT secret\n   - Line 23: Secret directly in code\n   - Recommendation: Move to environment variables\n\n### 📋 Before Committing\n- [ ] Fix error handling in login function\n- [ ] Move JWT secret to .env\n- [ ] Add rate limiting (or create follow-up ticket)\n- [ ] Add tests for error cases"
+      },
+      {
+        prompt: "Check if the new API endpoints follow our team standards",
+        output: "✅ PASS: TypeScript strict mode\n✅ PASS: Async/await used consistently\n✅ PASS: Proper error handling\n⚠️ WARN: Some files over 200 lines (api/users.ts: 245 lines)\n❌ FAIL: Missing input validation on 3 endpoints\n❌ FAIL: No authentication checks on public routes\n\n## Required Changes:\n1. Add input validation using Zod or Joi\n2. Split large files into smaller modules\n3. Add authentication middleware to protected routes"
+      }
+    ]
+  },
+  {
+    id: 'cursor-driven-refactoring',
+    name: 'Cursor-Driven Refactoring',
+    description: 'Batch refactoring operations using Cursor agents with validation and rollback. Safe large-scale code transformations with automated testing.',
+    longDescription: 'A comprehensive refactoring skill that leverages Cursor\'s agent mode for large-scale code transformations. Includes change tracking, automated validation, test running, and rollback capabilities to ensure safe refactoring operations across entire codebases.',
+    category: 'development',
+    tags: ['refactoring', 'cursor', 'agent', 'testing', 'validation'],
+    icon: '⟲',
+    color: 'oklch(0.70 0.15 150)',
+    skillFile: `${GITHUB_RAW_BASE}/cursor-driven-refactoring.md`,
+    features: [
+      'Batch refactoring via Cursor agent',
+      'Automated change tracking',
+      'Test validation after changes',
+      'Rollback capability on failures',
+      'Summary report generation'
+    ],
+    useCases: [
+      'Renaming functions across codebase',
+      'Restructuring file organization',
+      'Extracting components or utilities',
+      'Consolidating duplicate code',
+      'Safe large-scale code changes'
+    ],
+    compatibility: ['claude', 'cursor'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    contributor: {
+      name: 'newth.ai'
+    }
+  },
+  {
+    id: 'cursor-git-workflow',
+    name: 'Cursor ↔ Git Workflow',
+    description: 'Integrate Cursor AI editor seamlessly into git workflows. Generate branch-specific contexts, create PR-based rules, validate code with git hooks, and auto-stash experimental changes.',
+    longDescription: 'A comprehensive skill for integrating Cursor AI editor with Git-based development workflows. Automatically generate branch-specific .cursorrules, create context from PR changes, validate AI-generated code with pre-commit hooks, and manage experimental changes with auto-stash functionality.',
+    category: 'development',
+    tags: ['cursor', 'git', 'workflow', 'automation', 'ai-editor'],
+    icon: '⚡',
+    color: 'oklch(0.72 0.20 260)',
+    skillFile: `${GITHUB_RAW_BASE}/cursor-git-workflow.md`,
+    features: [
+      'Branch-specific context generation',
+      'PR-based Cursor rule creation',
+      'Git hooks for AI code validation',
+      'Auto-stash experimental changes',
+      'Conventional commit enforcement'
+    ],
+    useCases: [
+      'Generate Cursor rules from git branch changes',
+      'Create context from GitHub PR for code review',
+      'Validate AI-generated code before commits',
+      'Auto-stash experimental Cursor changes',
+      'Maintain branch-focused AI context'
+    ],
+    compatibility: ['claude'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    contributor: {
+      name: 'newth.ai',
+      github: 'n3wth'
+    }
+  },
+  {
+    id: 'cursor-linear-bridge',
+    name: 'Cursor ↔ Linear Bridge',
+    description: 'Create Cursor workspaces from Linear issues with bidirectional sync. Connect issue tracking with development context for seamless workflow.',
+    longDescription: 'A workflow automation skill that bridges Linear issue tracking with Cursor development environments. Automatically generate workspaces from Linear issues, create issue-specific .cursor/rules files, and maintain bidirectional sync with smart comments and status updates.',
+    category: 'development',
+    tags: ['cursor', 'linear', 'workflow', 'automation', 'integration'],
+    icon: '↔',
+    color: 'oklch(0.72 0.17 200)',
+    skillFile: `${GITHUB_RAW_BASE}/cursor-linear-bridge.md`,
+    features: [
+      'Workspace generation from Linear issues',
+      'Auto-generated issue-specific rules',
+      'Bidirectional sync between tools',
+      'Smart Linear comments with progress',
+      'Context preservation across platforms'
+    ],
+    useCases: [
+      'Starting work on Linear issues',
+      'Automating workspace setup',
+      'Syncing development progress to Linear',
+      'Maintaining issue context in IDE',
+      'Streamlining issue-to-code workflow'
+    ],
+    compatibility: ['claude', 'cursor'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27'
+  },
+  {
+    id: 'cursor-project-bootstrapper',
+    name: 'Cursor Project Bootstrapper',
+    description: 'Create new Cursor workspaces with pre-configured rules, extensions, and settings. Automate workspace initialization for different project types with context-aware configuration.',
+    longDescription: 'A comprehensive workspace setup skill for Cursor IDE. This skill guides you through creating properly configured Cursor workspaces for different project types including React, Python, Monorepo, and more. It helps you set up .cursor/rules with project-specific AI instructions, configure settings for team synchronization, and follow framework conventions.',
+    category: 'development',
+    tags: ['cursor', 'workspace', 'setup', 'configuration', 'templates'],
+    icon: '◉',
+    color: 'oklch(0.70 0.20 200)',
+    skillFile: `${GITHUB_RAW_BASE}/cursor-project-bootstrapper.md`,
+    features: [
+      'Template-based setup for React, Python, Monorepo, etc.',
+      'Auto-populate .cursor/rules with project-specific AI instructions',
+      'Sync settings across team members',
+      'Support for different framework conventions',
+      'Extension recommendations per project type'
+    ],
+    useCases: [
+      'Initialize new Cursor workspace for React project',
+      'Set up Python FastAPI project with Cursor configuration',
+      'Bootstrap monorepo with team-wide Cursor settings',
+      'Configure Cursor for Next.js App Router',
+      'Sync workspace settings across development team'
+    ],
+    compatibility: ['claude', 'cursor'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27'
+  },
+  {
+    id: 'cursor-project-scanner',
+    name: 'Cursor Project Scanner',
+    description: 'Audit Cursor configuration health and identify configuration gaps across projects. Ensure all projects have optimal Cursor configuration.',
+    longDescription: 'A comprehensive auditing tool for Cursor IDE configurations. Scan multiple projects to identify missing or outdated .cursor/rules files, generate compliance reports, and ensure consistent Cursor setup across your development environment with automated health checks.',
+    category: 'development',
+    tags: ['cursor', 'configuration', 'audit', 'devtools'],
+    icon: '⚙',
+    color: 'oklch(0.72 0.17 200)',
+    skillFile: `${GITHUB_RAW_BASE}/cursor-project-scanner.md`,
+    features: [
+      'Configuration health audit across projects',
+      'Missing rules detection',
+      'Outdated configuration identification',
+      'Compliance report generation',
+      'Multi-project scanning support'
+    ],
+    useCases: [
+      'Auditing team Cursor configurations',
+      'Finding projects missing setup',
+      'Ensuring configuration consistency',
+      'Generating compliance reports',
+      'Automating configuration checks'
+    ],
+    compatibility: ['claude', 'cursor'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    samplePrompts: [
+      {
+        prompt: "Scan all my projects for Cursor configuration",
+        output: "I'll create a scanner to audit your projects:\n\n```bash\n#!/bin/bash\nPROJECTS_DIR=\"$HOME/projects\"\n\nfor project in \"$PROJECTS_DIR\"/*; do\n  if [ -d \"$project\" ]; then\n    echo \"Checking: $(basename \"$project\")\"\n    \n    if [ -d \"$project/.cursor\" ]; then\n      echo \"  ✓ .cursor directory found\"\n      \n      if [ -f \"$project/.cursor/rules\" ]; then\n        echo \"  ✓ .cursor/rules file exists\"\n      else\n        echo \"  ✗ Missing .cursor/rules file\"\n      fi\n    else\n      echo \"  ✗ No Cursor configuration found\"\n    fi\n  fi\ndone\n```\n\nThis script will check each project for Cursor configuration and report any gaps."
+      },
+      {
+        prompt: "Generate a compliance report for Cursor configurations",
+        output: "I'll create a Python script to generate a detailed compliance report:\n\n```python\nimport os\nimport json\nfrom pathlib import Path\nfrom datetime import datetime\n\nclass CursorScanner:\n    def scan_project(self, project_path):\n        result = {\n            'name': project_path.name,\n            'has_cursor_dir': (project_path / '.cursor').exists(),\n            'has_rules': (project_path / '.cursor' / 'rules').exists(),\n            'status': 'missing'\n        }\n        \n        if result['has_rules']:\n            result['status'] = 'healthy'\n        elif result['has_cursor_dir']:\n            result['status'] = 'partial'\n        \n        return result\n    \n    def generate_report(self, projects_dir):\n        results = []\n        for item in Path(projects_dir).iterdir():\n            if item.is_dir():\n                results.append(self.scan_project(item))\n        \n        return {\n            'generated': datetime.now().isoformat(),\n            'projects': results,\n            'summary': {\n                'total': len(results),\n                'healthy': sum(1 for r in results if r['status'] == 'healthy')\n            }\n        }\n\nscanner = CursorScanner()\nreport = scanner.generate_report(os.path.expanduser('~/projects'))\nprint(json.dumps(report, indent=2))\n```\n\nThis creates a JSON report showing configuration health across all projects."
+      }
+    ]
+  },
+  {
+    id: 'cursor-usage-analytics',
+    name: 'Cursor Usage Analytics',
+    description: 'Track Cursor usage patterns, model preferences, and code quality improvements. Optimize your AI-assisted development workflow through data-driven insights.',
+    longDescription: 'Understand how you use Cursor\'s AI features to optimize configuration, reduce costs, and improve code quality. Track agent modes, analyze code patterns, and measure the impact of AI assistance on your development workflow.',
+    category: 'development',
+    tags: ['cursor', 'analytics', 'ai-coding', 'metrics', 'optimization'],
+    featured: false,
+    icon: '📊',
+    color: 'oklch(0.72 0.15 220)',
+    skillFile: `${GITHUB_RAW_BASE}/cursor-usage-analytics.md`,
+    features: [
+      'Track agent modes and usage patterns',
+      'Analyze code generation quality',
+      'Measure productivity improvements',
+      'Optimize AI model costs',
+      'Pattern recognition and templates'
+    ],
+    useCases: [
+      'Monitor Cursor usage across projects',
+      'Optimize model selection for cost',
+      'Track code quality improvements',
+      'Identify common code patterns',
+      'Generate usage reports'
+    ],
+    compatibility: ['cursor', 'claude'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    samplePrompts: [
+      {
+        prompt: "Set up basic Cursor usage tracking",
+        output: "I'll help you create a simple usage tracker:\n\n```python\nfrom cursor_analytics import CursorAnalytics\n\nanalytics = CursorAnalytics()\nanalytics.log_session(\n    mode='composer',\n    model='claude-3.5-sonnet',\n    tokens_used=2500,\n    code_lines=45,\n    duration_minutes=15\n)\n\n# Get weekly summary\nsummary = analytics.get_usage_summary(days=7)\nprint(f\"Sessions: {summary['total_sessions']}\")\nprint(f\"Lines generated: {summary['total_lines']}\")\n```"
+      },
+      {
+        prompt: "How can I optimize my Cursor costs?",
+        output: "Here's how to track and optimize costs:\n\n```python\nfrom cost_optimizer import CostOptimizer\n\noptimizer = CostOptimizer()\nbreakdown = optimizer.get_cost_breakdown(days=30)\nprint(f\"Monthly cost: ${breakdown['total_cost']:.2f}\")\n\n# Get optimization suggestions\nsuggestions = optimizer.suggest_optimizations()\nfor tip in suggestions['suggestions']:\n    print(f\"💡 {tip}\")\n```\n\nTips:\n- Use claude-3.5-sonnet for most tasks\n- Reserve opus for complex refactoring\n- Track which models you use most"
+      }
+    ]
+  },
+  {
+    id: 'extension-sync',
+    name: 'Extension Sync Tool',
+    description: 'Export and sync Cursor extensions and settings across machines. Maintain consistent development environments with centralized configuration management.',
+    longDescription: 'A comprehensive tool for managing Cursor extensions and settings across multiple machines. Create backups, sync configurations via Git, and restore development environments with automated scripts for cross-platform support.',
+    category: 'development',
+    tags: ['cursor', 'extensions', 'sync', 'settings', 'backup'],
+    icon: '⟲',
+    color: 'oklch(0.72 0.17 180)',
+    skillFile: `${GITHUB_RAW_BASE}/extension-sync.md`,
+    features: [
+      'Export installed extensions with versions',
+      'Sync settings.json and keybindings',
+      'Automated backup with timestamps',
+      'Selective extension restore',
+      'Cross-platform support (macOS, Windows, Linux)'
+    ],
+    useCases: [
+      'Setting up new development machines',
+      'Maintaining consistent team environments',
+      'Backing up extension configurations',
+      'Version controlling editor settings',
+      'Disaster recovery for development setup'
+    ],
+    compatibility: ['gemini', 'claude', 'cursor'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    contributor: {
+      name: 'newth.ai'
+    }
+  },
+  {
+    id: 'settings-distribution-manager',
+    name: 'Settings Distribution Manager',
+    description: 'Deploy Cursor settings and rules to entire team with version management. Standardize Cursor configuration across development teams with managed rollouts and automated updates.',
+    longDescription: 'A comprehensive solution for managing and deploying Cursor IDE settings across development teams. This skill provides scripts and workflows for centralized settings management, version control, automated deployment, deprecation tracking, and compliance monitoring to ensure consistent development environments.',
+    category: 'development',
+    tags: ['cursor', 'settings', 'configuration', 'team', 'deployment'],
+    featured: false,
+    icon: '⚙',
+    color: 'oklch(0.70 0.15 280)',
+    skillFile: `${GITHUB_RAW_BASE}/settings-distribution-manager.md`,
+    features: [
+      'Centralized settings repository with Git version control',
+      'Automated deployment scripts for team machines',
+      'Version management with rollback capability',
+      'Auto-detect and update deprecated rules',
+      'Adoption tracking and compliance monitoring',
+      'Multi-environment support'
+    ],
+    useCases: [
+      'Standardizing IDE configuration across team',
+      'Deploying consistent Cursor settings',
+      'Managing rule versions and updates',
+      'Tracking team adoption of standards',
+      'Enforcing development environment compliance',
+      'Rolling back problematic settings changes'
+    ],
+    compatibility: ['claude', 'cursor'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27'
+  },
+  {
+    id: 'vscode-cursor-sync',
+    name: 'VSCode ↔ Cursor Sync',
+    description: 'Mirror VSCode keybindings, extensions, and settings to Cursor to maintain a consistent development environment between editors.',
+    longDescription: 'A comprehensive synchronization skill that helps you maintain consistent development environments between VSCode and Cursor editors. This skill provides workflows for syncing keybindings, extensions, settings, themes, and snippets across both editors, with support for manual, automated, and real-time synchronization strategies.',
+    category: 'development',
+    tags: ['vscode', 'cursor', 'sync', 'settings', 'extensions'],
+    featured: false,
+    icon: '⇄',
+    color: 'oklch(0.72 0.16 200)',
+    skillFile: `${GITHUB_RAW_BASE}/vscode-cursor-sync.md`,
+    features: [
+      'Keybindings synchronization',
+      'Extension mirroring across editors',
+      'Settings and workspace sync',
+      'Theme and color scheme sharing',
+      'Custom snippets transfer',
+      'Automated sync scripts'
+    ],
+    useCases: [
+      'Migrating from VSCode to Cursor',
+      'Maintaining consistent editor config',
+      'Syncing custom keybindings',
+      'Transferring extensions between editors',
+      'Setting up team development environments'
+    ],
+    compatibility: ['claude', 'cursor', 'copilot'],
+    version: '1.0.0',
+    lastUpdated: '2026-01-27',
+    contributor: {
+      name: 'newth.ai'
+    },
+    samplePrompts: [
+      {
+        prompt: "Help me sync my VSCode settings to Cursor",
+        output: "I'll help you sync your VSCode settings to Cursor. Here's the process:\n\n1. First, let's copy your settings file:\n```bash\ncp ~/Library/Application\\ Support/Code/User/settings.json \\\n   ~/Library/Application\\ Support/Cursor/User/settings.json\n```\n\n2. Next, copy your keybindings:\n```bash\ncp ~/Library/Application\\ Support/Code/User/keybindings.json \\\n   ~/Library/Application\\ Support/Cursor/User/keybindings.json\n```\n\n3. Finally, sync your extensions:\n```bash\ncode --list-extensions | xargs -L 1 cursor --install-extension\n```\n\nRestart Cursor to see your VSCode settings applied!"
+      },
+      {
+        prompt: "Create a script to automatically sync my editors",
+        output: "Here's an automated sync script for macOS/Linux:\n\n```bash\n#!/bin/bash\nVSCODE_DIR=\"$HOME/Library/Application Support/Code/User\"\nCURSOR_DIR=\"$HOME/Library/Application Support/Cursor/User\"\n\necho \"Syncing VSCode → Cursor...\"\n\n# Backup existing settings\ntimestamp=$(date +%Y%m%d_%H%M%S)\nmkdir -p \"$CURSOR_DIR/backups/$timestamp\"\ncp \"$CURSOR_DIR\"/*.json \"$CURSOR_DIR/backups/$timestamp/\" 2>/dev/null || true\n\n# Copy settings and keybindings\ncp \"$VSCODE_DIR/settings.json\" \"$CURSOR_DIR/settings.json\"\ncp \"$VSCODE_DIR/keybindings.json\" \"$CURSOR_DIR/keybindings.json\"\n\n# Sync extensions\ncode --list-extensions | while read ext; do\n  cursor --install-extension \"$ext\" --force\ndone\n\necho \"✓ Sync complete!\"\n```\n\nSave this as `sync-editors.sh`, make it executable with `chmod +x sync-editors.sh`, and run it whenever you want to sync!"
+      }
+    ]
+  },
 ]
 
 export const categories = [
