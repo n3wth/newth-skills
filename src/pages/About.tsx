@@ -1,11 +1,124 @@
+import { useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Nav } from '../components/Nav'
 import { Footer } from '../components/Footer'
 import { SEO } from '../components/SEO'
+import { FloatingShapes } from '../components/FloatingShapes'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export function About() {
+  const heroRef = useRef<HTMLDivElement>(null)
+  const sectionsRef = useRef<HTMLDivElement>(null)
+  const comparisonRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReducedMotion) return
+
+    const ctx = gsap.context(() => {
+      // Hero title animation
+      if (heroRef.current) {
+        gsap.fromTo(
+          heroRef.current.querySelectorAll('.animate-in'),
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out' }
+        )
+      }
+
+      // Section animations on scroll
+      if (sectionsRef.current) {
+        const sections = sectionsRef.current.querySelectorAll('section')
+        sections.forEach((section) => {
+          gsap.fromTo(
+            section,
+            { opacity: 0, y: 40 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.7,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: section,
+                start: 'top 85%',
+                once: true,
+              },
+            }
+          )
+        })
+      }
+
+      // Comparison card animation
+      if (comparisonRef.current) {
+        const columns = comparisonRef.current.querySelectorAll('[data-col]')
+        gsap.fromTo(
+          columns,
+          { opacity: 0, x: (i) => (i === 0 ? -30 : 30) },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.6,
+            stagger: 0.2,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: comparisonRef.current,
+              start: 'top 80%',
+              once: true,
+            },
+          }
+        )
+
+        // Animate list items
+        const listItems = comparisonRef.current.querySelectorAll('li')
+        gsap.fromTo(
+          listItems,
+          { opacity: 0, x: -10 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.4,
+            stagger: 0.08,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: comparisonRef.current,
+              start: 'top 75%',
+              once: true,
+            },
+          }
+        )
+      }
+
+      // Feature cards stagger
+      if (cardsRef.current) {
+        const cards = cardsRef.current.querySelectorAll('.glass-card')
+        gsap.fromTo(
+          cards,
+          { opacity: 0, y: 20, scale: 0.95 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.5,
+            stagger: 0.12,
+            ease: 'back.out(1.2)',
+            scrollTrigger: {
+              trigger: cardsRef.current,
+              start: 'top 85%',
+              once: true,
+            },
+          }
+        )
+      }
+    })
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative content-loaded">
       <SEO
         title="What are AI Skills? - newth.ai"
         description="Skills are markdown files that teach your AI assistant how to do specific things. No servers, no infrastructure. Works offline, installs in seconds."
@@ -14,23 +127,26 @@ export function About() {
       />
       <div className="mesh-gradient" />
       <div className="noise-overlay" />
+      <FloatingShapes />
       <Nav />
 
       <main className="px-6 md:px-12 pt-28 md:pt-32 pb-24">
         <div className="max-w-3xl">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 mb-8 text-sm hover:opacity-70 transition-opacity"
-            style={{ color: 'var(--color-grey-400)' }}
-          >
-            <span>&larr;</span> Back to skills
-          </Link>
+          <div ref={heroRef}>
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 mb-8 text-sm hover:opacity-70 transition-opacity animate-in"
+              style={{ color: 'var(--color-grey-400)' }}
+            >
+              <span>&larr;</span> Back to skills
+            </Link>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-8 tracking-tight">
-            What are Skills?
-          </h1>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-8 tracking-tight animate-in">
+              What are Skills?
+            </h1>
+          </div>
 
-          <div className="space-y-12">
+          <div ref={sectionsRef} className="space-y-12">
             <section>
               <h2 className="text-2xl md:text-3xl font-medium text-white mb-4">
                 Specialized knowledge, instantly loaded
@@ -65,9 +181,9 @@ export function About() {
               >
                 Skills take a fundamentally different approach. Instead of running external servers, skills are static markdown files that provide instructions and context directly to your AI assistant. This makes them lightweight, portable, and instantly available without any server setup or maintenance.
               </p>
-              <div className="glass-card p-6 md:p-8 mt-6">
+              <div ref={comparisonRef} className="glass-card p-6 md:p-8 mt-6">
                 <div className="grid md:grid-cols-2 gap-8">
-                  <div>
+                  <div data-col>
                     <h3
                       className="text-lg font-medium mb-3"
                       style={{ color: 'var(--color-mint)' }}
@@ -86,7 +202,7 @@ export function About() {
                       <li>Portable across machines</li>
                     </ul>
                   </div>
-                  <div>
+                  <div data-col>
                     <h3
                       className="text-lg font-medium mb-3"
                       style={{ color: 'var(--color-coral)' }}
@@ -163,7 +279,7 @@ export function About() {
               <h2 className="text-2xl md:text-3xl font-medium text-white mb-4">
                 Why skills?
               </h2>
-              <div className="grid md:grid-cols-3 gap-6 mt-6">
+              <div ref={cardsRef} className="grid md:grid-cols-3 gap-6 mt-6">
                 <div className="glass-card p-6">
                   <h3
                     className="text-lg font-medium mb-2"

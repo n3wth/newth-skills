@@ -109,35 +109,35 @@ export function Analytics() {
             </div>
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-              <div className="glass-card p-4 md:p-6">
+              <div className="glass-card p-4 md:p-6 overflow-hidden">
                 <p className="text-xs uppercase tracking-wider mb-2" style={{ color: 'var(--color-grey-400)' }}>
                   Total Views
                 </p>
-                <p className="text-2xl md:text-3xl font-semibold text-white">
+                <p className="text-2xl md:text-3xl font-semibold text-white tabular-nums">
                   {summary.totalViews.toLocaleString()}
                 </p>
               </div>
-              <div className="glass-card p-4 md:p-6">
+              <div className="glass-card p-4 md:p-6 overflow-hidden">
                 <p className="text-xs uppercase tracking-wider mb-2" style={{ color: 'var(--color-grey-400)' }}>
                   Total Installs
                 </p>
-                <p className="text-2xl md:text-3xl font-semibold text-white">
+                <p className="text-2xl md:text-3xl font-semibold text-white tabular-nums">
                   {summary.totalInstalls.toLocaleString()}
                 </p>
               </div>
-              <div className="glass-card p-4 md:p-6">
+              <div className="glass-card p-4 md:p-6 overflow-hidden">
                 <p className="text-xs uppercase tracking-wider mb-2" style={{ color: 'var(--color-grey-400)' }}>
                   Skills Viewed
                 </p>
-                <p className="text-2xl md:text-3xl font-semibold text-white">
+                <p className="text-2xl md:text-3xl font-semibold text-white tabular-nums">
                   {summary.uniqueViewed}
                 </p>
               </div>
-              <div className="glass-card p-4 md:p-6">
+              <div className="glass-card p-4 md:p-6 overflow-hidden">
                 <p className="text-xs uppercase tracking-wider mb-2" style={{ color: 'var(--color-grey-400)' }}>
                   Skills Installed
                 </p>
-                <p className="text-2xl md:text-3xl font-semibold text-white">
+                <p className="text-2xl md:text-3xl font-semibold text-white tabular-nums">
                   {summary.uniqueInstalled}
                 </p>
               </div>

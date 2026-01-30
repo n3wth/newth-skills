@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Nav } from '../components/Nav'
 import { Footer } from '../components/Footer'
 import { SEO } from '../components/SEO'
+import { CodeBlock } from '../components/CodeBlock'
 import { siteConfig } from '../config/site'
 
 const skillTemplateCode = `{
@@ -146,12 +147,7 @@ export function Contribute() {
               Use this template structure when submitting your skill. All fields marked in the template are important for a complete submission.
             </p>
             <div className="glass-card p-6 overflow-x-auto">
-              <pre
-                className="text-sm font-mono whitespace-pre"
-                style={{ color: 'var(--color-grey-200)' }}
-              >
-                {skillTemplateCode}
-              </pre>
+              <CodeBlock code={skillTemplateCode} language="javascript" />
             </div>
           </section>
 
