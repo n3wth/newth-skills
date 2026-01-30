@@ -706,27 +706,19 @@ body {
   animation: badgePulse 2s ease-in-out infinite;
 }
 
-/* Skill card shine effect on hover */
+/* Skill card subtle highlight on hover */
 .skill-card::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.03),
-    transparent
-  );
-  transition: left 0.5s ease;
-  pointer-events: none;
+  inset: 0;
+  background: transparent;
   border-radius: 20px;
+  transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
 }
 
 .skill-card:hover::before {
-  left: 100%;
+  background: rgba(255, 255, 255, 0.02);
 }
 
 /* Stats counter animation helper */
@@ -777,4 +769,103 @@ body {
 /* Smooth number transitions */
 .number-transition {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus visible ring for keyboard navigation */
+.focus-ring:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 2px;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--glass-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--glass-highlight);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--glass-border) transparent;
+}
+
+/* Success message entrance animation */
+@keyframes successEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.success-message {
+  animation: successEnter 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Verification section entrance */
+@keyframes verifyEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.verification-section {
+  animation: verifyEnter 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Subtle scale on card focus */
+.skill-card:focus-within {
+  border-color: var(--glass-highlight);
+}
+
+/* Code block styling */
+.code-block-wrapper {
+  transition: border-color 0.2s ease;
+}
+
+.code-block-wrapper:hover {
+  border-color: var(--glass-highlight);
+}
+
+/* Nav link active indicator */
+.nav-link-active {
+  position: relative;
+}
+
+.nav-link-active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: var(--color-white);
+  border-radius: 50%;
 }

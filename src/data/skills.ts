@@ -197,7 +197,7 @@ export const skills: Skill[] = [
     category: 'development',
     tags: ['cursor', 'code-generation', 'automation', 'validation', 'scaffolding'],
     featured: true,
-    icon: '⚡',
+    icon: '⬢',
     color: 'oklch(0.73 0.19 155)',
     skillFile: `${GITHUB_RAW_BASE}/code-generation-pipeline.md`,
     features: [
@@ -958,7 +958,7 @@ export const skills: Skill[] = [
     category: 'development',
     tags: ['cursor', 'agent', 'orchestration', 'automation', 'workflow'],
     featured: true,
-    icon: '⚡',
+    icon: '◎',
     color: 'oklch(0.72 0.17 150)',
     skillFile: `${GITHUB_RAW_BASE}/cursor-agent-orchestrator.md`,
     features: [
@@ -1231,7 +1231,7 @@ export const skills: Skill[] = [
     longDescription: 'A comprehensive skill for integrating Cursor AI editor with Git-based development workflows. Automatically generate branch-specific .cursorrules, create context from PR changes, validate AI-generated code with pre-commit hooks, and manage experimental changes with auto-stash functionality.',
     category: 'development',
     tags: ['cursor', 'git', 'workflow', 'automation', 'ai-editor'],
-    icon: '⚡',
+    icon: '⟲',
     color: 'oklch(0.72 0.20 260)',
     skillFile: `${GITHUB_RAW_BASE}/cursor-git-workflow.md`,
     features: [
@@ -1358,7 +1358,7 @@ export const skills: Skill[] = [
     category: 'development',
     tags: ['cursor', 'analytics', 'ai-coding', 'metrics', 'optimization'],
     featured: false,
-    icon: '📊',
+    icon: '▤',
     color: 'oklch(0.72 0.15 220)',
     skillFile: `${GITHUB_RAW_BASE}/cursor-usage-analytics.md`,
     features: [

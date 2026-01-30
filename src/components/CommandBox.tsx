@@ -264,20 +264,27 @@ export function CommandBox({ name, command, primary, skillId, assistantId }: Com
       )}
 
       {verified && (
-        <div 
+        <div
           className="success-message ml-0 sm:ml-4 p-4 rounded-xl flex items-center gap-3"
           style={{
             background: 'rgba(48, 209, 88, 0.1)',
             border: '1px solid rgba(48, 209, 88, 0.3)',
           }}
         >
-          <span 
-            className="text-lg"
-            role="img" 
-            aria-label="celebration"
+          <svg
+            className="w-5 h-5 shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="var(--color-sage)"
+            strokeWidth={2.5}
+            aria-hidden="true"
           >
-            🎉
-          </span>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
           <div className="flex flex-col gap-1">
             <span 
               className="text-sm font-medium"
