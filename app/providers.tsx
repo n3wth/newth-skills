@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, type ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import dynamic from 'next/dynamic'
 
 // bundle-defer-third-party: Load Sentry after hydration

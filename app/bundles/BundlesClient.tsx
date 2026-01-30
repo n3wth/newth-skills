@@ -26,7 +26,7 @@ export function BundlesClient() {
   const [newBundleDesc, setNewBundleDesc] = useState('')
   const [copiedUrl, setCopiedUrl] = useState<string | null>(null)
   const [sharedBundle, setSharedBundle] = useState<{ name: string; skillIds: string[] } | null>(null)
-  const [isHydrated, setIsHydrated] = useState(false)
+  const [_isHydrated, setIsHydrated] = useState(false)
 
   // Initialize client-side state after hydration
   useEffect(() => {
