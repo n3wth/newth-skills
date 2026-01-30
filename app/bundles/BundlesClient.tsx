@@ -196,7 +196,9 @@ export function BundlesClient() {
 
                 {showCreateForm && (
                   <form onSubmit={handleCreateBundle} className="mb-4 p-3 rounded-lg" style={{ backgroundColor: 'var(--glass-bg)' }}>
+                    <label htmlFor="bundle-name" className="sr-only">Bundle name</label>
                     <input
+                      id="bundle-name"
                       type="text"
                       value={newBundleName}
                       onChange={(e) => setNewBundleName(e.target.value)}
@@ -205,7 +207,9 @@ export function BundlesClient() {
                       style={{ borderColor: 'var(--glass-border)' }}
                       autoFocus
                     />
+                    <label htmlFor="bundle-desc" className="sr-only">Bundle description</label>
                     <textarea
+                      id="bundle-desc"
                       value={newBundleDesc}
                       onChange={(e) => setNewBundleDesc(e.target.value)}
                       placeholder="Description (optional)"

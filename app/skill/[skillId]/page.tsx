@@ -17,11 +17,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
+  const rawDesc = skill.longDescription || skill.description
+  const description = rawDesc.length > 155 ? rawDesc.slice(0, 155) + '...' : rawDesc
+
   return {
     title: `${skill.name} - AI Skill`,
-    description: skill.longDescription || skill.description,
+    description,
     alternates: { canonical: `/skill/${skillId}` },
     keywords: skill.tags,
+    openGraph: {
+      title: `${skill.name} - AI Skill | newth.ai`,
+      description,
+      url: `https://skills.newth.ai/skill/${skillId}`,
+      images: ['/og-image.png'],
+    },
   }
 }
 
