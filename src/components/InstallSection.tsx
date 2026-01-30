@@ -1,3 +1,4 @@
+'use client'
 import { useState } from 'react'
 import { installCommands } from '../config/commands'
 import { assistantList } from '../config/assistants'

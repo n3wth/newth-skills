@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom'
+'use client'
+
+import Link from 'next/link'
 import { siteConfig } from '../config/site'
 import { useScrollReveal } from '../hooks'
 
@@ -10,7 +12,7 @@ export function Footer() {
       <div className="flex flex-col gap-6">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <Link
-            to="/about"
+            href="/about"
             className="text-sm hover:text-white transition-colors"
             style={{ color: 'var(--color-grey-400)' }}
           >
@@ -18,7 +20,7 @@ export function Footer() {
           </Link>
           <span style={{ color: 'var(--color-grey-600)' }}>|</span>
           <Link
-            to="/contribute"
+            href="/contribute"
             className="text-sm hover:text-white transition-colors"
             style={{ color: 'var(--color-grey-400)' }}
           >
@@ -26,7 +28,7 @@ export function Footer() {
           </Link>
           <span style={{ color: 'var(--color-grey-600)' }}>|</span>
           <Link
-            to="/contact"
+            href="/contact"
             className="text-sm hover:text-white transition-colors"
             style={{ color: 'var(--color-grey-400)' }}
           >
@@ -34,7 +36,7 @@ export function Footer() {
           </Link>
           <span style={{ color: 'var(--color-grey-600)' }}>|</span>
           <Link
-            to="/privacy"
+            href="/privacy"
             className="text-sm hover:text-white transition-colors"
             style={{ color: 'var(--color-grey-400)' }}
           >

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { skills } from '../data/skills'
 import type { Workflow } from '../data/workflows'
 import { categoryConfig } from '../config/categories'
@@ -16,7 +16,7 @@ export function WorkflowCard({ workflow, index = 0 }: WorkflowCardProps) {
 
   return (
     <Link
-      to={`/workflows/${workflow.id}`}
+      href={`/workflows/${workflow.id}`}
       className="glass-card skill-card block p-5 card-enter"
       style={{ animationDelay: `${index * 0.05}s` }}
     >

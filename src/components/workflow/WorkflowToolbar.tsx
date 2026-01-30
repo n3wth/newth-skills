@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import type { Workflow } from '../../data/workflows'
 import type { WorkflowExecutionState } from '../../lib/workflowExecutor'
 
@@ -50,7 +50,7 @@ function WorkflowInfo({ workflow }: { workflow: Workflow }) {
   return (
     <div className="flex items-center gap-4">
       <Link
-        to="/workflows"
+        href="/workflows"
         className="text-[var(--color-grey-400)] hover:text-[var(--color-white)] transition-colors"
       >
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

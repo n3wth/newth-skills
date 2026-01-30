@@ -1,3 +1,4 @@
+'use client'
 import { forwardRef, useState, useRef, useEffect } from 'react'
 import gsap from 'gsap'
 

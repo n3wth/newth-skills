@@ -23,3 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 .vercel
+
+# Next.js build output
+.next/
+out/
+
+# TypeScript
+tsconfig.tsbuildinfo

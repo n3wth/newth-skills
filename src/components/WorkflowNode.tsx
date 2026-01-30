@@ -1,3 +1,4 @@
+'use client'
 import { useCallback, useRef, useEffect } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'

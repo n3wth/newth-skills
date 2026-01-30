@@ -1,3 +1,4 @@
+'use client'
 import { useState, useEffect, useRef } from 'react'
 import { skills, type Skill } from '../data/skills'
 import { getRecommendations } from '../lib/recommendations'

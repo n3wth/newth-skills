@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { skills } from '../data/skills'
 import type { Bundle } from '../data/bundles'
 
@@ -73,7 +73,7 @@ export function BundleCard({ bundle, index = 0 }: BundleCardProps) {
 
   return (
     <Link
-      to={`/curated-bundles/${bundle.id}`}
+      href={`/curated-bundles/${bundle.id}`}
       className="glass-card skill-card block p-6 card-enter hover:border-[var(--glass-highlight)] transition-all"
       style={{ animationDelay: `${index * 0.05}s` }}
     >

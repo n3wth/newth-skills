@@ -1,3 +1,4 @@
+'use client'
 import { useRef, useEffect, useCallback, useSyncExternalStore } from 'react'
 import { skills } from '../data/skills'
 import { categoryConfig } from '../config/categories'

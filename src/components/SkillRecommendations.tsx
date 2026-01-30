@@ -1,5 +1,6 @@
+'use client'
 import { useRef } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { CategoryShape } from './CategoryShape'
@@ -123,7 +124,7 @@ export function SkillRecommendations({ recommendations, isVisible, isLoading, on
             <Link
               key={result.skill.id}
               ref={(el) => { if (el) cardsRef.current[index] = el }}
-              to={`/skill/${result.skill.id}`}
+              href={`/skill/${result.skill.id}`}
               className="glass-card skill-card p-5 block group"
             >
               <div className="flex items-center gap-2 mb-3">

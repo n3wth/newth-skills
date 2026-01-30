@@ -1,3 +1,4 @@
+'use client'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { type Skill } from '../data/skills'
 import { CategoryShape } from './CategoryShape'

@@ -1,5 +1,6 @@
+'use client'
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useRouter } from 'next/navigation'
 import type { Skill } from '../data/skills'
 
 interface UseSkillNavigationOptions {
@@ -12,7 +13,7 @@ interface UseSkillNavigationOptions {
  * Handles j/k/arrow navigation and Enter to select.
  */
 export function useSkillNavigation({ skills, enabled = true }: UseSkillNavigationOptions) {
-  const navigate = useNavigate()
+  const router = useRouter()
   const [selectedIndex, setSelectedIndex] = useState(-1)
   const cardRefs = useRef<(HTMLAnchorElement | null)[]>([])
   const isKeyboardNav = useRef(false)
@@ -36,12 +37,12 @@ export function useSkillNavigation({ skills, enabled = true }: UseSkillNavigatio
       if (isTyping) return
 
       e.preventDefault()
-      navigate(`/skill/${skills[selectedIndex].id}`)
+      router.push(`/skill/${skills[selectedIndex].id}`)
     }
 
     window.addEventListener('keydown', handleEnter)
     return () => window.removeEventListener('keydown', handleEnter)
-  }, [enabled, selectedIndex, skills, navigate])
+  }, [enabled, selectedIndex, skills, router])
 
   // Track keyboard navigation for scroll behavior
   useEffect(() => {

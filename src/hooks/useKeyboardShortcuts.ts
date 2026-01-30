@@ -1,5 +1,6 @@
+'use client'
 import { useEffect, useCallback, useState } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useRouter, usePathname } from 'next/navigation'
 import { categories } from '../data/skills'
 
 interface UseKeyboardShortcutsOptions {
@@ -28,8 +29,8 @@ export function useKeyboardShortcuts(options: UseKeyboardShortcutsOptions = {}):
     selectedIndex: externalSelectedIndex,
   } = options
 
-  const navigate = useNavigate()
-  const location = useLocation()
+  const router = useRouter()
+  const pathname = usePathname()
   const [showHelp, setShowHelp] = useState(false)
   const [internalSelectedIndex, setInternalSelectedIndex] = useState(-1)
 
@@ -122,9 +123,9 @@ export function useKeyboardShortcuts(options: UseKeyboardShortcutsOptions = {}):
         break
 
       case 'Backspace':
-        if (location.pathname.startsWith('/skill/')) {
+        if (pathname?.startsWith('/skill/')) {
           event.preventDefault()
-          navigate('/')
+          router.push('/')
         }
         break
     }
@@ -137,8 +138,8 @@ export function useKeyboardShortcuts(options: UseKeyboardShortcutsOptions = {}):
     onNavigateSkill,
     filteredSkillsCount,
     selectedIndex,
-    location.pathname,
-    navigate,
+    pathname,
+    router,
     setSelectedIndex,
   ])
 

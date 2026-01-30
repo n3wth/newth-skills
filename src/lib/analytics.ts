@@ -378,7 +378,7 @@ export function trackError(
   }
   
   // Also log to console in development
-  if (import.meta.env.DEV) {
+  if (process.env.NODE_ENV === 'development') {
     console.error('[Analytics Error]', message, metadata)
   }
 }

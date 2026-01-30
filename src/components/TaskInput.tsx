@@ -1,3 +1,4 @@
+'use client'
 import { useState, useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import { getSuggestedTasks } from '../lib/recommendations'

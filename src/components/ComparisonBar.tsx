@@ -1,5 +1,6 @@
+'use client'
 import { useState, useEffect, useCallback } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { getComparisonSkills, clearComparison, removeFromComparison } from '../lib/community'
 import { skills } from '../data/skills'
 
@@ -102,7 +103,7 @@ export function ComparisonBar({ onComparisonChange }: ComparisonBarProps) {
           </button>
           {comparisonSkills.length >= 2 && (
             <Link
-              to={`/compare?skills=${comparisonSkills.join(',')}`}
+              href={`/compare?skills=${comparisonSkills.join(',')}`}
               className="px-4 py-1.5 rounded-full text-xs font-medium text-white transition-opacity hover:opacity-90"
               style={{
                 backgroundColor: '#22c55e',

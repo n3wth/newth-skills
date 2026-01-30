@@ -1,5 +1,6 @@
+'use client'
 import { useState, useEffect, useCallback } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { siteConfig } from '../config/site'
 import { useTheme } from '../hooks'
 
@@ -111,7 +112,7 @@ export function Nav() {
     <>
       <nav className="glass-nav px-6 md:px-12 py-3 md:py-4 flex items-center justify-between">
         <Link
-          to="/"
+          href="/"
           className="text-base md:text-lg font-semibold hover:opacity-70 transition-opacity"
           style={{ color: 'var(--color-accent)' }}
         >
@@ -120,35 +121,35 @@ export function Nav() {
 
         <div className="hidden md:flex items-center gap-6">
           <Link
-            to="/curated-bundles"
+            href="/curated-bundles"
             className="text-sm link-hover"
             style={{ color: 'var(--color-grey-200)' }}
           >
             Bundles
           </Link>
           <Link
-            to="/workflows"
+            href="/workflows"
             className="text-sm link-hover"
             style={{ color: 'var(--color-grey-200)' }}
           >
             Workflows
           </Link>
           <Link
-            to="/analytics"
+            href="/analytics"
             className="text-sm link-hover"
             style={{ color: 'var(--color-grey-200)' }}
           >
             Analytics
           </Link>
           <Link
-            to="/contribute"
+            href="/contribute"
             className="text-sm link-hover"
             style={{ color: 'var(--color-grey-200)' }}
           >
             Contribute
           </Link>
           <Link
-            to="/about"
+            href="/about"
             className="text-sm link-hover"
             style={{ color: 'var(--color-grey-200)' }}
           >
@@ -199,7 +200,7 @@ export function Nav() {
         <div className="flex flex-col h-full pt-20 px-6 pb-8">
           <div className="flex flex-col gap-2">
             <Link
-              to="/"
+              href="/"
               onClick={closeMenu}
               className="mobile-nav-link text-lg py-4 px-4 rounded-xl transition-all duration-200 min-h-[52px] flex items-center"
               style={{ color: 'var(--color-white)' }}
@@ -207,7 +208,7 @@ export function Nav() {
               Home
             </Link>
             <Link
-              to="/curated-bundles"
+              href="/curated-bundles"
               onClick={closeMenu}
               className="mobile-nav-link text-lg py-4 px-4 rounded-xl transition-all duration-200 min-h-[52px] flex items-center"
               style={{ color: 'var(--color-white)' }}
@@ -215,7 +216,7 @@ export function Nav() {
               Bundles
             </Link>
             <Link
-              to="/workflows"
+              href="/workflows"
               onClick={closeMenu}
               className="mobile-nav-link text-lg py-4 px-4 rounded-xl transition-all duration-200 min-h-[52px] flex items-center"
               style={{ color: 'var(--color-white)' }}
@@ -223,7 +224,7 @@ export function Nav() {
               Workflows
             </Link>
             <Link
-              to="/analytics"
+              href="/analytics"
               onClick={closeMenu}
               className="mobile-nav-link text-lg py-4 px-4 rounded-xl transition-all duration-200 min-h-[52px] flex items-center"
               style={{ color: 'var(--color-white)' }}
@@ -231,7 +232,7 @@ export function Nav() {
               Analytics
             </Link>
             <Link
-              to="/contribute"
+              href="/contribute"
               onClick={closeMenu}
               className="mobile-nav-link text-lg py-4 px-4 rounded-xl transition-all duration-200 min-h-[52px] flex items-center"
               style={{ color: 'var(--color-white)' }}
@@ -239,7 +240,7 @@ export function Nav() {
               Contribute
             </Link>
             <Link
-              to="/about"
+              href="/about"
               onClick={closeMenu}
               className="mobile-nav-link text-lg py-4 px-4 rounded-xl transition-all duration-200 min-h-[52px] flex items-center"
               style={{ color: 'var(--color-white)' }}

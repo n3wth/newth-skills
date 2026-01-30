@@ -1,3 +1,4 @@
+'use client'
 import { forwardRef, useCallback, useState, useRef } from 'react'
 import { skills } from '../data/skills'
 import {

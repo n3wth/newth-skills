@@ -1,3 +1,4 @@
+'use client'
 import { useState, useMemo } from 'react'
 import { skills } from '../data/skills'
 import { type Workflow, getSkillIOSchema } from '../data/workflows'

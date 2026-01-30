@@ -1,5 +1,6 @@
+'use client'
 import { forwardRef, useCallback, memo } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { type Skill } from '../data/skills'
 import { CategoryShape } from './CategoryShape'
 import { CompatibilityMatrix } from './CompatibilityMatrix'
@@ -54,7 +55,7 @@ export const SkillCard = memo(forwardRef<HTMLAnchorElement, SkillCardProps>(
       <div className="relative" onMouseEnter={triggerProps.onMouseEnter} onMouseLeave={triggerProps.onMouseLeave}>
         <Link
           ref={setRefs}
-          to={`/skill/${skill.id}`}
+          href={`/skill/${skill.id}`}
           className={`skill-card glass-card group cursor-pointer p-4 sm:p-5 md:p-6 flex flex-col h-full ${isSelected ? 'ring-2 ring-white/40' : ''}`}
           aria-current={isSelected ? 'true' : undefined}
           onTouchStart={triggerProps.onTouchStart}
