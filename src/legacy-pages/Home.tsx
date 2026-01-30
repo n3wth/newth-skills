@@ -73,7 +73,7 @@ export function Home() {
     <div ref={pageRef} className="min-h-screen relative content-loaded">
       <SEO
         title="Skills for Claude Code & Gemini CLI - Give Your AI Superpowers"
-        description="50+ curated skills for Claude Code and Gemini CLI. Install in seconds, works offline. GSAP animations, PDF generation, and more."
+        description="50+ skills for Gemini CLI and Claude Code. Install in seconds, runs offline. Animations, PDFs, testing, and more."
         canonicalUrl="/"
         keywords={SEO_KEYWORDS}
       />
@@ -91,7 +91,7 @@ export function Home() {
               What do you need your AI to do?
             </h2>
             <p className="label">
-              Tell us. We'll show you the skills that actually solve it.
+              Describe your task. We'll match you with skills.
             </p>
           </div>
           <TaskInput value={taskQuery} onChange={handleTaskChange} />
@@ -171,10 +171,10 @@ export function Home() {
               </svg>
             </div>
             <p className="text-lg text-white mb-2">
-              {query.trim() ? 'Nothing fits that description' : 'This category is empty right now'}
+              {query.trim() ? 'No matches' : 'Empty category'}
             </p>
             <p className="label mb-4">
-              {query.trim() ? 'Try something broader, or skip straight to browsing all skills' : 'Check back soon or explore what exists'}
+              {query.trim() ? 'Try a different search, or browse all skills' : 'Try another category'}
             </p>
             {query.trim() && (
               <button onClick={clearSearch} className="glass-pill btn-press px-4 py-2 rounded-full text-sm font-medium">

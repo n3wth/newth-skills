@@ -1,6 +1,25 @@
 @import 'tailwindcss';
 @import '@n3wth/ui/styles';
 
+/* Scan @n3wth/ui for Tailwind classes */
+@source "../node_modules/@n3wth/ui/dist/**/*.js";
+
+/* Fix for @n3wth/ui Nav responsive classes not being detected */
+@media (min-width: 768px) {
+  .md\:hidden {
+    display: none !important;
+  }
+  .md\:flex {
+    display: flex !important;
+  }
+  .md\:items-center {
+    align-items: center !important;
+  }
+  .md\:gap-6 {
+    gap: 1.5rem !important;
+  }
+}
+
 @font-face {
   font-family: 'Geist Sans';
   src: url('/fonts/Geist-Regular.woff2') format('woff2');
