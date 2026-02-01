@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Main pages -->
   <url>
     <loc>https://skills.newth.ai/</loc>
     <changefreq>daily</changefreq>
@@ -31,6 +32,21 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://skills.newth.ai/submit</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://skills.newth.ai/requests</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://skills.newth.ai/playground</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://skills.newth.ai/bundles</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -44,6 +60,11 @@
     <loc>https://skills.newth.ai/workflows</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skills.newth.ai/workflow-builder</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://skills.newth.ai/compare</loc>
@@ -60,6 +81,82 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+
+  <!-- Curated Bundles -->
+  <url>
+    <loc>https://skills.newth.ai/curated-bundles/frontend-starter</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skills.newth.ai/curated-bundles/backend-builder</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skills.newth.ai/curated-bundles/devops-toolkit</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skills.newth.ai/curated-bundles/content-creator</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skills.newth.ai/curated-bundles/data-analyst</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skills.newth.ai/curated-bundles/founder-toolkit</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Workflow Templates -->
+  <url>
+    <loc>https://skills.newth.ai/workflows/research-report</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skills.newth.ai/workflows/business-presentation</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skills.newth.ai/workflows/animated-landing</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skills.newth.ai/workflows/generative-art-skill</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skills.newth.ai/workflows/email-campaign</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skills.newth.ai/workflows/api-documentation</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skills.newth.ai/workflows/content-pipeline</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skills.newth.ai/workflows/invoice-processor</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Skills -->
   <url>
     <loc>https://skills.newth.ai/skill/gsap-animations</loc>
     <changefreq>weekly</changefreq>

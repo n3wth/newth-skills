@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'Community Analytics',
   description: 'See which skills are popular across the community. Track skill views and installs to discover trending AI coding skills.',
   alternates: { canonical: '/analytics' },
+  openGraph: {
+    url: 'https://skills.newth.ai/analytics',
+  },
 }
 
 export default function AnalyticsPage() {

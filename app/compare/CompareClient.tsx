@@ -56,7 +56,7 @@ export function CompareClient() {
         <div className="mesh-gradient" />
         <div className="noise-overlay" />
         <Nav />
-        <main className="px-6 md:px-12 pt-32 pb-24">
+        <main id="main-content" className="px-6 md:px-12 pt-32 pb-24">
           <div className="max-w-2xl mx-auto text-center">
             <h1 className="text-3xl md:text-4xl font-semibold text-white mb-4">
               Compare Skills

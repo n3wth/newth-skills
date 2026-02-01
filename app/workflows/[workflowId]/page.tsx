@@ -12,12 +12,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Handle 'new' workflow
   if (workflowId === 'new') {
     return {
-      title: 'Create New AI Skill Workflow - Visual Builder',
-      description: 'Build custom AI workflows by chaining skills together in a visual drag-and-drop builder. Create automated sequences combining research, writing, and document creation.',
+      title: 'Create AI Workflow - Visual Skill Builder',
+      description: 'Build custom AI workflows by chaining skills together. Create automated sequences combining research, writing, and document creation.',
       alternates: { canonical: '/workflows/new' },
       openGraph: {
-        title: 'Create New AI Skill Workflow - Visual Builder | newth.ai',
-        description: 'Build custom AI workflows by chaining skills together in a visual drag-and-drop builder. Create automated sequences combining research, writing, and document creation.',
+        title: 'Create AI Workflow | newth.ai',
+        description: 'Build custom AI workflows by chaining skills together. Create automated sequences combining research, writing, and document creation.',
         url: 'https://skills.newth.ai/workflows/new',
         images: ['/og-image.png'],
       },
@@ -31,13 +31,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const desc = template.description.length >= 120
       ? template.description
       : `${template.description} Chain multiple AI skills together in an automated workflow to boost your productivity.`
+    // Keep title under 60 chars
+    const titleSuffix = ' - AI Workflow'
+    const maxNameLength = 60 - titleSuffix.length
+    const truncatedName = template.name.length > maxNameLength
+      ? template.name.slice(0, maxNameLength - 3) + '...'
+      : template.name
     return {
-      title: `${template.name} - AI Skill Workflow Template`,
+      title: `${truncatedName}${titleSuffix}`,
       description: desc,
       alternates: { canonical: `/workflows/${workflowId}` },
       keywords: template.tags,
       openGraph: {
-        title: `${template.name} - AI Skill Workflow Template | newth.ai`,
+        title: `${template.name} - AI Workflow | newth.ai`,
         description: desc,
         url: `https://skills.newth.ai/workflows/${workflowId}`,
         images: ['/og-image.png'],

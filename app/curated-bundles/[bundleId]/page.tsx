@@ -21,6 +21,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${bundle.name} - Skill Bundle`,
     description: bundle.description,
     alternates: { canonical: `/curated-bundles/${bundleId}` },
+    openGraph: {
+      url: `https://skills.newth.ai/curated-bundles/${bundleId}`,
+    },
     keywords: bundle.tags,
   }
 }

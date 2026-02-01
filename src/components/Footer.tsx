@@ -21,6 +21,22 @@ export function Footer() {
           </Link>
           <span style={{ color: 'var(--color-grey-600)' }}>|</span>
           <Link
+            href="/workflows"
+            className="text-sm hover:text-white transition-colors"
+            style={{ color: 'var(--color-grey-400)' }}
+          >
+            Workflows
+          </Link>
+          <span style={{ color: 'var(--color-grey-600)' }}>|</span>
+          <Link
+            href="/curated-bundles"
+            className="text-sm hover:text-white transition-colors"
+            style={{ color: 'var(--color-grey-400)' }}
+          >
+            Curated Bundles
+          </Link>
+          <span style={{ color: 'var(--color-grey-600)' }}>|</span>
+          <Link
             href="/contribute"
             className="text-sm hover:text-white transition-colors"
             style={{ color: 'var(--color-grey-400)' }}

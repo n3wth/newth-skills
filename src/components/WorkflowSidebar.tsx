@@ -42,7 +42,7 @@ export function WorkflowSidebar({ onAddSkill, workflow }: WorkflowSidebarProps) 
   return (
     <div className="w-72 border-r border-[var(--glass-border)] flex flex-col bg-[var(--color-bg-secondary)]">
       <div className="p-4 border-b border-[var(--glass-border)]">
-        <h3 className="text-sm font-medium text-[var(--color-white)] mb-3">Add Skills</h3>
+        <h2 className="text-sm font-medium text-[var(--color-white)] mb-3">Add Skills</h2>
         
         <div className="relative">
           <label htmlFor="workflow-skill-search" className="sr-only">Search skills</label>
@@ -131,9 +131,9 @@ export function WorkflowSidebar({ onAddSkill, workflow }: WorkflowSidebarProps) 
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
-                        <h4 className="text-sm font-medium text-[var(--color-white)] truncate">
+                        <h3 className="text-sm font-medium text-[var(--color-white)] truncate">
                           {skill.name}
-                        </h4>
+                        </h3>
                         {isUsed && (
                           <span className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--glass-bg)] text-[var(--color-grey-400)]">
                             In use

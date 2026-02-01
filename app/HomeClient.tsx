@@ -72,7 +72,7 @@ export default function HomeClient() {
       <Nav />
       <Hero />
 
-      <main className="px-6 md:px-12 pb-24">
+      <main id="main-content" className="px-6 md:px-12 pb-24">
         {/* AI Recommendations Section */}
         <section className="mb-16 md:mb-20">
           <div className="text-center mb-6">

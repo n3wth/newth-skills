@@ -116,7 +116,7 @@ export function BundlesClient() {
       <div className="noise-overlay" />
       <Nav />
 
-      <main className="px-6 md:px-12 pt-28 md:pt-32 pb-24">
+      <main id="main-content" className="px-6 md:px-12 pt-28 md:pt-32 pb-24">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center justify-between mb-8">
             <div>
