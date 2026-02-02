@@ -1,6 +1,6 @@
 // Site-wide configuration
 export const siteConfig = {
-  name: 'skills.newth.ai',
+  name: 'n3wth/skills',
   description: 'Give your AI actual superpowers.',
   tagline: 'Runs locally. Works offline. You own everything.',
   author: 'Oliver Newth',
