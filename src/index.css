@@ -459,3 +459,39 @@ html {
     transform: none !important;
   }
 }
+
+/* Mobile touch improvements */
+@media (hover: none) and (pointer: coarse) {
+  /* Disable hover preview on touch devices */
+  .hover-preview {
+    display: none !important;
+  }
+
+  /* Improve tap targets */
+  .glass-pill {
+    min-height: 44px;
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+  }
+
+  /* Smoother scrolling for category filters */
+  .scrollbar-hidden {
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+  }
+
+  .scrollbar-hidden > button {
+    scroll-snap-align: start;
+  }
+}
+
+/* Safe area insets for iOS */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Content visibility for performance */
+.content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 200px;
+}

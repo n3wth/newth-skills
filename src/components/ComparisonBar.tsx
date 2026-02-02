@@ -52,32 +52,33 @@ export function ComparisonBar({ onComparisonChange }: ComparisonBarProps) {
     .filter(Boolean)
   
   return (
-    <div 
-      className="fixed bottom-0 left-0 right-0 z-50 px-4 py-3 md:px-6"
+    <div
+      className="fixed bottom-0 left-0 right-0 z-50 px-3 py-3 sm:px-4 md:px-6 safe-area-bottom"
       style={{
-        backgroundColor: 'rgba(0, 0, 0, 0.9)',
+        backgroundColor: 'rgba(0, 0, 0, 0.95)',
         borderTop: '1px solid var(--glass-border)',
         backdropFilter: 'blur(20px)',
+        paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom))',
       }}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-        <div className="flex items-center gap-3 overflow-x-auto pb-1">
-          <span className="text-xs font-medium shrink-0" style={{ color: 'var(--color-grey-400)' }}>
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
+        <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto scrollbar-hidden">
+          <span className="text-[11px] sm:text-xs font-medium shrink-0" style={{ color: 'var(--color-grey-400)' }}>
             Compare ({comparisonSkills.length}/4):
           </span>
           {selectedSkills.map(skill => skill && (
-            <div 
+            <div
               key={skill.id}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-full shrink-0"
+              className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 rounded-full shrink-0"
               style={{
                 backgroundColor: 'var(--glass-bg)',
                 border: '1px solid var(--glass-border)',
               }}
             >
-              <span className="text-xs text-white font-medium">{skill.name}</span>
+              <span className="text-[11px] sm:text-xs text-white font-medium max-w-[80px] sm:max-w-none truncate">{skill.name}</span>
               <button
                 onClick={() => handleRemove(skill.id)}
-                className="hover:opacity-70 transition-opacity"
+                className="hover:opacity-70 transition-opacity p-0.5 min-w-[24px] min-h-[24px] flex items-center justify-center"
                 style={{ color: 'var(--color-grey-400)' }}
                 aria-label={`Remove ${skill.name} from comparison`}
               >
@@ -89,11 +90,11 @@ export function ComparisonBar({ onComparisonChange }: ComparisonBarProps) {
             </div>
           ))}
         </div>
-        
-        <div className="flex items-center gap-2 shrink-0">
+
+        <div className="flex items-center gap-2 shrink-0 justify-end">
           <button
             onClick={handleClear}
-            className="px-3 py-1.5 rounded-full text-xs font-medium transition-opacity hover:opacity-70"
+            className="px-3 py-2 sm:py-1.5 rounded-full text-xs font-medium transition-opacity hover:opacity-70 min-h-[40px] sm:min-h-0"
             style={{
               color: 'var(--color-grey-400)',
               border: '1px solid var(--glass-border)',
@@ -104,12 +105,12 @@ export function ComparisonBar({ onComparisonChange }: ComparisonBarProps) {
           {comparisonSkills.length >= 2 && (
             <Link
               href={`/compare?skills=${comparisonSkills.join(',')}`}
-              className="px-4 py-1.5 rounded-full text-xs font-medium text-white transition-opacity hover:opacity-90"
+              className="px-4 py-2 sm:py-1.5 rounded-full text-xs font-medium text-white transition-opacity hover:opacity-90 min-h-[40px] sm:min-h-0 flex items-center justify-center"
               style={{
                 backgroundColor: '#22c55e',
               }}
             >
-              Compare {comparisonSkills.length} Skills
+              Compare {comparisonSkills.length}
             </Link>
           )}
         </div>

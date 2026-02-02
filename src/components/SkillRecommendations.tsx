@@ -119,13 +119,13 @@ export function SkillRecommendations({ recommendations, isVisible, isLoading, on
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
         {recommendations.map((result, index) => (
             <Link
               key={result.skill.id}
               ref={(el) => { if (el) cardsRef.current[index] = el }}
               href={`/skill/${result.skill.id}`}
-              className="glass-card skill-card p-5 block group"
+              className="glass-card skill-card p-4 sm:p-5 block group"
             >
               <div className="flex items-center gap-2 mb-3">
                 <CategoryShape category={result.skill.category} size={12} />

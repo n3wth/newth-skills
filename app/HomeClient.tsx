@@ -124,9 +124,17 @@ export default function HomeClient() {
         </div>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
           {filteredSkills.map((skill, index) => (
-            <div key={skill.id} data-card className="h-full">
+            <div
+              key={skill.id}
+              data-card
+              className="h-full"
+              style={{
+                contentVisibility: index > 11 ? 'auto' : 'visible',
+                containIntrinsicSize: index > 11 ? '0 200px' : undefined,
+              }}
+            >
               <SkillCard
                 ref={setCardRef(index)}
                 skill={skill}

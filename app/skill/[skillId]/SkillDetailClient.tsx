@@ -160,15 +160,17 @@ export function SkillDetailClient({ skillId }: Props) {
             ))}
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 mb-8">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-8">
             <VoteButton skillId={skill.id} />
             <CompareButton skillId={skill.id} />
             <AddToBundleButton skillId={skill.id} skillName={skill.name} />
             <div className="hidden sm:block h-4 w-px mx-1" style={{ backgroundColor: 'var(--glass-border)' }} />
-            <ShareButtons skill={skill} />
+            <div className="w-full sm:w-auto mt-2 sm:mt-0">
+              <ShareButtons skill={skill} />
+            </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 mb-12 text-sm" style={{ color: 'var(--color-grey-400)' }}>
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-12 text-xs sm:text-sm" style={{ color: 'var(--color-grey-400)' }}>
             <span className="flex items-center gap-2">
               <svg
                 width="16"

@@ -156,7 +156,7 @@ export function TaskInput({ value, onChange, onFocus, onBlur }: TaskInputProps) 
       {showSuggestions && (
         <div
           ref={suggestionsRef}
-          className="absolute top-full left-0 right-0 mt-2 p-3 rounded-xl z-20"
+          className="absolute top-full left-0 right-0 mt-2 p-3 rounded-xl z-20 max-h-[50vh] overflow-y-auto"
           style={{
             background: 'var(--color-bg)',
             border: '1px solid var(--glass-border)',
@@ -164,18 +164,18 @@ export function TaskInput({ value, onChange, onFocus, onBlur }: TaskInputProps) 
           }}
         >
           <p
-            className="text-xs uppercase tracking-wider mb-2 px-1"
+            className="text-[11px] sm:text-xs uppercase tracking-wider mb-2 px-1"
             style={{ color: 'var(--color-grey-600)' }}
           >
             Try something like
           </p>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {suggestedTasks.map((task) => (
               <button
                 key={task}
                 type="button"
                 onClick={() => handleSuggestionClick(task)}
-                className="glass-pill btn-press px-3 py-1.5 rounded-full text-sm"
+                className="glass-pill btn-press px-3 py-2 sm:py-1.5 rounded-full text-xs sm:text-sm min-h-[40px] sm:min-h-0"
               >
                 {task}
               </button>
