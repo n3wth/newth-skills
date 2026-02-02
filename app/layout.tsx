@@ -5,11 +5,11 @@ import '../src/index.css'
 export const metadata: Metadata = {
   metadataBase: new URL('https://skills.newth.ai'),
   title: {
-    default: 'Skills for AI Coding Assistants | newth.ai',
-    template: '%s | newth.ai',
+    default: 'n3wth/skills - AI Coding Assistant Skills',
+    template: '%s | n3wth/skills',
   },
   description:
-    'Extend your AI coding assistant with powerful skills. 50+ curated skills for Claude Code and Gemini CLI. Install in seconds, works offline.',
+    'Extend your AI coding assistant with powerful skills. 50+ curated skills for Gemini CLI and Claude Code. Install in seconds, works offline.',
   authors: [{ name: 'Oliver Newth' }],
   creator: 'Oliver Newth',
   robots: 'index, follow',
@@ -17,8 +17,8 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://skills.newth.ai',
-    siteName: 'newth.ai skills',
-    title: 'Skills for AI Coding Assistants',
+    siteName: 'n3wth/skills',
+    title: 'n3wth/skills - AI Coding Assistant Skills',
     description:
       'Markdown files that teach Gemini CLI and Claude Code new tricks. Install in seconds, works offline.',
     images: [
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Skills for AI Coding Assistants',
+    title: 'n3wth/skills - AI Coding Assistant Skills',
     description:
       'Markdown files that teach Gemini CLI and Claude Code new tricks. Install in seconds, works offline.',
     images: ['/og-image.png'],
