@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "build": "next build",
     "start": "next start",
     "lint": "ESLINT_USE_FLAT_CONFIG=true eslint --config eslint.config.mjs src app",
@@ -16,7 +16,7 @@
   "dependencies": {
     "@ai-sdk/openai": "^3.0.19",
     "@gsap/react": "^2.1.2",
-    "@n3wth/ui": "^0.3.5",
+    "@n3wth/ui": "file:../ui",
     "@neondatabase/serverless": "^1.0.2",
     "@sentry/react": "^10.36.0",
     "@tailwindcss/postcss": "^4.1.18",
