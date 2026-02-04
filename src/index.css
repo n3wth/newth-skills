@@ -1,22 +1,7 @@
 @import 'tailwindcss';
 
-/* Note: @n3wth/ui styles are defined locally below to avoid Turbopack symlink issues */
-
-/* Fix for @n3wth/ui Nav responsive classes not being detected */
-@media (min-width: 768px) {
-  .md\:hidden {
-    display: none !important;
-  }
-  .md\:flex {
-    display: flex !important;
-  }
-  .md\:items-center {
-    align-items: center !important;
-  }
-  .md\:gap-6 {
-    gap: 1.5rem !important;
-  }
-}
+/* Scan @n3wth/ui components for Tailwind classes */
+@source "../node_modules/@n3wth/ui/dist";
 
 @font-face {
   font-family: 'Geist Sans';
