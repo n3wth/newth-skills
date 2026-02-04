@@ -22,6 +22,8 @@ export function Nav() {
       items={navItems}
       theme={theme}
       onThemeToggle={toggleTheme}
+      fixed
+      hideOnScroll
     />
   )
 }
