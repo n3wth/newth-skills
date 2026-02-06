@@ -39,7 +39,7 @@ export function BundleDetailClient({ bundleId }: Props) {
 
       <Nav />
 
-      <main className="px-6 md:px-12 pt-28 md:pt-32 pb-24">
+      <main className="max-w-6xl mx-auto px-6 md:px-12 pt-28 md:pt-32 pb-24">
         <div className="max-w-5xl mx-auto">
           {/* Back link */}
           <Link

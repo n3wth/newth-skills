@@ -7,10 +7,10 @@ import { HeroConstellation } from './HeroConstellation'
 
 export function Hero() {
   return (
-    <div className="relative h-screen flex items-center px-6 md:px-12">
+    <div className="relative h-screen flex items-center">
       <FloatingShapes />
       <HeroConstellation />
-      <div className="relative z-10 w-full">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-12">
         <div className="max-w-5xl">
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[10rem] font-semibold tracking-tighter leading-[0.85] mb-4 md:mb-6 lg:mb-8">
             {siteConfig.hero.title.map((word, i) => (

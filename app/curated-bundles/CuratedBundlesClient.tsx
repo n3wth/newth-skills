@@ -41,7 +41,7 @@ export function CuratedBundlesClient() {
 
       <Nav />
 
-      <main className="px-6 md:px-12 pt-28 md:pt-32 pb-24">
+      <main className="max-w-6xl mx-auto px-6 md:px-12 pt-28 md:pt-32 pb-24">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-semibold text-[var(--color-white)] mb-4">

@@ -8,7 +8,8 @@ export function SkillDetailSkeleton() {
       <div className="noise-overlay" />
       <Nav />
 
-      <main className="px-6 md:px-12 pt-28 md:pt-32 pb-24 animate-pulse">
+      <main className="pt-28 md:pt-32 pb-24 animate-pulse">
+        <div className="max-w-6xl mx-auto px-6 md:px-12">
         <div className="max-w-4xl">
           <div
             className="h-4 rounded skeleton-shimmer mb-8"
@@ -126,6 +127,7 @@ export function SkillDetailSkeleton() {
               />
             </div>
           </div>
+        </div>
         </div>
       </main>
 

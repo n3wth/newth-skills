@@ -14,7 +14,7 @@ export default function NotFound() {
 
       <Nav />
 
-      <main className="px-6 md:px-12 pt-32 pb-24">
+      <main className="max-w-6xl mx-auto px-6 md:px-12 pt-32 pb-24">
         <div className="max-w-2xl mx-auto text-center mb-16">
           <p className="label mb-4">404 Error</p>
           <h1 className="text-4xl md:text-5xl font-semibold mb-6 text-white">

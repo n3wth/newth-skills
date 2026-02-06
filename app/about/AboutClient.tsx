@@ -125,7 +125,7 @@ export default function AboutClient() {
       <FloatingShapes />
       <Nav />
 
-      <main className="px-6 md:px-12 pt-28 md:pt-32 pb-24">
+      <main className="max-w-6xl mx-auto px-6 md:px-12 pt-28 md:pt-32 pb-24">
         <div className="max-w-3xl">
           <div ref={heroRef}>
             <Link
