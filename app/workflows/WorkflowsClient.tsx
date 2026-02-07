@@ -51,8 +51,7 @@ export function WorkflowsClient() {
               Skill Workflows
             </h1>
             <p className="text-lg text-[var(--color-grey-400)] max-w-2xl mx-auto">
-              Chain multiple skills together to create powerful automated workflows.
-              Combine capabilities like research, writing, and document creation.
+              Chain skills together to automate multi-step work like research, drafting, and delivery.
             </p>
           </div>
 
@@ -114,7 +113,7 @@ export function WorkflowsClient() {
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                 </svg>
-                Create Workflow
+                Create a workflow
               </Link>
             </div>
           </div>
@@ -136,8 +135,8 @@ export function WorkflowsClient() {
               </h2>
               <p className="text-sm text-[var(--color-grey-600)] mb-6">
                 {activeTab === 'my-workflows'
-                  ? 'Create your first workflow to chain skills together'
-                  : 'Try a different search term'
+                  ? 'Create your first workflow to chain skills together.'
+                  : 'Try a different search term.'
                 }
               </p>
               {activeTab === 'my-workflows' && (
@@ -148,7 +147,7 @@ export function WorkflowsClient() {
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                   </svg>
-                  Create Workflow
+                  Create a workflow
                 </Link>
               )}
             </div>

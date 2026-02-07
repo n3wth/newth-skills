@@ -1,8 +1,8 @@
 // Site-wide configuration
 export const siteConfig = {
-  name: 'n3wth/skills',
-  description: 'Give your AI actual superpowers.',
-  tagline: 'Runs locally. Works offline. You own everything.',
+  name: 'skills.newth.ai',
+  description: 'Give your AI practical skills it can use immediately.',
+  tagline: 'Works offline. No API limits. Full control.',
   author: 'Oliver Newth',
   links: {
     about: 'https://newth.ai',
@@ -16,7 +16,7 @@ export const siteConfig = {
   sections: {
     install: {
       title: 'Install',
-      subtitle: 'One command. Works with Gemini CLI and Claude Code.',
+      subtitle: 'One command. Works with Gemini CLI and Claude Code. Nothing else to configure.',
     },
     browse: {
       title: 'Browse Skills',

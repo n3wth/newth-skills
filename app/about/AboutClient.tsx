@@ -133,7 +133,7 @@ export default function AboutClient() {
               className="inline-flex items-center gap-2 mb-8 text-sm hover:opacity-70 transition-opacity animate-in"
               style={{ color: 'var(--color-grey-400)' }}
             >
-              <span>&larr;</span> Back to skills
+              <span>&larr;</span> Back to the catalog
             </Link>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-8 tracking-tight animate-in">
@@ -144,19 +144,19 @@ export default function AboutClient() {
           <div ref={sectionsRef} className="space-y-12">
             <section>
               <h2 className="text-2xl md:text-3xl font-medium text-white mb-4">
-                Specialized knowledge, instantly loaded
+                Specialized knowledge, instantly ready
               </h2>
               <p
                 className="text-lg leading-relaxed mb-4"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                Skills are markdown files that teach your AI assistant how to do specific things. When you install a skill, your AI gains the context it needs to help with that domain: the right patterns, best practices, and common pitfalls to avoid.
+                Skills are markdown files that teach your AI assistant how to do specific things. When you install one, your AI gains the context it needs for that domain: the right patterns, best practices, and pitfalls to avoid.
               </p>
               <p
                 className="text-lg leading-relaxed"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                Want Claude to build scroll animations? Install the GSAP skill. Need it to generate PDFs? There's a skill for that. Each skill is curated knowledge that your AI can reference immediately.
+                Want Claude to build scroll animations? Install the GSAP skill. Need it to generate PDFs? There is a skill for that. Each skill is curated knowledge your AI can reference instantly.
               </p>
             </section>
 
@@ -168,13 +168,13 @@ export default function AboutClient() {
                 className="text-lg leading-relaxed mb-4"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                You might be wondering: why skills instead of MCP servers? MCP servers connect your AI to live systems: databases, APIs, real-time data. Skills are different. They're static files that work without any infrastructure.
+                You might be wondering: why skills instead of MCP servers? MCP servers connect your AI to live systems like databases, APIs, and real-time data. Skills are different. They are static files that work without any infrastructure.
               </p>
               <p
                 className="text-lg leading-relaxed mb-4"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                Skills take a fundamentally different approach. Instead of running external servers, skills are static markdown files that provide instructions and context directly to your AI assistant. This makes them lightweight, portable, and instantly available without any server setup or maintenance.
+                Skills take a different approach. Instead of running external servers, skills are static markdown files that deliver instructions and context directly to your AI assistant. That keeps them lightweight, portable, and instantly available without setup or maintenance.
               </p>
               <div ref={comparisonRef} className="glass-card p-6 md:p-8 mt-6">
                 <div className="grid md:grid-cols-2 gap-8">
@@ -246,13 +246,13 @@ export default function AboutClient() {
                 className="text-lg leading-relaxed mb-4"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                Skills are markdown files that get installed into your AI assistant's configuration directory. When you ask for help, your assistant reads the relevant skill to understand how to approach the problem.
+                Skills are markdown files that get installed into your AI assistant's configuration directory. When you ask for help, your assistant reads the relevant skill to understand how to approach the work.
               </p>
               <p
                 className="text-lg leading-relaxed mb-4"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                Each skill contains structured instructions, examples, and best practices. Your AI uses this to provide more accurate and consistent help for that specific domain.
+                Each skill contains structured instructions, examples, and best practices. Your AI uses this to provide more accurate and consistent help in that specific domain.
               </p>
               <div className="command-box p-4 mt-6">
                 <code
@@ -266,7 +266,7 @@ export default function AboutClient() {
                 className="text-sm mt-3"
                 style={{ color: 'var(--color-grey-400)' }}
               >
-                Skills are installed to your assistant's config directory. Takes about 5 seconds.
+                Skills install into your assistant's config directory. Takes about 5 seconds.
               </p>
             </section>
 
@@ -331,7 +331,7 @@ export default function AboutClient() {
                   className="link-hover"
                   style={{ color: 'var(--color-white)' }}
                 >
-                  Browse all skills
+                  Browse the full catalog
                 </Link>{' '}
                 and start building.
               </p>

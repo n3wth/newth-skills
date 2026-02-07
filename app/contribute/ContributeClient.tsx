@@ -48,7 +48,7 @@ export default function ContributeClient() {
             className="inline-flex items-center gap-2 mb-8 text-sm hover:opacity-70 transition-opacity"
             style={{ color: 'var(--color-grey-400)' }}
           >
-            <span>&larr;</span> Back to skills
+            <span>&larr;</span> Back to the catalog
           </Link>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-4 tracking-tight">
@@ -75,7 +75,7 @@ export default function ContributeClient() {
                   <div>
                     <h3 className="text-lg font-medium text-white mb-2">Create Your Skill</h3>
                     <p style={{ color: 'var(--color-grey-300)' }}>
-                      Write a markdown file that teaches AI assistants a specific skill: framework knowledge, coding patterns, or tool usage.
+                      Write a markdown file that teaches AI assistants one focused skill: framework knowledge, coding patterns, or tool usage.
                     </p>
                   </div>
                 </div>
@@ -92,7 +92,7 @@ export default function ContributeClient() {
                   <div>
                     <h3 className="text-lg font-medium text-white mb-2">Submit for Review</h3>
                     <p style={{ color: 'var(--color-grey-300)' }}>
-                      Fill out the submission form. It creates a GitHub issue with your skill details for review.
+                      Fill out the submission form. It opens a GitHub issue with your skill details for review.
                     </p>
                   </div>
                 </div>
@@ -109,7 +109,7 @@ export default function ContributeClient() {
                   <div>
                     <h3 className="text-lg font-medium text-white mb-2">Review Process</h3>
                     <p style={{ color: 'var(--color-grey-300)' }}>
-                      Maintainers will review your submission for quality, completeness, and fit. You may receive feedback or requests for changes.
+                      Maintainers will review your submission for quality, completeness, and fit. Expect feedback or requests for changes.
                     </p>
                   </div>
                 </div>
@@ -126,7 +126,7 @@ export default function ContributeClient() {
                   <div>
                     <h3 className="text-lg font-medium text-white mb-2">Published!</h3>
                     <p style={{ color: 'var(--color-grey-300)' }}>
-                      Once approved, your skill will be added to the catalog with full attribution. You'll be credited as the contributor.
+                      Once approved, your skill will be added to the catalog with full attribution. You will be credited as the contributor.
                     </p>
                   </div>
                 </div>
@@ -140,7 +140,7 @@ export default function ContributeClient() {
               className="mb-6"
               style={{ color: 'var(--color-grey-300)' }}
             >
-              Use this template structure when submitting your skill. All fields marked in the template are important for a complete submission.
+              Use this template structure when submitting your skill. Every field marked in the template is required for a complete submission.
             </p>
             <div className="glass-card p-6 overflow-x-auto">
               <CodeBlock code={skillTemplateCode} language="javascript" />
@@ -213,7 +213,7 @@ export default function ContributeClient() {
               className="mb-6"
               style={{ color: 'var(--color-grey-300)' }}
             >
-              See what skills are currently being reviewed and track the status of submissions.
+              See what skills are being reviewed and track the status of each submission.
             </p>
             <a
               href={`${siteConfig.links.github}/issues?q=is%3Aissue+is%3Aopen+label%3Askill-submission`}

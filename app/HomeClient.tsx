@@ -77,10 +77,10 @@ export default function HomeClient() {
         <section className="mb-16 md:mb-20">
           <div className="text-center mb-6">
             <h2 className="text-xl md:text-2xl font-medium mb-2 text-white">
-              What do you need your AI to do?
+              What do you want your AI to ship today?
             </h2>
             <p className="label">
-              Tell us. We'll show you the skills that actually solve it.
+              Describe the outcome and we will surface the skills that get you there.
             </p>
           </div>
           <TaskInput value={taskQuery} onChange={handleTaskChange} />
@@ -100,17 +100,17 @@ export default function HomeClient() {
         <div className="mb-6 md:mb-8 flex flex-col md:flex-row md:items-start md:justify-between gap-4">
           <div>
             <h2 className="text-xl md:text-2xl font-medium mb-2 text-white">
-              What works right now
+              Proven skills, ready now
             </h2>
             <p className="label">
-              {skills.length} tested skills across {categories.length - 1} categories. All community-built.
+              {skills.length} tested skills across {categories.length - 1} categories, built and vetted by the community.
             </p>
           </div>
           <Link
             href="/request-skill"
             className="glass-pill px-4 py-2 rounded-full text-sm font-medium hover:opacity-90 transition-opacity md:self-start"
           >
-            Request a Skill
+            Request a new skill
           </Link>
         </div>
 
@@ -168,14 +168,14 @@ export default function HomeClient() {
               </svg>
             </div>
             <p className="text-lg text-white mb-2">
-              {query.trim() ? 'Nothing fits that description' : 'This category is empty right now'}
+              {query.trim() ? 'No skills match that yet' : 'This category is waiting for its first skill'}
             </p>
             <p className="label mb-4">
-              {query.trim() ? 'Try something broader, or skip straight to browsing all skills' : 'Check back soon or explore what exists'}
+              {query.trim() ? 'Try a broader search, or jump back to all skills.' : 'Explore the full catalog or check back soon.'}
             </p>
             {query.trim() && (
               <button onClick={clearSearch} className="glass-pill btn-press px-4 py-2 rounded-full text-sm font-medium">
-                See all skills
+                Browse all skills
               </button>
             )}
           </div>

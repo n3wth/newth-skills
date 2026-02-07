@@ -157,17 +157,17 @@ export function SubmitClient() {
             className="inline-flex items-center gap-2 mb-8 text-sm hover:opacity-70 transition-opacity"
             style={{ color: 'var(--color-grey-400)' }}
           >
-            <span>&larr;</span> Back to skills
+            <span>&larr;</span> Back to the catalog
           </Link>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-4 tracking-tight">
-            Submit a Skill
+            Submit a skill
           </h1>
           <p
             className="text-lg mb-6"
             style={{ color: 'var(--color-grey-200)' }}
           >
-            Contribute a skill to the marketplace. Your submission will be reviewed and, if approved, added to the catalog with full attribution.
+            Contribute a skill to the marketplace. If approved, it will be added to the catalog with full attribution.
           </p>
           <p
             className="text-sm mb-12"
@@ -189,13 +189,13 @@ export function SubmitClient() {
                 className="text-base font-medium mb-2"
                 style={{ color: 'var(--color-sage)' }}
               >
-                Request submitted!
+                Submission received!
               </p>
               <p
                 className="text-sm"
                 style={{ color: 'var(--color-grey-300)' }}
               >
-                A GitHub issue has been opened with your skill request. Thank you for contributing!
+                A GitHub issue has been opened with your submission. Thank you for contributing!
               </p>
             </div>
           )}
@@ -313,7 +313,7 @@ export function SubmitClient() {
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
-                placeholder="Describe what this skill should do and how it would help users..."
+                placeholder="Describe what this skill should do and how it helps users..."
                 rows={4}
                 className="w-full px-4 py-3 rounded-xl text-base transition-all duration-200 focus:outline-none resize-none"
                 style={{

@@ -125,13 +125,13 @@ export function BundlesClient() {
                 className="inline-flex items-center gap-2 mb-4 text-sm hover:opacity-70 transition-opacity"
                 style={{ color: 'var(--color-grey-400)' }}
               >
-                <span>&larr;</span> All skills
+                <span>&larr;</span> Back to the catalog
               </Link>
               <h1 className="text-3xl md:text-4xl font-semibold text-white">
                 Skill Bundles
               </h1>
               <p className="mt-2" style={{ color: 'var(--color-grey-300)' }}>
-                Create collections of skills and share them with others
+                Group skills into ready-to-share collections for faster installs.
               </p>
             </div>
           </div>
@@ -144,10 +144,10 @@ export function BundlesClient() {
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <h2 className="text-xl font-semibold text-white mb-1">
-                    Shared Bundle: {sharedBundle.name}
+                    Shared bundle: {sharedBundle.name}
                   </h2>
                   <p className="text-sm" style={{ color: 'var(--color-grey-400)' }}>
-                    {sharedBundleSkills.length} skill{sharedBundleSkills.length !== 1 ? 's' : ''} in this bundle
+                    {sharedBundleSkills.length} skill{sharedBundleSkills.length !== 1 ? 's' : ''} inside this bundle
                   </p>
                 </div>
                 <div className="flex gap-2">
@@ -163,7 +163,7 @@ export function BundlesClient() {
                     className="px-4 py-2 rounded-full text-sm font-medium text-white transition-opacity hover:opacity-90"
                     style={{ backgroundColor: '#22c55e' }}
                   >
-                    Save to My Bundles
+                    Save to my bundles
                   </button>
                 </div>
               </div>
@@ -180,7 +180,7 @@ export function BundlesClient() {
             <div className="md:col-span-1">
               <div className="glass-card p-4 sticky top-24">
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-lg font-semibold text-white">My Bundles</h2>
+                  <h2 className="text-lg font-semibold text-white">My bundles</h2>
                   <button
                     onClick={() => setShowCreateForm(true)}
                     className="p-2 rounded-full transition-colors hover:bg-white/10"
@@ -244,7 +244,7 @@ export function BundlesClient() {
                       No bundles yet
                     </p>
                     <p className="text-xs" style={{ color: 'var(--color-grey-500)' }}>
-                      Create a bundle to collect your favorite skills
+                      Create one to collect the skills you use most.
                     </p>
                   </div>
                 ) : (
@@ -324,7 +324,7 @@ export function BundlesClient() {
 
                   {selectedBundleSkills.length > 0 && (
                     <div className="glass-card p-4 mb-6">
-                      <h3 className="text-sm font-medium text-white mb-2">Install All Skills</h3>
+                      <h3 className="text-sm font-medium text-white mb-2">Install every skill</h3>
                       <CommandBox
                         name="Install Bundle"
                         command={installAllCommand}
@@ -335,16 +335,16 @@ export function BundlesClient() {
 
                   {selectedBundleSkills.length === 0 ? (
                     <div className="text-center py-16 glass-card">
-                      <p className="text-lg text-white mb-2">No skills in this bundle</p>
+                      <p className="text-lg text-white mb-2">This bundle is still empty</p>
                       <p className="text-sm mb-4" style={{ color: 'var(--color-grey-400)' }}>
-                        Browse skills and add them to this bundle
+                        Browse skills and add them here to keep everything together.
                       </p>
                       <Link
                         href="/"
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-white transition-opacity hover:opacity-90"
                         style={{ backgroundColor: '#22c55e' }}
                       >
-                        Browse Skills
+                        Browse skills
                       </Link>
                     </div>
                   ) : (
@@ -357,9 +357,9 @@ export function BundlesClient() {
                 </div>
               ) : (
                 <div className="text-center py-16 glass-card">
-                  <p className="text-lg text-white mb-2">Select a bundle</p>
+                  <p className="text-lg text-white mb-2">Select a bundle to get started</p>
                   <p className="text-sm" style={{ color: 'var(--color-grey-400)' }}>
-                    Choose a bundle from the sidebar or create a new one
+                    Choose a bundle from the sidebar or create a new one.
                   </p>
                 </div>
               )}
