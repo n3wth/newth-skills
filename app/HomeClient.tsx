@@ -16,15 +16,11 @@ import { SortDropdown } from '../src/components/SortDropdown'
 import { TaskInput } from '../src/components/TaskInput'
 import { SkillRecommendations } from '../src/components/SkillRecommendations'
 import { ComparisonBar } from '../src/components/ComparisonBar'
-import { useKeyboardShortcuts, useAIRecommendations, useSkillSearch, useSkillNavigation, useScrollReveal, useCardAnimation, usePageTransition } from '../src/hooks'
+import { useKeyboardShortcuts, useAIRecommendations, useSkillSearch, useSkillNavigation } from '../src/hooks'
 import { getSkillBadgeStatus } from '../src/lib/analytics'
 
 export default function HomeClient() {
   const searchInputRef = useRef<HTMLInputElement>(null)
-  const pageRef = usePageTransition()
-  const gridRef = useCardAnimation({ stagger: 0.08, enableHoverLift: true })
-  const recommendationsRef = useScrollReveal({ direction: 'up', distance: 30, stagger: 0.12 })
-  const browseHeaderRef = useScrollReveal({ direction: 'up', distance: 20, delay: 0.1 })
 
   // Search, filter, and sort
   const {
@@ -69,16 +65,16 @@ export default function HomeClient() {
   const badgeStatus = useMemo(() => getSkillBadgeStatus(), [])
 
   return (
-    <div ref={pageRef} className="min-h-screen relative content-loaded">
+    <div className="min-h-screen relative content-loaded">
       <div className="mesh-gradient" />
       <div className="noise-overlay" />
 
       <Nav />
       <Hero />
 
-      <main className="px-6 md:px-12 pb-24">
+      <main id="main-content" className="max-w-6xl mx-auto px-6 md:px-12 pb-24">
         {/* AI Recommendations Section */}
-        <section ref={recommendationsRef} className="mb-16 md:mb-20">
+        <section className="mb-16 md:mb-20">
           <div className="text-center mb-6">
             <h2 className="text-xl md:text-2xl font-medium mb-2 text-white">
               What do you want your AI to ship today?
@@ -101,7 +97,7 @@ export default function HomeClient() {
         <StatsRow />
 
         {/* Browse Section Header */}
-        <div ref={browseHeaderRef} className="mb-6 md:mb-8 flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+        <div className="mb-6 md:mb-8 flex flex-col md:flex-row md:items-start md:justify-between gap-4">
           <div>
             <h2 className="text-xl md:text-2xl font-medium mb-2 text-white">
               Proven skills, ready now
@@ -128,9 +124,17 @@ export default function HomeClient() {
         </div>
 
         {/* Skills Grid */}
-        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
           {filteredSkills.map((skill, index) => (
-            <div key={skill.id} data-card>
+            <div
+              key={skill.id}
+              data-card
+              className="h-full"
+              style={{
+                contentVisibility: index > 11 ? 'auto' : 'visible',
+                containIntrinsicSize: index > 11 ? '0 200px' : undefined,
+              }}
+            >
               <SkillCard
                 ref={setCardRef(index)}
                 skill={skill}

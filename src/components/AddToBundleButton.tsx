@@ -60,9 +60,9 @@ export function AddToBundleButton({ skillId, skillName, className = '', size = '
     setIsOpen(false)
   }, [newBundleName, newBundleDesc, skillId])
   
-  const sizeClasses = size === 'sm' 
-    ? 'px-2 py-1 text-xs gap-1'
-    : 'px-3 py-1.5 text-sm gap-1.5'
+  const sizeClasses = size === 'sm'
+    ? 'px-2.5 py-1.5 text-xs gap-1 min-h-[36px]'
+    : 'px-3 py-2 sm:py-1.5 text-sm gap-1.5 min-h-[44px] sm:min-h-[36px]'
   
   const iconSize = size === 'sm' ? 12 : 14
   
@@ -98,8 +98,8 @@ export function AddToBundleButton({ skillId, skillName, className = '', size = '
       </button>
       
       {isOpen && (
-        <div 
-          className="absolute bottom-full mb-2 right-0 w-64 rounded-lg overflow-hidden z-50"
+        <div
+          className="absolute bottom-full mb-2 right-0 left-0 sm:left-auto w-auto sm:w-64 max-w-[calc(100vw-2rem)] rounded-lg overflow-hidden z-50"
           style={{
             backgroundColor: 'rgba(20, 20, 20, 0.98)',
             border: '1px solid var(--glass-border)',

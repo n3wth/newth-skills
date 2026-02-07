@@ -165,6 +165,7 @@ export function WorkflowNodeComponent({
             backgroundColor: canConnect ? undefined : 'var(--color-bg)'
           }}
           title={`${port.name} (${port.type})`}
+          aria-label={`${isOutput ? 'Output' : 'Input'} port: ${port.name} (${port.type})`}
         />
         <span className="text-[var(--color-grey-400)] shrink-0" title={port.description}>
           {port.name}
@@ -274,8 +275,9 @@ export function WorkflowNodeComponent({
               onRemove()
             }}
             className="port-button w-6 h-6 rounded-md flex items-center justify-center text-[var(--color-grey-600)] hover:text-[var(--color-coral)] hover:bg-[var(--color-coral)]/10 transition-colors"
+            aria-label={`Remove ${skill.name} from workflow`}
           >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>

@@ -118,6 +118,11 @@ export function WorkflowsClient() {
             </div>
           </div>
 
+          {/* H2 section heading for accessibility (H1 -> H2 -> H3 in cards) */}
+          <h2 className="sr-only">
+            {activeTab === 'templates' ? 'Workflow Templates' : 'My Saved Workflows'}
+          </h2>
+
           {displayedWorkflows.length === 0 ? (
             <div className="text-center py-16">
               <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[var(--glass-bg)] border border-[var(--glass-border)] flex items-center justify-center">
@@ -125,9 +130,9 @@ export function WorkflowsClient() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-medium text-[var(--color-grey-300)] mb-2">
+              <h2 className="text-lg font-medium text-[var(--color-grey-300)] mb-2">
                 {activeTab === 'my-workflows' ? 'No workflows yet' : 'No workflows found'}
-              </h3>
+              </h2>
               <p className="text-sm text-[var(--color-grey-600)] mb-6">
                 {activeTab === 'my-workflows'
                   ? 'Create your first workflow to chain skills together.'

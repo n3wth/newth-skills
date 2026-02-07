@@ -27,8 +27,9 @@ export function SaveWorkflowModal({ workflow, onSave, onClose }: SaveWorkflowMod
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm text-[var(--color-grey-400)] mb-2">Name</label>
+            <label htmlFor="workflow-name" className="block text-sm text-[var(--color-grey-400)] mb-2">Name</label>
             <input
+              id="workflow-name"
               type="text"
               value={name}
               onChange={e => setName(e.target.value)}
@@ -39,8 +40,9 @@ export function SaveWorkflowModal({ workflow, onSave, onClose }: SaveWorkflowMod
           </div>
 
           <div>
-            <label className="block text-sm text-[var(--color-grey-400)] mb-2">Description</label>
+            <label htmlFor="workflow-description" className="block text-sm text-[var(--color-grey-400)] mb-2">Description</label>
             <textarea
+              id="workflow-description"
               value={description}
               onChange={e => setDescription(e.target.value)}
               placeholder="What does this workflow do?"
@@ -50,8 +52,9 @@ export function SaveWorkflowModal({ workflow, onSave, onClose }: SaveWorkflowMod
           </div>
 
           <div>
-            <label className="block text-sm text-[var(--color-grey-400)] mb-2">Tags (comma-separated)</label>
+            <label htmlFor="workflow-tags" className="block text-sm text-[var(--color-grey-400)] mb-2">Tags (comma-separated)</label>
             <input
+              id="workflow-tags"
               type="text"
               value={tagsInput}
               onChange={e => setTagsInput(e.target.value)}

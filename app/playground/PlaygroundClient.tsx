@@ -102,7 +102,7 @@ export function PlaygroundClient() {
 
       <Nav />
 
-      <main className="px-6 md:px-12 pt-28 md:pt-32 pb-24">
+      <main className="max-w-6xl mx-auto px-6 md:px-12 pt-28 md:pt-32 pb-24">
         <div className="max-w-6xl mx-auto">
           <div className="mb-8 md:mb-12">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-4 tracking-tight">

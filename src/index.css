@@ -1,5 +1,8 @@
 @import 'tailwindcss';
 
+/* Scan @n3wth/ui components for Tailwind classes */
+@source "../node_modules/@n3wth/ui/dist";
+
 @font-face {
   font-family: 'Geist Sans';
   src: url('/fonts/Geist-Regular.woff2') format('woff2');
@@ -40,128 +43,14 @@
   font-display: swap;
 }
 
+/* Project-specific theme overrides */
 @theme {
   --font-display: 'Geist Sans', system-ui, sans-serif;
   --font-sans: 'Geist Sans', system-ui, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, Monaco, monospace;
-
-  /* Dark iOS-inspired palette (default) */
-  --color-bg: #000000;
-  --color-bg-secondary: #0a0a0a;
-  --color-white: #ffffff;
-  --color-grey-100: #f5f5f7;
-  --color-grey-200: #e8e8ed;
-  --color-grey-300: #c7c7cc;
-  --color-grey-400: #86868b;
-  --color-grey-600: #6e6e73;
-  --color-grey-800: #1d1d1f;
-
-  /* Accent */
-  --color-accent: #ffffff;
-  --color-accent-soft: rgba(255, 255, 255, 0.15);
-
-  /* Category colors */
-  --color-sage: #30d158;
-  --color-coral: #ff6961;
-  --color-mint: #64d2ff;
-  --color-gold: #ffd60a;
-
-  /* Glass effect */
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-highlight: rgba(255, 255, 255, 0.15);
 }
 
-/* Light mode overrides */
-:root[data-theme='light'] {
-  --color-bg: #ffffff;
-  --color-bg-secondary: #f5f5f7;
-  --color-white: #1d1d1f;
-  --color-grey-100: #1d1d1f;
-  --color-grey-200: #3a3a3c;
-  --color-grey-300: #48484a;
-  --color-grey-400: #636366;
-  --color-grey-600: #8e8e93;
-  --color-grey-800: #e5e5ea;
-
-  --color-accent: #1d1d1f;
-  --color-accent-soft: rgba(0, 0, 0, 0.1);
-
-  --color-sage: #248a3d;
-  --color-coral: #d70015;
-  --color-mint: #0071e3;
-  --color-gold: #b25000;
-
-  --glass-bg: rgba(0, 0, 0, 0.03);
-  --glass-border: rgba(0, 0, 0, 0.08);
-  --glass-highlight: rgba(0, 0, 0, 0.12);
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  background: var(--color-bg);
-  color: var(--color-white);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  line-height: 1.5;
-}
-
-::selection {
-  background: var(--color-accent);
-  color: var(--color-bg);
-}
-
-/* Uppercase label */
-.label {
-  font-family: var(--font-sans);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-grey-400);
-}
-
-/* Underline link animation */
-.link-hover {
-  position: relative;
-}
-
-.link-hover::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: currentColor;
-  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.link-hover:hover::after {
-  width: 100%;
-}
-
-/* Card */
-.glass-card {
-  background: transparent;
-  border: 1px solid var(--glass-border);
-  border-radius: 20px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.glass-card:hover {
-  border-color: var(--glass-highlight);
-}
-
-/* Skill Card with hover effects */
+/* Skill Card specific styles */
 .skill-card {
   transition: border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
               background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -171,131 +60,25 @@ body {
   background: var(--glass-bg);
 }
 
-
-/* Glass Nav */
-.glass-nav {
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-}
-
-:root[data-theme='light'] .glass-nav {
-  background: rgba(255, 255, 255, 0.8);
-}
-
-/* Glass Pill */
-.glass-pill {
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
-  border-radius: 9999px;
-  color: var(--color-grey-400);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: scale(1);
-}
-
-.glass-pill:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--glass-highlight);
-  color: var(--color-white);
-  transform: scale(1.02);
-}
-
-.glass-pill:active {
-  transform: scale(0.96);
-  transition-duration: 0.1s;
-}
-
-.glass-pill.active {
-  background: var(--color-white);
-  border-color: var(--color-white);
-  color: var(--color-bg);
-}
-
-:root[data-theme='light'] .glass-pill {
-  background: rgba(0, 0, 0, 0.03);
-  border-color: rgba(0, 0, 0, 0.08);
-}
-
-:root[data-theme='light'] .glass-pill:hover {
-  background: rgba(0, 0, 0, 0.06);
-  border-color: rgba(0, 0, 0, 0.12);
-}
-
-:root[data-theme='light'] .glass-pill.active {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
-  color: var(--color-bg);
-}
-
-/* Install Command Box */
-.command-box {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
-  border-radius: 16px;
-  transition: all 0.2s ease;
-}
-
-.command-box:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: var(--glass-highlight);
-}
-
-.command-box.primary {
-  background: var(--glass-bg);
-  border-color: var(--glass-highlight);
-}
-
-.command-box.primary:hover {
-  background: rgba(255, 255, 255, 0.12);
-}
-
-/* Copy button */
-.copy-btn {
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  color: var(--color-grey-400);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: scale(1);
-}
-
-.copy-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: var(--color-white);
-  transform: scale(1.05);
-}
-
-.copy-btn:active {
-  transform: scale(0.92);
-  transition-duration: 0.1s;
-}
-
-.copy-btn.copied {
-  background: var(--color-sage);
-  color: var(--color-bg);
-  transform: scale(1);
-}
-
-/* Screen reader only */
-.sr-only {
+.skill-card::before {
+  content: '';
   position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
+  inset: 0;
+  background: transparent;
+  border-radius: 20px;
+  transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
 }
 
+.skill-card:hover::before {
+  background: rgba(255, 255, 255, 0.02);
+}
 
+.skill-card:focus-within {
+  border-color: var(--glass-highlight);
+}
 
-
-/* Constellation pattern */
+/* Constellation pattern - project specific */
 @keyframes constellationTwinkle {
   0%, 100% {
     opacity: 0.3;
@@ -307,36 +90,9 @@ body {
   }
 }
 
-@keyframes constellationDrift {
-  0% {
-    transform: translateY(0) rotate(0deg);
-  }
-  100% {
-    transform: translateY(-100vh) rotate(180deg);
-  }
-}
-
 .constellation-dot {
   animation: constellationTwinkle var(--twinkle-duration, 3s) ease-in-out infinite;
   animation-delay: var(--twinkle-delay, 0s);
-}
-
-
-/* Staggered fade animation */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-in {
-  animation: fadeUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  opacity: 0;
 }
 
 /* Number index */
@@ -370,39 +126,6 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Skeleton loading shimmer */
-@keyframes shimmer {
-  0% {
-    opacity: 0.4;
-  }
-  50% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 0.4;
-  }
-}
-
-.skeleton-shimmer {
-  animation: shimmer 1.8s ease-in-out infinite;
-}
-
-/* Loading state transitions */
-@keyframes skeletonFadeOut {
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0.98);
-  }
-}
-
-.skeleton-exit {
-  animation: skeletonFadeOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
 /* Staggered card entrance animation */
 @keyframes cardEnter {
   from {
@@ -418,11 +141,6 @@ body {
 .card-enter {
   animation: cardEnter 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   animation-fill-mode: both;
-}
-
-/* Content loaded state - instant display */
-.content-loaded {
-  opacity: 1;
 }
 
 /* Page transition animations */
@@ -456,98 +174,7 @@ body {
   animation: pageExit 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-/* Reduced motion preferences */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  html {
-    scroll-behavior: auto;
-  }
-
-  .skill-card,
-  .glass-pill,
-  .copy-btn,
-  .glass-card {
-    transform: none !important;
-    transition: none !important;
-  }
-
-  .skill-card:hover,
-  .skill-card:active {
-    transform: none !important;
-  }
-
-  .glass-pill:hover,
-  .glass-pill:active {
-    transform: none !important;
-  }
-
-  .copy-btn:hover,
-  .copy-btn:active {
-    transform: none !important;
-  }
-
-  .hero-word {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-
-  .floating-shape {
-    animation: none !important;
-    opacity: 0.5 !important;
-  }
-
-  .constellation-dot {
-    animation: none !important;
-    opacity: 0.5 !important;
-  }
-
-  .content-loaded,
-  .page-enter,
-  .page-exit,
-  .animate-in,
-  .card-enter,
-  .skeleton-shimmer,
-  .skeleton-exit {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
-
-/* Mobile Navigation */
-.mobile-nav-link {
-  background: transparent;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.mobile-nav-link:hover,
-.mobile-nav-link:active {
-  background: var(--glass-bg);
-}
-
-@media (hover: none) {
-  .mobile-nav-link:active {
-    background: var(--glass-highlight);
-  }
-}
-
-.mobile-menu-drawer {
-  border-left: 1px solid var(--glass-border);
-}
-
-:root[data-theme='light'] .mobile-menu-overlay {
-  background-color: rgba(0, 0, 0, 0.3) !important;
-}
-
-/* Hover Preview */
+/* Hover Preview - project specific */
 .hover-preview {
   width: 320px;
   pointer-events: auto;
@@ -652,15 +279,6 @@ body {
   animation: connectionDraw 0.3s ease-out forwards;
 }
 
-/* Reduced motion for hover preview */
-@media (prefers-reduced-motion: reduce) {
-  .hover-preview-content {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
-
 /* Hero category hover delight */
 .hero-category {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -668,28 +286,6 @@ body {
 
 .hero-category:hover {
   transform: translateY(-2px);
-}
-
-/* Delightful underline animation for links */
-.link-underline {
-  position: relative;
-  text-decoration: none;
-}
-
-.link-underline::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 1px;
-  bottom: -2px;
-  left: 50%;
-  background: currentColor;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.link-underline:hover::after {
-  width: 100%;
-  left: 0;
 }
 
 /* Badge pulse animation for "New" badges */
@@ -704,21 +300,6 @@ body {
 
 .badge-pulse {
   animation: badgePulse 2s ease-in-out infinite;
-}
-
-/* Skill card subtle highlight on hover */
-.skill-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: transparent;
-  border-radius: 20px;
-  transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
-}
-
-.skill-card:hover::before {
-  background: rgba(255, 255, 255, 0.02);
 }
 
 /* Stats counter animation helper */
@@ -771,40 +352,9 @@ body {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Focus visible ring for keyboard navigation */
-.focus-ring:focus-visible {
-  outline: 2px solid var(--color-white);
-  outline-offset: 2px;
-}
-
-/* Smooth scroll behavior */
+/* Instant scroll on navigation (no animation) */
 html {
-  scroll-behavior: smooth;
-}
-
-/* Custom scrollbar for webkit browsers */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--glass-border);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--glass-highlight);
-}
-
-/* Firefox scrollbar */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--glass-border) transparent;
+  scroll-behavior: auto;
 }
 
 /* Success message entrance animation */
@@ -839,11 +389,6 @@ html {
   animation: verifyEnter 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-/* Subtle scale on card focus */
-.skill-card:focus-within {
-  border-color: var(--glass-highlight);
-}
-
 /* Code block styling */
 .code-block-wrapper {
   transition: border-color 0.2s ease;
@@ -868,4 +413,70 @@ html {
   height: 4px;
   background: var(--color-white);
   border-radius: 50%;
+}
+
+/* Project-specific reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .constellation-dot {
+    animation: none !important;
+    opacity: 0.5 !important;
+  }
+
+  .hero-word {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .floating-shape {
+    animation: none !important;
+    opacity: 0.5 !important;
+  }
+
+  .card-enter,
+  .page-enter,
+  .page-exit,
+  .hover-preview-content,
+  .workflow-node-enter,
+  .success-message,
+  .verification-section {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Mobile touch improvements */
+@media (hover: none) and (pointer: coarse) {
+  /* Disable hover preview on touch devices */
+  .hover-preview {
+    display: none !important;
+  }
+
+  /* Improve tap targets */
+  .glass-pill {
+    min-height: 44px;
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+  }
+
+  /* Smoother scrolling for category filters */
+  .scrollbar-hidden {
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+  }
+
+  .scrollbar-hidden > button {
+    scroll-snap-align: start;
+  }
+}
+
+/* Safe area insets for iOS */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Content visibility for performance */
+.content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 200px;
 }

@@ -42,18 +42,21 @@ export function WorkflowSidebar({ onAddSkill, workflow }: WorkflowSidebarProps) 
   return (
     <div className="w-72 border-r border-[var(--glass-border)] flex flex-col bg-[var(--color-bg-secondary)]">
       <div className="p-4 border-b border-[var(--glass-border)]">
-        <h3 className="text-sm font-medium text-[var(--color-white)] mb-3">Add Skills</h3>
+        <h2 className="text-sm font-medium text-[var(--color-white)] mb-3">Add Skills</h2>
         
         <div className="relative">
-          <svg 
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--color-grey-600)]" 
-            fill="none" 
-            viewBox="0 0 24 24" 
+          <label htmlFor="workflow-skill-search" className="sr-only">Search skills</label>
+          <svg
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--color-grey-600)]"
+            fill="none"
+            viewBox="0 0 24 24"
             stroke="currentColor"
+            aria-hidden="true"
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
           <input
+            id="workflow-skill-search"
             type="text"
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
@@ -62,14 +65,15 @@ export function WorkflowSidebar({ onAddSkill, workflow }: WorkflowSidebarProps) 
           />
         </div>
         
-        <div className="flex flex-wrap gap-1.5 mt-3">
+        <div className="flex flex-wrap gap-1.5 mt-3" role="group" aria-label="Filter skills by category">
           <button
             onClick={() => setSelectedCategory(null)}
             className={`px-2.5 py-1 text-xs rounded-full transition-colors ${
-              !selectedCategory 
-                ? 'bg-[var(--color-white)] text-[var(--color-bg)]' 
+              !selectedCategory
+                ? 'bg-[var(--color-white)] text-[var(--color-bg)]'
                 : 'bg-[var(--glass-bg)] text-[var(--color-grey-400)] hover:text-[var(--color-white)]'
             }`}
+            aria-pressed={!selectedCategory}
           >
             All
           </button>
@@ -80,13 +84,14 @@ export function WorkflowSidebar({ onAddSkill, workflow }: WorkflowSidebarProps) 
                 key={cat}
                 onClick={() => setSelectedCategory(cat === selectedCategory ? null : cat)}
                 className={`px-2.5 py-1 text-xs rounded-full transition-colors capitalize ${
-                  selectedCategory === cat 
-                    ? 'text-[var(--color-bg)]' 
+                  selectedCategory === cat
+                    ? 'text-[var(--color-bg)]'
                     : 'bg-[var(--glass-bg)] text-[var(--color-grey-400)] hover:text-[var(--color-white)]'
                 }`}
                 style={{
                   backgroundColor: selectedCategory === cat ? config?.color : undefined
                 }}
+                aria-pressed={selectedCategory === cat}
               >
                 {cat}
               </button>
@@ -112,6 +117,7 @@ export function WorkflowSidebar({ onAddSkill, workflow }: WorkflowSidebarProps) 
                   key={skill.id}
                   onClick={() => onAddSkill(skill.id)}
                   className="w-full p-3 rounded-lg text-left transition-all hover:bg-[var(--glass-bg)] group"
+                  aria-label={`Add ${skill.name} skill to workflow`}
                 >
                   <div className="flex items-start gap-3">
                     <div 
@@ -125,9 +131,9 @@ export function WorkflowSidebar({ onAddSkill, workflow }: WorkflowSidebarProps) 
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
-                        <h4 className="text-sm font-medium text-[var(--color-white)] truncate">
+                        <h3 className="text-sm font-medium text-[var(--color-white)] truncate">
                           {skill.name}
-                        </h4>
+                        </h3>
                         {isUsed && (
                           <span className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--glass-bg)] text-[var(--color-grey-400)]">
                             In use

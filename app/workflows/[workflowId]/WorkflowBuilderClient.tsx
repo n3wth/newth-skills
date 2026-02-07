@@ -67,6 +67,9 @@ export function WorkflowBuilderClient({ workflowId }: Props) {
       <div className="noise-overlay" />
 
       <main className="h-full">
+        <h1 className="sr-only">
+          {initialWorkflow ? `Edit Workflow: ${initialWorkflow.name}` : 'Create New Workflow'}
+        </h1>
         <WorkflowBuilderComponent
           key={initialWorkflow?.id ?? 'new'}
           initialWorkflow={initialWorkflow}

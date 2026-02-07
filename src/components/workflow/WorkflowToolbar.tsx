@@ -52,8 +52,9 @@ function WorkflowInfo({ workflow }: { workflow: Workflow }) {
       <Link
         href="/workflows"
         className="text-[var(--color-grey-400)] hover:text-[var(--color-white)] transition-colors"
+        aria-label="Back to workflows"
       >
-        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
       </Link>
@@ -109,7 +110,9 @@ function WorkflowActions({
         <span className="text-sm text-[var(--color-sage)]">Saved</span>
       )}
 
+      <label htmlFor="workflow-import-file" className="sr-only">Import workflow file</label>
       <input
+        id="workflow-import-file"
         ref={fileInputRef}
         type="file"
         accept=".json"
@@ -168,6 +171,7 @@ function IconButton({ onClick, disabled, title, icon }: IconButtonProps) {
       disabled={disabled}
       className="px-3 py-2 text-sm text-[var(--color-grey-400)] hover:text-[var(--color-white)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       title={title}
+      aria-label={title}
     >
       {icon}
     </button>

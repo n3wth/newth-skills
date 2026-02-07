@@ -56,14 +56,14 @@ function AnimatedStat({ value, label, suffix = '' }: StatProps) {
   }, [value, suffix])
 
   return (
-    <div className="text-center">
+    <div className="text-center px-2">
       <span
         ref={valueRef}
-        className="block text-3xl md:text-4xl font-semibold text-white counter-animate"
+        className="block text-2xl sm:text-3xl md:text-4xl font-semibold text-white counter-animate"
       >
         0{suffix}
       </span>
-      <span className="text-xs uppercase tracking-wider" style={{ color: 'var(--color-grey-400)' }}>
+      <span className="text-[10px] sm:text-xs uppercase tracking-wider" style={{ color: 'var(--color-grey-400)' }}>
         {label}
       </span>
     </div>
@@ -110,7 +110,7 @@ export function StatsRow() {
   return (
     <div
       ref={containerRef}
-      className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 py-8 md:py-12 mb-8 md:mb-12 rounded-2xl"
+      className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 py-6 sm:py-8 md:py-12 mb-8 md:mb-12 rounded-2xl"
       style={{
         background: 'var(--glass-bg)',
         border: '1px solid var(--glass-border)',

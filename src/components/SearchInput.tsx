@@ -37,7 +37,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
     }, [isFocused])
 
     return (
-      <div ref={containerRef} className="relative w-full md:w-80 search-focus-ring rounded-full" style={{ border: '1px solid transparent' }}>
+      <div ref={containerRef} className="relative w-full sm:w-64 md:w-80 search-focus-ring rounded-full" style={{ border: '1px solid transparent' }}>
         <label htmlFor="skill-search" className="sr-only">
           Search skills
         </label>

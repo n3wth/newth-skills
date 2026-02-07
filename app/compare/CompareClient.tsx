@@ -56,7 +56,7 @@ export function CompareClient() {
         <div className="mesh-gradient" />
         <div className="noise-overlay" />
         <Nav />
-        <main className="px-6 md:px-12 pt-32 pb-24">
+        <main id="main-content" className="max-w-6xl mx-auto px-6 md:px-12 pt-32 pb-24">
           <div className="max-w-2xl mx-auto text-center">
             <h1 className="text-3xl md:text-4xl font-semibold text-white mb-4">
               Compare Skills
@@ -84,7 +84,7 @@ export function CompareClient() {
       <div className="noise-overlay" />
       <Nav />
 
-      <main className="px-6 md:px-12 pt-28 md:pt-32 pb-24">
+      <main className="max-w-6xl mx-auto px-6 md:px-12 pt-28 md:pt-32 pb-24">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between mb-8">
             <div>
@@ -223,7 +223,7 @@ export function CompareClient() {
                   <>
                     <tr className="border-t" style={{ borderColor: 'var(--glass-border)' }}>
                       <td colSpan={comparedSkills.length + 1} className="p-4">
-                        <h3 className="text-sm font-semibold text-white">Features</h3>
+                        <h2 className="text-sm font-semibold text-white">Features</h2>
                       </td>
                     </tr>
                     {allFeatures.map((feature, index) => (
@@ -254,7 +254,7 @@ export function CompareClient() {
                   <>
                     <tr className="border-t" style={{ borderColor: 'var(--glass-border)' }}>
                       <td colSpan={comparedSkills.length + 1} className="p-4">
-                        <h3 className="text-sm font-semibold text-white">Use Cases</h3>
+                        <h2 className="text-sm font-semibold text-white">Use Cases</h2>
                       </td>
                     </tr>
                     {allUseCases.map((useCase, index) => (

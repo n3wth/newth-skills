@@ -41,7 +41,7 @@ export function CuratedBundlesClient() {
 
       <Nav />
 
-      <main className="px-6 md:px-12 pt-28 md:pt-32 pb-24">
+      <main className="max-w-6xl mx-auto px-6 md:px-12 pt-28 md:pt-32 pb-24">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-semibold text-[var(--color-white)] mb-4">
@@ -119,9 +119,9 @@ export function CuratedBundlesClient() {
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
-              <h3 className="text-lg font-medium text-[var(--color-grey-300)] mb-2">
+              <h2 className="text-lg font-medium text-[var(--color-grey-300)] mb-2">
                 No bundles found
-              </h3>
+              </h2>
               <p className="text-sm text-[var(--color-grey-600)]">
                 Try adjusting your filters or search terms
               </p>

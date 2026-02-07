@@ -150,7 +150,7 @@ export function SubmitClient() {
       <div className="noise-overlay" />
       <Nav />
 
-      <main className="px-6 md:px-12 pt-28 md:pt-32 pb-24">
+      <main className="max-w-6xl mx-auto px-6 md:px-12 pt-28 md:pt-32 pb-24">
         <div className="max-w-2xl">
           <Link
             href="/"
@@ -497,7 +497,7 @@ export function SubmitClient() {
               className="glass-card p-6"
               style={{ borderColor: 'var(--glass-border)' }}
             >
-              <h3 className="text-base font-medium text-white mb-4">Contributor Information</h3>
+              <h2 className="text-base font-medium text-white mb-4">Contributor Information</h2>
               <div className="space-y-4">
                 <div>
                   <label

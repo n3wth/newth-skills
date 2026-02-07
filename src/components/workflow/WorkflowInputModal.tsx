@@ -135,12 +135,13 @@ interface InputFieldProps {
   onChange: (value: string) => void
 }
 
-function InputField({ input, value, onChange }: InputFieldProps) {
+function InputField({ nodeId, input, value, onChange }: InputFieldProps) {
   const isTextArea = input.inputType === 'text' || input.inputType === 'code'
+  const inputId = `workflow-input-${nodeId}-${input.inputId}`
 
   return (
     <div>
-      <label className="block text-sm text-[var(--color-grey-400)] mb-1.5">
+      <label htmlFor={inputId} className="block text-sm text-[var(--color-grey-400)] mb-1.5">
         {input.inputName}
         <span className="text-xs text-[var(--color-grey-600)] ml-2">({input.inputType})</span>
       </label>
@@ -149,6 +150,7 @@ function InputField({ input, value, onChange }: InputFieldProps) {
       )}
       {isTextArea ? (
         <textarea
+          id={inputId}
           value={value}
           onChange={e => onChange(e.target.value)}
           placeholder={`Enter ${input.inputName.toLowerCase()}...`}
@@ -157,6 +159,7 @@ function InputField({ input, value, onChange }: InputFieldProps) {
         />
       ) : (
         <input
+          id={inputId}
           type="text"
           value={value}
           onChange={e => onChange(e.target.value)}

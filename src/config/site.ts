@@ -6,9 +6,9 @@ export const siteConfig = {
   author: 'Oliver Newth',
   links: {
     about: 'https://newth.ai',
-    github: 'https://github.com/n3wth/newth-skills',
+    github: 'https://github.com/n3wth/skills',
     twitter: 'https://twitter.com/olivernewth',
-    docs: 'https://github.com/n3wth/newth-skills#readme',
+    docs: 'https://github.com/n3wth/skills#readme',
   },
   hero: {
     title: ['Extend', 'Your AI'],

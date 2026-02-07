@@ -4,16 +4,20 @@ export { useAIRecommendations } from './useAIRecommendations'
 export { useSkillSearch, type SortOption } from './useSkillSearch'
 export { useSkillNavigation } from './useSkillNavigation'
 export { useHoverPreview } from './useHoverPreview'
-export { useScrollReveal } from './useScrollReveal'
 export { useCardAnimation } from './useCardAnimation'
 export { useShapeMorph } from './useShapeMorph'
-export { usePageTransition } from './usePageTransition'
-export { useButtonPulse } from './useButtonPulse'
 
-// Delight hooks
-export { useTextReveal } from './useTextReveal'
+// Re-export animation hooks from @n3wth/ui
+export {
+  useScrollReveal,
+  usePageTransition,
+  useButtonPulse,
+  useTextReveal,
+  useCountUp,
+  useStaggerList,
+} from '@n3wth/ui'
+
+// Project-specific delight hooks
 export { useRipple } from './useRipple'
-export { useCountUp } from './useCountUp'
 export { useMagneticHover } from './useMagneticHover'
-export { useStaggerList } from './useStaggerList'
 export { useSuccessBounce, useShake, usePulse } from './useSuccessBounce'
