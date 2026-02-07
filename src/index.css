@@ -3,6 +3,45 @@
 /* Scan @n3wth/ui components for Tailwind classes */
 @source "../node_modules/@n3wth/ui/dist";
 
+/* Color variables from n3wth/ui (fallback for missing imports) */
+:root {
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-grey-100: #f5f5f7;
+  --color-grey-200: #e8e8ed;
+  --color-grey-300: #c7c7cc;
+  --color-grey-400: #86868b;
+  --color-grey-600: #6e6e73;
+  --color-grey-800: #1d1d1f;
+  
+  /* Glass morphism variables */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-highlight: rgba(255, 255, 255, 0.15);
+}
+
+:root[data-theme='light'] {
+  --glass-bg: rgba(0, 0, 0, 0.03);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-highlight: rgba(0, 0, 0, 0.12);
+}
+
+/* Fix for @n3wth/ui Nav responsive classes not being detected */
+@media (min-width: 768px) {
+  .md\:hidden {
+    display: none !important;
+  }
+  .md\:flex {
+    display: flex !important;
+  }
+  .md\:items-center {
+    align-items: center !important;
+  }
+  .md\:gap-6 {
+    gap: 1.5rem !important;
+  }
+}
+
 @font-face {
   font-family: 'Geist Sans';
   src: url('/fonts/Geist-Regular.woff2') format('woff2');
