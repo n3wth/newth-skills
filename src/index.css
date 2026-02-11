@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import '@n3wth/ui/styles';
 
 /* Scan @n3wth/ui components for Tailwind classes */
 @source "../node_modules/@n3wth/ui/dist";
