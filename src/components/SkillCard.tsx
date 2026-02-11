@@ -116,20 +116,20 @@ export const SkillCard = memo(forwardRef<HTMLAnchorElement, SkillCardProps>(
   }
 ))
 
-// Badge sub-component
+// Badge sub-component - subtle text indicator, no pill background
 function Badge({ color, icon, children }: { color: string; icon?: 'trending' | 'popular'; children: React.ReactNode }) {
   return (
     <span
-      className="text-[10px] font-medium px-2 py-0.5 rounded-full flex items-center gap-1"
-      style={{ color, backgroundColor: `${color}26`, border: `1px solid ${color}4d` }}
+      className="text-[9px] font-medium flex items-center gap-1 uppercase tracking-wider"
+      style={{ color }}
     >
       {icon === 'trending' && (
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+        <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 23c-3.65 0-7.68-2.91-7.97-8.03-.06-1.06.56-1.97 1.47-2.47.85-.47 1.89-.45 2.7.11l.08.06c.05-.67.18-1.43.43-2.2.61-1.92 1.84-3.6 3.29-5.47l2-2.57 2 2.57c1.45 1.87 2.68 3.55 3.29 5.47.25.77.38 1.53.43 2.2l.08-.06c.81-.56 1.85-.58 2.7-.11.91.5 1.53 1.41 1.47 2.47C20.68 20.09 15.65 23 12 23z" />
         </svg>
       )}
       {icon === 'popular' && (
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round">
+        <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round">
           <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
         </svg>
       )}

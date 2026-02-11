@@ -44,8 +44,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         GROUP BY skill_id
         ORDER BY copies DESC
       `
-      // Filter to only known/current skills
-      const filtered = result.filter((row: Record<string, any>) => validSkillIds.has(row.skill_id))
+      // Filter to only known/current skills and coerce counts to numbers
+      const filtered = result
+        .filter((row: Record<string, any>) => validSkillIds.has(row.skill_id))
+        .map((row: Record<string, any>) => ({
+          skill_id: row.skill_id,
+          views: Number(row.views),
+          copies: Number(row.copies)
+        }))
       return res.json(filtered)
     }
 

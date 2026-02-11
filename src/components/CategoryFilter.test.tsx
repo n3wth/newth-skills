@@ -37,10 +37,10 @@ describe('CategoryFilter', () => {
     render(<CategoryFilter activeCategory="development" onCategoryChange={onCategoryChange} />)
 
     const developmentButton = screen.getByText('Development').closest('button')
-    expect(developmentButton).toHaveClass('active')
+    expect(developmentButton).toHaveClass('category-filter-active')
 
     const allButton = screen.getByText('All').closest('button')
-    expect(allButton).not.toHaveClass('active')
+    expect(allButton).not.toHaveClass('category-filter-active')
   })
 
   it('renders category shapes for non-all categories', () => {

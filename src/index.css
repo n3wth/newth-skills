@@ -381,6 +381,52 @@
   border-color: var(--color-white);
 }
 
+/* Category filter buttons - simple text style, no pill/badge */
+.category-filter-btn {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  color: var(--color-grey-400);
+  transition: color 0.2s ease;
+  cursor: pointer;
+}
+
+.category-filter-btn:hover {
+  color: var(--color-white);
+}
+
+.category-filter-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 60%;
+  height: 2px;
+  background: var(--color-white);
+  transition: transform 0.2s ease;
+}
+
+.category-filter-active {
+  color: var(--color-white);
+}
+
+.category-filter-active::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+:root[data-theme='light'] .category-filter-btn:hover {
+  color: var(--color-black);
+}
+
+:root[data-theme='light'] .category-filter-active {
+  color: var(--color-black);
+}
+
+:root[data-theme='light'] .category-filter-btn::after {
+  background: var(--color-black);
+}
+
 /* Button press state */
 .btn-press:active {
   transform: scale(0.96);
@@ -395,6 +441,50 @@
 /* Instant scroll on navigation (no animation) */
 html {
   scroll-behavior: auto;
+}
+
+/* Global interactive element styles */
+a,
+button,
+[role="button"],
+[type="button"],
+[type="submit"],
+[type="reset"],
+summary {
+  cursor: pointer;
+}
+
+a:hover,
+button:not(:disabled):hover,
+[role="button"]:not(:disabled):hover {
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+/* Restore opacity for elements that already handle their own hover */
+.glass-pill:hover,
+.glass-card:hover,
+.skill-card:hover,
+.interactive-tag:hover,
+.hover-preview button:hover,
+.command-box:hover,
+.category-filter-btn:hover,
+nav a:hover,
+nav button:hover,
+footer a:hover {
+  opacity: 1;
+}
+
+/* Ensure inputs keep text cursor */
+input,
+textarea,
+select,
+[contenteditable] {
+  cursor: text;
+}
+
+select {
+  cursor: pointer;
 }
 
 /* Success message entrance animation */
@@ -626,6 +716,16 @@ nav button,
 .nav-glass-morphism a,
 .nav-glass-morphism button {
   color: var(--color-white) !important;
+  transition: opacity 0.2s ease;
+}
+
+nav a:hover,
+nav button:hover,
+[role="navigation"] a:hover,
+[role="navigation"] button:hover,
+.nav-glass-morphism a:hover,
+.nav-glass-morphism button:hover {
+  opacity: 0.7 !important;
 }
 
 :root[data-theme='light'] nav a,
@@ -637,6 +737,7 @@ nav button,
 :root[data-theme='light'] .nav-glass-morphism a,
 :root[data-theme='light'] .nav-glass-morphism button {
   color: var(--color-black) !important;
+  transition: opacity 0.2s ease;
 }
 
 /* Ensure site name/logo is visible with strong contrast */
@@ -669,7 +770,8 @@ footer {
 
 footer a {
   color: var(--color-grey-500) !important;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, opacity 0.2s ease;
+  cursor: pointer;
 }
 
 footer a:hover {

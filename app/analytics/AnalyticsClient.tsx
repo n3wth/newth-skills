@@ -39,10 +39,10 @@ export function AnalyticsClient() {
 
   // Compute summary stats
   const summary = useMemo(() => {
-    const totalViews = analyticsData.reduce((sum, item) => sum + (item.views || 0), 0)
-    const totalInstalls = analyticsData.reduce((sum, item) => sum + (item.copies || 0), 0)
-    const uniqueViewed = analyticsData.filter(item => item.views > 0).length
-    const uniqueInstalled = analyticsData.filter(item => item.copies > 0).length
+    const totalViews = analyticsData.reduce((sum, item) => sum + Number(item.views || 0), 0)
+    const totalInstalls = analyticsData.reduce((sum, item) => sum + Number(item.copies || 0), 0)
+    const uniqueViewed = analyticsData.filter(item => Number(item.views) > 0).length
+    const uniqueInstalled = analyticsData.filter(item => Number(item.copies) > 0).length
 
     return { totalViews, totalInstalls, uniqueViewed, uniqueInstalled }
   }, [analyticsData])
@@ -50,15 +50,15 @@ export function AnalyticsClient() {
   // Get sorted lists
   const mostViewed = useMemo(() => {
     return [...analyticsData]
-      .filter(item => item.views > 0)
-      .sort((a, b) => b.views - a.views)
+      .filter(item => Number(item.views) > 0)
+      .sort((a, b) => Number(b.views) - Number(a.views))
       .slice(0, 10)
   }, [analyticsData])
 
   const mostInstalled = useMemo(() => {
     return [...analyticsData]
-      .filter(item => item.copies > 0)
-      .sort((a, b) => b.copies - a.copies)
+      .filter(item => Number(item.copies) > 0)
+      .sort((a, b) => Number(b.copies) - Number(a.copies))
       .slice(0, 10)
   }, [analyticsData])
 
@@ -79,7 +79,7 @@ export function AnalyticsClient() {
       <Nav />
 
       <main className="max-w-6xl mx-auto px-6 md:px-12 pt-28 md:pt-32 pb-24">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <Link
             href="/"
             className="inline-flex items-center gap-2 mb-8 text-sm hover:opacity-70 transition-opacity"
