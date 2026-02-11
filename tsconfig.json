@@ -41,6 +41,9 @@
     "src/legacy-pages",
     "vscode-extension",
     "skills",
-    "scripts"
+    "scripts",
+    "e2e",
+    "src/test",
+    "playwright.config.ts"
   ]
 }

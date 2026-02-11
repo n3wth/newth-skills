@@ -24,6 +24,7 @@ export function Nav() {
       onThemeToggle={toggleTheme}
       fixed
       hideOnScroll
+      className="nav-glass-morphism"
     />
   )
 }

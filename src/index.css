@@ -514,8 +514,214 @@ html {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
+/* Mobile hero optimizations */
+@media (max-width: 640px) {
+  /* Prevent horizontal scroll on narrow screens */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Hero typography - mobile responsive */
+  h1 {
+    line-height: 1.2;
+  }
+
+  p {
+    word-spacing: normal;
+    overflow-wrap: break-word;
+  }
+
+  /* Touch target optimization */
+  button, a[role="button"], .hero-category {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Smooth scrolling for category badges */
+  .scrollbar-hidden {
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+  }
+
+  .scrollbar-hidden > * {
+    scroll-snap-align: start;
+  }
+}
+
+/* Hero word entrance animation - simplified on mobile */
+@keyframes heroWordEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-word {
+  animation: heroWordEnter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-fill-mode: both;
+}
+
+/* Stagger effect for hero words */
+.hero-word:nth-child(1) { animation-delay: 0s; }
+.hero-word:nth-child(2) { animation-delay: 0.1s; }
+.hero-word:nth-child(3) { animation-delay: 0.2s; }
+.hero-word:nth-child(4) { animation-delay: 0.3s; }
+.hero-word:nth-child(5) { animation-delay: 0.4s; }
+
+/* Reduce animations on mobile for better performance */
+@media (max-width: 640px) {
+  .hero-word {
+    animation-duration: 0.4s !important;
+  }
+}
+
+/* Reduce animation duration for small screens */
+@media (prefers-reduced-motion: reduce) {
+  .hero-word {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 /* Content visibility for performance */
 .content-visibility-auto {
   content-visibility: auto;
   contain-intrinsic-size: 0 200px;
+}
+
+/* Navigation Header Styling - Glass Morphism */
+nav,
+[role="navigation"],
+.nav-wrapper,
+header,
+.nav-glass-morphism {
+  background: rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+:root[data-theme='light'] nav,
+:root[data-theme='light'] [role="navigation"],
+:root[data-theme='light'] .nav-wrapper,
+:root[data-theme='light'] header,
+:root[data-theme='light'] .nav-glass-morphism {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Logo/Brand Visibility - Ensure high contrast */
+nav a,
+nav button,
+[role="navigation"] a,
+[role="navigation"] button,
+.nav-wrapper a,
+.nav-wrapper button,
+.nav-glass-morphism a,
+.nav-glass-morphism button {
+  color: var(--color-white) !important;
+}
+
+:root[data-theme='light'] nav a,
+:root[data-theme='light'] nav button,
+:root[data-theme='light'] [role="navigation"] a,
+:root[data-theme='light'] [role="navigation"] button,
+:root[data-theme='light'] .nav-wrapper a,
+:root[data-theme='light'] .nav-wrapper button,
+:root[data-theme='light'] .nav-glass-morphism a,
+:root[data-theme='light'] .nav-glass-morphism button {
+  color: var(--color-black) !important;
+}
+
+/* Ensure site name/logo is visible with strong contrast */
+nav span,
+nav h1,
+nav h2,
+[role="navigation"] span,
+[role="navigation"] h1,
+[role="navigation"] h2 {
+  color: var(--color-white) !important;
+  font-weight: 600 !important;
+}
+
+:root[data-theme='light'] nav span,
+:root[data-theme='light'] nav h1,
+:root[data-theme='light'] nav h2,
+:root[data-theme='light'] [role="navigation"] span,
+:root[data-theme='light'] [role="navigation"] h1,
+:root[data-theme='light'] [role="navigation"] h2 {
+  color: var(--color-black) !important;
+}
+
+/* Footer Styling - Consistent with Design System */
+footer {
+  background: rgba(0, 0, 0, 0.4) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: var(--color-grey-500) !important;
+  margin-top: auto;
+}
+
+footer a {
+  color: var(--color-grey-500) !important;
+  transition: color 0.2s ease;
+}
+
+footer a:hover {
+  color: var(--color-white) !important;
+}
+
+:root[data-theme='light'] footer {
+  background: rgba(255, 255, 255, 0.5) !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+:root[data-theme='light'] footer a {
+  color: var(--color-grey-600) !important;
+}
+
+:root[data-theme='light'] footer a:hover {
+  color: var(--color-black) !important;
+}
+
+/* Ensure footer links have proper spacing and alignment */
+footer div {
+  color: inherit;
+}
+
+footer span {
+  color: inherit;
+}
+
+/* @n3wth/ui Nav Component Specific Styling */
+[class*="nav"] {
+  background: rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+:root[data-theme='light'] [class*="nav"] {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Logo text visibility in nav */
+[class*="nav"] [class*="logo"],
+[class*="nav"] [class*="brand"],
+[class*="header"] [class*="logo"],
+[class*="header"] [class*="brand"] {
+  color: var(--color-white) !important;
+  font-weight: 600 !important;
+}
+
+:root[data-theme='light'] [class*="nav"] [class*="logo"],
+:root[data-theme='light'] [class*="nav"] [class*="brand"],
+:root[data-theme='light'] [class*="header"] [class*="logo"],
+:root[data-theme='light'] [class*="header"] [class*="brand"] {
+  color: var(--color-black) !important;
 }

@@ -1,6 +1,6 @@
 [project]
 domains = []
-name = "newth-skills"
+name = "skills-newth"
 
 [crawler]
 max_pages = 100
