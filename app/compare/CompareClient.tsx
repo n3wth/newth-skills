@@ -57,7 +57,7 @@ export function CompareClient() {
         <div className="noise-overlay" />
         <Nav />
         <main id="main-content" className="max-w-6xl mx-auto px-6 md:px-12 pt-28 md:pt-32 pb-24">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl">
             <Link
               href="/"
               className="inline-flex items-center gap-2 mb-8 text-sm hover:opacity-70 transition-opacity"
@@ -93,20 +93,19 @@ export function CompareClient() {
       <Nav />
 
       <main className="max-w-6xl mx-auto px-6 md:px-12 pt-28 md:pt-32 pb-24">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <Link
-                href="/"
-                className="inline-flex items-center gap-2 mb-4 text-sm hover:opacity-70 transition-opacity"
-                style={{ color: 'var(--color-grey-400)' }}
-              >
-                <span>&larr;</span> All skills
-              </Link>
-              <h1 className="text-3xl md:text-4xl font-semibold text-white">
-                Compare Skills
-              </h1>
-            </div>
+        <div className="max-w-4xl">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 mb-8 text-sm hover:opacity-70 transition-opacity"
+            style={{ color: 'var(--color-grey-400)' }}
+          >
+            <span>&larr;</span> Back to skills
+          </Link>
+
+          <div className="flex items-center justify-between mb-4">
+            <h1 className="text-4xl md:text-5xl font-semibold text-white tracking-tight">
+              Compare Skills
+            </h1>
             <button
               onClick={handleClear}
               className="px-4 py-2 rounded-full text-sm font-medium transition-opacity hover:opacity-70"
@@ -118,6 +117,9 @@ export function CompareClient() {
               Clear All
             </button>
           </div>
+          <p className="text-lg mb-12" style={{ color: 'var(--color-grey-300)' }}>
+            Side-by-side comparison of {comparedSkills.length} skills.
+          </p>
 
           <div className="overflow-x-auto">
             <table className="w-full min-w-[800px]">

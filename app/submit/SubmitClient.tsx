@@ -157,27 +157,20 @@ export function SubmitClient() {
             className="inline-flex items-center gap-2 mb-8 text-sm hover:opacity-70 transition-opacity"
             style={{ color: 'var(--color-grey-400)' }}
           >
-            <span>&larr;</span> Back to the catalog
+            <span>&larr;</span> Back to skills
           </Link>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-4 tracking-tight">
+          <h1 className="text-4xl md:text-5xl font-semibold text-white mb-4 tracking-tight">
             Submit a skill
           </h1>
           <p
-            className="text-lg mb-6"
-            style={{ color: 'var(--color-grey-200)' }}
+            className="text-lg mb-12"
+            style={{ color: 'var(--color-grey-300)' }}
           >
-            Contribute a skill to the marketplace. If approved, it will be added to the catalog with full attribution.
-          </p>
-          <p
-            className="text-sm mb-12"
-            style={{ color: 'var(--color-grey-400)' }}
-          >
-            New to contributing? Check out our{' '}
+            Contribute a skill to the marketplace. If approved, it will be added to the catalog with full attribution.{' '}
             <Link href="/contribute" className="text-white hover:opacity-70 transition-opacity underline">
-              contribution guide
-            </Link>{' '}
-            for templates and guidelines.
+              View the contribution guide
+            </Link>.
           </p>
 
           {submitStatus === 'success' && (

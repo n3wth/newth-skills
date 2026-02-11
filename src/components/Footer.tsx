@@ -15,7 +15,7 @@ const legal = [
 export function Footer() {
   return (
     <footer className="py-10 border-t" style={{ borderColor: 'var(--glass-border)' }}>
-      <div className="max-w-6xl mx-auto px-6 md:px-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+      <div className="max-w-6xl mx-auto px-6 md:px-12 flex flex-col gap-6">
         {/* Sites */}
         <nav className="flex items-center gap-4">
           {sites.map((site, i) => (
@@ -42,17 +42,23 @@ export function Footer() {
         </nav>
 
         {/* Legal */}
-        <nav className="flex items-center gap-4 text-sm" style={{ color: 'var(--color-grey-500)' }}>
+        <nav className="flex items-center gap-3">
           {legal.map((link, i) => (
-            <span key={link.name} className="flex items-center gap-4">
+            <span key={link.name} className="flex items-center gap-3">
               <a
                 href={link.href}
-                className="hover:text-white transition-colors"
+                className="transition-colors"
+                style={{
+                  fontSize: '11px',
+                  color: 'var(--color-grey-600)',
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-grey-400)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-grey-600)'}
               >
                 {link.name}
               </a>
               {i < legal.length - 1 && (
-                <span style={{ color: 'var(--color-grey-700)' }}>/</span>
+                <span style={{ fontSize: '11px', color: 'var(--color-grey-700)' }}>/</span>
               )}
             </span>
           ))}

@@ -190,9 +190,8 @@ export function PlaygroundClient() {
                       href={`/skill/${selectedSkill.id}`}
                       className="text-sm font-medium px-4 py-2 rounded-full transition-opacity hover:opacity-80"
                       style={{
-                        color: config?.color || 'white',
-                        backgroundColor: config?.color ? `${config.color}20` : 'var(--glass-bg)',
-                        border: `1px solid ${config?.color || 'var(--glass-border)'}`,
+                        color: '#000',
+                        backgroundColor: config?.color || 'var(--color-white)',
                       }}
                     >
                       View Skill Details
@@ -273,11 +272,10 @@ export function PlaygroundClient() {
                       <div
                         className="w-8 h-8 rounded-full flex items-center justify-center shrink-0"
                         style={{
-                          backgroundColor: config?.color ? `${config.color}20` : 'var(--glass-bg)',
-                          border: `1px solid ${config?.color || 'var(--glass-border)'}`,
+                          backgroundColor: config?.color || 'var(--glass-bg)',
                         }}
                       >
-                        <span style={{ color: config?.color || 'var(--color-grey-400)' }}>
+                        <span style={{ color: '#000' }}>
                           {selectedSkill.icon}
                         </span>
                       </div>

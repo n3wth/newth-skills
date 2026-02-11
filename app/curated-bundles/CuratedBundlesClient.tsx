@@ -43,7 +43,7 @@ export function CuratedBundlesClient() {
       <Nav />
 
       <main className="max-w-6xl mx-auto px-6 md:px-12 pt-28 md:pt-32 pb-24">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <Link
             href="/"
             className="inline-flex items-center gap-2 mb-8 text-sm hover:opacity-70 transition-opacity"

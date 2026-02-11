@@ -48,15 +48,15 @@ export default function ContributeClient() {
             className="inline-flex items-center gap-2 mb-8 text-sm hover:opacity-70 transition-opacity"
             style={{ color: 'var(--color-grey-400)' }}
           >
-            <span>&larr;</span> Back to the catalog
+            <span>&larr;</span> Back to skills
           </Link>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-4 tracking-tight">
+          <h1 className="text-4xl md:text-5xl font-semibold text-white mb-4 tracking-tight">
             Contribute a Skill
           </h1>
           <p
             className="text-lg mb-12"
-            style={{ color: 'var(--color-grey-200)' }}
+            style={{ color: 'var(--color-grey-300)' }}
           >
             Built something useful? Share it. Submit your skill and get it listed in the catalog with full attribution.
           </p>

@@ -14,41 +14,48 @@ function getConfig(category: string) {
   return categoryConfig.development
 }
 
-export function CategoryShape({ category, size = 12, className = '' }: CategoryShapeProps) {
-  const config = getConfig(category)
-
+function renderShape(shape: string, size: number, color: string): ReactElement | null {
+  // Optical size compensation: different shapes need different scales
+  // to appear the same visual weight. A triangle and diamond need to be
+  // slightly larger than a circle to look balanced.
   const shapes: Record<string, ReactElement> = {
     circle: (
       <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" fill={config.color} />
+        <circle cx="12" cy="12" r="10" fill={color} />
       </svg>
     ),
     square: (
       <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="3" width="18" height="18" rx="0" fill={config.color} />
+        <rect x="3" y="3" width="18" height="18" rx="2" fill={color} />
       </svg>
     ),
     triangle: (
-      <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-        <path d="M12 3L22 21H2L12 3Z" fill={config.color} />
+      <svg width={size * 1.1} height={size * 1.1} viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L23 20H1L12 2Z" fill={color} />
       </svg>
     ),
     diamond: (
-      <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-        <path d="M12 2L22 12L12 22L2 12L12 2Z" fill={config.color} />
+      <svg width={size * 1.05} height={size * 1.05} viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L22 12L12 22L2 12L12 2Z" fill={color} />
       </svg>
     ),
     hexagon: (
-      <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-        <path d="M12 2L21 7V17L12 22L3 17V7L12 2Z" fill={config.color} />
+      <svg width={size * 1.05} height={size * 1.05} viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L21 7V17L12 22L3 17V7L12 2Z" fill={color} />
       </svg>
     ),
   }
 
+  return shapes[shape] || null
+}
+
+export function CategoryShape({ category, size = 12, className = '' }: CategoryShapeProps) {
+  const config = getConfig(category)
+
   return (
-    <div className={className}>
-      {shapes[config.shape]}
-    </div>
+    <span className={`inline-flex items-center justify-center shrink-0${className ? ` ${className}` : ''}`}>
+      {renderShape(config.shape, size, config.color)}
+    </span>
   )
 }
 
@@ -56,34 +63,5 @@ export function CategoryShape({ category, size = 12, className = '' }: CategoryS
 export function RenderShape({ category, size }: { category: string; size: number }) {
   if (!(category in categoryConfig)) return null
   const config = categoryConfig[category as CategoryId]
-
-  const shapeMap: Record<string, ReactElement> = {
-    circle: (
-      <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" fill={config.color} />
-      </svg>
-    ),
-    square: (
-      <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="3" width="18" height="18" rx="0" fill={config.color} />
-      </svg>
-    ),
-    triangle: (
-      <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-        <path d="M12 3L22 21H2L12 3Z" fill={config.color} />
-      </svg>
-    ),
-    diamond: (
-      <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-        <path d="M12 2L22 12L12 22L2 12L12 2Z" fill={config.color} />
-      </svg>
-    ),
-    hexagon: (
-      <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-        <path d="M12 2L21 7V17L12 22L3 17V7L12 2Z" fill={config.color} />
-      </svg>
-    ),
-  }
-
-  return shapeMap[config.shape] || null
+  return renderShape(config.shape, size, config.color)
 }

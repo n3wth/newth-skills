@@ -120,11 +120,11 @@ export function WorkflowSidebar({ onAddSkill, workflow }: WorkflowSidebarProps) 
                   aria-label={`Add ${skill.name} skill to workflow`}
                 >
                   <div className="flex items-start gap-3">
-                    <div 
+                    <div
                       className="w-9 h-9 rounded-lg flex items-center justify-center text-base shrink-0"
-                      style={{ 
-                        backgroundColor: `color-mix(in oklch, ${config?.color || skill.color} 20%, transparent)`,
-                        color: config?.color || skill.color
+                      style={{
+                        backgroundColor: config?.color || skill.color,
+                        color: '#000'
                       }}
                     >
                       {skill.icon}
@@ -135,8 +135,8 @@ export function WorkflowSidebar({ onAddSkill, workflow }: WorkflowSidebarProps) 
                           {skill.name}
                         </h3>
                         {isUsed && (
-                          <span className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--glass-bg)] text-[var(--color-grey-400)]">
-                            In use
+                          <span className="text-[9px] uppercase tracking-wider font-medium" style={{ color: 'var(--color-grey-500)' }}>
+                            in use
                           </span>
                         )}
                       </div>

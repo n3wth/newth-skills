@@ -139,8 +139,8 @@ export function HoverPreview({ skill, isVisible, anchorRect, onClose }: HoverPre
           <div
             className="w-10 h-10 rounded-xl flex items-center justify-center text-lg"
             style={{
-              backgroundColor: config?.color ? `${config.color}15` : 'var(--glass-bg)',
-              border: config?.color ? `1px solid ${config.color}30` : '1px solid var(--glass-border)'
+              backgroundColor: config?.color || 'var(--glass-bg)',
+              color: '#000'
             }}
           >
             {skill.icon}

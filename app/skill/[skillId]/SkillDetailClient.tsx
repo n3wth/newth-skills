@@ -62,23 +62,22 @@ export function SkillDetailClient({ skillId }: Props) {
         <div className="mesh-gradient" />
         <div className="noise-overlay" />
         <Nav />
-        <main className="max-w-6xl mx-auto px-6 md:px-12 pt-32 pb-24">
-          <div className="max-w-2xl">
-            <h1 className="text-3xl md:text-4xl font-semibold text-white mb-4">
-              Skill not found
-            </h1>
-            <p className="text-lg mb-2" style={{ color: 'var(--color-grey-200)' }}>
-              This skill doesn't exist or may have been renamed.
-            </p>
-            <p className="text-base mb-8" style={{ color: 'var(--color-grey-400)' }}>
-              Browse the full collection to find what you need.
-            </p>
+        <main className="max-w-6xl mx-auto px-6 md:px-12 pt-28 md:pt-32 pb-24">
+          <div className="max-w-4xl">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-white hover:opacity-70 transition-opacity"
+              className="inline-flex items-center gap-2 mb-8 text-sm hover:opacity-70 transition-opacity"
+              style={{ color: 'var(--color-grey-400)' }}
             >
-              <span>&larr;</span> Browse all skills
+              <span>&larr;</span> Back to skills
             </Link>
+
+            <h1 className="text-4xl md:text-5xl font-semibold text-white mb-4 tracking-tight">
+              Skill not found
+            </h1>
+            <p className="text-lg mb-12" style={{ color: 'var(--color-grey-300)' }}>
+              This skill doesn't exist or may have been renamed. Browse the full collection to find what you need.
+            </p>
           </div>
         </main>
         <Footer />
@@ -101,19 +100,18 @@ export function SkillDetailClient({ skillId }: Props) {
             className="inline-flex items-center gap-2 mb-8 text-sm hover:opacity-70 transition-opacity"
             style={{ color: 'var(--color-grey-400)' }}
           >
-            <span>&larr;</span> All skills
+            <span>&larr;</span> Back to skills
           </Link>
 
           <div className="flex flex-wrap items-center gap-4 mb-6">
             <CategoryShape category={skill.category} size={24} />
             <span
-              className="text-sm font-medium px-3 py-1 rounded-full"
+              className="text-sm font-medium capitalize"
               style={{
                 color: config?.color || 'var(--color-grey-400)',
-                backgroundColor: config?.color ? `${config.color}20` : 'var(--glass-bg)',
               }}
             >
-              {skill.category.charAt(0).toUpperCase() + skill.category.slice(1)}
+              {skill.category}
             </span>
             {skill.compatibility && skill.compatibility.length > 0 && (
               <div className="flex items-center gap-2 sm:ml-auto flex-wrap">
@@ -124,7 +122,7 @@ export function SkillDetailClient({ skillId }: Props) {
             )}
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-6 tracking-tight">
+          <h1 className="text-4xl md:text-5xl font-semibold text-white mb-6 tracking-tight">
             {skill.name}
           </h1>
 

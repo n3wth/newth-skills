@@ -133,12 +133,15 @@ export default function AboutClient() {
               className="inline-flex items-center gap-2 mb-8 text-sm hover:opacity-70 transition-opacity animate-in"
               style={{ color: 'var(--color-grey-400)' }}
             >
-              <span>&larr;</span> Back to the catalog
+              <span>&larr;</span> Back to skills
             </Link>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-8 tracking-tight animate-in">
+            <h1 className="text-4xl md:text-5xl font-semibold text-white mb-4 tracking-tight animate-in">
               What are Skills?
             </h1>
+            <p className="text-lg mb-12 animate-in" style={{ color: 'var(--color-grey-300)' }}>
+              Specialized knowledge files that teach your AI assistant new capabilities, instantly.
+            </p>
           </div>
 
           <div ref={sectionsRef} className="space-y-12">

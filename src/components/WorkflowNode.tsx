@@ -221,14 +221,14 @@ export function WorkflowNodeComponent({
       <div
         className="flex items-center gap-3 p-4 border-b border-[var(--glass-border)] rounded-t-xl"
         style={{
-          backgroundColor: `color-mix(in oklch, ${config?.color || skill.color} 10%, transparent)`
+          backgroundColor: `color-mix(in oklch, ${config?.color || skill.color} 15%, transparent)`
         }}
       >
         <div
           className="w-10 h-10 rounded-lg flex items-center justify-center text-lg"
           style={{
-            backgroundColor: `color-mix(in oklch, ${config?.color || skill.color} 20%, transparent)`,
-            color: config?.color || skill.color
+            backgroundColor: config?.color || skill.color,
+            color: '#000'
           }}
         >
           {skill.icon}
