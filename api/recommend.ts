@@ -1,11 +1,6 @@
-import { createOpenAI } from '@ai-sdk/openai'
+import { google } from '@ai-sdk/google'
 import { generateObject } from 'ai'
 import { z } from 'zod'
-
-const gateway = createOpenAI({
-  baseURL: 'https://gateway.ai.vercel.sh/v1',
-  apiKey: process.env.AI_GATEWAY_API_KEY
-})
 
 // Skill summaries for AI context (keep it concise)
 const SKILL_CATALOG = [
@@ -47,7 +42,7 @@ export async function POST(request: Request) {
     }
 
     const { object } = await generateObject({
-      model: gateway('openai/gpt-4o-mini'),
+      model: google('gemini-3-flash-preview'),
       schema: RecommendationSchema,
       prompt: `You are a skill recommendation engine. Given a user's task description, recommend the most relevant skills from the catalog.
 
