@@ -33,9 +33,8 @@ export function HoverPreview({ skill, isVisible, anchorRect, onClose }: HoverPre
 
     const viewportWidth = window.innerWidth
     const viewportHeight = window.innerHeight
-    const scrollY = window.scrollY
 
-    // Calculate available space in each direction
+    // Calculate available space in each direction (viewport-relative, no scrollY needed for fixed positioning)
     const spaceRight = viewportWidth - anchorRect.right - padding
     const spaceLeft = anchorRect.left - padding
     const spaceBelow = viewportHeight - anchorRect.bottom - padding
@@ -47,49 +46,47 @@ export function HoverPreview({ skill, isVisible, anchorRect, onClose }: HoverPre
 
     // Prefer right, then left, then bottom, then top
     if (spaceRight >= previewWidth + offset) {
-      // Place to the right
       placement = 'right'
       left = anchorRect.right + offset
-      top = anchorRect.top + scrollY + (anchorRect.height / 2) - (previewHeight / 2)
+      top = anchorRect.top + (anchorRect.height / 2) - (previewHeight / 2)
     } else if (spaceLeft >= previewWidth + offset) {
-      // Place to the left
       placement = 'left'
       left = anchorRect.left - previewWidth - offset
-      top = anchorRect.top + scrollY + (anchorRect.height / 2) - (previewHeight / 2)
+      top = anchorRect.top + (anchorRect.height / 2) - (previewHeight / 2)
     } else if (spaceBelow >= previewHeight + offset) {
-      // Place below
       placement = 'bottom'
       left = anchorRect.left + (anchorRect.width / 2) - (previewWidth / 2)
-      top = anchorRect.bottom + scrollY + offset
+      top = anchorRect.bottom + offset
     } else if (spaceAbove >= previewHeight + offset) {
-      // Place above
       placement = 'top'
       left = anchorRect.left + (anchorRect.width / 2) - (previewWidth / 2)
-      top = anchorRect.top + scrollY - previewHeight - offset
+      top = anchorRect.top - previewHeight - offset
     } else {
-      // Fallback: place right and adjust
       placement = 'right'
       left = Math.min(anchorRect.right + offset, viewportWidth - previewWidth - padding)
-      top = anchorRect.top + scrollY
+      top = anchorRect.top
     }
 
-    // Keep within horizontal bounds
+    // Keep within viewport bounds
     left = Math.max(padding, Math.min(left, viewportWidth - previewWidth - padding))
-
-    // Keep within vertical bounds (accounting for scroll)
-    const minTop = scrollY + padding
-    const maxTop = scrollY + viewportHeight - previewHeight - padding
-    top = Math.max(minTop, Math.min(top, maxTop))
+    top = Math.max(padding, Math.min(top, viewportHeight - previewHeight - padding))
 
     setPosition({ top, left, placement })
   }, [anchorRect])
 
   useEffect(() => {
     if (isVisible && anchorRect) {
-      // Small delay to allow DOM measurement
       requestAnimationFrame(calculatePosition)
     }
   }, [isVisible, anchorRect, calculatePosition])
+
+  // Close preview on scroll since anchor position becomes stale
+  useEffect(() => {
+    if (!isVisible) return
+    const handleScroll = () => onClose()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [isVisible, onClose])
 
   const handleCopy = async (e: React.MouseEvent) => {
     e.preventDefault()
@@ -127,7 +124,7 @@ export function HoverPreview({ skill, isVisible, anchorRect, onClose }: HoverPre
       ref={previewRef}
       className="hover-preview"
       style={{
-        position: 'absolute',
+        position: 'fixed',
         top: position.top,
         left: position.left,
         zIndex: 50,

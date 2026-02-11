@@ -90,7 +90,10 @@ export function trackCopyEvent(skillId: string): void {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ skillId, eventType: 'copy' }),
-  }).catch(() => {})
+  }).catch((err) => {
+    console.error('Failed to track copy event:', err)
+    trackError('Analytics copy API error', { eventType: 'copy', skillId })
+  })
 
   // Send to Plausible if available (privacy-respecting analytics)
   if (typeof window !== 'undefined' && 'plausible' in window) {
@@ -160,7 +163,10 @@ export function trackViewEvent(skillId: string): void {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ skillId, eventType: 'view' }),
-  }).catch(() => {})
+  }).catch((err) => {
+    console.error('Failed to track view event:', err)
+    trackError('Analytics view API error', { eventType: 'view', skillId })
+  })
 
   // Send to Plausible if available
   if (typeof window !== 'undefined' && 'plausible' in window) {

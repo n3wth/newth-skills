@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import Link from 'next/link'
 import { Nav, Footer } from '@/src/components'
 import { BundleCard } from '@/src/components/BundleCard'
 import { bundles } from '@/src/data/bundles'
@@ -42,15 +43,21 @@ export function CuratedBundlesClient() {
       <Nav />
 
       <main className="max-w-6xl mx-auto px-6 md:px-12 pt-28 md:pt-32 pb-24">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-semibold text-[var(--color-white)] mb-4">
-              Skill Bundles for Every Role
-            </h1>
-            <p className="text-lg text-[var(--color-grey-400)] max-w-2xl mx-auto">
-              Pre-curated collections of complementary skills. Everything you need to level up your workflow, organized by profession.
-            </p>
-          </div>
+        <div className="max-w-4xl mx-auto">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 mb-8 text-sm hover:opacity-70 transition-opacity"
+            style={{ color: 'var(--color-grey-400)' }}
+          >
+            <span>&larr;</span> Back to skills
+          </Link>
+
+          <h1 className="text-4xl md:text-5xl font-semibold text-white mb-4 tracking-tight">
+            Skill Bundles for Every Role
+          </h1>
+          <p className="text-lg mb-12" style={{ color: 'var(--color-grey-300)' }}>
+            Pre-curated collections of complementary skills. Everything you need to level up your workflow, organized by profession.
+          </p>
 
           {/* Filter Section */}
           <div className="mb-12">

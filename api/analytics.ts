@@ -1,5 +1,8 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { sql } from './_lib/db.js'
+import { skills } from '../src/data/skills.js'
+
+const validSkillIds = new Set(skills.map(s => s.id))
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // CORS
@@ -41,7 +44,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         GROUP BY skill_id
         ORDER BY copies DESC
       `
-      return res.json(result)
+      // Filter to only known/current skills
+      const filtered = result.filter((row: Record<string, any>) => validSkillIds.has(row.skill_id))
+      return res.json(filtered)
     }
 
     if (req.method === 'POST') {

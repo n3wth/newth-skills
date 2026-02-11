@@ -56,12 +56,20 @@ export function CompareClient() {
         <div className="mesh-gradient" />
         <div className="noise-overlay" />
         <Nav />
-        <main id="main-content" className="max-w-6xl mx-auto px-6 md:px-12 pt-32 pb-24">
-          <div className="max-w-2xl mx-auto text-center">
-            <h1 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+        <main id="main-content" className="max-w-6xl mx-auto px-6 md:px-12 pt-28 md:pt-32 pb-24">
+          <div className="max-w-4xl mx-auto">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 mb-8 text-sm hover:opacity-70 transition-opacity"
+              style={{ color: 'var(--color-grey-400)' }}
+            >
+              <span>&larr;</span> Back to skills
+            </Link>
+
+            <h1 className="text-4xl md:text-5xl font-semibold text-white mb-4 tracking-tight">
               Compare Skills
             </h1>
-            <p className="text-lg mb-8" style={{ color: 'var(--color-grey-200)' }}>
+            <p className="text-lg mb-12" style={{ color: 'var(--color-grey-300)' }}>
               Select skills to compare them side by side.
             </p>
             <Link

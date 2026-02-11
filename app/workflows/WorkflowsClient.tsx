@@ -44,16 +44,22 @@ export function WorkflowsClient() {
 
       <Nav />
 
-      <main className="pt-32 pb-24 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-semibold text-[var(--color-white)] mb-4">
-              Skill Workflows
-            </h1>
-            <p className="text-lg text-[var(--color-grey-400)] max-w-2xl mx-auto">
-              Chain skills together to automate multi-step work like research, drafting, and delivery.
-            </p>
-          </div>
+      <main className="max-w-6xl mx-auto px-6 md:px-12 pt-28 md:pt-32 pb-24">
+        <div className="max-w-4xl mx-auto">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 mb-8 text-sm hover:opacity-70 transition-opacity"
+            style={{ color: 'var(--color-grey-400)' }}
+          >
+            <span>&larr;</span> Back to skills
+          </Link>
+
+          <h1 className="text-4xl md:text-5xl font-semibold text-white mb-4 tracking-tight">
+            Skill Workflows
+          </h1>
+          <p className="text-lg mb-12" style={{ color: 'var(--color-grey-300)' }}>
+            Chain skills together to automate multi-step work like research, drafting, and delivery.
+          </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
             <div className="flex items-center gap-2 p-1 bg-[var(--glass-bg)] rounded-lg border border-[var(--glass-border)]">
