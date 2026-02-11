@@ -9,3 +9,6 @@ export type { WorkflowInputModalProps, RequiredInput } from './WorkflowInputModa
 
 export { WorkflowToolbar } from './WorkflowToolbar'
 export type { WorkflowToolbarProps } from './WorkflowToolbar'
+
+export { ApiKeyModal } from './ApiKeyModal'
+export type { ApiKeyModalProps } from './ApiKeyModal'

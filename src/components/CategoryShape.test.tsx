@@ -25,7 +25,7 @@ describe('CategoryShape', () => {
     expect(svg).toBeInTheDocument()
     const path = container.querySelector('path')
     expect(path).toBeInTheDocument()
-    expect(path?.getAttribute('d')).toContain('L22 21H2L12 3Z')
+    expect(path?.getAttribute('d')).toContain('L23 20H1L12 2Z')
   })
 
   it('renders a diamond for business category', () => {
@@ -54,6 +54,13 @@ describe('CategoryShape', () => {
     const { container } = render(<CategoryShape category="development" />)
     const wrapper = container.firstChild as HTMLElement
     expect(wrapper.style.filter).toBe('')
+  })
+
+  it('uses inline-flex span wrapper for vertical alignment', () => {
+    const { container } = render(<CategoryShape category="development" />)
+    const wrapper = container.firstChild as HTMLElement
+    expect(wrapper.tagName).toBe('SPAN')
+    expect(wrapper.className).toContain('inline-flex')
   })
 })
 
@@ -87,7 +94,7 @@ describe('RenderShape', () => {
     expect(container.firstChild).toBeNull()
   })
 
-  it('applies specified size', () => {
+  it('applies specified size to circle', () => {
     const { container } = render(<RenderShape category="development" size={150} />)
     const svg = container.querySelector('svg')
     expect(svg).toHaveAttribute('width', '150')

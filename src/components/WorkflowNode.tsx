@@ -64,6 +64,12 @@ export function WorkflowNodeComponent({
     }
   }, [isSelected])
 
+  const GRID_SIZE = 20 // Snap to 20px grid (half the 40px dot pattern)
+
+  const snapToGrid = useCallback((value: number) => {
+    return Math.round(value / GRID_SIZE) * GRID_SIZE
+  }, [])
+
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
     if ((e.target as HTMLElement).closest('.port-button')) return
 
@@ -80,7 +86,6 @@ export function WorkflowNodeComponent({
     isDraggingRef.current = true
     onSelect()
 
-    // Add grabbing cursor
     document.body.style.cursor = 'grabbing'
     if (nodeRef.current) {
       nodeRef.current.style.zIndex = '50'
@@ -95,14 +100,19 @@ export function WorkflowNodeComponent({
       if (!parent) return
 
       const parentRect = parent.getBoundingClientRect()
-      const newX = e.clientX - parentRect.left + parent.scrollLeft - dragOffsetRef.current.x
-      const newY = e.clientY - parentRect.top + parent.scrollTop - dragOffsetRef.current.y
+      const rawX = e.clientX - parentRect.left + parent.scrollLeft - dragOffsetRef.current.x
+      const rawY = e.clientY - parentRect.top + parent.scrollTop - dragOffsetRef.current.y
 
-      // Update position directly so connections follow
-      onUpdatePosition({
-        x: Math.max(0, newX),
-        y: Math.max(0, newY)
-      })
+      // Snap to grid and clamp
+      const snappedX = snapToGrid(Math.max(0, rawX))
+      const snappedY = snapToGrid(Math.max(0, rawY))
+
+      // Update DOM directly for immediate visual feedback
+      nodeRef.current.style.left = `${snappedX}px`
+      nodeRef.current.style.top = `${snappedY}px`
+
+      // Update state so connections follow
+      onUpdatePosition({ x: snappedX, y: snappedY })
     }
 
     const handleMouseUp = () => {
@@ -122,7 +132,7 @@ export function WorkflowNodeComponent({
       window.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('mouseup', handleMouseUp)
     }
-  }, [onUpdatePosition])
+  }, [onUpdatePosition, snapToGrid])
 
   const renderPort = (port: SkillIO, isOutput: boolean) => {
     const handleClick = (e: React.MouseEvent) => {

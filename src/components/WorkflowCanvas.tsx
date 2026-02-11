@@ -198,16 +198,31 @@ export const WorkflowCanvas = forwardRef<HTMLDivElement, WorkflowCanvasProps>(({
       
       {nodes.length === 0 && (
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center">
+          <div className="text-center max-w-md">
             <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[var(--glass-bg)] border border-[var(--glass-border)] flex items-center justify-center">
               <svg className="w-8 h-8 text-[var(--color-grey-600)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
-            <h3 className="text-lg font-medium text-[var(--color-grey-300)] mb-2">Start Building</h3>
-            <p className="text-sm text-[var(--color-grey-600)] max-w-xs">
-              Add skills from the sidebar to create your workflow. Connect outputs to inputs to chain skills together.
+            <h3 className="text-lg font-medium text-[var(--color-grey-300)] mb-2">Build an AI Workflow</h3>
+            <p className="text-sm text-[var(--color-grey-600)] mb-6">
+              Chain AI skills together to automate multi-step tasks.
+              Add skills from the sidebar, connect their outputs to inputs, then run with AI.
             </p>
+            <div className="flex justify-center gap-6 text-xs text-[var(--color-grey-600)]">
+              <div className="flex items-center gap-2">
+                <span className="w-6 h-6 rounded-md bg-[var(--glass-bg)] border border-[var(--glass-border)] flex items-center justify-center text-[10px]">1</span>
+                <span>Add skills</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-6 h-6 rounded-md bg-[var(--glass-bg)] border border-[var(--glass-border)] flex items-center justify-center text-[10px]">2</span>
+                <span>Connect ports</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-6 h-6 rounded-md bg-[var(--glass-bg)] border border-[var(--glass-border)] flex items-center justify-center text-[10px]">3</span>
+                <span>Run with AI</span>
+              </div>
+            </div>
           </div>
         </div>
       )}

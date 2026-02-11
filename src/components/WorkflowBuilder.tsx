@@ -6,7 +6,8 @@ import {
   WorkflowToolbar,
   SaveWorkflowModal,
   ExecutionPanel,
-  WorkflowInputModal
+  WorkflowInputModal,
+  ApiKeyModal
 } from './workflow'
 
 export interface WorkflowBuilderProps {
@@ -26,7 +27,10 @@ export function WorkflowBuilder({ initialWorkflow, onSave }: WorkflowBuilderProp
     showExecutionPanel,
     showSaveModal,
     showInputModal,
+    showApiKeyModal,
     pendingInputs,
+    remainingFreeRuns,
+    hasUserApiKey,
 
     // Refs
     canvasRef,
@@ -52,10 +56,12 @@ export function WorkflowBuilder({ initialWorkflow, onSave }: WorkflowBuilderProp
 
     // Canvas operations
     clearCanvas,
+    autoArrange,
 
     // Execution operations
     handleRunWorkflow,
     runWorkflowWithInputs,
+    handleCopyPrompt,
 
     // Import/Export
     handleExport,
@@ -64,7 +70,9 @@ export function WorkflowBuilder({ initialWorkflow, onSave }: WorkflowBuilderProp
     // Modal controls
     setShowSaveModal,
     setShowExecutionPanel,
-    setShowInputModal
+    setShowInputModal,
+    setShowApiKeyModal,
+    refreshUsageState
   } = useWorkflowState({ initialWorkflow, onSave })
 
   return (
@@ -81,11 +89,16 @@ export function WorkflowBuilder({ initialWorkflow, onSave }: WorkflowBuilderProp
           isSaved={isSaved}
           executionState={executionState}
           fileInputRef={fileInputRef}
+          remainingFreeRuns={remainingFreeRuns}
+          hasUserApiKey={hasUserApiKey}
           onImport={handleImport}
           onExport={handleExport}
           onClear={clearCanvas}
           onRun={handleRunWorkflow}
           onSave={handleSave}
+          onCopyPrompt={handleCopyPrompt}
+          onOpenApiSettings={() => setShowApiKeyModal(true)}
+          onAutoArrange={autoArrange}
         />
 
         <div className="flex-1 flex">
@@ -127,6 +140,13 @@ export function WorkflowBuilder({ initialWorkflow, onSave }: WorkflowBuilderProp
           requiredInputs={pendingInputs}
           onRun={runWorkflowWithInputs}
           onClose={() => setShowInputModal(false)}
+        />
+      )}
+
+      {showApiKeyModal && (
+        <ApiKeyModal
+          onClose={() => setShowApiKeyModal(false)}
+          onKeySaved={refreshUsageState}
         />
       )}
     </div>

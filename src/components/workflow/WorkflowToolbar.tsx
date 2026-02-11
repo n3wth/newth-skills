@@ -8,11 +8,16 @@ export interface WorkflowToolbarProps {
   isSaved: boolean
   executionState: WorkflowExecutionState | null
   fileInputRef: React.RefObject<HTMLInputElement | null>
+  remainingFreeRuns: number
+  hasUserApiKey: boolean
   onImport: (e: React.ChangeEvent<HTMLInputElement>) => void
   onExport: () => void
   onClear: () => void
   onRun: () => void
   onSave: () => void
+  onCopyPrompt: () => void
+  onOpenApiSettings: () => void
+  onAutoArrange: () => void
 }
 
 export function WorkflowToolbar({
@@ -21,11 +26,16 @@ export function WorkflowToolbar({
   isSaved,
   executionState,
   fileInputRef,
+  remainingFreeRuns,
+  hasUserApiKey,
   onImport,
   onExport,
   onClear,
   onRun,
-  onSave
+  onSave,
+  onCopyPrompt,
+  onOpenApiSettings,
+  onAutoArrange
 }: WorkflowToolbarProps) {
   return (
     <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--glass-border)]">
@@ -36,11 +46,16 @@ export function WorkflowToolbar({
         isSaved={isSaved}
         executionState={executionState}
         fileInputRef={fileInputRef}
+        remainingFreeRuns={remainingFreeRuns}
+        hasUserApiKey={hasUserApiKey}
         onImport={onImport}
         onExport={onExport}
         onClear={onClear}
         onRun={onRun}
         onSave={onSave}
+        onCopyPrompt={onCopyPrompt}
+        onOpenApiSettings={onOpenApiSettings}
+        onAutoArrange={onAutoArrange}
       />
     </div>
   )
@@ -76,11 +91,16 @@ interface WorkflowActionsProps {
   isSaved: boolean
   executionState: WorkflowExecutionState | null
   fileInputRef: React.RefObject<HTMLInputElement | null>
+  remainingFreeRuns: number
+  hasUserApiKey: boolean
   onImport: (e: React.ChangeEvent<HTMLInputElement>) => void
   onExport: () => void
   onClear: () => void
   onRun: () => void
   onSave: () => void
+  onCopyPrompt: () => void
+  onOpenApiSettings: () => void
+  onAutoArrange: () => void
 }
 
 function WorkflowActions({
@@ -89,11 +109,16 @@ function WorkflowActions({
   isSaved,
   executionState,
   fileInputRef,
+  remainingFreeRuns,
+  hasUserApiKey,
   onImport,
   onExport,
   onClear,
   onRun,
-  onSave
+  onSave,
+  onCopyPrompt,
+  onOpenApiSettings,
+  onAutoArrange
 }: WorkflowActionsProps) {
   const isRunning = executionState?.isRunning ?? false
   const hasNodes = workflow.nodes.length > 0
@@ -109,6 +134,12 @@ function WorkflowActions({
       {isSaved && (
         <span className="text-sm text-[var(--color-sage)]">Saved</span>
       )}
+
+      <UsageBadge
+        remaining={remainingFreeRuns}
+        hasApiKey={hasUserApiKey}
+        onClick={onOpenApiSettings}
+      />
 
       <label htmlFor="workflow-import-file" className="sr-only">Import workflow file</label>
       <input
@@ -133,6 +164,20 @@ function WorkflowActions({
         icon={<ExportIcon />}
       />
 
+      <IconButton
+        onClick={onCopyPrompt}
+        disabled={!hasNodes}
+        title="Copy compiled prompt"
+        icon={<CopyIcon />}
+      />
+
+      <IconButton
+        onClick={onAutoArrange}
+        disabled={!hasNodes}
+        title="Auto-arrange nodes"
+        icon={<ArrangeIcon />}
+      />
+
       <button
         onClick={onClear}
         className="px-4 py-2 text-sm text-[var(--color-grey-400)] hover:text-[var(--color-white)] transition-colors"
@@ -154,6 +199,33 @@ function WorkflowActions({
         Save
       </button>
     </div>
+  )
+}
+
+interface UsageBadgeProps {
+  remaining: number
+  hasApiKey: boolean
+  onClick: () => void
+}
+
+function UsageBadge({ remaining, hasApiKey, onClick }: UsageBadgeProps) {
+  return (
+    <button
+      onClick={onClick}
+      className="flex items-center gap-1.5 px-3 py-1.5 bg-[var(--glass-bg)] border border-[var(--glass-border)] rounded-lg text-xs hover:border-[var(--glass-highlight)] transition-colors"
+      title="AI Settings"
+    >
+      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+      </svg>
+      {hasApiKey ? (
+        <span className="text-[var(--color-sage)]">Key active</span>
+      ) : (
+        <span className={remaining === 0 ? 'text-[var(--color-coral)]' : 'text-[var(--color-grey-400)]'}>
+          {remaining} run{remaining !== 1 ? 's' : ''} left
+        </span>
+      )}
+    </button>
   )
 }
 
@@ -224,6 +296,22 @@ function ExportIcon() {
   return (
     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+    </svg>
+  )
+}
+
+function CopyIcon() {
+  return (
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+    </svg>
+  )
+}
+
+function ArrangeIcon() {
+  return (
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h7" />
     </svg>
   )
 }

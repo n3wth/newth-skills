@@ -1,5 +1,7 @@
 import { type Workflow, type WorkflowNode, type WorkflowConnection, getSkillIOSchema } from '../data/workflows'
 import { skills as allSkills } from '../data/skills'
+import { executeAI, FreeLimitReachedError } from './aiProvider'
+import { incrementUsage, getApiKey, hasReachedLimit } from './usageTracker'
 
 export type NodeExecutionState = 'pending' | 'running' | 'completed' | 'error'
 
@@ -185,11 +187,14 @@ export function getRequiredInputs(workflow: Workflow): Array<{
   return requiredInputs
 }
 
+export type ExecutionMode = 'simulate' | 'ai'
+
 // Main execution function
 export async function executeWorkflow(
   workflow: Workflow,
   onProgress?: (state: WorkflowExecutionState) => void,
-  initialInputs?: Record<string, Record<string, string>> // nodeId -> inputId -> value
+  initialInputs?: Record<string, Record<string, string>>, // nodeId -> inputId -> value
+  mode: ExecutionMode = 'simulate'
 ): Promise<WorkflowExecutionState> {
   const state: WorkflowExecutionState = {
     workflowId: workflow.id,
@@ -258,8 +263,47 @@ export async function executeWorkflow(
     const nodePrompt = buildNodePrompt(node, inputs)
     promptLines.push(nodePrompt)
 
-    // Generate simulated outputs
-    const outputs = generateSimulatedOutputs(node.skillId)
+    let outputs: Record<string, string>
+
+    if (mode === 'ai') {
+      // Real AI execution
+      try {
+        const apiKey = getApiKey() || undefined
+        const aiResult = await executeAI(nodePrompt, { apiKey })
+
+        // Parse AI response into outputs
+        const schema = getSkillIOSchema(node.skillId)
+        outputs = {}
+        if (schema) {
+          // Distribute the AI result text across outputs
+          const resultText = aiResult.result
+          if (schema.outputs.length === 1) {
+            outputs[schema.outputs[0].id] = resultText
+          } else {
+            // Try to split by output names, fallback to full text for each
+            for (const output of schema.outputs) {
+              const regex = new RegExp(`(?:^|\\n)##?\\s*${output.name}[:\\s]*\\n([\\s\\S]*?)(?=\\n##|$)`, 'i')
+              const match = resultText.match(regex)
+              outputs[output.id] = match ? match[1].trim() : resultText
+            }
+          }
+        }
+
+        if (!getApiKey()) {
+          incrementUsage()
+        }
+      } catch (err) {
+        if (err instanceof FreeLimitReachedError) {
+          throw err
+        }
+        // On AI failure, fall back to simulated outputs
+        outputs = generateSimulatedOutputs(node.skillId)
+      }
+    } else {
+      // Simulated execution
+      outputs = generateSimulatedOutputs(node.skillId)
+    }
+
     nodeOutputs.set(node.id, outputs)
 
     // Record result
@@ -287,6 +331,58 @@ export async function executeWorkflow(
   onProgress?.(state)
 
   return state
+}
+
+// Compile a workflow into a prompt without executing
+export function compileWorkflowPrompt(
+  workflow: Workflow,
+  initialInputs?: Record<string, Record<string, string>>
+): string {
+  const sortedNodes = topologicalSort(workflow.nodes, workflow.connections)
+  const nodeOutputs = new Map<string, Record<string, string>>()
+
+  const lines: string[] = [
+    `# Workflow: ${workflow.name || 'Untitled'}`,
+    '',
+    workflow.description || 'No description provided.',
+    '',
+    '---',
+    ''
+  ]
+
+  for (const node of sortedNodes) {
+    const inputs: Record<string, string> = {}
+    const incomingConnections = workflow.connections.filter(c => c.targetNodeId === node.id)
+
+    if (initialInputs?.[node.id]) {
+      Object.assign(inputs, initialInputs[node.id])
+    }
+
+    for (const conn of incomingConnections) {
+      const sourceOutputs = nodeOutputs.get(conn.sourceNodeId)
+      if (sourceOutputs && sourceOutputs[conn.sourceOutputId]) {
+        inputs[conn.targetInputId] = sourceOutputs[conn.sourceOutputId]
+      }
+    }
+
+    const nodePrompt = buildNodePrompt(node, inputs)
+    lines.push(nodePrompt)
+
+    const outputs = generateSimulatedOutputs(node.skillId)
+    nodeOutputs.set(node.id, outputs)
+  }
+
+  return lines.join('\n')
+}
+
+// Check if user can run AI (has key or has free runs remaining)
+export function canRunAI(): { canRun: boolean; reason?: string } {
+  if (getApiKey()) return { canRun: true }
+  if (!hasReachedLimit()) return { canRun: true }
+  return {
+    canRun: false,
+    reason: 'Free run limit reached. Add your Gemini API key to continue.'
+  }
 }
 
 // Export workflow as JSON

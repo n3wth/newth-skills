@@ -18,7 +18,15 @@ CREATE TABLE IF NOT EXISTS analytics (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+-- Playground usage table: tracks free AI runs per fingerprint
+CREATE TABLE IF NOT EXISTS playground_usage (
+  id SERIAL PRIMARY KEY,
+  fingerprint TEXT NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
 -- Indexes for performance
 CREATE INDEX IF NOT EXISTS idx_votes_skill_id ON votes(skill_id);
 CREATE INDEX IF NOT EXISTS idx_analytics_skill_id ON analytics(skill_id);
 CREATE INDEX IF NOT EXISTS idx_analytics_event_type ON analytics(event_type);
+CREATE INDEX IF NOT EXISTS idx_playground_usage_fingerprint ON playground_usage(fingerprint);

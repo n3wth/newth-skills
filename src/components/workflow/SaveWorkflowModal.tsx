@@ -21,9 +21,15 @@ export function SaveWorkflowModal({ workflow, onSave, onClose }: SaveWorkflowMod
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
+      onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
+    >
       <div className="bg-[var(--color-bg-secondary)] border border-[var(--glass-border)] rounded-2xl p-6 w-full max-w-md">
-        <h3 className="text-xl font-semibold text-[var(--color-white)] mb-4">Save Workflow</h3>
+        <h3 className="text-xl font-semibold text-[var(--color-white)] mb-2">Save Workflow</h3>
+        <p className="text-xs text-[var(--color-grey-600)] mb-4">
+          Saved to your browser&apos;s local storage. Use Export to download a portable JSON file.
+        </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
