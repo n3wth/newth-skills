@@ -5,8 +5,6 @@ import { type Skill } from '../data/skills'
 import { CategoryShape } from './CategoryShape'
 import { CompatibilityMatrix } from './CompatibilityMatrix'
 import { getCopyCount } from '../lib/analytics'
-import { HoverPreview } from './HoverPreview'
-import { useHoverPreview } from '../hooks'
 
 interface SkillCardProps {
   skill: Skill
@@ -29,37 +27,13 @@ export const SkillCard = memo(forwardRef<HTMLAnchorElement, SkillCardProps>(
     const copyCount = showPopularity ? getCopyCount(skill.id) : 0
     const isNew = isRecentlyUpdated(skill.lastUpdated)
 
-    const {
-      showPreview,
-      anchorRect,
-      elementRef,
-      triggerProps,
-      previewProps,
-      closePreview,
-    } = useHoverPreview()
-
-    // Combine refs
-    const setRefs = useCallback(
-      (element: HTMLAnchorElement | null) => {
-        elementRef.current = element
-        if (typeof ref === 'function') {
-          ref(element)
-        } else if (ref) {
-          ref.current = element
-        }
-      },
-      [ref, elementRef]
-    )
-
     return (
-      <div className="relative h-full" onMouseEnter={triggerProps.onMouseEnter} onMouseLeave={triggerProps.onMouseLeave}>
-        <Link
-          ref={setRefs}
-          href={`/skill/${skill.id}`}
-          className={`skill-card glass-card group cursor-pointer p-4 sm:p-5 md:p-6 flex flex-col h-full ${isSelected ? 'ring-2 ring-white/40' : ''}`}
-          aria-current={isSelected ? 'true' : undefined}
-          onTouchStart={triggerProps.onTouchStart}
-        >
+      <Link
+        ref={ref}
+        href={`/skill/${skill.id}`}
+        className={`skill-card glass-card group cursor-pointer p-4 sm:p-5 md:p-6 flex flex-col h-full ${isSelected ? 'ring-2 ring-white/40' : ''}`}
+        aria-current={isSelected ? 'true' : undefined}
+      >
           {/* Header with badges */}
           <div className="flex items-start justify-between mb-2 sm:mb-3 md:mb-4">
             <div className="flex items-center gap-2 flex-wrap">
@@ -104,14 +78,7 @@ export const SkillCard = memo(forwardRef<HTMLAnchorElement, SkillCardProps>(
               <span className="text-[10px]" style={{ color: 'var(--color-grey-400)' }}>by {skill.contributor.name}</span>
             </div>
           )}
-        </Link>
-
-        {showPreview && (
-          <div {...previewProps}>
-            <HoverPreview skill={skill} isVisible={showPreview} anchorRect={anchorRect} onClose={closePreview} />
-          </div>
-        )}
-      </div>
+      </Link>
     )
   }
 ))

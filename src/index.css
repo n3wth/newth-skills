@@ -166,21 +166,9 @@
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Staggered card entrance animation */
-@keyframes cardEnter {
-  from {
-    opacity: 0;
-    transform: translateY(20px) scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
+/* Cards - visible immediately, no entrance animation */
 .card-enter {
-  animation: cardEnter 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  animation-fill-mode: both;
+  opacity: 1;
 }
 
 /* Page transition animations */
@@ -443,6 +431,15 @@ html {
   scroll-behavior: auto;
 }
 
+/* Even line breaks */
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+p, li, figcaption, blockquote {
+  text-wrap: pretty;
+}
+
 /* Global interactive element styles */
 a,
 button,
@@ -639,45 +636,11 @@ select {
   }
 }
 
-/* Hero word entrance animation - simplified on mobile */
-@keyframes heroWordEnter {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* Hero words - visible immediately, no entrance animation */
 .hero-word {
-  animation: heroWordEnter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-  animation-fill-mode: both;
+  opacity: 1;
 }
 
-/* Stagger effect for hero words */
-.hero-word:nth-child(1) { animation-delay: 0s; }
-.hero-word:nth-child(2) { animation-delay: 0.1s; }
-.hero-word:nth-child(3) { animation-delay: 0.2s; }
-.hero-word:nth-child(4) { animation-delay: 0.3s; }
-.hero-word:nth-child(5) { animation-delay: 0.4s; }
-
-/* Reduce animations on mobile for better performance */
-@media (max-width: 640px) {
-  .hero-word {
-    animation-duration: 0.4s !important;
-  }
-}
-
-/* Reduce animation duration for small screens */
-@media (prefers-reduced-motion: reduce) {
-  .hero-word {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
 
 /* Content visibility for performance */
 .content-visibility-auto {
@@ -798,6 +761,14 @@ footer div {
 
 footer span {
   color: inherit;
+}
+
+/* Override global nav styles inside footer */
+footer nav {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: none !important;
 }
 
 /* @n3wth/ui Nav Component Specific Styling */

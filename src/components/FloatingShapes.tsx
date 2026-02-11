@@ -48,22 +48,8 @@ export function FloatingShapes() {
 
     const shapes = containerRef.current.querySelectorAll('.floating-shape')
     const ctx = gsap.context(() => {
-      // Stagger entrance of shapes
-      gsap.fromTo(
-        shapes,
-        {
-          opacity: 0,
-          scale: 0.8,
-        },
-        {
-          opacity: 0.7,
-          scale: 1,
-          duration: 1.2,
-          delay: (i: number) => i * 0.08,
-          ease: 'power2.out',
-          stagger: 0.05,
-        }
-      )
+      // Set shapes visible immediately (no entrance animation)
+      gsap.set(shapes, { opacity: 0.7 })
 
       // Floating animation - layered and orchestrated
       shapes.forEach((shape, i) => {
