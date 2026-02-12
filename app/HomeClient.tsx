@@ -80,7 +80,7 @@ export default function HomeClient() {
               What do you want your AI to ship today?
             </h2>
             <p className="label">
-              Describe the outcome and we will surface the skills that get you there.
+              Describe your goal and we'll surface the skills that get you there.
             </p>
           </div>
           <TaskInput value={taskQuery} onChange={handleTaskChange} />
@@ -103,7 +103,7 @@ export default function HomeClient() {
               Proven skills, ready now
             </h2>
             <p className="label">
-              {skills.length} tested skills across {categories.length - 1} categories, built and vetted by the community.
+              {skills.length} tested skills across {categories.length - 1} categories, built and vetted by the community
             </p>
           </div>
           <Link
@@ -168,10 +168,10 @@ export default function HomeClient() {
               </svg>
             </div>
             <p className="text-lg text-white mb-2">
-              {query.trim() ? 'No skills match that yet' : 'This category is waiting for its first skill'}
+              {query.trim() ? 'No skills match that yet' : 'No skills in this category yet'}
             </p>
             <p className="label mb-4">
-              {query.trim() ? 'Try a broader search, or jump back to all skills.' : 'Explore the full catalog or check back soon.'}
+              {query.trim() ? 'Try a broader search, or browse all skills.' : 'Explore the full catalog or check back soon.'}
             </p>
             {query.trim() && (
               <button onClick={clearSearch} className="glass-pill btn-press px-4 py-2 rounded-full text-sm font-medium">

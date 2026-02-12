@@ -58,7 +58,7 @@ export function WorkflowsClient() {
             Skill Workflows
           </h1>
           <p className="text-lg mb-12" style={{ color: 'var(--color-grey-300)' }}>
-            Chain skills together to automate multi-step work like research, drafting, and delivery.
+            Chain skills together to automate multi-step work—research, drafting, and delivery.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
@@ -81,7 +81,7 @@ export function WorkflowsClient() {
                     : 'text-[var(--color-grey-400)] hover:text-[var(--color-white)]'
                 }`}
               >
-                My Workflows
+                My workflows
                 {storedWorkflows.length > 0 && (
                   <span className="ml-2 px-1.5 py-0.5 text-[10px] rounded-full bg-[var(--glass-bg)] text-[var(--color-grey-400)]">
                     {storedWorkflows.length}
@@ -126,7 +126,7 @@ export function WorkflowsClient() {
 
           {/* H2 section heading for accessibility (H1 -> H2 -> H3 in cards) */}
           <h2 className="sr-only">
-            {activeTab === 'templates' ? 'Workflow Templates' : 'My Saved Workflows'}
+            {activeTab === 'templates' ? 'Workflow templates' : 'My saved workflows'}
           </h2>
 
           {displayedWorkflows.length === 0 ? (
@@ -142,7 +142,7 @@ export function WorkflowsClient() {
               <p className="text-sm text-[var(--color-grey-600)] mb-6">
                 {activeTab === 'my-workflows'
                   ? 'Create your first workflow to chain skills together.'
-                  : 'Try a different search term.'
+                  : 'Try different search terms.'
                 }
               </p>
               {activeTab === 'my-workflows' && (

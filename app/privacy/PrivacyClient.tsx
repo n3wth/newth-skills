@@ -61,13 +61,13 @@ export default function PrivacyClient() {
                 className="text-base leading-relaxed"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                skills.newth.ai is a directory of markdown-based skills for AI coding assistants. We are committed to protecting your privacy and being transparent about our data practices.
+                skills.newth.ai is a directory of markdown-based skills for AI coding assistants. We commit to protecting your privacy and being transparent about our data practices.
               </p>
             </section>
 
             <section className="animate-in">
               <h2 className="text-2xl font-medium text-white mb-4">
-                Data We Collect
+                Data we collect
               </h2>
               <p
                 className="text-base leading-relaxed mb-4"
@@ -87,19 +87,19 @@ export default function PrivacyClient() {
 
             <section className="animate-in">
               <h2 className="text-2xl font-medium text-white mb-4">
-                Skills Installation
+                Skills installation
               </h2>
               <p
                 className="text-base leading-relaxed"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                When you install a skill, the skill file is downloaded directly to your local machine. Skills are markdown files that run entirely within your AI assistant. We do not have access to your conversations, code, or any data processed by your AI assistant.
+                When you install a skill, the file downloads directly to your local machine. Skills are markdown files that run entirely within your AI assistant. We don't have access to your conversations, code, or any data your AI assistant processes.
               </p>
             </section>
 
             <section className="animate-in">
               <h2 className="text-2xl font-medium text-white mb-4">
-                Third-Party Services
+                Third-party services
               </h2>
               <p
                 className="text-base leading-relaxed mb-4"
@@ -124,25 +124,25 @@ export default function PrivacyClient() {
                 className="text-base leading-relaxed"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                We use localStorage to remember your theme preference (light/dark mode). We do not use tracking cookies for advertising purposes.
+                We use localStorage to remember your theme preference (light or dark mode). We don't use tracking cookies for advertising purposes.
               </p>
             </section>
 
             <section className="animate-in">
               <h2 className="text-2xl font-medium text-white mb-4">
-                Data Retention
+                Data retention
               </h2>
               <p
                 className="text-base leading-relaxed"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                Anonymous analytics data is retained for up to 12 months. Error logs are automatically purged after 30 days.
+                We retain anonymous analytics data for up to 12 months. Error logs are automatically purged after 30 days.
               </p>
             </section>
 
             <section className="animate-in">
               <h2 className="text-2xl font-medium text-white mb-4">
-                Your Rights
+                Your rights
               </h2>
               <p
                 className="text-base leading-relaxed"
@@ -154,7 +154,7 @@ export default function PrivacyClient() {
 
             <section className="animate-in">
               <h2 className="text-2xl font-medium text-white mb-4">
-                Changes to This Policy
+                Changes to this policy
               </h2>
               <p
                 className="text-base leading-relaxed"

@@ -1,11 +1,8 @@
 'use client'
 import { Nav as BaseNav } from '@n3wth/ui'
 import { siteConfig } from '../config/site'
-import { useTheme } from '../hooks'
 
 export function Nav() {
-  const { theme, toggleTheme } = useTheme()
-
   const navItems = [
     { label: 'Bundles', href: '/curated-bundles' },
     { label: 'Workflows', href: '/workflows' },
@@ -20,8 +17,6 @@ export function Nav() {
       logo={siteConfig.name}
       logoHref="/"
       items={navItems}
-      theme={theme}
-      onThemeToggle={toggleTheme}
       fixed
       hideOnScroll
       className="nav-glass-morphism"

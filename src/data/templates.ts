@@ -18,7 +18,7 @@ export const skillTemplates: SkillTemplate[] = [
   {
     id: 'code-generation',
     name: 'Code Generation',
-    description: 'Generate code snippets, functions, or entire modules based on specifications.',
+    description: 'Generate code snippets, functions, or entire modules from specifications.',
     category: 'development',
     icon: '{ }',
     color: 'oklch(0.75 0.18 145)',
@@ -184,7 +184,7 @@ When creating documentation:
   {
     id: 'testing',
     name: 'Test Generator',
-    description: 'Create comprehensive test suites including unit, integration, and end-to-end tests.',
+    description: 'Create comprehensive test suites—unit, integration, and end-to-end.',
     category: 'development',
     icon: '[]',
     color: 'oklch(0.72 0.16 160)',
@@ -227,7 +227,7 @@ When generating tests:
 - **Arrange-Act-Assert**: Structure each test clearly
 - **Given-When-Then**: For BDD-style tests
 - **Test Isolation**: Each test should be independent
-- **Meaningful Names**: Describe what is being tested
+- **Meaningful Names**: Describe the behavior under test
 
 ## Output Format
 \`\`\`typescript
@@ -300,7 +300,7 @@ When designing APIs:
   {
     id: 'creative-writing',
     name: 'Creative Writing Assistant',
-    description: 'Help with creative writing including stories, scripts, and content creation.',
+    description: 'Assist with creative writing—stories, scripts, and content creation.',
     category: 'creative',
     icon: '~',
     color: 'oklch(0.72 0.20 330)',
@@ -355,7 +355,7 @@ When assisting with creative writing:
   {
     id: 'data-analysis',
     name: 'Data Analysis Helper',
-    description: 'Assist with data analysis, visualization, and insights extraction.',
+    description: 'Assist with data analysis, visualization, and insight extraction.',
     category: 'business',
     icon: '%',
     color: 'oklch(0.65 0.12 220)',

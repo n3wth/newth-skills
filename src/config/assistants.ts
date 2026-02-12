@@ -28,7 +28,7 @@ export const assistants: Record<AssistantId, AIAssistant> = {
       skillFileUrl 
         ? `curl -fsSL ${skillFileUrl} -o ~/.gemini/skills/${skillId}.md`
         : `curl -fsSL https://skills.newth.ai/install.sh | bash -s -- gemini ${skillId}`,
-    description: "Google's AI coding assistant",
+    description: 'Google AI coding assistant',
   },
   claude: {
     id: 'claude',
@@ -43,7 +43,7 @@ export const assistants: Record<AssistantId, AIAssistant> = {
       skillFileUrl 
         ? `curl -fsSL ${skillFileUrl} -o ~/.claude/skills/${skillId}.md`
         : `curl -fsSL https://skills.newth.ai/install.sh | bash -s -- claude ${skillId}`,
-    description: "Anthropic's AI coding assistant",
+    description: 'Anthropic AI coding assistant',
   },
   cursor: {
     id: 'cursor',
@@ -58,7 +58,7 @@ export const assistants: Record<AssistantId, AIAssistant> = {
       skillFileUrl 
         ? `curl -fsSL ${skillFileUrl} -o ~/.cursor/skills/${skillId}.md`
         : `curl -fsSL https://skills.newth.ai/install.sh | bash -s -- cursor ${skillId}`,
-    description: 'AI-first code editor',
+    description: 'AI-native code editor',
   },
   windsurf: {
     id: 'windsurf',
@@ -73,7 +73,7 @@ export const assistants: Record<AssistantId, AIAssistant> = {
       skillFileUrl 
         ? `curl -fsSL ${skillFileUrl} -o ~/.windsurf/skills/${skillId}.md`
         : `curl -fsSL https://skills.newth.ai/install.sh | bash -s -- windsurf ${skillId}`,
-    description: 'Codeium AI-powered IDE',
+    description: 'Codeium AI code editor',
   },
   copilot: {
     id: 'copilot',

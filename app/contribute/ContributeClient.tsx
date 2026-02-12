@@ -58,11 +58,11 @@ export default function ContributeClient() {
             className="text-lg mb-12"
             style={{ color: 'var(--color-grey-300)' }}
           >
-            Built something useful? Share it. Submit your skill and get it listed in the catalog with full attribution.
+            Built something useful? Share it. Submit your skill to get it listed in the catalog with full attribution.
           </p>
 
           <section className="mb-16">
-            <h2 className="text-2xl font-semibold text-white mb-6">How It Works</h2>
+            <h2 className="text-2xl font-semibold text-white mb-6">How it works</h2>
             <div className="space-y-6">
               <div className="glass-card p-6">
                 <div className="flex items-start gap-4">
@@ -73,9 +73,9 @@ export default function ContributeClient() {
                     1
                   </span>
                   <div>
-                    <h3 className="text-lg font-medium text-white mb-2">Create Your Skill</h3>
+                    <h3 className="text-lg font-medium text-white mb-2">Create your skill</h3>
                     <p style={{ color: 'var(--color-grey-300)' }}>
-                      Write a markdown file that teaches AI assistants one focused skill: framework knowledge, coding patterns, or tool usage.
+                      Write a markdown file that teaches AI assistants a single focused skill—framework knowledge, coding patterns, or tool usage.
                     </p>
                   </div>
                 </div>
@@ -90,7 +90,7 @@ export default function ContributeClient() {
                     2
                   </span>
                   <div>
-                    <h3 className="text-lg font-medium text-white mb-2">Submit for Review</h3>
+                    <h3 className="text-lg font-medium text-white mb-2">Submit for review</h3>
                     <p style={{ color: 'var(--color-grey-300)' }}>
                       Fill out the submission form. It opens a GitHub issue with your skill details for review.
                     </p>
@@ -107,9 +107,9 @@ export default function ContributeClient() {
                     3
                   </span>
                   <div>
-                    <h3 className="text-lg font-medium text-white mb-2">Review Process</h3>
+                    <h3 className="text-lg font-medium text-white mb-2">Review process</h3>
                     <p style={{ color: 'var(--color-grey-300)' }}>
-                      Maintainers will review your submission for quality, completeness, and fit. Expect feedback or requests for changes.
+                      Maintainers review your submission for quality, completeness, and fit. Expect feedback or requests for changes.
                     </p>
                   </div>
                 </div>
@@ -124,9 +124,9 @@ export default function ContributeClient() {
                     4
                   </span>
                   <div>
-                    <h3 className="text-lg font-medium text-white mb-2">Published!</h3>
+                    <h3 className="text-lg font-medium text-white mb-2">Published</h3>
                     <p style={{ color: 'var(--color-grey-300)' }}>
-                      Once approved, your skill will be added to the catalog with full attribution. You will be credited as the contributor.
+                      Once approved, your skill gets added to the catalog with full attribution. You'll be credited as the contributor.
                     </p>
                   </div>
                 </div>
@@ -135,7 +135,7 @@ export default function ContributeClient() {
           </section>
 
           <section className="mb-16">
-            <h2 className="text-2xl font-semibold text-white mb-6">Skill Template</h2>
+            <h2 className="text-2xl font-semibold text-white mb-6">Skill template</h2>
             <p
               className="mb-6"
               style={{ color: 'var(--color-grey-300)' }}
@@ -148,43 +148,43 @@ export default function ContributeClient() {
           </section>
 
           <section className="mb-16">
-            <h2 className="text-2xl font-semibold text-white mb-6">Category Guidelines</h2>
+            <h2 className="text-2xl font-semibold text-white mb-6">Category guidelines</h2>
             <div className="grid md:grid-cols-2 gap-4">
               <div className="glass-card p-5">
                 <h3 className="text-base font-medium text-white mb-2">Development</h3>
                 <p className="text-sm" style={{ color: 'var(--color-grey-300)' }}>
-                  Programming, coding tools, testing, DevOps, frameworks, and developer utilities.
+                  Programming, coding tools, testing, DevOps, frameworks, and developer utilities
                 </p>
               </div>
               <div className="glass-card p-5">
                 <h3 className="text-base font-medium text-white mb-2">Documents</h3>
                 <p className="text-sm" style={{ color: 'var(--color-grey-300)' }}>
-                  PDF, Word, Excel, presentations, and document processing tools.
+                  PDF, Word, Excel, presentations, and document-processing tools
                 </p>
               </div>
               <div className="glass-card p-5">
                 <h3 className="text-base font-medium text-white mb-2">Creative</h3>
                 <p className="text-sm" style={{ color: 'var(--color-grey-300)' }}>
-                  Design, art, animation, visual content, and creative coding.
+                  Design, art, animation, visual content, and creative coding
                 </p>
               </div>
               <div className="glass-card p-5">
                 <h3 className="text-base font-medium text-white mb-2">Productivity</h3>
                 <p className="text-sm" style={{ color: 'var(--color-grey-300)' }}>
-                  Task management, automation, workflows, and productivity tools.
+                  Task management, automation, workflows, and productivity tools
                 </p>
               </div>
               <div className="glass-card p-5">
                 <h3 className="text-base font-medium text-white mb-2">Business</h3>
                 <p className="text-sm" style={{ color: 'var(--color-grey-300)' }}>
-                  Strategy, communication, analysis, and enterprise tools.
+                  Strategy, communication, analysis, and enterprise tools
                 </p>
               </div>
             </div>
           </section>
 
           <section className="mb-16">
-            <h2 className="text-2xl font-semibold text-white mb-6">Quality Guidelines</h2>
+            <h2 className="text-2xl font-semibold text-white mb-6">Quality guidelines</h2>
             <div className="glass-card p-6">
               <ul className="space-y-4">
                 <li className="flex items-start gap-3" style={{ color: 'var(--color-grey-200)' }}>
@@ -197,7 +197,7 @@ export default function ContributeClient() {
                 </li>
                 <li className="flex items-start gap-3" style={{ color: 'var(--color-grey-200)' }}>
                   <span className="text-white mt-0.5">•</span>
-                  <span><strong className="text-white">Actually tested:</strong> Try your skill with both Gemini CLI and Claude Code before submitting.</span>
+                  <span><strong className="text-white">Tested:</strong> Try your skill with both Gemini CLI and Claude Code before submitting.</span>
                 </li>
                 <li className="flex items-start gap-3" style={{ color: 'var(--color-grey-200)' }}>
                   <span className="text-white mt-0.5">•</span>
@@ -208,7 +208,7 @@ export default function ContributeClient() {
           </section>
 
           <section className="mb-16">
-            <h2 className="text-2xl font-semibold text-white mb-6">View Pending Submissions</h2>
+            <h2 className="text-2xl font-semibold text-white mb-6">View pending submissions</h2>
             <p
               className="mb-6"
               style={{ color: 'var(--color-grey-300)' }}
@@ -234,12 +234,12 @@ export default function ContributeClient() {
               >
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
               </svg>
-              View Pending Submissions
+              View pending submissions
             </a>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-6">Ready to Submit?</h2>
+            <h2 className="text-2xl font-semibold text-white mb-6">Ready to submit?</h2>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/submit"
@@ -249,7 +249,7 @@ export default function ContributeClient() {
                   color: 'var(--color-bg)',
                 }}
               >
-                Submit a Skill
+                Submit a skill
               </Link>
               <a
                 href={siteConfig.links.github}

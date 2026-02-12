@@ -13,7 +13,7 @@ const sortOptions: { value: SortOption; label: string }[] = [
   { value: 'name-asc', label: 'Name (A-Z)' },
   { value: 'name-desc', label: 'Name (Z-A)' },
   { value: 'category', label: 'Category' },
-  { value: 'recently-updated', label: 'Recently Updated' },
+  { value: 'recently-updated', label: 'Recently updated' },
 ]
 
 export function SortDropdown({ value, onChange }: SortDropdownProps) {

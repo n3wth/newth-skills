@@ -81,7 +81,7 @@ export default function ContactClient() {
 
             <section className="animate-in">
               <h2 className="text-2xl font-medium text-white mb-4">
-                Request a Skill
+                Request a skill
               </h2>
               <p
                 className="text-base leading-relaxed mb-4"
@@ -93,7 +93,7 @@ export default function ContactClient() {
                 href="/request-skill"
                 className="inline-flex items-center gap-2 glass-pill px-4 py-2 rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
               >
-                Request a Skill
+                Request a skill
               </Link>
             </section>
 
@@ -105,7 +105,7 @@ export default function ContactClient() {
                 className="text-base leading-relaxed mb-4"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                This project is maintained by{' '}
+                The project is maintained by{' '}
                 <a
                   href={siteConfig.links.about}
                   target="_blank"

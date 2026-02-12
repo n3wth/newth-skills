@@ -301,7 +301,7 @@ export const workflowTemplates: Workflow[] = [
   {
     id: 'research-report',
     name: 'Research Report Generator',
-    description: 'Automatically research a topic and generate a comprehensive report document',
+    description: 'Research a topic and generate a comprehensive report document automatically',
     nodes: [
       { id: 'node-1', skillId: 'research-assistant', position: { x: 100, y: 200 } },
       { id: 'node-2', skillId: 'doc-coauthoring', position: { x: 400, y: 200 } },
@@ -320,7 +320,7 @@ export const workflowTemplates: Workflow[] = [
   {
     id: 'business-presentation',
     name: 'Business Strategy Presentation',
-    description: 'Analyze a business question and create a professional presentation with the findings',
+    description: 'Analyze a business question and create a professional presentation from the findings',
     nodes: [
       { id: 'node-1', skillId: 'business-panel', position: { x: 100, y: 200 } },
       { id: 'node-2', skillId: 'pptx', position: { x: 400, y: 200 } }
@@ -371,7 +371,7 @@ export const workflowTemplates: Workflow[] = [
   {
     id: 'email-campaign',
     name: 'Email Campaign Generator',
-    description: 'Write compelling email copy, design templates, and prepare for delivery',
+    description: 'Write compelling email copy, design templates, and prepare campaigns for delivery',
     nodes: [
       { id: 'node-1', skillId: 'copywriting', position: { x: 100, y: 200 } },
       { id: 'node-2', skillId: 'theme-factory', position: { x: 350, y: 200 } },
@@ -428,7 +428,7 @@ export const workflowTemplates: Workflow[] = [
   {
     id: 'invoice-processor',
     name: 'Automated Invoice Processor',
-    description: 'Extract data from invoices, validate, and generate reports',
+    description: 'Extract data from invoices, validate entries, and generate reports',
     nodes: [
       { id: 'node-1', skillId: 'pdf', position: { x: 100, y: 200 } },
       { id: 'node-2', skillId: 'xlsx', position: { x: 400, y: 200 } },

@@ -16,8 +16,8 @@ export const bundles: Bundle[] = [
   {
     id: 'frontend-starter',
     name: 'Frontend Powerhouse',
-    description: 'Everything you need to build stunning, interactive web experiences',
-    longDescription: 'Master modern frontend development with AI assistance. Create animated landing pages, design responsive UIs, and build interactive components. Includes GSAP animations, frontend design, typography selection, and live testing tools.',
+    description: 'Everything you need to build interactive web experiences',
+    longDescription: 'Master modern frontend development with AI assistance. Create animated landing pages, design responsive UIs, and build interactive components. The bundle includes GSAP animations, frontend design, typography selection, and live testing tools.',
     skillIds: [
       'gsap-animations',
       'frontend-design',
@@ -31,7 +31,7 @@ export const bundles: Bundle[] = [
     difficulty: 'intermediate',
     icon: 'code',
     tags: ['animation', 'design', 'testing', 'ui', 'css'],
-    estimatedSetupTime: '5 minutes',
+    estimatedSetupTime: 'five minutes',
     whatYouCanBuild: [
       'Production-ready animated websites',
       'Responsive design systems',
@@ -44,7 +44,7 @@ export const bundles: Bundle[] = [
     id: 'backend-builder',
     name: 'Backend Builder',
     description: 'Build robust APIs, microservices, and server infrastructure with confidence',
-    longDescription: 'Engineer scalable backend systems with AI-powered assistance. Create MCP servers, optimize SQL queries, design APIs, implement CI/CD pipelines, and manage infrastructure. Perfect for fullstack and backend engineers.',
+    longDescription: 'Engineer scalable backend systems with AI-powered assistance. Create MCP servers, optimize SQL queries, design APIs, implement CI/CD pipelines, and manage infrastructure. Ideal for full-stack and backend engineers.',
     skillIds: [
       'mcp-builder',
       'sql-optimizer',
@@ -61,7 +61,7 @@ export const bundles: Bundle[] = [
     estimatedSetupTime: '10 minutes',
     whatYouCanBuild: [
       'High-performance REST/GraphQL APIs',
-      'Custom MCP servers for Claude/Gemini',
+      'Custom MCP servers for Claude and Gemini',
       'Optimized database queries',
       'Automated deployment pipelines',
       'Service documentation systems',
@@ -70,8 +70,8 @@ export const bundles: Bundle[] = [
   {
     id: 'devops-toolkit',
     name: 'DevOps Command Center',
-    description: 'Automate everything. From CI/CD to monitoring, monitoring to recovery',
-    longDescription: 'Take control of your infrastructure and deployments. Build CI/CD pipelines, optimize performance, manage containers, track metrics, and automate recovery. Includes code quality tools, documentation generation, and workflow automation.',
+    description: 'Automate everything—from CI/CD to monitoring, monitoring to recovery',
+    longDescription: 'Take control of your infrastructure and deployments. Build CI/CD pipelines, optimize performance, manage containers, track metrics, and automate recovery. The bundle includes code quality tools, documentation generation, and workflow automation.',
     skillIds: [
       'ci-cd-builder',
       'git-workflow',
@@ -98,7 +98,7 @@ export const bundles: Bundle[] = [
     id: 'content-creator',
     name: 'Content Creator Studio',
     description: 'Write, design, and publish professional content at scale',
-    longDescription: 'Create compelling content faster. Generate landing pages, presentations, visual designs, social media content, and GIFs. Includes copywriting assistance, design tools, document creation, and multimedia generation.',
+    longDescription: 'Create compelling content faster. Generate landing pages, presentations, visual designs, social media content, and GIFs. The bundle includes copywriting assistance, design tools, document creation, and multimedia generation.',
     skillIds: [
       'copywriting',
       'canvas-design',
@@ -113,11 +113,11 @@ export const bundles: Bundle[] = [
     difficulty: 'beginner',
     icon: 'star',
     tags: ['design', 'writing', 'marketing', 'social', 'visual'],
-    estimatedSetupTime: '5 minutes',
+    estimatedSetupTime: 'five minutes',
     whatYouCanBuild: [
       'Professional marketing copy',
       'Beautiful presentations',
-      'Social media graphics & GIFs',
+      'Social media graphics and GIFs',
       'Brand-consistent designs',
       'Email campaigns and newsletters',
       'Visual design systems',
@@ -127,7 +127,7 @@ export const bundles: Bundle[] = [
     id: 'data-analyst',
     name: 'Data Intelligence Suite',
     description: 'Extract insights, analyze trends, and visualize data stories',
-    longDescription: 'Transform raw data into actionable insights. Optimize SQL queries, analyze spreadsheets, create visualizations, generate reports, and build research workflows. Includes database optimization, data viz tools, and research automation.',
+    longDescription: 'Transform raw data into actionable insights. Optimize SQL queries, analyze spreadsheets, create visualizations, generate reports, and build research workflows. The suite includes database optimization, data visualization tools, and research automation.',
     skillIds: [
       'sql-optimizer',
       'xlsx',
@@ -141,7 +141,7 @@ export const bundles: Bundle[] = [
     difficulty: 'intermediate',
     icon: 'chart',
     tags: ['analytics', 'database', 'visualization', 'insights', 'reporting'],
-    estimatedSetupTime: '8 minutes',
+    estimatedSetupTime: 'eight minutes',
     whatYouCanBuild: [
       'Optimized analytics queries',
       'Interactive data dashboards',
@@ -154,8 +154,8 @@ export const bundles: Bundle[] = [
   {
     id: 'founder-toolkit',
     name: 'Founder\'s Toolkit',
-    description: 'Run your startup with AI superpowers. Strategy to execution.',
-    longDescription: 'Everything a founder needs to move fast. Create business strategies, draft investor-ready presentations, write compelling copy, manage operations, and automate workflows. Includes strategic planning, documentation, and communication tools.',
+    description: 'Run your startup with AI—from strategy to execution',
+    longDescription: 'Everything a founder needs to move fast. Create business strategies, draft investor-ready presentations, write compelling copy, manage operations, and automate workflows. The toolkit includes strategic planning, documentation, and communication tools.',
     skillIds: [
       'business-panel',
       'copywriting',
@@ -169,7 +169,7 @@ export const bundles: Bundle[] = [
     difficulty: 'beginner',
     icon: 'target',
     tags: ['strategy', 'marketing', 'operations', 'communication', 'growth'],
-    estimatedSetupTime: '5 minutes',
+    estimatedSetupTime: 'five minutes',
     whatYouCanBuild: [
       'Investor pitches and decks',
       'Product positioning docs',

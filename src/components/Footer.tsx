@@ -14,7 +14,7 @@ const legal = [
 
 export function Footer() {
   return (
-    <footer className="py-10 border-t" style={{ borderColor: 'var(--glass-border)' }}>
+    <footer className="py-10">
       <div className="max-w-6xl mx-auto px-6 md:px-12 flex flex-col gap-6">
         {/* Sites */}
         <nav className="flex items-center gap-4">

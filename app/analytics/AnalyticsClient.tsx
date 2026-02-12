@@ -108,7 +108,7 @@ export function AnalyticsClient() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
               <div className="glass-card p-4 md:p-6 overflow-hidden">
                 <p className="text-xs uppercase tracking-wider mb-2" style={{ color: 'var(--color-grey-400)' }}>
-                  Total Views
+                  Total views
                 </p>
                 <p className="text-2xl md:text-3xl font-semibold text-white tabular-nums">
                   {summary.totalViews.toLocaleString()}
@@ -116,7 +116,7 @@ export function AnalyticsClient() {
               </div>
               <div className="glass-card p-4 md:p-6 overflow-hidden">
                 <p className="text-xs uppercase tracking-wider mb-2" style={{ color: 'var(--color-grey-400)' }}>
-                  Total Installs
+                  Total installs
                 </p>
                 <p className="text-2xl md:text-3xl font-semibold text-white tabular-nums">
                   {summary.totalInstalls.toLocaleString()}
@@ -124,7 +124,7 @@ export function AnalyticsClient() {
               </div>
               <div className="glass-card p-4 md:p-6 overflow-hidden">
                 <p className="text-xs uppercase tracking-wider mb-2" style={{ color: 'var(--color-grey-400)' }}>
-                  Skills Viewed
+                  Skills viewed
                 </p>
                 <p className="text-2xl md:text-3xl font-semibold text-white tabular-nums">
                   {summary.uniqueViewed}
@@ -132,7 +132,7 @@ export function AnalyticsClient() {
               </div>
               <div className="glass-card p-4 md:p-6 overflow-hidden">
                 <p className="text-xs uppercase tracking-wider mb-2" style={{ color: 'var(--color-grey-400)' }}>
-                  Skills Installed
+                  Skills installed
                 </p>
                 <p className="text-2xl md:text-3xl font-semibold text-white tabular-nums">
                   {summary.uniqueInstalled}
@@ -152,7 +152,7 @@ export function AnalyticsClient() {
                 backgroundColor: activeTab === 'popular' ? 'var(--glass-highlight)' : 'transparent'
               }}
             >
-              Most Viewed
+              Most viewed
             </button>
             <button
               onClick={() => setActiveTab('installed')}
@@ -164,14 +164,14 @@ export function AnalyticsClient() {
                 backgroundColor: activeTab === 'installed' ? 'var(--glass-highlight)' : 'transparent'
               }}
             >
-              Most Installed
+              Most installed
             </button>
           </div>
 
           {activeTab === 'popular' && (
             <div className="glass-card p-6 md:p-8 mb-8">
               <div className="mb-6">
-                <h2 className="text-xl font-semibold text-white mb-1">Most Viewed Skills</h2>
+                <h2 className="text-xl font-semibold text-white mb-1">Most viewed skills</h2>
                 <p className="text-sm" style={{ color: 'var(--color-grey-400)' }}>
                   Skills with the highest view counts across all users
                 </p>
@@ -238,7 +238,7 @@ export function AnalyticsClient() {
               ) : (
                 <div className="text-center py-12">
                   <p style={{ color: 'var(--color-grey-400)' }}>
-                    No view data yet. Be the first to explore!
+                    No view data yet. Be the first to explore.
                   </p>
                 </div>
               )}
@@ -248,7 +248,7 @@ export function AnalyticsClient() {
           {activeTab === 'installed' && (
             <div className="glass-card p-6 md:p-8 mb-8">
               <div className="mb-6">
-                <h2 className="text-xl font-semibold text-white mb-1">Most Installed Skills</h2>
+                <h2 className="text-xl font-semibold text-white mb-1">Most installed skills</h2>
                 <p className="text-sm" style={{ color: 'var(--color-grey-400)' }}>
                   Skills with the highest install counts across all users
                 </p>
@@ -315,7 +315,7 @@ export function AnalyticsClient() {
               ) : (
                 <div className="text-center py-12">
                   <p style={{ color: 'var(--color-grey-400)' }}>
-                    No install data yet. Try installing a skill!
+                    No install data yet. Try installing a skill.
                   </p>
                 </div>
               )}

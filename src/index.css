@@ -21,11 +21,6 @@
   --glass-highlight: rgba(255, 255, 255, 0.15);
 }
 
-:root[data-theme='light'] {
-  --glass-bg: rgba(0, 0, 0, 0.03);
-  --glass-border: rgba(0, 0, 0, 0.08);
-  --glass-highlight: rgba(0, 0, 0, 0.12);
-}
 
 /* Fix for @n3wth/ui Nav responsive classes not being detected */
 @media (min-width: 768px) {
@@ -152,9 +147,6 @@
   background: #000000;
 }
 
-:root[data-theme='light'] .mesh-gradient {
-  background: #ffffff;
-}
 
 /* Noise texture overlay */
 .noise-overlay {
@@ -218,9 +210,6 @@
   animation: hoverPreviewEnter 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-:root[data-theme='light'] .hover-preview-content {
-  background: rgba(255, 255, 255, 0.9);
-}
 
 @keyframes hoverPreviewEnter {
   from {
@@ -403,17 +392,6 @@
   transform: translateX(-50%) scaleX(1);
 }
 
-:root[data-theme='light'] .category-filter-btn:hover {
-  color: var(--color-black);
-}
-
-:root[data-theme='light'] .category-filter-active {
-  color: var(--color-black);
-}
-
-:root[data-theme='light'] .category-filter-btn::after {
-  background: var(--color-black);
-}
 
 /* Button press state */
 .btn-press:active {
@@ -660,14 +638,6 @@ header,
   border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-:root[data-theme='light'] nav,
-:root[data-theme='light'] [role="navigation"],
-:root[data-theme='light'] .nav-wrapper,
-:root[data-theme='light'] header,
-:root[data-theme='light'] .nav-glass-morphism {
-  background: rgba(255, 255, 255, 0.85) !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
-}
 
 /* Logo/Brand Visibility - Ensure high contrast */
 nav a,
@@ -691,17 +661,6 @@ nav button:hover,
   opacity: 0.7 !important;
 }
 
-:root[data-theme='light'] nav a,
-:root[data-theme='light'] nav button,
-:root[data-theme='light'] [role="navigation"] a,
-:root[data-theme='light'] [role="navigation"] button,
-:root[data-theme='light'] .nav-wrapper a,
-:root[data-theme='light'] .nav-wrapper button,
-:root[data-theme='light'] .nav-glass-morphism a,
-:root[data-theme='light'] .nav-glass-morphism button {
-  color: var(--color-black) !important;
-  transition: opacity 0.2s ease;
-}
 
 /* Ensure site name/logo is visible with strong contrast */
 nav span,
@@ -714,14 +673,6 @@ nav h2,
   font-weight: 600 !important;
 }
 
-:root[data-theme='light'] nav span,
-:root[data-theme='light'] nav h1,
-:root[data-theme='light'] nav h2,
-:root[data-theme='light'] [role="navigation"] span,
-:root[data-theme='light'] [role="navigation"] h1,
-:root[data-theme='light'] [role="navigation"] h2 {
-  color: var(--color-black) !important;
-}
 
 /* Footer Styling - Consistent with Design System */
 footer {
@@ -741,18 +692,6 @@ footer a:hover {
   color: var(--color-white) !important;
 }
 
-:root[data-theme='light'] footer {
-  background: rgba(255, 255, 255, 0.5) !important;
-  border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
-}
-
-:root[data-theme='light'] footer a {
-  color: var(--color-grey-600) !important;
-}
-
-:root[data-theme='light'] footer a:hover {
-  color: var(--color-black) !important;
-}
 
 /* Ensure footer links have proper spacing and alignment */
 footer div {
@@ -779,10 +718,6 @@ footer nav {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-:root[data-theme='light'] [class*="nav"] {
-  background: rgba(255, 255, 255, 0.85) !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
-}
 
 /* Logo text visibility in nav */
 [class*="nav"] [class*="logo"],
@@ -793,9 +728,3 @@ footer nav {
   font-weight: 600 !important;
 }
 
-:root[data-theme='light'] [class*="nav"] [class*="logo"],
-:root[data-theme='light'] [class*="nav"] [class*="brand"],
-:root[data-theme='light'] [class*="header"] [class*="logo"],
-:root[data-theme='light'] [class*="header"] [class*="brand"] {
-  color: var(--color-black) !important;
-}

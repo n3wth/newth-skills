@@ -24,7 +24,7 @@ export function InstallSection() {
           Install
         </h2>
         <p className="label mb-4">
-          One command. Works offline. No servers, no waiting, no limits.
+          One command. Works offline. No servers, no waiting, and no limits.
         </p>
       </div>
 
@@ -67,7 +67,7 @@ export function InstallSection() {
               border: '1px solid var(--glass-border)',
             }}
           >
-            Show {additionalCommands.length} more assistants (Cursor, Windsurf, Cody, Copilot)
+            Show {additionalCommands.length} more assistants (Cursor, Windsurf, Cody, and Copilot)
           </button>
         )}
         

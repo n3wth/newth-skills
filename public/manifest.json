@@ -1,7 +1,7 @@
 {
   "name": "Skills for AI Coding Assistants",
   "short_name": "AI Skills",
-  "description": "Teach your AI to build animations, generate documents, and create art. Skills for Gemini CLI and Claude Code.",
+  "description": "Teach your AI to build animations, generate documents, and create art. Skills for Gemini CLI, Claude Code, and Cursor.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",

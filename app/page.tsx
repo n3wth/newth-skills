@@ -3,11 +3,11 @@ import HomeClient from './HomeClient'
 
 export const metadata: Metadata = {
 title: 'n3wth/skills - AI Coding Assistant Skills',
-  description: 'Discover and install AI coding skills for Gemini CLI and other assistants. Browse community-built templates, workflows, and best practices to supercharge your development.',
+  description: 'Discover and install AI coding skills for Gemini CLI and other assistants. Browse community-built templates, workflows, and best practices that accelerate your development.',
   alternates: { canonical: '/' },
   openGraph: {
     title: 'n3wth/skills - AI Coding Assistant Skills',
-    description: 'Discover and install AI coding skills for Gemini CLI and other assistants. Browse community-built templates, workflows, and best practices to supercharge your development.',
+    description: 'Discover and install AI coding skills for Gemini CLI and other assistants. Browse community-built templates, workflows, and best practices that accelerate your development.',
     url: 'https://skills.newth.ai',
     images: ['/og-image.png'],
   },

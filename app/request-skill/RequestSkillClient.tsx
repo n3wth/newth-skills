@@ -114,13 +114,13 @@ export function RequestSkillClient() {
           </Link>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-4 tracking-tight">
-            Request a skill
+            Request a Skill
           </h1>
           <p
             className="text-lg mb-12"
             style={{ color: 'var(--color-grey-200)' }}
           >
-            Have an idea for a skill you'd like to see? Tell us what would help and we'll consider adding it to the catalog.
+            Have an idea for a skill you'd like to see? Tell us what would help, and we'll consider adding it to the catalog.
           </p>
 
           {submitStatus === 'success' && (
@@ -132,13 +132,13 @@ export function RequestSkillClient() {
                 className="text-base font-medium mb-2"
                 style={{ color: 'var(--color-sage)' }}
               >
-                Request submitted!
+                Request submitted
               </p>
               <p
                 className="text-sm"
                 style={{ color: 'var(--color-grey-300)' }}
               >
-                A GitHub issue has been opened with your request. Thank you for the feedback!
+                A GitHub issue has been opened with your request. Thank you for the feedback.
               </p>
             </div>
           )}
@@ -180,7 +180,7 @@ export function RequestSkillClient() {
                 className="block text-sm font-medium mb-2"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                Skill Name <span style={{ color: 'var(--color-coral)' }}>*</span>
+                Skill name <span style={{ color: 'var(--color-coral)' }}>*</span>
               </label>
               <input
                 type="text"
@@ -219,7 +219,7 @@ export function RequestSkillClient() {
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
-                placeholder="Describe what this skill should do and how it would help..."
+                placeholder="Describe what the skill should do and how it would help..."
                 rows={4}
                 className="w-full px-4 py-3 rounded-xl text-base transition-all duration-200 focus:outline-none resize-none"
                 style={{
@@ -283,7 +283,7 @@ export function RequestSkillClient() {
                 className="mt-4 text-sm"
                 style={{ color: 'var(--color-grey-400)' }}
               >
-                This will open a GitHub issue with your request.
+                Submitting opens a GitHub issue with your request.
               </p>
             </div>
           </form>

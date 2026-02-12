@@ -17,11 +17,11 @@ interface CommandBoxProps {
 
 function getVerificationCommand(assistantId: AssistantId | 'all' | undefined): string {
   if (!assistantId || assistantId === 'all') {
-    return 'ls ~/.gemini/skills/ ~/.claude/skills/ 2>/dev/null && echo "Skills installed!"'
+    return 'ls ~/.gemini/skills/ ~/.claude/skills/ 2>/dev/null && echo "Skills installed"'
   }
   
   const skillsDir = assistants[assistantId]?.skillsDir || `~/.${assistantId}/skills`
-  return `ls ${skillsDir}/ && echo "Skills installed!"`
+  return `ls ${skillsDir}/ && echo "Skills installed"`
 }
 
 function triggerConfetti() {
@@ -72,7 +72,7 @@ export function CommandBox({ name, command, primary, skillId, assistantId }: Com
     announcement.setAttribute('role', 'status')
     announcement.setAttribute('aria-live', 'polite')
     announcement.className = 'sr-only'
-    announcement.textContent = 'Command copied to clipboard'
+    announcement.textContent = 'Copied command to clipboard'
     document.body.appendChild(announcement)
     announcementRef.current = announcement
     
@@ -196,7 +196,7 @@ export function CommandBox({ name, command, primary, skillId, assistantId }: Com
               />
             </svg>
           )}
-          {copied ? 'Copied!' : 'Copy'}
+          {copied ? 'Copied' : 'Copy'}
         </span>
       </div>
 
@@ -258,7 +258,7 @@ export function CommandBox({ name, command, primary, skillId, assistantId }: Com
                 color: 'var(--color-bg)',
               }}
             >
-              It worked!
+              It worked
             </button>
           </div>
         </div>
@@ -291,7 +291,7 @@ export function CommandBox({ name, command, primary, skillId, assistantId }: Com
               className="text-sm font-medium"
               style={{ color: 'var(--color-sage)' }}
             >
-              You're all set!
+              You're all set.
             </span>
             <span 
               className="text-xs"

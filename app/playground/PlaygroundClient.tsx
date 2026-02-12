@@ -278,7 +278,7 @@ export function PlaygroundClient() {
               className="text-lg md:text-xl max-w-2xl"
               style={{ color: 'var(--color-grey-300)' }}
             >
-              Test skills with real AI responses.{' '}
+              Test skills with live AI responses.{' '}
               {remaining !== null && remaining > 0 && (
                 <span style={{ color: 'var(--color-grey-400)' }}>
                   {remaining} free run{remaining !== 1 ? 's' : ''} remaining.
@@ -300,7 +300,7 @@ export function PlaygroundClient() {
                   className="text-sm font-medium uppercase tracking-wider"
                   style={{ color: 'var(--color-grey-400)' }}
                 >
-                  Select a Skill
+                  Select a skill
                 </h2>
                 <button
                   onClick={() => setShowApiKeyInput(true)}
@@ -311,7 +311,7 @@ export function PlaygroundClient() {
                   }}
                   title={apiKey ? 'API key active' : 'Add API key'}
                 >
-                  {apiKey ? 'Key Active' : 'API Key'}
+                  {apiKey ? 'Key active' : 'API key'}
                 </button>
               </div>
               <div className="space-y-2 max-h-[60vh] overflow-y-auto pr-2">
@@ -399,7 +399,7 @@ export function PlaygroundClient() {
                           border: mode === 'try' ? `1px solid ${config?.color || 'var(--glass-border)'}` : '1px solid transparent',
                         }}
                       >
-                        Try It
+                        Try it
                       </button>
                       <Link
                         href={`/skill/${selectedSkill.id}`}
@@ -469,7 +469,7 @@ export function PlaygroundClient() {
                               className="text-xs font-medium uppercase tracking-wider mb-2"
                               style={{ color: 'var(--color-grey-500)' }}
                             >
-                              Your Prompt
+                              Your prompt
                             </p>
                             <p className="text-white font-medium">
                               {selectedSamplePrompt.prompt}
@@ -494,7 +494,7 @@ export function PlaygroundClient() {
                               className="text-xs font-medium uppercase tracking-wider mb-3"
                               style={{ color: 'var(--color-grey-500)' }}
                             >
-                              AI Response
+                              AI response
                             </p>
                             <OutputRenderer output={selectedSamplePrompt.output} />
                           </div>
@@ -516,7 +516,7 @@ export function PlaygroundClient() {
                             color: 'black',
                           }}
                         >
-                          Try This Prompt Live
+                          Try this prompt live
                           <svg
                             width="16" height="16" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" strokeWidth="2"
@@ -633,7 +633,7 @@ export function PlaygroundClient() {
                             className="text-sm mb-6"
                             style={{ color: 'var(--color-grey-400)' }}
                           >
-                            Enter a prompt below to test this skill with real AI.
+                            Enter a prompt below to test the skill with live AI.
                           </p>
                           {selectedSkill.samplePrompts && selectedSkill.samplePrompts.length > 0 && (
                             <div className="flex flex-wrap justify-center gap-2">
@@ -735,7 +735,7 @@ export function PlaygroundClient() {
                                   className="underline hover:no-underline"
                                   style={{ color: 'var(--color-coral, #ff6961)' }}
                                 >
-                                  Add your API key to continue
+                                  Add your API key to continue.
                                 </button>
                               </>
                             )}
@@ -755,7 +755,7 @@ export function PlaygroundClient() {
                   className="glass-card p-12 text-center"
                   style={{ color: 'var(--color-grey-400)' }}
                 >
-                  <p>Select a skill from the list to see example prompts and outputs.</p>
+                  <p>Select a skill from the list to see example prompts and their outputs.</p>
                 </div>
               )}
             </div>
@@ -773,7 +773,7 @@ export function PlaygroundClient() {
             }}
           >
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-semibold text-white">API Key</h3>
+              <h3 className="text-xl font-semibold text-white">API key</h3>
               <button
                 onClick={() => setShowApiKeyInput(false)}
                 className="p-1 transition-colors"
@@ -796,7 +796,7 @@ export function PlaygroundClient() {
             >
               {apiKey ? (
                 <span style={{ color: 'var(--color-sage, #6bcf7f)' }}>
-                  Your API key is active. Unlimited runs.
+                  Your API key is active. Runs are unlimited.
                 </span>
               ) : remaining !== null && remaining > 0 ? (
                 <>
@@ -809,7 +809,7 @@ export function PlaygroundClient() {
 
             <div className="space-y-3">
               <label className="block text-sm font-medium" style={{ color: 'var(--color-grey-300)' }}>
-                Gemini API Key
+                Gemini API key
               </label>
               <p className="text-xs" style={{ color: 'var(--color-grey-600)' }}>
                 Get a free key from{' '}
@@ -875,7 +875,7 @@ export function PlaygroundClient() {
                   color: '#000',
                 }}
               >
-                Save Key
+                Save key
               </button>
             </div>
           </div>

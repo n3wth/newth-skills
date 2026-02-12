@@ -109,7 +109,7 @@ export function RequestsClient() {
                 Feature Requests
               </h1>
               <p className="mt-2" style={{ color: 'var(--color-grey-300)' }}>
-                Submit ideas for new skills and vote on requests from the community
+                Submit ideas for new skills, and vote on requests from the community.
               </p>
             </div>
             <button
@@ -121,13 +121,13 @@ export function RequestsClient() {
                 <line x1="12" y1="5" x2="12" y2="19" />
                 <line x1="5" y1="12" x2="19" y2="12" />
               </svg>
-              New Request
+              New request
             </button>
           </div>
 
           {showCreateForm && (
             <div className="glass-card p-6 mb-8">
-              <h2 className="text-lg font-semibold text-white mb-4">Submit a Feature Request</h2>
+              <h2 className="text-lg font-semibold text-white mb-4">Submit a feature request</h2>
               <form onSubmit={handleCreateRequest}>
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-white mb-2">
@@ -151,7 +151,7 @@ export function RequestsClient() {
                   <textarea
                     value={newDescription}
                     onChange={(e) => setNewDescription(e.target.value)}
-                    placeholder="Describe what this skill should do and why it would be useful..."
+                    placeholder="Describe what the skill should do and why it would be useful..."
                     rows={4}
                     className="w-full px-4 py-3 rounded-lg text-sm bg-white/5 border text-white placeholder:text-gray-500 focus:outline-none focus:ring-1 focus:ring-white/20 resize-none"
                     style={{ borderColor: 'var(--glass-border)' }}
@@ -199,7 +199,7 @@ export function RequestsClient() {
                     className="px-6 py-2 rounded-full text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50"
                     style={{ backgroundColor: '#22c55e' }}
                   >
-                    Submit Request
+                    Submit request
                   </button>
                 </div>
               </form>
@@ -235,7 +235,7 @@ export function RequestsClient() {
                 className="px-3 py-1.5 rounded-lg text-xs bg-white/5 border text-white focus:outline-none focus:ring-1 focus:ring-white/20"
                 style={{ borderColor: 'var(--glass-border)' }}
               >
-                <option value="votes">Most Votes</option>
+                <option value="votes">Most votes</option>
                 <option value="newest">Newest</option>
                 <option value="oldest">Oldest</option>
               </select>
@@ -246,14 +246,14 @@ export function RequestsClient() {
             <div className="text-center py-16 glass-card">
               <p className="text-lg text-white mb-2">No requests yet</p>
               <p className="text-sm mb-4" style={{ color: 'var(--color-grey-400)' }}>
-                Be the first to submit a feature request!
+                Be the first to submit a feature request.
               </p>
               <button
                 onClick={() => setShowCreateForm(true)}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-white transition-opacity hover:opacity-90"
                 style={{ backgroundColor: '#22c55e' }}
               >
-                Submit Request
+                Submit request
               </button>
             </div>
           ) : (

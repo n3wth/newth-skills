@@ -140,7 +140,7 @@ export default function AboutClient() {
               What are Skills?
             </h1>
             <p className="text-lg mb-12 animate-in" style={{ color: 'var(--color-grey-300)' }}>
-              Specialized knowledge files that teach your AI assistant new capabilities, instantly.
+              Specialized knowledge files that teach your AI assistant new capabilities—instantly.
             </p>
           </div>
 
@@ -153,31 +153,31 @@ export default function AboutClient() {
                 className="text-lg leading-relaxed mb-4"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                Skills are markdown files that teach your AI assistant how to do specific things. When you install one, your AI gains the context it needs for that domain: the right patterns, best practices, and pitfalls to avoid.
+                Skills are markdown files that teach your AI assistant how to handle specific tasks. When you install one, your AI gains the context it needs for that domain: the right patterns, best practices, and pitfalls to avoid.
               </p>
               <p
                 className="text-lg leading-relaxed"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                Want Claude to build scroll animations? Install the GSAP skill. Need it to generate PDFs? There is a skill for that. Each skill is curated knowledge your AI can reference instantly.
+                Want Claude to build scroll animations? Install the GSAP skill. Need it to generate PDFs? A skill handles that. Each skill delivers curated knowledge your AI can reference on demand.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl md:text-3xl font-medium text-white mb-4">
-                Skills vs MCP servers
+                Skills vs. MCP servers
               </h2>
               <p
                 className="text-lg leading-relaxed mb-4"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                You might be wondering: why skills instead of MCP servers? MCP servers connect your AI to live systems like databases, APIs, and real-time data. Skills are different. They are static files that work without any infrastructure.
+                You might wonder why skills instead of MCP servers. MCP servers connect your AI to live systems like databases, APIs, and real-time data. Skills take a different approach—they are static files that work without any infrastructure.
               </p>
               <p
                 className="text-lg leading-relaxed mb-4"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                Skills take a different approach. Instead of running external servers, skills are static markdown files that deliver instructions and context directly to your AI assistant. That keeps them lightweight, portable, and instantly available without setup or maintenance.
+                Instead of running external servers, skills are static markdown files that deliver instructions and context directly to your AI assistant. That keeps them lightweight, portable, and available without setup or maintenance.
               </p>
               <div ref={comparisonRef} className="glass-card p-6 md:p-8 mt-6">
                 <div className="grid md:grid-cols-2 gap-8">
@@ -231,13 +231,13 @@ export default function AboutClient() {
                 className="text-lg leading-relaxed mb-4"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                <strong style={{ color: 'var(--color-white)' }}>Use skills</strong> when you need to teach your AI how to do something: following framework best practices, writing code in a particular style, or understanding domain-specific concepts. Skills excel at guidance, patterns, and workflows.
+                <strong style={{ color: 'var(--color-white)' }}>Use skills</strong> when you need to teach your AI how to do something—following framework best practices, writing code in a particular style, or understanding domain-specific concepts. Skills excel at guidance, patterns, and workflows.
               </p>
               <p
                 className="text-lg leading-relaxed"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                <strong style={{ color: 'var(--color-white)' }}>Use MCP servers</strong> when your AI needs to interact with external systems, fetch real-time data, or perform actions that require API access. MCPs are ideal for databases, third-party services, and live connections.
+                <strong style={{ color: 'var(--color-white)' }}>Use MCP servers</strong> when your AI needs to interact with external systems, fetch real-time data, or perform actions that require API access. MCP servers are ideal for databases, third-party services, and live connections.
               </p>
             </section>
 
@@ -249,7 +249,7 @@ export default function AboutClient() {
                 className="text-lg leading-relaxed mb-4"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                Skills are markdown files that get installed into your AI assistant's configuration directory. When you ask for help, your assistant reads the relevant skill to understand how to approach the work.
+                Skills are markdown files installed into your AI assistant's configuration directory. When you ask for help, your assistant reads the relevant skill to understand how to approach the work.
               </p>
               <p
                 className="text-lg leading-relaxed mb-4"
@@ -269,7 +269,7 @@ export default function AboutClient() {
                 className="text-sm mt-3"
                 style={{ color: 'var(--color-grey-400)' }}
               >
-                Skills install into your assistant's config directory. Takes about 5 seconds.
+                Skills install into your assistant's config directory. Setup takes about five seconds.
               </p>
             </section>
 
@@ -283,13 +283,13 @@ export default function AboutClient() {
                     className="text-lg font-medium mb-2"
                     style={{ color: 'var(--color-sage)' }}
                   >
-                    Just files
+                    Plain files
                   </h3>
                   <p
                     className="text-base"
                     style={{ color: 'var(--color-grey-300)' }}
                   >
-                    Copy them anywhere, share with your team, or version control them alongside your project.
+                    Copy them anywhere, share with your team, or version-control them alongside your project.
                   </p>
                 </div>
                 <div className="glass-card p-6">
@@ -303,7 +303,7 @@ export default function AboutClient() {
                     className="text-base"
                     style={{ color: 'var(--color-grey-300)' }}
                   >
-                    No processes, no ports, no servers. Skills run entirely within your AI assistant.
+                    No processes, no ports, and no servers. Skills run entirely within your AI assistant.
                   </p>
                 </div>
                 <div className="glass-card p-6">

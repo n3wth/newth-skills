@@ -5,7 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/icons/icon-192.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Extend your AI coding assistant with powerful skills. 50+ curated skills for Claude Code and Gemini CLI. Install in seconds, works offline." />
+    <meta name="description" content="Extend your AI coding assistant with ready-made skills. More than 50 curated skills for Claude Code, Gemini CLI, and Cursor. Install in seconds and work offline." />
     <meta name="theme-color" content="#3d3d3d" />
     <meta name="author" content="Oliver Newth" />
     <meta name="robots" content="index, follow" />
@@ -21,35 +21,26 @@
       /* Critical CSS - prevents white flash on load */
       html, body { margin: 0; padding: 0; }
       html { background: #000000; }
-      html[data-theme='light'] { background: #ffffff; }
       body { background: inherit; min-height: 100vh; }
     </style>
-    <script>
-      (function() {
-        const stored = localStorage.getItem('theme-preference');
-        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const theme = stored || (systemDark ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', theme);
-      })();
-    </script>
 
     <!-- Open Graph -->
     <meta property="og:title" content="Skills for AI Coding Assistants" />
-    <meta property="og:description" content="Markdown files that teach Gemini CLI and Claude Code new tricks. Install in seconds, works offline." />
+    <meta property="og:description" content="Markdown files that give Gemini CLI, Claude Code, and Cursor new capabilities. Install in seconds and work offline." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://skills.newth.ai" />
     <meta property="og:site_name" content="n3wth/skills" />
     <meta property="og:image" content="https://skills.newth.ai/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Skills for AI Coding Assistants" />
+    <meta property="og:image:alt" content="Skills for AI coding assistants" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Skills for AI Coding Assistants" />
-    <meta name="twitter:description" content="Markdown files that teach Gemini CLI and Claude Code new tricks. Install in seconds, works offline." />
+    <meta name="twitter:description" content="Markdown files that give Gemini CLI, Claude Code, and Cursor new capabilities. Install in seconds and work offline." />
     <meta name="twitter:image" content="https://skills.newth.ai/og-image.png" />
-    <meta name="twitter:image:alt" content="Skills for AI Coding Assistants" />
+    <meta name="twitter:image:alt" content="Skills for AI coding assistants" />
 
     <title>n3wth/skills - AI Coding Assistant Skills</title>
   </head>
@@ -57,16 +48,16 @@
     <div id="root"></div>
     <noscript>
       <main role="main" style="max-width: 800px; margin: 0 auto; padding: 2rem; font-family: system-ui, sans-serif;">
-        <h1>Skills for Claude Code and Gemini CLI</h1>
-        <p>50+ curated skills that extend your AI coding assistant with powerful capabilities. Install in seconds, works offline.</p>
+        <h1>Skills for Claude Code, Gemini CLI, and Cursor</h1>
+        <p>More than 50 curated skills that extend your AI coding assistant with ready-made capabilities. Install in seconds and work offline.</p>
 
-        <h2>What are AI Skills?</h2>
-        <p>Skills are markdown files that teach AI assistants like Claude Code and Gemini CLI new tricks. They provide specialized knowledge, workflows, and best practices for specific tasks.</p>
+        <h2>What Are AI Skills?</h2>
+        <p>Skills are markdown files that give AI assistants like Claude Code, Gemini CLI, and Cursor new capabilities. Each skill provides specialized knowledge, workflows, and best practices for specific tasks.</p>
 
         <h2>Popular Categories</h2>
         <nav aria-label="Skill categories">
           <ul>
-            <li><a href="/skill/gsap-animations">GSAP Animations</a> - Create beautiful web animations</li>
+            <li><a href="/skill/gsap-animations">GSAP Animations</a> - Create web animations</li>
             <li><a href="/skill/mcp-builder">MCP Builder</a> - Build Model Context Protocol servers</li>
             <li><a href="/skill/frontend-design">Frontend Design</a> - Production-grade UI development</li>
             <li><a href="/skill/pdf">PDF Tools</a> - Generate and manipulate PDFs</li>
@@ -76,7 +67,7 @@
         </nav>
 
         <h2>Quick Install</h2>
-        <p>Copy a skill to your Claude Code or Gemini CLI skills directory:</p>
+        <p>Copy a skill to your Claude Code, Gemini CLI, or Cursor skills directory:</p>
         <code style="display: block; padding: 1rem; background: #f5f5f5; border-radius: 4px;">
           claude mcp add skill-name https://skills.newth.ai/skill/skill-name
         </code>
@@ -85,17 +76,17 @@
         <nav aria-label="Site navigation">
           <ul>
             <li><a href="/">Home - Browse all skills</a></li>
-            <li><a href="/about">About - Learn more about this project</a></li>
+            <li><a href="/about">About - Learn more about the project</a></li>
             <li><a href="/contribute">Contribute - Submit your own skill</a></li>
             <li><a href="/bundles">Bundles - Curated skill collections</a></li>
             <li><a href="/workflows">Workflows - Automated skill chains</a></li>
-            <li><a href="/contact">Contact - Get in touch</a></li>
+            <li><a href="/contact">Contact</a></li>
             <li><a href="/privacy">Privacy Policy</a></li>
           </ul>
         </nav>
 
         <footer style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #ddd;">
-          <p>&copy; 2024-2025 Oliver Newth. <a href="https://newth.ai">newth.ai</a></p>
+          <p>&copy; 2024-2026 Oliver Newth. <a href="https://newth.ai">newth.ai</a></p>
         </footer>
       </main>
     </noscript>

@@ -10,7 +10,7 @@ import type { Bundle } from '@/src/data/bundles'
 type PersonaFilter = 'all' | Bundle['persona']
 
 const personas: { value: PersonaFilter; label: string }[] = [
-  { value: 'all', label: 'All Bundles' },
+  { value: 'all', label: 'All bundles' },
   { value: 'frontend', label: 'Frontend' },
   { value: 'backend', label: 'Backend' },
   { value: 'devops', label: 'DevOps' },
@@ -56,7 +56,7 @@ export function CuratedBundlesClient() {
             Skill Bundles for Every Role
           </h1>
           <p className="text-lg mb-12" style={{ color: 'var(--color-grey-300)' }}>
-            Pre-curated collections of complementary skills. Everything you need to level up your workflow, organized by profession.
+            Curated collections of complementary skills, organized by profession. Everything you need to strengthen your workflow.
           </p>
 
           {/* Filter Section */}
@@ -130,7 +130,7 @@ export function CuratedBundlesClient() {
                 No bundles found
               </h2>
               <p className="text-sm text-[var(--color-grey-600)]">
-                Try adjusting your filters or search terms
+                Try adjusting your filters or search terms.
               </p>
             </div>
           )}
@@ -138,23 +138,23 @@ export function CuratedBundlesClient() {
           {/* Info Section */}
           <div className="mt-20 pt-12 border-t border-[var(--glass-border)]">
             <h2 className="text-2xl font-semibold text-[var(--color-white)] mb-8">
-              How Bundles Work
+              How bundles work
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="p-6 rounded-xl bg-[var(--glass-bg)] border border-[var(--glass-border)]">
                 <svg className="w-8 h-8 mb-3" viewBox="0 0 32 32">
                   <rect x="2" y="2" width="28" height="28" fill="#ff6961" opacity={0.8} />
                 </svg>
-                <h3 className="text-lg font-medium text-[var(--color-white)] mb-2">Pre-Curated</h3>
+                <h3 className="text-lg font-medium text-[var(--color-white)] mb-2">Curated</h3>
                 <p className="text-sm text-[var(--color-grey-400)]">
-                  Each bundle is carefully selected to complement each other and solve real problems for your role.
+                  Each bundle contains skills selected to complement one another and solve real problems for your role.
                 </p>
               </div>
               <div className="p-6 rounded-xl bg-[var(--glass-bg)] border border-[var(--glass-border)]">
                 <svg className="w-8 h-8 mb-3" viewBox="0 0 32 32">
                   <circle cx="16" cy="16" r="14" fill="#30d158" opacity={0.8} />
                 </svg>
-                <h3 className="text-lg font-medium text-[var(--color-white)] mb-2">One Command</h3>
+                <h3 className="text-lg font-medium text-[var(--color-white)] mb-2">One command</h3>
                 <p className="text-sm text-[var(--color-grey-400)]">
                   Install an entire bundle with a single command. No manual selection needed.
                 </p>
@@ -163,7 +163,7 @@ export function CuratedBundlesClient() {
                 <svg className="w-8 h-8 mb-3" viewBox="0 0 32 32">
                   <polygon points="16,2 30,30 2,30" fill="#64d2ff" opacity={0.8} />
                 </svg>
-                <h3 className="text-lg font-medium text-[var(--color-white)] mb-2">Proven Workflows</h3>
+                <h3 className="text-lg font-medium text-[var(--color-white)] mb-2">Proven workflows</h3>
                 <p className="text-sm text-[var(--color-grey-400)]">
                   Based on how professionals use these skills together in real projects.
                 </p>

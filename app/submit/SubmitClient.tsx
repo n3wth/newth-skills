@@ -161,13 +161,13 @@ export function SubmitClient() {
           </Link>
 
           <h1 className="text-4xl md:text-5xl font-semibold text-white mb-4 tracking-tight">
-            Submit a skill
+            Submit a Skill
           </h1>
           <p
             className="text-lg mb-12"
             style={{ color: 'var(--color-grey-300)' }}
           >
-            Contribute a skill to the marketplace. If approved, it will be added to the catalog with full attribution.{' '}
+            Contribute a skill to the catalog. If approved, it gets listed with full attribution.{' '}
             <Link href="/contribute" className="text-white hover:opacity-70 transition-opacity underline">
               View the contribution guide
             </Link>.
@@ -182,13 +182,13 @@ export function SubmitClient() {
                 className="text-base font-medium mb-2"
                 style={{ color: 'var(--color-sage)' }}
               >
-                Submission received!
+                Submission received
               </p>
               <p
                 className="text-sm"
                 style={{ color: 'var(--color-grey-300)' }}
               >
-                A GitHub issue has been opened with your submission. Thank you for contributing!
+                A GitHub issue has been opened with your submission. Thank you for contributing.
               </p>
             </div>
           )}
@@ -230,7 +230,7 @@ export function SubmitClient() {
                 className="block text-sm font-medium mb-2"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                Skill Name <span style={{ color: 'var(--color-coral)' }}>*</span>
+                Skill name <span style={{ color: 'var(--color-coral)' }}>*</span>
               </label>
               <input
                 type="text"
@@ -306,7 +306,7 @@ export function SubmitClient() {
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
-                placeholder="Describe what this skill should do and how it helps users..."
+                placeholder="Describe what the skill does and how it helps users..."
                 rows={4}
                 className="w-full px-4 py-3 rounded-xl text-base transition-all duration-200 focus:outline-none resize-none"
                 style={{
@@ -367,7 +367,7 @@ export function SubmitClient() {
                 className="block text-sm font-medium mb-2"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                Long Description{' '}
+                Long description{' '}
                 <span
                   className="font-normal"
                   style={{ color: 'var(--color-grey-400)' }}
@@ -427,7 +427,7 @@ export function SubmitClient() {
                 className="block text-sm font-medium mb-2"
                 style={{ color: 'var(--color-grey-200)' }}
               >
-                Use Cases{' '}
+                Use cases{' '}
                 <span
                   className="font-normal"
                   style={{ color: 'var(--color-grey-400)' }}
@@ -490,7 +490,7 @@ export function SubmitClient() {
               className="glass-card p-6"
               style={{ borderColor: 'var(--glass-border)' }}
             >
-              <h2 className="text-base font-medium text-white mb-4">Contributor Information</h2>
+              <h2 className="text-base font-medium text-white mb-4">Contributor information</h2>
               <div className="space-y-4">
                 <div>
                   <label
@@ -498,7 +498,7 @@ export function SubmitClient() {
                     className="block text-sm font-medium mb-2"
                     style={{ color: 'var(--color-grey-200)' }}
                   >
-                    Your Name <span style={{ color: 'var(--color-coral)' }}>*</span>
+                    Your name <span style={{ color: 'var(--color-coral)' }}>*</span>
                   </label>
                   <input
                     type="text"
@@ -529,7 +529,7 @@ export function SubmitClient() {
                     className="block text-sm font-medium mb-2"
                     style={{ color: 'var(--color-grey-200)' }}
                   >
-                    GitHub Username{' '}
+                    GitHub username{' '}
                     <span
                       className="font-normal"
                       style={{ color: 'var(--color-grey-400)' }}
@@ -564,13 +564,13 @@ export function SubmitClient() {
                   color: 'var(--color-bg)',
                 }}
               >
-                Submit Skill
+                Submit skill
               </button>
               <p
                 className="mt-4 text-sm"
                 style={{ color: 'var(--color-grey-400)' }}
               >
-                This will open a GitHub issue with your skill submission for review.
+                Submitting opens a GitHub issue with your skill details for review.
               </p>
             </div>
           </form>

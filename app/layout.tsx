@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: '%s | n3wth/skills',
   },
   description:
-    'Extend your AI coding assistant with powerful skills. 50+ curated skills for Gemini CLI and Claude Code. Install in seconds, works offline.',
+    'Extend your AI coding assistant with ready-made skills. More than 50 curated skills for Gemini CLI, Claude Code, and Cursor. Install in seconds and work offline.',
   authors: [{ name: 'Oliver Newth' }],
   creator: 'Oliver Newth',
   robots: 'index, follow',
@@ -20,13 +20,13 @@ export const metadata: Metadata = {
     siteName: 'n3wth/skills',
     title: 'n3wth/skills - AI Coding Assistant Skills',
     description:
-      'Markdown files that teach Gemini CLI and Claude Code new tricks. Install in seconds, works offline.',
+      'Markdown files that give Gemini CLI, Claude Code, and Cursor new capabilities. Install in seconds and work offline.',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Skills for AI Coding Assistants',
+        alt: 'Skills for AI coding assistants',
       },
     ],
   },
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'n3wth/skills - AI Coding Assistant Skills',
     description:
-      'Markdown files that teach Gemini CLI and Claude Code new tricks. Install in seconds, works offline.',
+      'Markdown files that give Gemini CLI, Claude Code, and Cursor new capabilities. Install in seconds and work offline.',
     images: ['/og-image.png'],
   },
 }
@@ -51,7 +51,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
@@ -60,12 +60,6 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="AI Skills" />
-        {/* Inline script for theme to prevent flash - rendering-hydration-no-flicker */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){var t=localStorage.getItem('theme-preference'),s=window.matchMedia('(prefers-color-scheme: dark)').matches,e=t||(s?'dark':'light');document.documentElement.setAttribute('data-theme',e)})()`,
-          }}
-        />
       </head>
       <body>
         <a

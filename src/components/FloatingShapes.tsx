@@ -1,5 +1,5 @@
 'use client'
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { Shape, CompositeShape, type CompositePreset, type ShapeType, type PatternType } from '@n3wth/ui'
@@ -42,6 +42,11 @@ const floatingElements: FloatingElement[] = [
 
 export function FloatingShapes() {
   const containerRef = useRef<HTMLDivElement>(null)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useGSAP(() => {
     if (!containerRef.current) return
@@ -96,7 +101,7 @@ export function FloatingShapes() {
       ref={containerRef}
       className="absolute inset-0 overflow-hidden pointer-events-none"
     >
-      {floatingElements.map((element, i) => (
+      {mounted && floatingElements.map((element, i) => (
         <div
           key={i}
           className="floating-shape absolute hidden lg:block"

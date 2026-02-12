@@ -73,10 +73,10 @@ export function SkillDetailClient({ skillId }: Props) {
             </Link>
 
             <h1 className="text-4xl md:text-5xl font-semibold text-white mb-4 tracking-tight">
-              Skill not found
+              Skill Not Found
             </h1>
             <p className="text-lg mb-12" style={{ color: 'var(--color-grey-300)' }}>
-              This skill doesn't exist or may have been renamed. Browse the full collection to find what you need.
+              The requested skill doesn't exist or may have been renamed. Browse the full collection to find what you need.
             </p>
           </div>
         </main>
@@ -276,7 +276,7 @@ export function SkillDetailClient({ skillId }: Props) {
           {skill.useCases && skill.useCases.length > 0 && (
             <div className="mb-12">
               <h2 className="text-xl font-semibold text-white mb-6">
-                Use Cases
+                Use cases
               </h2>
               <div className="grid gap-3">
                 {skill.useCases.map((useCase, index) => (
@@ -328,7 +328,7 @@ export function SkillDetailClient({ skillId }: Props) {
             if (relatedSkills.length === 0) return null
             return (
               <div className="mt-16">
-                <h2 className="text-2xl font-semibold text-white mb-8">Related Skills</h2>
+                <h2 className="text-2xl font-semibold text-white mb-8">Related skills</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {relatedSkills.map(relatedSkill => (
                     <SkillCard key={relatedSkill.id} skill={relatedSkill} />
