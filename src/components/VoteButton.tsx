@@ -1,5 +1,6 @@
 'use client'
 import { useState, useCallback, useEffect } from 'react'
+import { useAuth } from './AuthProvider'
 import { getFingerprint } from '../lib/fingerprint'
 
 interface VoteButtonProps {
@@ -38,6 +39,7 @@ function setUserVote(skillId: string, hasVoted: boolean): void {
 }
 
 export function VoteButton({ skillId, className = '', size = 'md' }: VoteButtonProps) {
+  const { user } = useAuth()
   const [votes, setVotes] = useState(0)
   const [hasVoted, setHasVoted] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
@@ -69,7 +71,6 @@ export function VoteButton({ skillId, className = '', size = 'md' }: VoteButtonP
     e.stopPropagation()
 
     setIsAnimating(true)
-    const fingerprint = getFingerprint()
     const willVote = !hasVoted
 
     // Optimistic update
@@ -78,10 +79,14 @@ export function VoteButton({ skillId, className = '', size = 'md' }: VoteButtonP
     setUserVote(skillId, willVote)
 
     try {
+      const body: Record<string, string> = {}
+      if (!user) {
+        body.fingerprint = getFingerprint()
+      }
       const res = await fetch(`/api/vote?skillId=${skillId}`, {
         method: willVote ? 'POST' : 'DELETE',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ fingerprint }),
+        body: JSON.stringify(body),
       })
 
       if (res.ok) {
@@ -96,7 +101,7 @@ export function VoteButton({ skillId, className = '', size = 'md' }: VoteButtonP
     }
 
     setTimeout(() => setIsAnimating(false), 300)
-  }, [skillId, hasVoted])
+  }, [skillId, hasVoted, user])
 
   const sizeClasses = size === 'sm'
     ? 'px-2.5 py-1.5 text-xs gap-1 min-h-[36px]'
