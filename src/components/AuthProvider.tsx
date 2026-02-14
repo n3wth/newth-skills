@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
-import { createClient, isSupabaseConfigured } from '../lib/supabase'
+import { createClient } from '../lib/supabase'
 import type { User } from '@supabase/supabase-js'
 
 export interface Profile {
@@ -52,10 +52,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return
     }
 
+    async function loadProfile(userId: string) {
+      const { data } = await supabase!
+        .from('profiles')
+        .select('*')
+        .eq('id', userId)
+        .single()
+      setProfile(data as Profile | null)
+      setLoading(false)
+    }
+
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null)
       if (session?.user) {
-        fetchProfile(session.user.id)
+        loadProfile(session.user.id)
       } else {
         setLoading(false)
       }
@@ -66,7 +76,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } = supabase.auth.onAuthStateChange(async (_event, session) => {
       setUser(session?.user ?? null)
       if (session?.user) {
-        await fetchProfile(session.user.id)
+        await loadProfile(session.user.id)
       } else {
         setProfile(null)
         setLoading(false)
@@ -75,17 +85,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     return () => subscription.unsubscribe()
   }, [supabase])
-
-  async function fetchProfile(userId: string) {
-    if (!supabase) return
-    const { data } = await supabase
-      .from('profiles')
-      .select('*')
-      .eq('id', userId)
-      .single()
-    setProfile(data as Profile | null)
-    setLoading(false)
-  }
 
   const signIn = async () => {
     if (!supabase) return
