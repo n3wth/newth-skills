@@ -80,7 +80,7 @@ describe('CommandBox', () => {
     })
   })
 
-  it('shows "Copied!" text after clicking', async () => {
+  it('shows "Copied" text after clicking', async () => {
     render(
       <CommandBox
         name="Test Command"
@@ -93,7 +93,7 @@ describe('CommandBox', () => {
     fireEvent.click(commandBox!)
 
     await waitFor(() => {
-      expect(screen.getByText('Copied!')).toBeInTheDocument()
+      expect(screen.getByText('Copied')).toBeInTheDocument()
     })
   })
 
