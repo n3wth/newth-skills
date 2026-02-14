@@ -1,5 +1,5 @@
 'use client'
-import { forwardRef, useCallback, memo } from 'react'
+import { forwardRef, memo } from 'react'
 import Link from 'next/link'
 import { type Skill } from '../data/skills'
 import { CategoryShape } from './CategoryShape'

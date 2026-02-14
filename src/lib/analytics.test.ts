@@ -7,10 +7,12 @@ import {
   getRecentCopyEvents,
   getMostPopularSkills,
   clearAnalytics,
+  __clearAnalyticsCache,
 } from './analytics'
 
 describe('analytics', () => {
   beforeEach(() => {
+    __clearAnalyticsCache()
     vi.clearAllMocks()
     vi.mocked(localStorage.getItem).mockReturnValue(null)
   })

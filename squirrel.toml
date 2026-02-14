@@ -1,5 +1,5 @@
 [project]
-domains = []
+domains = ["https://skills.newth.ai"]
 name = "skills-newth"
 
 [crawler]

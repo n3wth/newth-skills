@@ -23,6 +23,12 @@ let cachedData: AnalyticsData | null = null
 let cacheTimestamp = 0
 const CACHE_TTL = 100 // 100ms cache for read-heavy operations
 
+/** Clear in-memory cache (for testing) */
+export function __clearAnalyticsCache(): void {
+  cachedData = null
+  cacheTimestamp = 0
+}
+
 function getStoredData(): AnalyticsData {
   if (typeof window === 'undefined') {
     return { copyEvents: [], skillCopyCounts: {}, viewEvents: [], skillViewCounts: {} }
@@ -338,7 +344,8 @@ function getStoredErrors(): ErrorEvent[] {
   try {
     const stored = localStorage.getItem(ERROR_STORAGE_KEY)
     if (stored) {
-      return JSON.parse(stored)
+      const parsed = JSON.parse(stored)
+      return Array.isArray(parsed) ? parsed : []
     }
   } catch {
     // localStorage not available or corrupted data
