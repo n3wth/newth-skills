@@ -17,12 +17,12 @@ function loadEnvLocal() {
   }
 }
 
-if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+if (!process.env.NEXT_PUBLIC_SUPABASE_URL && !process.env.NEXT_PUBLIC_SKILLS_SUPABASE_URL) {
   loadEnvLocal()
 }
 
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL
-const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+const url = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.NEXT_PUBLIC_SKILLS_SUPABASE_URL
+const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SKILLS_SUPABASE_ANON_KEY
 
 function log(msg, ok = true) {
   console.log(ok ? `✓ ${msg}` : `✗ ${msg}`)
