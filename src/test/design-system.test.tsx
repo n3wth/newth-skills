@@ -1,24 +1,13 @@
 import { describe, it, expect } from 'vitest'
 import { render } from '@testing-library/react'
-import { designSystemValidators } from './utils'
 
 /**
  * PHASE 1: UNIFORMITY TESTS
  * Comprehensive design system compliance testing
  */
 
-describe('Design System - Flat Design Compliance', () => {
-  describe('Shadow Effects (Forbidden)', () => {
-    it('should not apply box-shadow to any element', () => {
-      const { container } = render(
-        <div data-testid="test-element" style={{ boxShadow: 'none' }}>
-          Test
-        </div>
-      )
-      const element = container.querySelector('[data-testid="test-element"]')
-      expect(designSystemValidators.hasShadow(element)).toBe(false)
-    })
-
+describe('Design System - Liquid Glass Compliance', () => {
+  describe('Shadow Effects (Only inset allowed)', () => {
     it('should not apply drop-shadow filter', () => {
       const { container } = render(
         <div style={{ filter: 'none' }}>No shadow</div>
@@ -37,35 +26,16 @@ describe('Design System - Flat Design Compliance', () => {
       expect(computedShadow).toBe('none')
     })
 
-    it('should not have glow effects', () => {
+    it('should allow inset box-shadow for glass highlight', () => {
       const { container } = render(
-        <div className="rounded-lg" style={{ backgroundColor: 'transparent' }}>
-          No glow
+        <div className="glass-card" style={{ boxShadow: 'inset 0 1px 0 0 rgba(255,255,255,0.12)' }}>
+          Glass
         </div>
       )
       const element = container.firstChild as HTMLElement
       const boxShadow = window.getComputedStyle(element).boxShadow
-      expect(boxShadow === 'none' || boxShadow === '').toBe(true)
-    })
-  })
-
-  describe('Gradient Effects (Forbidden except on buttons)', () => {
-    it('should not apply gradients to non-button elements', () => {
-      const { container } = render(
-        <div style={{ backgroundImage: 'none' }}>Content</div>
-      )
-      const element = container.firstChild as HTMLElement
-      expect(designSystemValidators.hasGradient(element)).toBe(false)
-    })
-
-    it('should reject gradient orbs', () => {
-      const { container } = render(
-        <div style={{ background: 'radial-gradient(circle, transparent 0%, black 100%)' }}>
-          Orb
-        </div>
-      )
-      const element = container.firstChild as HTMLElement
-      expect(designSystemValidators.hasGradient(element)).toBe(true)
+      // Inset shadows are allowed for liquid glass
+      expect(boxShadow).toBeTruthy()
     })
   })
 

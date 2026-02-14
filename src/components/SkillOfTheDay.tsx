@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { skills } from '../data/skills'
 import { CategoryShape } from './CategoryShape'
 import { CompatibilityMatrix } from './CompatibilityMatrix'
-import { categoryConfig } from '../config/categories'
 
 function getDayOfYear(): number {
   const now = new Date()
@@ -47,8 +46,7 @@ export function SkillOfTheDay() {
     <section className="mb-16 md:mb-24">
       <Link
         href={`/skill/${skill.id}`}
-        className="skill-card glass-card group block w-full p-6 sm:p-8 md:p-10"
-        style={{ '--card-accent': categoryConfig[skill.category]?.color || 'var(--glass-highlight)' } as React.CSSProperties}
+        className="skill-card glass-card glass-card--hero group block w-full p-6 sm:p-8 md:p-10"
       >
         <div className="flex items-center gap-2 mb-4">
           <CategoryShape category={skill.category} size={14} />

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, useRef, useCallback, useEffect } from 'react'
+import { useState, useMemo, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import { skills, categories } from '../src/data/skills'
 import { Nav } from '../src/components/Nav'
@@ -21,8 +21,6 @@ import { FeaturedSkills } from '../src/components/FeaturedSkills'
 import { SkillOfTheDay } from '../src/components/SkillOfTheDay'
 import { useKeyboardShortcuts, useAIRecommendations, useSkillSearch, useSkillNavigation } from '../src/hooks'
 import { getSkillBadgeStatus } from '../src/lib/analytics'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 export default function HomeClient() {
   const searchInputRef = useRef<HTMLInputElement>(null)
@@ -69,37 +67,6 @@ export default function HomeClient() {
   // Badge status (memoized)
   const badgeStatus = useMemo(() => getSkillBadgeStatus(), [])
 
-  // Scroll-reveal animations for skill cards
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReducedMotion) return
-
-    gsap.registerPlugin(ScrollTrigger)
-
-    const cards = document.querySelectorAll('[data-card]')
-    if (cards.length === 0) return
-
-    gsap.set(cards, { opacity: 0, y: 30 })
-
-    ScrollTrigger.batch(cards, {
-      onEnter: (batch) => {
-        gsap.to(batch, {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.08,
-          ease: 'power2.out',
-        })
-      },
-      start: 'top 90%',
-      once: true,
-    })
-
-    return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill())
-    }
-  }, [filteredSkills])
 
   return (
     <div className="min-h-screen relative content-loaded">
@@ -170,7 +137,6 @@ export default function HomeClient() {
           {filteredSkills.map((skill, index) => (
             <div
               key={skill.id}
-              data-card
               className="h-full"
               style={{
                 contentVisibility: index > 11 ? 'auto' : 'visible',

@@ -13,58 +13,66 @@ AI-powered skill discovery and installation platform for Claude Code and other A
 
 ### Core Principles
 
-**FLAT DESIGN ONLY**
-- No shadows (box-shadow, drop-shadow, text-shadow)
-- No glows or glow effects
-- No blur filters on shapes (backdrop-blur for glass morphism is acceptable)
-- No gradient orbs or ambient lighting effects
-- Use borders for depth and separation instead
+**LIQUID GLASS (iOS 26 inspired)**
+- Glass material: backdrop-blur + translucent backgrounds + inset highlights
+- Solid black background
+- Depth through translucency, not elevation
+- No pseudo-element overlays (no ::before/::after gradients on cards)
 
 ### Visual Hierarchy
 
-- Use opacity variations (0.05 - 0.15 for backgrounds)
-- Use border colors for visual separation
-- Use transform (translateY, scale) for hover states
+- Glass card with backdrop-filter blur, border, inset shadow
+- Border brightens on hover
 - Keep animations subtle and purposeful
 
 ### Color Palette
 
 ```css
-/* Category colors - flat, no glow */
+/* Category colors */
 development: #30d158 (green)
 documents: #ff6961 (coral)
 creative: #64d2ff (blue)
 business: #ffd60a (gold)
 
-/* UI colors */
---glass-bg: rgba(255, 255, 255, 0.05)
---glass-border: rgba(255, 255, 255, 0.1)
---glass-highlight: rgba(255, 255, 255, 0.15)
+/* Liquid Glass variables */
+--glass-bg: rgba(255, 255, 255, 0.06)
+--glass-border: rgba(255, 255, 255, 0.08)
+--glass-highlight: rgba(255, 255, 255, 0.18)
+--glass-blur: blur(20px) saturate(180%)
+--glass-inset: inset 0 1px 0 0 rgba(255, 255, 255, 0.12)
+
+/* Background */
+Solid black (#000000) - no gradient mesh
 ```
 
 ### Category Shapes
 
-Each category has a distinct shape (no shadows/glows):
+Each category has a distinct shape:
 - **development**: Circle
 - **documents**: Square
 - **creative**: Triangle
 - **business**: Diamond
 
-### Acceptable Effects
+### Glass Card Variants
 
-- `backdrop-filter: blur()` for glass morphism on nav/modals
+- `.glass-card` - Standard glass (blur 20px, 20px radius)
+- `.glass-card--featured` - 24px radius variant
+- `.glass-card--hero` - 24px radius variant
+
+### Allowed Effects
+
+- `backdrop-filter: blur()` with `saturate()` for glass material
+- `box-shadow: inset` for top-edge highlight
 - `transform` for hover interactions
-- CSS animations for entrance/exit
-- GSAP for complex motion sequences
+- CSS/GSAP animations for entrance/motion
 
 ### Forbidden Effects
 
-- `box-shadow` anywhere
 - `drop-shadow()` filter
 - `text-shadow`
-- Glow animations or pulsing
-- Gradient orbs/blurs for ambient effects
-- Any "ethereal" or "atmospheric" visual effects
+- Outer `box-shadow` (elevation shadows)
+- Pseudo-element gradient overlays (::before/::after with gradients)
+- Bright/neon glow animations
 
 ## Project Structure
 
@@ -95,27 +103,25 @@ npm run verify:supabase  # Verify Supabase connection
 ## Component Patterns
 
 ### Skill Cards
-- Flat border with hover state
-- Transform on hover (translateY, scale)
-- No shadow on hover
+- Glass card with backdrop-filter blur
+- No movement on hover (no translateY, no scale)
+- Border brightens on hover
 
 ### Glass Elements
-- Use `backdrop-filter: blur(20px)` for glass effect
-- Subtle border with `--glass-border`
-- No box-shadow
+- Use `backdrop-filter: var(--glass-blur)` for glass effect
+- Border with `--glass-border`, inset highlight with `--glass-inset`
 
 ### Category Indicators
 - Solid color shapes
-- No drop-shadow or glow
 - Simple SVG with fill color
 
 ## Adding New Features
 
-1. Follow flat design principles
-2. Use existing CSS variables
-3. No shadows or glows under any circumstances
-4. Test in both light and dark modes
-5. Ensure reduced motion support
+1. Follow Liquid Glass design principles
+2. Use existing CSS variables (--glass-*)
+3. Only inset box-shadows (for glass highlight effect)
+4. Test reduced motion support
+5. Use glass-card variant classes for appropriate depth level
 
 ## Skills Data
 

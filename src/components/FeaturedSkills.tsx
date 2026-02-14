@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { skills, type Skill } from '../data/skills'
 import { CategoryShape } from './CategoryShape'
 import { CompatibilityMatrix } from './CompatibilityMatrix'
-import { categoryConfig } from '../config/categories'
 
 const featuredSkills = skills.filter(s => s.featured)
 
@@ -34,8 +33,8 @@ function FeaturedCard({ skill }: { skill: Skill }) {
   return (
     <Link
       href={`/skill/${skill.id}`}
-      className="skill-card glass-card group flex-shrink-0 w-[280px] sm:w-[320px] p-5 sm:p-6 snap-start flex flex-col"
-      style={{ minHeight: '180px', '--card-accent': categoryConfig[skill.category]?.color || 'var(--glass-highlight)' } as React.CSSProperties}
+      className="skill-card glass-card glass-card--featured group flex-shrink-0 w-[280px] sm:w-[320px] p-5 sm:p-6 snap-start flex flex-col"
+      style={{ minHeight: '180px' }}
     >
       <div className="flex items-center gap-2 mb-3">
         <CategoryShape category={skill.category} size={14} />
