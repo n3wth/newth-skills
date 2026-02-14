@@ -19,6 +19,8 @@ import { SkillRecommendations } from '../src/components/SkillRecommendations'
 import { ComparisonBar } from '../src/components/ComparisonBar'
 import { FeaturedSkills } from '../src/components/FeaturedSkills'
 import { SkillOfTheDay } from '../src/components/SkillOfTheDay'
+import { DailyFeed } from '../src/components/DailyFeed'
+import { LeaderboardSection } from '../src/components/LeaderboardSection'
 import { useKeyboardShortcuts, useAIRecommendations, useSkillSearch, useSkillNavigation } from '../src/hooks'
 import { getSkillBadgeStatus } from '../src/lib/analytics'
 import gsap from 'gsap'
@@ -128,6 +130,10 @@ export default function HomeClient() {
             onClose={handleClearRecommendations}
           />
         </section>
+
+        <DailyFeed />
+
+        <LeaderboardSection />
 
         <FeaturedSkills />
 
