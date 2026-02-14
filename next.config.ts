@@ -29,10 +29,6 @@ const nextConfig: NextConfig = {
     return config
   },
 
-  // Output static HTML for all pages
-  output: 'export',
-
-  // Disable image optimization for static export
   images: {
     unoptimized: true,
   },

@@ -2,6 +2,7 @@
 
 import { type ReactNode } from 'react'
 import dynamic from 'next/dynamic'
+import { AuthProvider } from '../src/components/AuthProvider'
 
 // bundle-defer-third-party: Load Sentry after hydration
 const SentryInit = dynamic(
@@ -25,10 +26,10 @@ const AnalyticsInit = dynamic(
 
 export function Providers({ children }: { children: ReactNode }) {
   return (
-    <>
+    <AuthProvider>
       {children}
       <SentryInit />
       <AnalyticsInit />
-    </>
+    </AuthProvider>
   )
 }
