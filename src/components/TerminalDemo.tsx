@@ -113,7 +113,7 @@ export function TerminalDemo() {
   }, [])
 
   return (
-    <div ref={containerRef} className="mt-8 md:mt-10">
+    <div ref={containerRef} className="mt-8 md:mt-10 mb-16 md:mb-24">
       <div
         className="glass-card rounded-xl overflow-hidden"
         style={{

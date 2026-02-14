@@ -111,7 +111,7 @@ export function StatsRow() {
   return (
     <div
       ref={containerRef}
-      className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 py-6 sm:py-8 md:py-12 mb-8 md:mb-12 rounded-2xl"
+      className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 py-6 sm:py-8 md:py-12 mb-16 md:mb-24 rounded-2xl"
       style={{
         background: 'var(--glass-bg)',
         border: '1px solid var(--glass-border)',
