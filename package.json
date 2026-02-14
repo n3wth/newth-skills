@@ -23,6 +23,7 @@
     "test:e2e:debug": "playwright test --debug",
     "test:e2e:headed": "playwright test --headed",
     "verify:supabase": "node scripts/verify-supabase.mjs",
+    "supabase:push": "npx supabase db push",
     "dev:vite": "vite",
     "build:vite": "tsc -b && vite build"
   },

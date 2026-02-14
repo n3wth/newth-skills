@@ -1,4 +1,8 @@
 import { defineConfig, devices } from '@playwright/test'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 /**
  * PHASE 3: E2E TEST AUTOMATION
@@ -93,6 +97,6 @@ export default defineConfig({
   },
 
   // Global setup/teardown
-  globalSetup: require.resolve('./e2e/global-setup.ts'),
-  globalTeardown: require.resolve('./e2e/global-teardown.ts'),
+  globalSetup: path.join(__dirname, 'e2e', 'global-setup.ts'),
+  globalTeardown: path.join(__dirname, 'e2e', 'global-teardown.ts'),
 })
