@@ -56,7 +56,7 @@ export function useSkillSearch(skills: Skill[]) {
       indexed = indexed.filter(({ searchText }) => searchText.includes(q))
     }
 
-    let filtered = indexed.map(({ skill }) => skill)
+    const filtered = indexed.map(({ skill }) => skill)
 
     // Sort results
     switch (sort) {

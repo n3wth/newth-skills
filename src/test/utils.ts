@@ -184,7 +184,7 @@ export const a11yValidators = {
     return (
       element.getAttribute('aria-label') !== null ||
       element.getAttribute('aria-labelledby') !== null ||
-      element.textContent?.trim().length! > 0
+      (element.textContent?.trim().length ?? 0) > 0
     )
   },
 
