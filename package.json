@@ -31,6 +31,8 @@
     "@n3wth/ui": "^0.5.4",
     "@neondatabase/serverless": "^1.0.2",
     "@sentry/react": "^10.36.0",
+    "@supabase/ssr": "^0.8.0",
+    "@supabase/supabase-js": "^2.95.3",
     "@tailwindcss/postcss": "^4.1.18",
     "@tailwindcss/vite": "^4.1.18",
     "ai": "^6.0.50",
