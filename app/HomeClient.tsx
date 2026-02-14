@@ -190,7 +190,7 @@ export default function HomeClient() {
 
         {/* Empty State - Delightful */}
         {filteredSkills.length === 0 && (
-          <div className="text-center py-24">
+          <div className="text-center py-20 md:py-28">
             <div className="empty-state-icon inline-block mb-6">
               <svg
                 width="64"
@@ -209,10 +209,10 @@ export default function HomeClient() {
                 <path d="M14 8l-6 6" />
               </svg>
             </div>
-            <p className="text-lg text-white mb-2">
+            <p className="section-title mb-2">
               {query.trim() ? 'No skills match that yet' : 'No skills in this category yet'}
             </p>
-            <p className="label mb-4">
+            <p className="label mb-6">
               {query.trim() ? 'Try a broader search, or browse all skills.' : 'Explore the full catalog or check back soon.'}
             </p>
             {query.trim() && (

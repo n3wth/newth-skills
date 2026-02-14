@@ -21,11 +21,12 @@ test.describe('Critical User Flows', () => {
     test('should navigate to main sections', async ({ page }) => {
       await page.goto('/')
 
-      // Find and click navigation links
-      const homeLink = page.locator('a:has-text("Home")')
-      if (await homeLink.isVisible()) {
-        await homeLink.click()
+      // Find and click an internal nav link (e.g. Bundles, Workflows)
+      const navLink = page.locator('nav a[href="/curated-bundles"], nav a[href="/workflows"]').first()
+      if (await navLink.isVisible()) {
+        await navLink.click()
         await page.waitForLoadState('domcontentloaded')
+        await expect(page).toHaveURL(/\/(curated-bundles|workflows)/)
       }
     })
 
