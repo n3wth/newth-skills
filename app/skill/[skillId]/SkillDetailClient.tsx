@@ -13,6 +13,7 @@ import { AssistantBadge } from '@/src/components/AssistantBadge'
 import { ShareButtons } from '@/src/components/ShareButtons'
 import { VoteButton } from '@/src/components/VoteButton'
 import { CompareButton } from '@/src/components/CompareButton'
+import { SkillComments } from '@/src/components/SkillComments'
 import { AddToBundleButton } from '@/src/components/AddToBundleButton'
 import { categoryConfig } from '@/src/config/categories'
 import { assistants, type AssistantId } from '@/src/config/assistants'
@@ -397,6 +398,10 @@ export function SkillDetailClient({ skillId }: Props) {
                 )
               })}
             </div>
+          </div>
+
+          <div className="mt-12">
+            <SkillComments skillId={skillId} />
           </div>
 
           {(() => {
