@@ -17,7 +17,7 @@ export function Hero() {
       setWordIndex(prev => (prev + 1) % rotatingWords.length)
     }, 3000)
     return () => clearInterval(interval)
-  }, [])
+  }, [rotatingWords.length])
 
   return (
     <div className="relative min-h-[40vh] sm:min-h-[60vh] md:min-h-screen flex items-center justify-center overflow-hidden">

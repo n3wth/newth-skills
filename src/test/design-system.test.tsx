@@ -1,5 +1,5 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { describe, it, expect } from 'vitest'
+import { render } from '@testing-library/react'
 import { designSystemValidators } from './utils'
 
 /**
@@ -233,7 +233,7 @@ describe('Design System - Flat Design Compliance', () => {
         business: '#ffd60a',
       }
 
-      Object.entries(colors).forEach(([category, color]) => {
+      Object.entries(colors).forEach(([_category, color]) => {
         const { container } = render(
           <div style={{ color }}>Category</div>
         )
@@ -333,7 +333,7 @@ describe('Design System - Category Shapes', () => {
       business: 'diamond',
     }
 
-    Object.entries(shapes).forEach(([category, expectedShape]) => {
+    Object.entries(shapes).forEach(([_category, expectedShape]) => {
       // This test verifies the category shape pattern exists
       expect(expectedShape).toBeTruthy()
     })

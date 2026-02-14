@@ -1,11 +1,10 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { render } from '@testing-library/react'
 import {
   responsiveValidators,
   setMobileViewport,
   setTabletViewport,
   setDesktopViewport,
-  isVisibleInViewport,
 } from './utils'
 
 /**

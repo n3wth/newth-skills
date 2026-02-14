@@ -1,6 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { render, screen, fireEvent } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import { describe, it, expect, vi } from 'vitest'
+import { render, fireEvent } from '@testing-library/react'
 
 /**
  * PHASE 2: FUNCTIONALITY TESTS
@@ -171,7 +170,7 @@ describe('Navigation Component', () => {
 
     it('should toggle theme on click', () => {
       let isDark = false
-      const { container, rerender } = render(
+      const { container } = render(
         <button onClick={() => { isDark = !isDark }}>
           {isDark ? 'Light' : 'Dark'}
         </button>
@@ -349,7 +348,7 @@ describe('Form Components', () => {
     })
 
     it('should show loading state during submission', () => {
-      const { container, rerender } = render(
+      const { container } = render(
         <button disabled>Loading...</button>
       )
       const button = container.querySelector('button')

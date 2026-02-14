@@ -384,7 +384,7 @@ export function useWorkflowState({
 
     // Simple left-to-right layout based on topological order
     // Import topological sort inline since it's not exported
-    const nodeMap = new Map(workflow.nodes.map(n => [n.id, n]))
+    const _nodeMap = new Map(workflow.nodes.map(n => [n.id, n]))
     const inDegree = new Map<string, number>()
     const adjacency = new Map<string, string[]>()
 

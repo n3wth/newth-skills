@@ -1,5 +1,5 @@
 import { render, RenderOptions } from '@testing-library/react'
-import React, { ReactElement } from 'react'
+import { ReactElement } from 'react'
 
 /**
  * Test utilities for design system and quality assurance
@@ -224,7 +224,7 @@ export const performanceValidators = {
    */
   hasNoConsoleErrors(): boolean {
     const errors: string[] = []
-    const originalError = console.error
+    const _originalError = console.error
     let errorCount = 0
 
     console.error = (msg: string) => {
@@ -338,5 +338,5 @@ export function setupResizeObserverMock() {
     disconnect = vi.fn()
   }
 
-  window.ResizeObserver = ResizeObserverMock as any
+  window.ResizeObserver = ResizeObserverMock as typeof ResizeObserver
 }

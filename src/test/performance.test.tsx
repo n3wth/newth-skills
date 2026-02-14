@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import { render } from '@testing-library/react'
 
 /**
@@ -91,10 +91,9 @@ describe('Performance - Core Web Vitals', () => {
     })
 
     it('should process form input without blocking', () => {
-      let value = ''
       const { container } = render(
         <input
-          onChange={(e) => { value = e.target.value }}
+          onChange={() => {}}
           defaultValue="test"
         />
       )
