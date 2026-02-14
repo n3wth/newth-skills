@@ -38,6 +38,9 @@ const nextConfig: NextConfig = {
 
   // Enable React strict mode
   reactStrictMode: true,
+
+  // Allow local network dev access
+  allowedDevOrigins: ['http://192.168.1.212:3000'],
 }
 
 export default nextConfig

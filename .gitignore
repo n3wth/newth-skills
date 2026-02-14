@@ -51,3 +51,5 @@ TESTING.md
 TEST_QUICK_START.md
 TEST_STRATEGY.md
 docs/plans/
+.worktrees/
+.env*.local
