@@ -12,9 +12,19 @@
   --color-grey-200: #e8e8ed;
   --color-grey-300: #c7c7cc;
   --color-grey-400: #86868b;
+  --color-grey-500: #8e8e93;
   --color-grey-600: #6e6e73;
+  --color-grey-700: #48484a;
   --color-grey-800: #1d1d1f;
-  
+
+  /* Typography scale */
+  --text-label: 0.8125rem;   /* 13px - section labels, captions */
+  --text-body: 0.875rem;      /* 14px - body */
+  --text-body-lg: 1rem;       /* 16px */
+  --text-title-sm: 1.125rem;  /* 18px */
+  --text-title: 1.25rem;      /* 20px */
+  --text-title-lg: 1.5rem;    /* 24px */
+
   /* Glass morphism variables */
   --glass-bg: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.1);
@@ -151,6 +161,21 @@
 .constellation-dot {
   animation: constellationTwinkle var(--twinkle-duration, 3s) ease-in-out infinite;
   animation-delay: var(--twinkle-delay, 0s);
+}
+
+/* Section labels and secondary text */
+.label {
+  font-size: var(--text-label);
+  line-height: 1.4;
+  color: var(--color-grey-400);
+}
+
+/* Section titles - consistent heading under hero */
+.section-title {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-weight: 500;
+  color: var(--color-white);
+  letter-spacing: -0.02em;
 }
 
 /* Number index */

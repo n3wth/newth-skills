@@ -45,7 +45,7 @@ export const SkillCard = memo(forwardRef<HTMLAnchorElement, SkillCardProps>(
               {isNew && !isTrending && !isPopular && <Badge color="#22c55e">New</Badge>}
             </div>
             {showPopularity && copyCount > 0 && (
-              <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ color: 'var(--color-grey-300)', backgroundColor: 'var(--glass-bg)', border: '1px solid var(--glass-border)' }}>
+              <span className="text-xs px-2 py-0.5 rounded-full" style={{ color: 'var(--color-grey-300)', backgroundColor: 'var(--glass-bg)', border: '1px solid var(--glass-border)' }}>
                 {copyCount} {copyCount === 1 ? 'install' : 'installs'}
               </span>
             )}
@@ -53,13 +53,13 @@ export const SkillCard = memo(forwardRef<HTMLAnchorElement, SkillCardProps>(
 
           <h3 className="text-sm md:text-base font-semibold mb-2 text-white">{skill.name}</h3>
 
-          <p className="text-[11px] sm:text-xs md:text-sm leading-relaxed mb-2 sm:mb-3 md:mb-4 line-clamp-3" style={{ color: 'var(--color-grey-200)' }}>
+          <p className="text-xs sm:text-sm leading-relaxed mb-2 sm:mb-3 md:mb-4 line-clamp-3" style={{ color: 'var(--color-grey-200)' }}>
             {skill.description}
           </p>
 
           <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-3">
             {skill.tags.slice(0, 3).map(tag => (
-              <span key={tag} className="text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-wider" style={{ color: 'var(--color-grey-400)' }}>
+              <span key={tag} className="text-[10px] sm:text-xs uppercase tracking-wider" style={{ color: 'var(--color-grey-400)' }}>
                 {tag}
               </span>
             ))}
@@ -77,7 +77,7 @@ export const SkillCard = memo(forwardRef<HTMLAnchorElement, SkillCardProps>(
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                 <circle cx="12" cy="7" r="4" />
               </svg>
-              <span className="text-[10px]" style={{ color: 'var(--color-grey-400)' }}>by {skill.contributor.name}</span>
+              <span className="text-xs" style={{ color: 'var(--color-grey-400)' }}>by {skill.contributor.name}</span>
             </div>
           )}
       </Link>
@@ -89,7 +89,7 @@ export const SkillCard = memo(forwardRef<HTMLAnchorElement, SkillCardProps>(
 function Badge({ color, icon, children }: { color: string; icon?: 'trending' | 'popular'; children: React.ReactNode }) {
   return (
     <span
-      className="text-[9px] font-medium flex items-center gap-1 uppercase tracking-wider"
+      className="text-[10px] sm:text-xs font-medium flex items-center gap-1 uppercase tracking-wider"
       style={{ color }}
     >
       {icon === 'trending' && (

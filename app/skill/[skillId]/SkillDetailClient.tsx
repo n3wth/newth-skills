@@ -255,7 +255,7 @@ export function SkillDetailClient({ skillId }: Props) {
 
           {skill.features && skill.features.length > 0 && (
             <div className="mb-12">
-              <h2 className="text-xl font-semibold text-white mb-6">
+              <h2 className="section-title mb-6">
                 Capabilities
               </h2>
               <div className="grid gap-3">
@@ -283,7 +283,7 @@ export function SkillDetailClient({ skillId }: Props) {
 
           {skill.useCases && skill.useCases.length > 0 && (
             <div className="mb-12">
-              <h2 className="text-xl font-semibold text-white mb-6">
+              <h2 className="section-title mb-6">
                 Use cases
               </h2>
               <div className="grid gap-3">
@@ -311,7 +311,7 @@ export function SkillDetailClient({ skillId }: Props) {
 
           {skill.samplePrompts && skill.samplePrompts.length > 0 && (
             <div className="mb-12">
-              <h2 className="text-xl font-semibold text-white mb-2">
+              <h2 className="section-title mb-2">
                 Try it
               </h2>
               <p className="text-sm mb-6" style={{ color: 'var(--color-grey-400)' }}>
@@ -379,7 +379,7 @@ export function SkillDetailClient({ skillId }: Props) {
           )}
 
           <div className="glass-card p-6 md:p-8">
-            <h2 className="text-lg font-medium text-white mb-2">Add to your AI assistant</h2>
+            <h2 className="section-title mb-2">Add to your AI assistant</h2>
             <p className="text-sm mb-6" style={{ color: 'var(--color-grey-400)' }}>
               Choose your AI assistant and run the command in your terminal
             </p>
@@ -409,7 +409,7 @@ export function SkillDetailClient({ skillId }: Props) {
             if (relatedSkills.length === 0) return null
             return (
               <div className="mt-16">
-                <h2 className="text-2xl font-semibold text-white mb-8">Related skills</h2>
+                <h2 className="section-title mb-8">Related skills</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {relatedSkills.map(relatedSkill => (
                     <SkillCard key={relatedSkill.id} skill={relatedSkill} />

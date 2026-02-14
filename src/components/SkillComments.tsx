@@ -71,7 +71,7 @@ export function SkillComments({ skillId, className = '' }: SkillCommentsProps) {
 
   return (
     <div className={className}>
-      <h2 className="text-xl font-semibold text-white mb-4">Discussions</h2>
+      <h2 className="section-title mb-4">Discussions</h2>
 
       {user ? (
         <form onSubmit={handleSubmit} className="mb-6">

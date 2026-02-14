@@ -26,7 +26,7 @@ export function SkillOfTheDay() {
       >
         <div className="flex items-center gap-2 mb-4">
           <CategoryShape category={skill.category} size={14} />
-          <span className="text-[10px] uppercase tracking-wider font-medium" style={{ color: 'var(--color-grey-400)' }}>
+          <span className="text-xs uppercase tracking-wider font-medium" style={{ color: 'var(--color-grey-400)' }}>
             Skill of the Day
           </span>
         </div>
@@ -41,7 +41,7 @@ export function SkillOfTheDay() {
 
         <div className="flex flex-wrap gap-2 mb-5">
           {skill.tags.slice(0, 5).map(tag => (
-            <span key={tag} className="text-[9px] sm:text-[10px] uppercase tracking-wider" style={{ color: 'var(--color-grey-400)' }}>
+            <span key={tag} className="text-[10px] sm:text-xs uppercase tracking-wider" style={{ color: 'var(--color-grey-400)' }}>
               {tag}
             </span>
           ))}

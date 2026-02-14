@@ -13,7 +13,7 @@ export function FeaturedSkills() {
   return (
     <section className="mb-16 md:mb-24">
       <div className="mb-6">
-        <h2 className="text-xl md:text-2xl font-medium mb-2 text-white">
+        <h2 className="section-title mb-2">
           Featured
         </h2>
         <p className="label">
@@ -39,7 +39,7 @@ function FeaturedCard({ skill }: { skill: Skill }) {
     >
       <div className="flex items-center gap-2 mb-3">
         <CategoryShape category={skill.category} size={14} />
-        <span className="text-[10px] uppercase tracking-wider font-medium" style={{ color: 'var(--color-grey-400)' }}>
+        <span className="text-xs uppercase tracking-wider font-medium" style={{ color: 'var(--color-grey-400)' }}>
           Featured
         </span>
       </div>
@@ -54,7 +54,7 @@ function FeaturedCard({ skill }: { skill: Skill }) {
 
       <div className="flex flex-wrap gap-1.5 mb-3">
         {skill.tags.slice(0, 3).map(tag => (
-          <span key={tag} className="text-[9px] uppercase tracking-wider" style={{ color: 'var(--color-grey-400)' }}>
+          <span key={tag} className="text-[10px] sm:text-xs uppercase tracking-wider" style={{ color: 'var(--color-grey-400)' }}>
             {tag}
           </span>
         ))}

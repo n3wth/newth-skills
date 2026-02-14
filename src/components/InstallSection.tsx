@@ -20,7 +20,7 @@ export function InstallSection() {
   return (
     <div ref={sectionRef} className="mb-16 md:mb-24">
       <div>
-        <h2 className="text-xl md:text-2xl font-medium mb-2 text-white">
+        <h2 className="section-title mb-2">
           Install
         </h2>
         <p className="label mb-4">

@@ -113,7 +113,7 @@ export default function HomeClient() {
         {/* AI Recommendations Section */}
         <section className="mb-16 md:mb-24">
           <div className="text-center mb-6">
-            <h2 className="text-xl md:text-2xl font-medium mb-2 text-white">
+            <h2 className="section-title mb-2">
               What do you want your AI to ship today?
             </h2>
             <p className="label">
@@ -141,7 +141,7 @@ export default function HomeClient() {
         {/* Browse Section Header */}
         <div className="mb-6 md:mb-8 flex flex-col md:flex-row md:items-start md:justify-between gap-4">
           <div>
-            <h2 className="text-xl md:text-2xl font-medium mb-2 text-white">
+            <h2 className="section-title mb-2">
               All skills
             </h2>
             <p className="label">
