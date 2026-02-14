@@ -40,13 +40,13 @@ export async function GET() {
   }
 
   // Try AI selection
-  if (process.env.GEMINI_API_KEY) {
+  if (process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
     try {
       const catalog = skills.map(s => `- ${s.id}: ${s.name} — ${s.description.slice(0, 80)}`).join('\n')
       const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][new Date().getDay()]
 
       const { object } = await generateObject({
-        model: google('gemini-2.0-flash'),
+        model: google('gemini-2.5-flash'),
         schema: SkillOfDaySchema,
         prompt: `You are the curator of a daily "Skill of the Day" feature on skills.newth.ai, a platform for AI coding assistant skills.
 
