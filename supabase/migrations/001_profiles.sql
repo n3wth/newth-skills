@@ -28,16 +28,34 @@ create policy "Users can insert own profile"
 
 create policy "Users can update own profile"
   on profiles for update
-  using (auth.uid() = id);
+  using (auth.uid() = id)
+  with check (
+    auth.uid() = id
+    and role = (select role from profiles where id = auth.uid())
+    and reputation = (select reputation from profiles where id = auth.uid())
+    and streak = (select streak from profiles where id = auth.uid())
+  );
 
 -- Auto-create profile on first login
 create or replace function public.handle_new_user()
 returns trigger as $$
+declare
+  _username text;
 begin
+  _username := coalesce(
+    new.raw_user_meta_data ->> 'user_name',
+    new.raw_user_meta_data ->> 'preferred_username',
+    split_part(new.email, '@', 1)
+  );
+
+  if exists (select 1 from public.profiles where username = _username) then
+    _username := _username || '-' || substr(gen_random_uuid()::text, 1, 8);
+  end if;
+
   insert into public.profiles (id, username, display_name, avatar_url, github_url)
   values (
     new.id,
-    coalesce(new.raw_user_meta_data ->> 'user_name', new.raw_user_meta_data ->> 'preferred_username', split_part(new.email, '@', 1)),
+    _username,
     coalesce(new.raw_user_meta_data ->> 'full_name', new.raw_user_meta_data ->> 'name'),
     new.raw_user_meta_data ->> 'avatar_url',
     'https://github.com/' || coalesce(new.raw_user_meta_data ->> 'user_name', new.raw_user_meta_data ->> 'preferred_username', '')

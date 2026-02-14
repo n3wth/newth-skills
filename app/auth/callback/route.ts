@@ -6,12 +6,15 @@ export async function GET(request: Request) {
   const code = searchParams.get('code')
   const next = searchParams.get('next') ?? '/'
 
+  const isRelativePath = next.startsWith('/') && !next.startsWith('//') && !next.startsWith('/@')
+  const safeNext = isRelativePath ? next : '/'
+
   if (code) {
     const supabase = await createServerSupabaseClient()
     if (supabase) {
       const { error } = await supabase.auth.exchangeCodeForSession(code)
       if (!error) {
-        return NextResponse.redirect(`${origin}${next}`)
+        return NextResponse.redirect(`${origin}${safeNext}`)
       }
     }
   }
