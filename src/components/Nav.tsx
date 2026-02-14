@@ -39,7 +39,7 @@ export function Nav() {
       style={{ transform: hidden ? 'translateY(-100%)' : 'translateY(0)' }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
-        <Link href="/" className="font-semibold text-sm tracking-tight">
+        <Link href="/" className="font-semibold text-base tracking-tight">
           {siteConfig.name}
         </Link>
 
@@ -51,7 +51,7 @@ export function Nav() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-[var(--color-grey-300)] hover:text-white transition-colors"
+                className="text-base text-[var(--color-grey-300)] hover:text-white transition-colors"
               >
                 {item.label}
               </a>
@@ -59,7 +59,7 @@ export function Nav() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm text-[var(--color-grey-300)] hover:text-white transition-colors"
+                className="text-base text-[var(--color-grey-300)] hover:text-white transition-colors"
               >
                 {item.label}
               </Link>
@@ -78,7 +78,7 @@ export function Nav() {
                 )}
                 <button
                   onClick={() => signOut()}
-                  className="text-sm text-[var(--color-grey-300)] hover:text-white transition-colors"
+                  className="text-base text-[var(--color-grey-300)] hover:text-white transition-colors"
                 >
                   Log out
                 </button>
@@ -86,7 +86,7 @@ export function Nav() {
             ) : (
               <button
                 onClick={() => signIn()}
-                className="text-sm border border-[var(--glass-border)] px-3 py-1.5 rounded-md hover:border-[var(--glass-highlight)] transition-colors"
+                className="text-base border border-[var(--glass-border)] px-3 py-1.5 rounded-md hover:border-[var(--glass-highlight)] transition-colors"
               >
                 Sign in
               </button>
@@ -122,7 +122,7 @@ export function Nav() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-[var(--color-grey-300)]"
+                className="text-base text-[var(--color-grey-300)]"
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
@@ -131,7 +131,7 @@ export function Nav() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm text-[var(--color-grey-300)]"
+                className="text-base text-[var(--color-grey-300)]"
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
@@ -149,10 +149,10 @@ export function Nav() {
                     className="w-7 h-7 rounded-full border border-[var(--glass-border)]"
                   />
                 )}
-                <span className="text-sm">{displayName}</span>
+                <span className="text-base">{displayName}</span>
                 <button
                   onClick={() => { signOut(); setMobileOpen(false) }}
-                  className="text-sm text-[var(--color-grey-300)] ml-auto"
+                  className="text-base text-[var(--color-grey-300)] ml-auto"
                 >
                   Log out
                 </button>
@@ -160,7 +160,7 @@ export function Nav() {
             ) : (
               <button
                 onClick={() => { signIn(); setMobileOpen(false) }}
-                className="text-sm border border-[var(--glass-border)] px-3 py-1.5 rounded-md w-full mt-2"
+                className="text-base border border-[var(--glass-border)] px-3 py-1.5 rounded-md w-full mt-2"
               >
                 Sign in with GitHub
               </button>

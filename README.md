@@ -42,14 +42,30 @@ Instructions for your AI...
 
 ```bash
 npm install
-npm run dev      # localhost:5173
+npm run dev          # localhost:3000
 npm run build
-npm run test
+npm run test:unit    # single run
+npm run test         # watch mode
 ```
+
+### Env (optional)
+
+Copy `.env.example` to `.env.local` and add Supabase + Neon credentials for upvotes, comments, and analytics. See [docs/](docs/) for SUPABASE, REFACTORING, and TESTING-AND-LINTING.
+
+### Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Next.js dev server |
+| `npm run typecheck` | TypeScript check |
+| `npm run lint` | ESLint |
+| `npm run test:unit` | Unit tests |
+| `npm run test:e2e` | Playwright E2E |
+| `npm run verify:supabase` | Verify Supabase connection |
 
 ## Stack
 
-React 19, Vite 7, Tailwind CSS 4, TypeScript, Vercel
+Next.js 16, React 19, Tailwind CSS 4, TypeScript, Supabase, Vercel
 
 ## License
 

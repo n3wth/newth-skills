@@ -1,8 +1,9 @@
 'use client'
 import { useState, useMemo, useCallback, useEffect } from 'react'
 import type { Skill } from '../data/skills'
+import { filterAndSortSkills, type SortOption } from '../lib/skillSearch'
 
-export type SortOption = 'name-asc' | 'name-desc' | 'category' | 'recently-updated'
+export type { SortOption }
 
 const SORT_STORAGE_KEY = 'newth-skills-sort-preference'
 
@@ -17,13 +18,12 @@ function getStoredSortPreference(): SortOption {
 
 /**
  * Hook for filtering, sorting, and searching skills.
- * Encapsulates all skill browsing logic with localStorage persistence.
+ * Uses filterAndSortSkills for pure logic; hook handles state and side effects.
  */
 export function useSkillSearch(skills: Skill[]) {
   const [category, setCategory] = useState('all')
   const [query, setQuery] = useState('')
   const [sort, setSort] = useState<SortOption>(getStoredSortPreference)
-
   const [debouncedQuery, setDebouncedQuery] = useState(query)
 
   useEffect(() => {
@@ -36,56 +36,18 @@ export function useSkillSearch(skills: Skill[]) {
     localStorage.setItem(SORT_STORAGE_KEY, newSort)
   }, [])
 
-  // Pre-compute search index: single lowercase string per skill
-  const searchIndex = useMemo(() =>
-    skills.map(skill => ({
-      skill,
-      searchText: [skill.name, skill.description, ...skill.tags].join(' ').toLowerCase()
-    }))
-  , [skills])
-
-  const results = useMemo(() => {
-    // Filter by category
-    let indexed = category === 'all'
-      ? [...searchIndex]
-      : searchIndex.filter(({ skill }) => skill.category === category)
-
-    // Filter by search query using pre-computed index
-    if (debouncedQuery.trim()) {
-      const q = debouncedQuery.toLowerCase().trim()
-      indexed = indexed.filter(({ searchText }) => searchText.includes(q))
-    }
-
-    const filtered = indexed.map(({ skill }) => skill)
-
-    // Sort results
-    switch (sort) {
-      case 'name-asc':
-        filtered.sort((a, b) => a.name.localeCompare(b.name))
-        break
-      case 'name-desc':
-        filtered.sort((a, b) => b.name.localeCompare(a.name))
-        break
-      case 'category':
-        filtered.sort((a, b) => a.category.localeCompare(b.category) || a.name.localeCompare(b.name))
-        break
-      case 'recently-updated':
-        filtered.sort((a, b) => new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime())
-        break
-    }
-
-    return filtered
-  }, [searchIndex, category, debouncedQuery, sort])
+  const results = useMemo(
+    () => filterAndSortSkills(skills, { category, query: debouncedQuery, sort }),
+    [skills, category, debouncedQuery, sort]
+  )
 
   const clearSearch = useCallback(() => setQuery(''), [])
 
   return {
-    // State
     category,
     query,
     sort,
     results,
-    // Actions
     setCategory,
     setQuery,
     setSort: handleSortChange,

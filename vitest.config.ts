@@ -8,6 +8,10 @@ export default defineConfig({
     globals: true,
     setupFiles: ['./src/test/setup.ts'],
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    ...(process.env.CI && {
+      reporters: ['default', 'junit'] as const,
+      outputFile: { junit: 'test-results/unit-junit.xml' },
+    }),
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],

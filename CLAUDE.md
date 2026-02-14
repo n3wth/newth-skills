@@ -4,10 +4,10 @@ AI-powered skill discovery and installation platform for Claude Code and other A
 
 ## Tech Stack
 
-- **Framework**: React 18 + TypeScript + Vite
+- **Framework**: Next.js 16 + React 19 + TypeScript
 - **Styling**: Tailwind CSS 4 with CSS custom properties
 - **Animation**: GSAP with useGSAP hook
-- **Routing**: React Router v6
+- **Data**: Supabase (auth, upvotes, comments), Neon (anonymous votes)
 
 ## Design System
 
@@ -69,22 +69,27 @@ Each category has a distinct shape (no shadows/glows):
 ## Project Structure
 
 ```
+app/                 # Next.js App Router (pages, API routes)
 src/
 ├── components/      # React components
 ├── config/          # Configuration (categories, site)
 ├── data/            # Skill data and types
-├── lib/             # Utilities (analytics, etc)
-├── pages/           # Route pages
+├── lib/             # Utilities (analytics, supabase)
 └── index.css        # Global styles
+supabase/
+└── migrations/      # Supabase schema (profiles, upvotes, comments)
+docs/                # SUPABASE.md, REFACTORING.md, TESTING-AND-LINTING.md
 ```
 
 ## Commands
 
 ```bash
-npm run dev          # Development server
+npm run dev          # Development server (localhost:3000)
 npm run build        # Production build
+npm run typecheck    # TypeScript check
 npm run lint         # ESLint
-npm run preview      # Preview production build
+npm run test:unit    # Unit tests
+npm run verify:supabase  # Verify Supabase connection
 ```
 
 ## Component Patterns

@@ -15,6 +15,7 @@ describe('analytics', () => {
     __clearAnalyticsCache()
     vi.clearAllMocks()
     vi.mocked(localStorage.getItem).mockReturnValue(null)
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true }))
   })
 
   describe('trackCopyEvent', () => {

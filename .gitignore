@@ -31,6 +31,10 @@ out/
 # TypeScript
 tsconfig.tsbuildinfo
 
+# Test outputs
+test-results/
+coverage/
+
 # Environment variables
 .env
 .env.*
