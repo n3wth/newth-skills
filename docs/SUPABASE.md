@@ -13,6 +13,17 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 
 Get these from your [Supabase project](https://supabase.com/dashboard) → Settings → API.
 
+### GitHub OAuth (Sign in with GitHub)
+
+1. **Supabase** → Authentication → URL Configuration:
+   - Site URL: `https://skills.newth.ai` (or your domain)
+   - Redirect URLs: add `https://skills.newth.ai/auth/callback`
+
+2. **Supabase** → Authentication → Providers → GitHub:
+   - Enable GitHub
+   - Create a [GitHub OAuth App](https://github.com/settings/developers) (Authorization callback: `https://YOUR_PROJECT.supabase.co/auth/v1/callback`)
+   - Add Client ID and Client Secret to Supabase
+
 **Vercel + custom prefix:** If you set a custom prefix (e.g. `SKILLS`) for the Database integration, the app checks `SKILLS_POSTGRES_URL` (and related `SKILLS_*` vars) automatically.
 
 ## Migrations
@@ -22,11 +33,13 @@ Apply migrations to your Supabase database:
 ### Option A: Supabase CLI (recommended)
 
 ```bash
-npx supabase link --project-ref YOUR_PROJECT_REF
+npx supabase login
+npx supabase link --project-ref YOUR_PROJECT_REF  # from dashboard URL
 npx supabase db push
+# or: npm run supabase:push
 ```
 
-Or run migrations one by one in the Supabase SQL Editor (Dashboard → SQL Editor).
+No Docker required for `db push` — it deploys to your remote project. Docker is only needed for local Supabase.
 
 ### Option B: SQL Editor
 
