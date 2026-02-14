@@ -15,9 +15,19 @@ const navItems = [
 ]
 
 export function Nav() {
-  const { user, profile, signIn, signOut, loading } = useAuth()
+  const { user, profile, signIn, signOut, loading, error } = useAuth()
   const [hidden, setHidden] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [showSignIn, setShowSignIn] = useState(false)
+  const [email, setEmail] = useState('')
+  const [magicLinkSent, setMagicLinkSent] = useState(false)
+
+  const handleSignIn = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!email) return
+    await signIn(email)
+    if (!error) setMagicLinkSent(true)
+  }
 
   useEffect(() => {
     let lastY = 0
@@ -83,9 +93,30 @@ export function Nav() {
                   Log out
                 </button>
               </div>
+            ) : showSignIn ? (
+              magicLinkSent ? (
+                <span className="text-sm text-[var(--color-grey-300)]">Check your email</span>
+              ) : (
+                <form onSubmit={handleSignIn} className="flex items-center gap-2 ml-2">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="you@email.com"
+                    required
+                    className="text-sm bg-transparent border border-[var(--glass-border)] px-2 py-1 rounded-md w-44 placeholder:text-[var(--color-grey-500)] focus:outline-none focus:border-[var(--glass-highlight)]"
+                  />
+                  <button
+                    type="submit"
+                    className="text-sm border border-[var(--glass-border)] px-2 py-1 rounded-md hover:border-[var(--glass-highlight)] transition-colors"
+                  >
+                    Go
+                  </button>
+                </form>
+              )
             ) : (
               <button
-                onClick={() => signIn()}
+                onClick={() => setShowSignIn(true)}
                 className="text-base border border-[var(--glass-border)] px-3 py-1.5 rounded-md hover:border-[var(--glass-highlight)] transition-colors"
               >
                 Sign in
@@ -157,13 +188,25 @@ export function Nav() {
                   Log out
                 </button>
               </div>
+            ) : magicLinkSent ? (
+              <span className="text-sm text-[var(--color-grey-300)] mt-2">Check your email for a sign-in link</span>
             ) : (
-              <button
-                onClick={() => { signIn(); setMobileOpen(false) }}
-                className="text-base border border-[var(--glass-border)] px-3 py-1.5 rounded-md w-full mt-2"
-              >
-                Sign in with GitHub
-              </button>
+              <form onSubmit={handleSignIn} className="flex flex-col gap-2 mt-2 pt-3 border-t border-[var(--glass-border)]">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@email.com"
+                  required
+                  className="text-sm bg-transparent border border-[var(--glass-border)] px-3 py-1.5 rounded-md placeholder:text-[var(--color-grey-500)] focus:outline-none focus:border-[var(--glass-highlight)]"
+                />
+                <button
+                  type="submit"
+                  className="text-base border border-[var(--glass-border)] px-3 py-1.5 rounded-md w-full"
+                >
+                  Sign in with email
+                </button>
+              </form>
             )
           )}
         </div>

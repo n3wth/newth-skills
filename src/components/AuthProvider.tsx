@@ -25,7 +25,7 @@ export interface AuthContextType {
   profile: Profile | null
   loading: boolean
   error: string | null
-  signIn: () => Promise<void>
+  signIn: (email: string) => Promise<void>
   signOut: () => Promise<void>
 }
 
@@ -107,13 +107,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => subscription.unsubscribe()
   }, [supabase, loadProfile])
 
-  const signIn = async () => {
+  const signIn = async (email: string) => {
     if (!supabase) return
     setError(null)
-    const { error: signInError } = await supabase.auth.signInWithOAuth({
-      provider: 'github',
+    const { error: signInError } = await supabase.auth.signInWithOtp({
+      email,
       options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
+        emailRedirectTo: `${window.location.origin}/auth/callback`,
       },
     })
     if (signInError) {
