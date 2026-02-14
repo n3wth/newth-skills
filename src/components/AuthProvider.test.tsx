@@ -13,7 +13,7 @@ const mockSupabase = {
       authStateCallback = cb
       return { data: { subscription: mockSubscription } }
     }),
-    signInWithOAuth: vi.fn().mockResolvedValue({ error: null }),
+    signInWithOtp: vi.fn().mockResolvedValue({ error: null }),
     signOut: vi.fn().mockResolvedValue({ error: null }),
   },
   from: vi.fn().mockReturnValue({
@@ -37,7 +37,7 @@ function TestConsumer() {
       <span data-testid="user">{user ? 'authenticated' : 'none'}</span>
       <span data-testid="profile">{profile?.username ?? 'none'}</span>
       <span data-testid="error">{error ?? 'none'}</span>
-      <button onClick={signIn}>Sign In</button>
+      <button onClick={() => signIn('test@example.com')}>Sign In</button>
       <button onClick={signOut}>Sign Out</button>
     </div>
   )
@@ -47,7 +47,7 @@ describe('AuthProvider', () => {
   beforeEach(() => {
     vi.clearAllMocks()
     mockSupabase.auth.getSession.mockResolvedValue({ data: { session: null }, error: null })
-    mockSupabase.auth.signInWithOAuth.mockResolvedValue({ error: null })
+    mockSupabase.auth.signInWithOtp.mockResolvedValue({ error: null })
     mockSupabase.auth.signOut.mockResolvedValue({ error: null })
     mockSupabase.from.mockReturnValue({
       select: vi.fn().mockReturnValue({
@@ -145,7 +145,7 @@ describe('AuthProvider', () => {
     expect(screen.getByTestId('error')).toHaveTextContent('Profile not found')
   })
 
-  it('calls signInWithOAuth on signIn', async () => {
+  it('calls signInWithOtp on signIn', async () => {
     render(
       <AuthProvider><TestConsumer /></AuthProvider>
     )
@@ -155,15 +155,15 @@ describe('AuthProvider', () => {
 
     await userEvent.click(screen.getByText('Sign In'))
 
-    expect(mockSupabase.auth.signInWithOAuth).toHaveBeenCalledWith({
-      provider: 'github',
-      options: { redirectTo: expect.stringContaining('/auth/callback') },
+    expect(mockSupabase.auth.signInWithOtp).toHaveBeenCalledWith({
+      email: 'test@example.com',
+      options: { emailRedirectTo: expect.stringContaining('/auth/callback') },
     })
   })
 
   it('handles signIn error', async () => {
-    mockSupabase.auth.signInWithOAuth.mockResolvedValue({
-      error: { message: 'OAuth failed' },
+    mockSupabase.auth.signInWithOtp.mockResolvedValue({
+      error: { message: 'OTP failed' },
     })
 
     render(
@@ -176,7 +176,7 @@ describe('AuthProvider', () => {
     await userEvent.click(screen.getByText('Sign In'))
 
     await waitFor(() => {
-      expect(screen.getByTestId('error')).toHaveTextContent('OAuth failed')
+      expect(screen.getByTestId('error')).toHaveTextContent('OTP failed')
     })
   })
 
