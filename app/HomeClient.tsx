@@ -1,12 +1,13 @@
 'use client'
 
-import { useState, useMemo, useRef, useCallback } from 'react'
+import { useState, useMemo, useRef, useCallback, useEffect } from 'react'
 import Link from 'next/link'
 import { skills, categories } from '../src/data/skills'
 import { Nav } from '../src/components/Nav'
 import { Footer } from '../src/components/Footer'
 import { Hero } from '../src/components/Hero'
 import { InstallSection } from '../src/components/InstallSection'
+import { TerminalDemo } from '../src/components/TerminalDemo'
 import { StatsRow } from '../src/components/StatsRow'
 import { SkillCard } from '../src/components/SkillCard'
 import { CategoryFilter } from '../src/components/CategoryFilter'
@@ -16,8 +17,12 @@ import { SortDropdown } from '../src/components/SortDropdown'
 import { TaskInput } from '../src/components/TaskInput'
 import { SkillRecommendations } from '../src/components/SkillRecommendations'
 import { ComparisonBar } from '../src/components/ComparisonBar'
+import { FeaturedSkills } from '../src/components/FeaturedSkills'
+import { SkillOfTheDay } from '../src/components/SkillOfTheDay'
 import { useKeyboardShortcuts, useAIRecommendations, useSkillSearch, useSkillNavigation } from '../src/hooks'
 import { getSkillBadgeStatus } from '../src/lib/analytics'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 export default function HomeClient() {
   const searchInputRef = useRef<HTMLInputElement>(null)
@@ -64,6 +69,38 @@ export default function HomeClient() {
   // Badge status (memoized)
   const badgeStatus = useMemo(() => getSkillBadgeStatus(), [])
 
+  // Scroll-reveal animations for skill cards
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReducedMotion) return
+
+    gsap.registerPlugin(ScrollTrigger)
+
+    const cards = document.querySelectorAll('[data-card]')
+    if (cards.length === 0) return
+
+    gsap.set(cards, { opacity: 0, y: 30 })
+
+    ScrollTrigger.batch(cards, {
+      onEnter: (batch) => {
+        gsap.to(batch, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.08,
+          ease: 'power2.out',
+        })
+      },
+      start: 'top 90%',
+      once: true,
+    })
+
+    return () => {
+      ScrollTrigger.getAll().forEach(t => t.kill())
+    }
+  }, [filteredSkills])
+
   return (
     <div className="min-h-screen relative content-loaded">
       <div className="mesh-gradient" />
@@ -74,7 +111,7 @@ export default function HomeClient() {
 
       <main id="main-content" className="max-w-6xl mx-auto px-6 md:px-12 pb-24">
         {/* AI Recommendations Section */}
-        <section className="mb-16 md:mb-20">
+        <section className="mb-16 md:mb-24">
           <div className="text-center mb-6">
             <h2 className="text-xl md:text-2xl font-medium mb-2 text-white">
               What do you want your AI to ship today?
@@ -92,18 +129,23 @@ export default function HomeClient() {
           />
         </section>
 
-        <InstallSection />
+        <FeaturedSkills />
 
         <StatsRow />
+
+        <InstallSection />
+        <TerminalDemo />
+
+        <SkillOfTheDay />
 
         {/* Browse Section Header */}
         <div className="mb-6 md:mb-8 flex flex-col md:flex-row md:items-start md:justify-between gap-4">
           <div>
             <h2 className="text-xl md:text-2xl font-medium mb-2 text-white">
-              Proven skills, ready now
+              All skills
             </h2>
             <p className="label">
-              {skills.length} tested skills across {categories.length - 1} categories, built and vetted by the community
+              {skills.length} skills across {categories.length - 1} categories
             </p>
           </div>
           <Link

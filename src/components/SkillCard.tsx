@@ -5,6 +5,7 @@ import { type Skill } from '../data/skills'
 import { CategoryShape } from './CategoryShape'
 import { CompatibilityMatrix } from './CompatibilityMatrix'
 import { getCopyCount } from '../lib/analytics'
+import { categoryConfig } from '../config/categories'
 
 interface SkillCardProps {
   skill: Skill
@@ -33,6 +34,7 @@ export const SkillCard = memo(forwardRef<HTMLAnchorElement, SkillCardProps>(
         href={`/skill/${skill.id}`}
         className={`skill-card glass-card group cursor-pointer p-4 sm:p-5 md:p-6 flex flex-col h-full ${isSelected ? 'ring-2 ring-white/40' : ''}`}
         aria-current={isSelected ? 'true' : undefined}
+        style={{ '--card-accent': categoryConfig[skill.category]?.color || 'var(--glass-highlight)' } as React.CSSProperties}
       >
           {/* Header with badges */}
           <div className="flex items-start justify-between mb-2 sm:mb-3 md:mb-4">

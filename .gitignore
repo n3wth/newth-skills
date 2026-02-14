@@ -30,3 +30,20 @@ out/
 
 # TypeScript
 tsconfig.tsbuildinfo
+
+# Environment variables
+.env
+.env.*
+.env.local
+.env.development
+.env.production
+!.env.example
+
+# Claude-generated docs
+claudedocs/
+.automation/
+IMPLEMENTATION_SUMMARY.md
+TESTING.md
+TEST_QUICK_START.md
+TEST_STRATEGY.md
+docs/plans/

@@ -1,5 +1,5 @@
 'use client'
-import { useState, useMemo, useCallback } from 'react'
+import { useState, useMemo, useCallback, useEffect } from 'react'
 import type { Skill } from '../data/skills'
 
 export type SortOption = 'name-asc' | 'name-desc' | 'category' | 'recently-updated'
@@ -24,26 +24,39 @@ export function useSkillSearch(skills: Skill[]) {
   const [query, setQuery] = useState('')
   const [sort, setSort] = useState<SortOption>(getStoredSortPreference)
 
+  const [debouncedQuery, setDebouncedQuery] = useState(query)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedQuery(query), 150)
+    return () => clearTimeout(timer)
+  }, [query])
+
   const handleSortChange = useCallback((newSort: SortOption) => {
     setSort(newSort)
     localStorage.setItem(SORT_STORAGE_KEY, newSort)
   }, [])
 
+  // Pre-compute search index: single lowercase string per skill
+  const searchIndex = useMemo(() =>
+    skills.map(skill => ({
+      skill,
+      searchText: [skill.name, skill.description, ...skill.tags].join(' ').toLowerCase()
+    }))
+  , [skills])
+
   const results = useMemo(() => {
     // Filter by category
-    let filtered = category === 'all'
-      ? [...skills]
-      : skills.filter(s => s.category === category)
+    let indexed = category === 'all'
+      ? [...searchIndex]
+      : searchIndex.filter(({ skill }) => skill.category === category)
 
-    // Filter by search query
-    if (query.trim()) {
-      const q = query.toLowerCase().trim()
-      filtered = filtered.filter(skill =>
-        skill.name.toLowerCase().includes(q) ||
-        skill.description.toLowerCase().includes(q) ||
-        skill.tags.some(tag => tag.toLowerCase().includes(q))
-      )
+    // Filter by search query using pre-computed index
+    if (debouncedQuery.trim()) {
+      const q = debouncedQuery.toLowerCase().trim()
+      indexed = indexed.filter(({ searchText }) => searchText.includes(q))
     }
+
+    let filtered = indexed.map(({ skill }) => skill)
 
     // Sort results
     switch (sort) {
@@ -62,7 +75,7 @@ export function useSkillSearch(skills: Skill[]) {
     }
 
     return filtered
-  }, [skills, category, query, sort])
+  }, [searchIndex, category, debouncedQuery, sort])
 
   const clearSearch = useCallback(() => setQuery(''), [])
 

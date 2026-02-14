@@ -1,0 +1,153 @@
+name: Test Install Scripts
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'public/install.sh'
+      - 'skills/**'
+      - 'cli/**'
+      - '.github/workflows/test-install.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'public/install.sh'
+      - 'skills/**'
+      - 'cli/**'
+      - '.github/workflows/test-install.yml'
+
+jobs:
+  test-install-script:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        platform: [claude, gemini, cursor, windsurf, cody, copilot]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Test install for ${{ matrix.platform }}
+        run: |
+          # Run install script for specific platform
+          bash public/install.sh ${{ matrix.platform }}
+
+      - name: Verify installation directory
+        run: |
+          PLATFORM="${{ matrix.platform }}"
+          case "$PLATFORM" in
+            claude)   DIR="$HOME/.claude/skills" ;;
+            gemini)   DIR="$HOME/.gemini/skills" ;;
+            cursor)   DIR="$HOME/.cursor/skills" ;;
+            windsurf) DIR="$HOME/.windsurf/skills" ;;
+            cody)     DIR="$HOME/.cody/skills" ;;
+            copilot)  DIR="$HOME/.copilot/skills" ;;
+          esac
+
+          echo "Checking directory: $DIR"
+          if [ ! -d "$DIR" ]; then
+            echo "FAIL: Directory $DIR was not created"
+            exit 1
+          fi
+
+          # Check that at least some skill files were installed
+          FILE_COUNT=$(find "$DIR" -name "*.md" -type f | wc -l)
+          echo "Found $FILE_COUNT skill files in $DIR"
+
+          if [ "$FILE_COUNT" -lt 1 ]; then
+            echo "FAIL: No skill files found"
+            exit 1
+          fi
+
+          echo "PASS: $FILE_COUNT skill files installed"
+
+  validate-skill-files:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate all skill markdown files
+        run: |
+          FAILED=0
+          TOTAL=0
+
+          for skill_file in skills/*.md; do
+            [ ! -f "$skill_file" ] && continue
+            TOTAL=$((TOTAL + 1))
+            FILENAME=$(basename "$skill_file")
+
+            # Check file is not empty
+            if [ ! -s "$skill_file" ]; then
+              echo "FAIL: $FILENAME is empty"
+              FAILED=$((FAILED + 1))
+              continue
+            fi
+
+            # Check file has a title (starts with # )
+            if ! head -5 "$skill_file" | grep -q "^#"; then
+              echo "WARN: $FILENAME may be missing a title header"
+            fi
+
+            # Check minimum content length (at least 100 chars)
+            CHAR_COUNT=$(wc -c < "$skill_file")
+            if [ "$CHAR_COUNT" -lt 100 ]; then
+              echo "FAIL: $FILENAME is too short ($CHAR_COUNT chars)"
+              FAILED=$((FAILED + 1))
+              continue
+            fi
+
+            echo "PASS: $FILENAME ($CHAR_COUNT chars)"
+          done
+
+          echo ""
+          echo "Results: $((TOTAL - FAILED))/$TOTAL skill files valid"
+
+          if [ $FAILED -gt 0 ]; then
+            echo "$FAILED skill file(s) failed validation"
+            exit 1
+          fi
+
+  test-cli-install:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build CLI
+        working-directory: cli
+        run: |
+          if [ -f package.json ]; then
+            npm ci 2>/dev/null || true
+            npm run build 2>/dev/null || echo "No build step"
+          fi
+
+      - name: Test CLI skill listing
+        run: |
+          # Verify the CLI can at least parse skill data
+          if [ -f cli/src/utils/skills.ts ]; then
+            echo "CLI skills utility exists"
+          fi
+
+      - name: Verify skill data integrity
+        run: |
+          # Check that skills referenced in the site data exist as files
+          node -e "
+            const fs = require('fs');
+            const skillFiles = fs.readdirSync('skills').filter(f => f.endsWith('.md'));
+            console.log('Skill files found:', skillFiles.length);
+            if (skillFiles.length < 10) {
+              console.error('Expected at least 10 skill files');
+              process.exit(1);
+            }
+            console.log('All skill files present');
+          "

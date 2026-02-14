@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import Link from 'next/link'
 import { skills, type Skill } from '@/src/data/skills'
 import { CategoryShape } from '@/src/components/CategoryShape'
@@ -48,6 +48,7 @@ type Props = {
 export function SkillDetailClient({ skillId }: Props) {
   const skill = skills.find(s => s.id === skillId)
   const { showHelp, setShowHelp } = useKeyboardShortcuts()
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
 
   // Track view when skill page is visited (only for valid skills)
   useEffect(() => {
@@ -55,6 +56,12 @@ export function SkillDetailClient({ skillId }: Props) {
       trackViewEvent(skillId)
     }
   }, [skillId, skill])
+
+  const copyPrompt = useCallback((text: string, index: number) => {
+    navigator.clipboard.writeText(text)
+    setCopiedIndex(index)
+    setTimeout(() => setCopiedIndex(null), 2000)
+  }, [])
 
   if (!skill) {
     return (
@@ -295,6 +302,75 @@ export function SkillDetailClient({ skillId }: Props) {
                     <span className="text-sm" style={{ color: 'var(--color-grey-200)' }}>
                       {useCase}
                     </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {skill.samplePrompts && skill.samplePrompts.length > 0 && (
+            <div className="mb-12">
+              <h2 className="text-xl font-semibold text-white mb-2">
+                Try it
+              </h2>
+              <p className="text-sm mb-6" style={{ color: 'var(--color-grey-400)' }}>
+                Example prompts to use with this skill
+              </p>
+              <div className="space-y-4">
+                {skill.samplePrompts.map((sample, index) => (
+                  <div
+                    key={index}
+                    className="rounded-xl p-5"
+                    style={{
+                      backgroundColor: 'var(--glass-bg)',
+                      border: '1px solid var(--glass-border)',
+                    }}
+                  >
+                    <div className="flex items-start justify-between mb-3">
+                      <span className="text-[10px] uppercase tracking-wider font-medium" style={{ color: 'var(--color-grey-400)' }}>
+                        Prompt
+                      </span>
+                      <button
+                        onClick={() => copyPrompt(sample.prompt, index)}
+                        className="glass-pill px-3 py-1 rounded-full text-[10px] font-medium transition-colors"
+                        style={{
+                          color: copiedIndex === index ? '#30d158' : 'var(--color-grey-400)',
+                          border: '1px solid var(--glass-border)',
+                        }}
+                      >
+                        {copiedIndex === index ? 'Copied' : 'Copy'}
+                      </button>
+                    </div>
+                    <p className="text-sm text-white mb-4 font-mono leading-relaxed">
+                      {sample.prompt}
+                    </p>
+                    <div>
+                      <span className="text-[10px] uppercase tracking-wider font-medium block mb-2" style={{ color: 'var(--color-grey-400)' }}>
+                        Output
+                      </span>
+                      <div className="text-sm leading-relaxed" style={{ color: 'var(--color-grey-200)' }}>
+                        {sample.output.split('```').map((part, i) => {
+                          if (i % 2 === 1) {
+                            // Code block - strip language identifier from first line
+                            const lines = part.split('\n')
+                            const code = lines.slice(1).join('\n').trim() || part.trim()
+                            return (
+                              <pre
+                                key={i}
+                                className="code-block-wrapper font-mono text-xs p-4 rounded-lg my-3 overflow-x-auto"
+                                style={{
+                                  backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                                  border: '1px solid var(--glass-border)',
+                                }}
+                              >
+                                <code>{code}</code>
+                              </pre>
+                            )
+                          }
+                          return <span key={i}>{part}</span>
+                        })}
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>

@@ -3,6 +3,7 @@ import { useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { skills, categories } from '../data/skills'
+import { assistantList } from '../config/assistants'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -59,7 +60,7 @@ function AnimatedStat({ value, label, suffix = '' }: StatProps) {
     <div className="text-center px-2">
       <span
         ref={valueRef}
-        className="block text-2xl sm:text-3xl md:text-4xl font-semibold text-white counter-animate"
+        className="block text-3xl sm:text-4xl md:text-5xl font-semibold text-white counter-animate"
       >
         0{suffix}
       </span>
@@ -76,7 +77,7 @@ export function StatsRow() {
   // Calculate stats from actual data
   const totalSkills = skills.length
   const totalCategories = categories.length - 1 // Exclude "all"
-  const featuredSkills = skills.filter(s => s.featured).length
+  const totalAssistants = assistantList.length
   const totalContributors = new Set(skills.map(s => s.contributor?.name).filter(Boolean)).size
 
   useEffect(() => {
@@ -123,7 +124,7 @@ export function StatsRow() {
         <AnimatedStat value={totalCategories} label="Categories" />
       </div>
       <div data-stat>
-        <AnimatedStat value={featuredSkills} label="Featured" />
+        <AnimatedStat value={totalAssistants} label="AI Assistants" />
       </div>
       <div data-stat>
         <AnimatedStat value={totalContributors} label="Contributors" />

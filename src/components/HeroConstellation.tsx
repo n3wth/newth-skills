@@ -109,6 +109,7 @@ export function HeroConstellation() {
   const mouseRef = useRef({ x: 0, y: 0, active: false })
   const animationRef = useRef<number>(0)
   const isReadyRef = useRef(false)
+  const isVisibleRef = useRef(true)
 
   const prefersReducedMotion = useSyncExternalStore(
     subscribeToReducedMotion,
@@ -148,6 +149,18 @@ export function HeroConstellation() {
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [initCanvas])
+
+  useEffect(() => {
+    const container = containerRef.current
+    if (!container) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => { isVisibleRef.current = entry.isIntersecting },
+      { threshold: 0.1 }
+    )
+    observer.observe(container)
+    return () => observer.disconnect()
+  }, [])
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
     if (!containerRef.current) return
@@ -249,7 +262,9 @@ export function HeroConstellation() {
           ctx.fillText(node.icon, node.x, node.y)
         })
 
-        animationRef.current = requestAnimationFrame(animate)
+        if (isVisibleRef.current) {
+          animationRef.current = requestAnimationFrame(animate)
+        }
       }
 
       animate()
@@ -257,10 +272,27 @@ export function HeroConstellation() {
 
     startAnimation()
 
+    // Restart animation when visibility changes
+    const container = containerRef.current
+    let visibilityObserver: IntersectionObserver | undefined
+    if (container) {
+      visibilityObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting && !animationRef.current) {
+            startAnimation()
+          }
+        },
+        { threshold: 0.1 }
+      )
+      visibilityObserver.observe(container)
+    }
+
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current)
+        animationRef.current = 0
       }
+      visibilityObserver?.disconnect()
     }
   }, [prefersReducedMotion])
 

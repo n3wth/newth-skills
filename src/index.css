@@ -88,11 +88,13 @@
 /* Skill Card specific styles */
 .skill-card {
   transition: border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+              background 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .skill-card:hover {
   background: var(--glass-bg);
+  transform: translateY(-4px);
 }
 
 .skill-card::before {
@@ -107,6 +109,23 @@
 
 .skill-card:hover::before {
   background: rgba(255, 255, 255, 0.02);
+}
+
+.skill-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--card-accent, var(--glass-highlight));
+  border-radius: 20px 20px 0 0;
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-card:hover::after {
+  opacity: 1;
 }
 
 .skill-card:focus-within {
@@ -154,13 +173,8 @@
   inset: 0;
   pointer-events: none;
   opacity: 0.015;
-  z-index: 9999;
+  z-index: 1;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* Cards - visible immediately, no entrance animation */
-.card-enter {
-  opacity: 1;
 }
 
 /* Page transition animations */
@@ -303,20 +317,6 @@
 
 .hero-category:hover {
   transform: translateY(-2px);
-}
-
-/* Badge pulse animation for "New" badges */
-@keyframes badgePulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
-}
-
-.badge-pulse {
-  animation: badgePulse 2s ease-in-out infinite;
 }
 
 /* Stats counter animation helper */
@@ -537,7 +537,6 @@ select {
     opacity: 0.5 !important;
   }
 
-  .card-enter,
   .page-enter,
   .page-exit,
   .hover-preview-content,
@@ -617,6 +616,28 @@ select {
 /* Hero words - visible immediately, no entrance animation */
 .hero-word {
   opacity: 1;
+}
+
+/* Hero rotating word animation */
+.hero-rotating-word {
+  animation: heroWordFade 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes heroWordFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero CTA hover */
+.hero-cta:hover {
+  border-color: var(--glass-highlight) !important;
+  background-color: var(--glass-highlight) !important;
 }
 
 
@@ -727,4 +748,5 @@ footer nav {
   color: var(--color-white) !important;
   font-weight: 600 !important;
 }
+
 

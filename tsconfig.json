@@ -38,7 +38,6 @@
   "exclude": [
     "node_modules",
     "cli",
-    "src/legacy-pages",
     "vscode-extension",
     "skills",
     "scripts",
