@@ -21,7 +21,7 @@ export function FeaturedSkills() {
         </p>
       </div>
 
-      <div className="flex gap-4 overflow-x-auto scrollbar-hidden snap-x snap-mandatory pb-2 -mx-2 px-2">
+      <div className="flex gap-4 overflow-x-auto scrollbar-hidden snap-x snap-mandatory py-3 -mx-2 px-2">
         {featuredSkills.map(skill => (
           <FeaturedCard key={skill.id} skill={skill} />
         ))}

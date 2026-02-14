@@ -85,8 +85,11 @@
   --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, Monaco, monospace;
 }
 
-/* Skill Card specific styles */
+/* Skill Card specific styles - clipped hover, flat design */
 .skill-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
   transition: border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
               background 0.3s cubic-bezier(0.4, 0, 0.2, 1),
               transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -102,7 +105,7 @@
   position: absolute;
   inset: 0;
   background: transparent;
-  border-radius: 20px;
+  border-radius: inherit;
   transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
 }
@@ -122,6 +125,7 @@
   border-radius: 20px 20px 0 0;
   opacity: 0;
   transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
 }
 
 .skill-card:hover::after {
