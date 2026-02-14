@@ -13,6 +13,8 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 
 Get these from your [Supabase project](https://supabase.com/dashboard) → Settings → API.
 
+**Vercel + custom prefix:** If you set a custom prefix (e.g. `SKILLS`) for the Database integration, the app checks `SKILLS_POSTGRES_URL` (and related `SKILLS_*` vars) automatically.
+
 ## Migrations
 
 Apply migrations to your Supabase database:

@@ -2,7 +2,11 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/src/lib/supabase-server'
 
 async function getNeonSql() {
-  if (!process.env.DATABASE_URL && !process.env.POSTGRES_URL) return null
+  const hasDb =
+    process.env.DATABASE_URL ||
+    process.env.POSTGRES_URL ||
+    process.env.SKILLS_POSTGRES_URL
+  if (!hasDb) return null
   const { sql } = await import('@/api/_lib/db')
   return sql
 }
