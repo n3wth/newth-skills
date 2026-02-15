@@ -45,10 +45,10 @@ export function Nav() {
 
   return (
     <nav
-      className="nav-glass-morphism fixed top-0 left-0 right-0 z-50 transition-transform duration-300"
+      className="fixed top-0 left-0 right-0 z-50 transition-transform duration-300 bg-[var(--color-bg)] border-b border-[var(--glass-border)]"
       style={{ transform: hidden ? 'translateY(-100%)' : 'translateY(0)' }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
+      <div className="max-w-6xl mx-auto px-6 md:px-12 flex items-center justify-between h-14">
         <Link href="/" className="font-semibold text-base tracking-tight">
           {siteConfig.name}
         </Link>
