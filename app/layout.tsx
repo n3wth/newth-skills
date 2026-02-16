@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Providers } from './providers'
+import { PostHogProvider } from '../src/components/PostHogProvider'
 import '../src/index.css'
 
 export const metadata: Metadata = {
@@ -68,7 +69,9 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <Providers>{children}</Providers>
+        <PostHogProvider>
+          <Providers>{children}</Providers>
+        </PostHogProvider>
       </body>
     </html>
   )
