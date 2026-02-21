@@ -12,7 +12,6 @@ export default defineConfig({
       ? [posthog({
           personalApiKey: process.env.POSTHOG_PERSONAL_API_KEY,
           projectId: '223560',
-          host: 'https://us.i.posthog.com',
           sourcemaps: {
             deleteAfterUpload: true,
           },
