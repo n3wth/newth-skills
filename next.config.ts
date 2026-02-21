@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next'
+import { withAxiom } from 'next-axiom'
 import path from 'path'
 
 const localUiPath = path.resolve(__dirname, '../ui/dist')
@@ -43,4 +44,4 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ['http://192.168.1.212:3000'],
 }
 
-export default nextConfig
+export default withAxiom(nextConfig)
