@@ -127,6 +127,13 @@ npm run verify:supabase  # Verify Supabase connection
 
 Skills are defined in `src/data/skills.ts` and real skill files exist in `skills/` directory as markdown with YAML frontmatter.
 
+## Telemetry
+
+Web Vitals (LCP, CLS, INP, FCP, TTFB) are collected via [Axiom](https://app.axiom.co) (`next-axiom`) and PostHog (`capture_performance`). Data flows to the `vercel` dataset in Axiom. Only production deployments send data.
+
+- Axiom dashboard: https://app.axiom.co
+- PostHog web vitals: https://us.posthog.com (Web Analytics > Web Vitals)
+
 ## Deployment
 
 Deployed to Vercel. The `install.sh` endpoint handles skill installation.

@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import { AxiomWebVitals } from 'next-axiom'
 import { Providers } from './providers'
 import { PostHogProvider } from '../src/components/PostHogProvider'
 import '../src/index.css'
@@ -53,6 +54,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-theme="dark" suppressHydrationWarning>
+      <AxiomWebVitals />
       <head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
